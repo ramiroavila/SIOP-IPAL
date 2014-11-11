@@ -1,0 +1,67 @@
+    <div class="container filter" style="width: 80%;">
+
+       {{ form_start(form) }}
+
+        <div class="row">
+          <div class="col-sm-4">
+            {{ form_row(form.empresa) }}
+          </div>
+          <div class="col-sm-4">
+            {{ form_row(form.contrato) }}
+          </div>
+          <div class="col-sm-4">
+            {{ form_row(form.mandante) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            {{ form_row(form.gerencia) }}
+          </div>
+          <div class="col-sm-4">
+            {{ form_row(form.subGerencia) }}
+          </div>
+          <div class="col-sm-4">
+            {{ form_row(form.area) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            {{ form_row(form.inspector) }}
+          </div>
+          <div class="col-sm-4">
+            {{ form_row(form.prevencionista) }}
+          </div>
+          <div class="col-sm-4">
+            {{ form_row(form.supervisor) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            {{ form_row(form.servicio) }}
+          </div>
+          <div class="col-sm-4">
+            {{ form_row(form.pais) }}
+          </div>
+          <div class="col-sm-4">
+            
+          </div>
+        </div>        
+
+        <div class="row">
+          <div class="col-sm-4 datepicker">
+            {{ form_row(form.fecha_desde) }}
+          </div>
+          <div class="col-sm-4 datepicker">
+            {{ form_row(form.fecha_hasta) }}
+          </div>
+          <div class="col-sm-4">
+            {{ form_row(form.button) }}
+          </div>
+        </div>        
+
+        {{ form_end(form) }}
+
+    </div>

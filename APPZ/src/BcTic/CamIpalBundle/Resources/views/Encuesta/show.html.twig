@@ -1,0 +1,138 @@
+{% extends '::base_pdf.html.twig' %}
+
+{% block body -%}
+  <div class="row">
+     <div class="col-md-3 text-center">
+       <img alt="logo" style="height:65px; margin-top:7px;" src="{{ asset('images/logo.jpg') }}"/>
+     </div>  
+     <div class="col-md-9">
+       <h3 class="text-center">{{ 'INSPECCIÓN DE SEGURIDAD' | trans }}</h3>
+       <h5 class="text-center">{{ 'PREVENCIÓN DE RIESGOS CAM' | trans }}</h5>
+     </div>  
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered ">
+        <tbody>
+          <tr>
+            <th colspan="3" class="text-center">{{ 'ANTECEDENTES GENERALES' | trans }}</th>
+            <th style="width: 25%;">Nº {{ entity.id }}</th>
+          </tr> 
+          <tr>
+            <td colspan="2" style="width: 50%;">{{ 'Empresa' | trans }}: {{ entity.empresa.nombre }}</td>
+            <td colspan="2" style="width: 50%;">{{ 'Área de Cam' | trans }}: {{ entity.contrato.area.nombre }}</td>
+          </tr>
+          <tr>
+            <td style="width: 25%;">{{ 'Fecha' | trans }}: {{ entity.fecha | date("d/m/Y") }}</td>
+            <td style="width: 25%;">{{ 'Hora' | trans }}: {{ entity.hora | date("h:i") }}</td>
+            <td colspan="2">{{ 'Actividad' | trans }}: {{ entity.actividad | capitalize  }}</td>
+          </tr>
+          <tr>
+            <td colspan="3">{{ 'Lugar de Trabajo' | trans }}: {{ entity.lugarDeTrabajo | capitalize }}</th>
+            <td style="width: 25%;">{{ 'Nº de empleados' | trans }}: {{ entity.numDeEmpleados }}</th>
+          </tr>
+          <tr>
+            <td colspan="2" style="width: 50%;">{{ 'Nombre Inspector' | trans }}: {{ entity.inspector }}</td>
+            <td colspan="2" style="width: 50%;">{{ 'Contrato' | trans }}: #{{ entity.contrato.numero }} {{ entity.contrato.nombre }}</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="width: 50%;">{{ 'Supervisor de Trabajo' | trans }}: {{ entity.supervisorFacade }}</td>
+            <td colspan="2" style="width: 50%;">{{ 'Subgerencia Cam' | trans }}: {{ entity.contrato.subGerencia.nombre }}</td>
+          </tr> 
+          <tr>
+            <td colspan="2" style="width: 50%;">{{ 'Gerencia Cam' | trans }}: {{ entity.contrato.subGerencia.gerencia.nombre }}</td>
+            <td colspan="2" style="width: 50%;">{{ 'Mandante' | trans }}: {{ entity.contrato.mandante.name }}</td>
+          </tr>                                  
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% include "BcTicCamIpalBundle:Encuesta:show_" ~ entity.key  ~ ".html.twig" %}
+
+   <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered ">
+        <tbody>
+          <tr>
+            <th colspan="3">I-12 {{ 'Observaciones' | trans }}:</th>
+          </tr> 
+          <tr>
+            <td colspan="3">{{ entity.observaciones }}<br/></td>
+          </tr> 
+          <tr>
+            <td style="width: 33%">
+              {% if entity.file1 |length > 5 %}
+                <img src="{{ image(entity.file1).resize(320) }}" alt="{{ 'NO EXISTE ARCHIVO 1' | trans }}"/>
+               {% else %}
+                 <i>{{ 'NO EXISTE ARCHIVO 1' | trans }}</i>
+               {% endif %}
+            </td>
+            <td style="width: 33%">
+              {% if entity.file2 |length > 5 %}
+                <img src="{{ image(entity.file2).resize(320) }}" alt="{{ 'NO EXISTE ARCHIVO 1' | trans }}"/>
+               {% else %}
+                 <i>{{ 'NO EXISTE ARCHIVO 2' | trans }}</i>
+               {% endif %}
+            </td>
+            <td style="width: 34%">
+              {% if entity.file3 |length > 5 %}
+                <img src="{{ image(entity.file3).resize(320) }}" alt="{{ 'NO EXISTE ARCHIVO 3' | trans }}"/>
+               {% else %}
+                 <i>{{ 'NO EXISTE ARCHIVO 3' | trans }}</i>
+               {% endif %}
+            </td>
+          </tr>                                             
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered ">
+        <tbody>
+          <tr>
+            <th colspan="3">I-13 {{ 'Cierre' | trans }}:</th>
+          </tr> 
+          <tr>
+            <td colspan="3">{{ entity.cierre }}<br/></td>
+          </tr>           
+          <tr>
+            <td style="width: 33%">
+               {% if entity.fileCierre1 | length > 5 %}
+                <img src="{{ image(entity.fileCierre1).resize(320) }}" alt="{{ 'NO EXISTE ARCHIVO 1 DE CIERRE' | trans }}"/>
+               {% else %}
+                 <i>{{ 'NO EXISTE ARCHIVO 1' | trans }}</i>
+               {% endif %}</td>
+            <td style="width: 33%">
+              {% if entity.fileCierre2 |length > 5 %}
+                <img src="{{ image(entity.fileCierre2).resize(320) }}" alt="{{ 'NO EXISTE ARCHIVO 2 DE CIERRE' | trans }}"/>
+               {% else %}
+                 <i>{{ 'NO EXISTE ARCHIVO 2' | trans }}</i>
+               {% endif %}
+            </td>
+            <td style="width: 34%">&nbsp;</td> 
+          </tr>                                                       
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+{% endblock %}
+
+{% block title %}
+IPAL-{{ entity.id }}-{{ "now" | date("Ymd")}}
+{% endblock %}
+
+
+
+{% block js %}
+  {{ parent() }}
+    <script type="text/javascript">
+      $(document).ready( function () { 
+        window.print();
+      });
+    </script>
+{% endblock %}      

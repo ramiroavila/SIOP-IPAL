@@ -1,0 +1,8 @@
+{% extends 'BcTicCamIpalBundle::new.html.twig' %}
+
+{% block breadcrumb_list %}
+<a href="{{ path('registros') }}">Registros</a>
+{% endblock %}
+
+{% set title = 'Nuevo Registro' %}
+{% set back_path = path('registros') %}

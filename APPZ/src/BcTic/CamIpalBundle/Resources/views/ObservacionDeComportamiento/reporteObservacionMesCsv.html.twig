@@ -1,0 +1,6 @@
+FECHA;Q TOTAL OBS;Q OBS PELIGRO
+{% for fecha,item in data %}
+{% set cantidad_incumplimientos = 0 %}
+ {% for observacion in item %}{% set cantidad_incumplimientos = cantidad_incumplimientos + observacion.cantidad_incumplimientos %}{% endfor %}
+{{ fecha | date("m-Y") }};{{ item | length }};{{ cantidad_incumplimientos }}
+{% endfor %}

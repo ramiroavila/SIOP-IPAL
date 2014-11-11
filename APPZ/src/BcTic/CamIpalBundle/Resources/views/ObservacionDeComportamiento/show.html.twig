@@ -1,0 +1,265 @@
+{% extends '::base_pdf.html.twig' %}
+
+{% block body -%}
+  <div class="row">
+     <div class="col-md-3 text-center">
+       <img alt="logo" style="height:65px; margin-top:7px;" src="{{ asset('images/logo.jpg') }}"/>
+     </div>  
+     <div class="col-md-9">
+       <h3 class="text-center">OBSERVACI&Oacute;N DE SEGURIDAD</h3>
+       <h5 class="text-center">PREVENCIÓN DE RIESGOS CAM CHILE S.A.</h5>
+     </div>  
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered ">
+        <tbody>
+          <tr>
+            <th colspan="3" class="text-center">ANTECEDENTES GENERALES</th>
+            <th style="width: 25%;">Nº {{ entity.id }}</th>
+          </tr> 
+          <tr>
+            <td colspan="2" style="width: 50%;">Empresa: {{ entity.empresa.nombre }}</td>
+            <td colspan="2" style="width: 50%;">Área de Cam: {{ entity.contrato.area.nombre }}</td>
+          </tr>
+          <tr>
+            <td style="width: 25%;">Fecha: {{ entity.fecha | date("d/m/Y") }}</td>
+            <td style="width: 25%;" >Hora: {{ entity.hora | date("h:i") }}</td>
+            <td colspan="2">Actividad: {{ entity.actividad | capitalize  }}</td>
+          </tr>
+          <tr>
+            <td colspan="3">Lugar de Trabajo: {{ entity.parteDeLaPlanta | capitalize }}</th>
+            <td style="width: 25%;">Nº de empleados: {{ entity.numeroObservados }}</th>
+          </tr>
+          <tr>
+            <td colspan="2" style="width: 50%;">Nombre Inspector: {{ entity.inspector }}</td>
+            <td colspan="2" style="width: 50%;">Contrato: #{{ entity.contrato.numero }} {{ entity.contrato.nombre }}</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="width: 50%;">Supervisor de Trabajo: {{ entity.supervisorFacade }}</td>
+            <td colspan="2" style="width: 50%;">Subgerencia Cam: {{ entity.contrato.subGerencia.nombre }}</td>
+          </tr> 
+          <tr>
+            <td colspan="2" style="width: 50%;">Gerencia Cam: {{ entity.contrato.subGerencia.gerencia.nombre }}</td>
+            <td colspan="2" style="width: 50%;">Mandante: {{ entity.contrato.mandante.name }}</td>
+          </tr>    
+          <tr>
+            <td colspan="4" style="width: 50%;">Condiciones climáticas: 
+            {% for condicion in entity.condicionesClimaticas %}{{ condicion.nombre }}&nbsp;{% endfor %}
+            </td>
+          </tr>    
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th colspan="5" class="text-center">ÁREAS / ACTUACIONES</th>
+          </tr>
+          <tr>
+            <td style="width: 60%;"><b>1 Áreas de trabajo</b></td>
+            <td style="width: 10%;"><b>Observación</b></td>
+            <td style="width: 30%;"><b>Notas</b></td>
+          </tr>
+          
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(0).observacion.nemo }} 
+            {% set name = 'observaciones_1'  %} {{ name | trans }} </td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(0).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(0).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(1).observacion.nemo }} 
+            {% set name = 'observaciones_2'  %} {{ name | trans }}</td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(1).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(1).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(2).observacion.nemo }} 
+            {% set name = 'observaciones_3'  %} {{ name | trans }}</td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(2).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(2).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td colspan="3">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td style="width: 50%;"><b>2 Comportamiento durante el Trabajo</b></td>
+            <td style="width: 10%;"><b>Observación</b></td>
+            <td style="width: 40%;"><b>Notas</b></td>
+          </tr>
+          
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(3).observacion.nemo }} 
+            {% set name = 'observaciones_4'  %} {{ name | trans }} </td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(3).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(3).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(4).observacion.nemo }} 
+            {% set name = 'observaciones_5'  %} {{ name | trans }}</td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(4).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(4).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(5).observacion.nemo }} 
+            {% set name = 'observaciones_6'  %} {{ name | trans }}</td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(5).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(5).notas }}</td>
+          </tr>   
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(6).observacion.nemo }} 
+            {% set name = 'observaciones_7'  %} {{ name | trans }}</td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(6).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(6).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(7).observacion.nemo }} 
+            {% set name = 'observaciones_8'  %} {{ name | trans }}</td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(7).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(7).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td colspan="3">&nbsp;</td>
+          </tr>          
+
+          <tr>
+            <td style="width: 50%;"><b>3 Procedimientos</b></td>
+            <td style="width: 10%;"><b>Observación</b></td>
+            <td style="width: 40%;"><b>Notas</b></td>
+          </tr>
+          
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(8).observacion.nemo }} 
+            {% set name = 'observaciones_9'  %} {{ name | trans }} </td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(8).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(8).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(9).observacion.nemo }} 
+            {% set name = 'observaciones_10'  %} {{ name | trans }}</td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(9).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(9).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(10).observacion.nemo }} 
+            {% set name = 'observaciones_11'  %} {{ name | trans }}</td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(10).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(10).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td colspan="3">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td style="width: 50%;"><b>4 Herramientas y Materiales</b></td>
+            <td style="width: 10%;"><b>Observación</b></td>
+            <td style="width: 40%;"><b>Notas</b></td>
+          </tr>
+          
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(11).observacion.nemo }} 
+            {% set name = 'observaciones_12'  %} {{ name | trans }} </td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(11).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(11).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(12).observacion.nemo }} 
+            {% set name = 'observaciones_13'  %} {{ name | trans }}</td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(12).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(12).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(13).observacion.nemo }} 
+            {% set name = 'observaciones_14'  %} {{ name | trans }}</td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(13).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(13).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td colspan="3">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td style="width: 50%;"><b>5 Equipos de protección individual</b></td>
+            <td style="width: 10%;"><b>Observación</b></td>
+            <td style="width: 40%;"><b>Notas</b></td>
+          </tr>
+          
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(14).observacion.nemo }} 
+            {% set name = 'observaciones_15'  %} {{ name | trans }} </td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(14).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(14).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(15).observacion.nemo }} 
+            {% set name = 'observaciones_16'  %} {{ name | trans }}</td>
+            <td>{% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(15).valor %}{{ name | trans }}</td>
+            <td>{{ entity.registrosDeObservacion.get(15).notas }}</td>
+          </tr>                                      
+          
+        </tbody>
+      </table>
+    </div>
+  </div>  
+
+   <br/>
+   <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered ">
+        <tbody>
+          <tr>
+            <th colspan="3">Comentarios/Archivos:</th>
+          </tr> 
+          <tr>
+            <td style="width: 50%">{{ entity.comentarios }}<br/></td>
+            <td style="width: 50%">
+               {% if entity.file1 | length > 5 %}
+                <img src="{{ image(entity.file1).resize(320) }}" alt="NO EXISTE ARCHIVO 1"/>
+               {% else %}
+                 <i>NO EXISTE ARCHIVO 1</i>
+               {% endif %}
+            </td>
+          </tr>           
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+{% endblock %}
+
+{% block title %}
+OBSERVACION-{{ entity.id }}-{{ "now" | date("Ymd")}}
+{% endblock %}
+
+
+
+{% block js %}
+  {{ parent() }}
+    <script type="text/javascript">
+      $(document).ready( function () { 
+        window.print();
+      });
+    </script>
+{% endblock %}      

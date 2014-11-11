@@ -1,0 +1,90 @@
+ID; FECHA; GERENCIA CAM; SUB GERENCIA CAM; AREA DE CAM; EMPRESA CONTRATISTA; Nº ENC; Q NC; N IPAL; CIERRE
+112 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 2; 70; ABIERTA
+111 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 1; 50; CERRADA
+100 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+103 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+109 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 1; 20; ABIERTA
+96 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; "SILVA & CIA"; 1; 2; 60; ABIERTA
+99 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 2; 20; ABIERTA
+98 ; 05-2014; "Gerencia Operaciones"; "Telemedida y Automatizacion"; "Eléctrica"; "MCH SERVICIOS ELECTRICOS"; 1; 0; 0; N/A
+108 ; 05-2014; "Servicios de Negocios"; "Servicios de Negocios"; "Logística"; "SOSIAS"; 1; 0; 0; N/A
+82 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+83 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 1; 20; ABIERTA
+93 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "SOT (Civil - Electrico)"; "CAM Chile S.A"; 1; 2; 20; ABIERTA
+94 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "SOT (Civil - Electrico)"; "CAM Chile S.A"; 1; 2; 20; ABIERTA
+95 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "SOT (Civil - Electrico)"; "CAM Chile S.A"; 1; 2; 20; ABIERTA
+90 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; "SILVA & CIA"; 1; 1; 20; ABIERTA
+97 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; "SILVA & CIA"; 1; 1; 20; ABIERTA
+87 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 2; 40; ABIERTA
+88 ; 05-2014; "Gerencia Operaciones"; "Telemedida y Automatizacion"; "Eléctrica"; "CAM Chile S.A"; 1; 0; 0; N/A
+89 ; 05-2014; "Gerencia Operaciones"; "Telemedida y Automatizacion"; "Eléctrica"; "MCH SERVICIOS ELECTRICOS"; 1; 0; 0; N/A
+75 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+77 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 1; 20; ABIERTA
+85 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Construccion OOEE y OOCC"; " -- SIN CONTRATISTA -- "; 1; 3; 120; ABIERTA
+91 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "SOT (Civil - Electrico)"; "CAM Chile S.A"; 1; 2; 60; ABIERTA
+92 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "SOT (Civil - Electrico)"; "CAM Chile S.A"; 1; 1; 20; ABIERTA
+101 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+102 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+76 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; "SILVA & CIA"; 1; 1; 20; ABIERTA
+79 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+106 ; 05-2014; "Servicios de Negocios"; "Servicios de Negocios"; "Logística"; "SOSIAS"; 1; 0; 0; N/A
+107 ; 05-2014; "Servicios de Negocios"; "Servicios de Negocios"; "Logística"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+73 ; 05-2014; "Gerencia Operaciones"; "Operaciones Tecnicas"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 2; 20; ABIERTA
+105 ; 05-2014; "Servicios de Negocios"; "Servicios de Negocios"; "Logística"; "CAM Chile S.A"; 1; 0; 0; N/A
+64 ; 05-2014; "Gerencia Operaciones"; "Operaciones Tecnicas"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 2; 70; ABIERTA
+70 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+71 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; "CAM Chile S.A"; 1; 0; 0; N/A
+80 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; "SILVA & CIA"; 1; 0; 0; N/A
+81 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; "SILVA & CIA"; 1; 0; 0; N/A
+74 ; 05-2014; "Gerencia Operaciones"; "Telemedida y Automatizacion"; "Eléctrica"; "CODEL"; 1; 0; 0; N/A
+78 ; 05-2014; "Gerencia Operaciones"; "Telemedida y Automatizacion"; "Eléctrica"; "CODEL"; 1; 0; 0; N/A
+63 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 2; 40; ABIERTA
+65 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+66 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+67 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+68 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 1; 20; ABIERTA
+55 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 1; 20; ABIERTA
+47 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+48 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+61 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 1; 20; ABIERTA
+62 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+56 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+57 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+58 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 1; 20; ABIERTA
+49 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+50 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+51 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+104 ; 05-2014; "Servicios de Negocios"; "Servicios de Negocios"; "Logística"; "SOSIAS"; 1; 0; 0; N/A
+40 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+52 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 2; 20; ABIERTA
+53 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 2; 20; ABIERTA
+54 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 2; 20; ABIERTA
+41 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "SOT (Civil - Electrico)"; " -- SIN CONTRATISTA -- "; 1; 1; 20; ABIERTA
+59 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+60 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+37 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+27 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+31 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 1; 20; ABIERTA
+28 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 1; 20; ABIERTA
+29 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 3; 40; ABIERTA
+30 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 1; 20; ABIERTA
+22 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+23 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 1; 20; ABIERTA
+25 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+43 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+44 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+45 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+24 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+18 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+42 ; 05-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+16 ; 05-2014; "Gerencia Operaciones"; "Servicios de Distribucion"; "Mantenimiento Subterraneo"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+33 ; 03-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+34 ; 03-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 3; 60; ABIERTA
+110 ; 01-2014; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 1; 50; ABIERTA
+84 ; 05-2009; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A
+72 ; 05-2009; "Gerencia Operaciones"; "Operaciones Tecnicas"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 2; 100; ABIERTA
+86 ; 05-2009; "Servicios de Negocios"; "Servicios de Negocios"; "Logística"; " -- SIN CONTRATISTA -- "; 1; 2; 60; ABIERTA
+36 ; 05-2009; "Gerencia Operaciones"; "Operaciones Tecnicas"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 1; 50; ABIERTA
+69 ; 01-2009; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; "IVAN VASQUEZ"; 1; 1; 50; ABIERTA
+32 ; 01-2009; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "Eléctrica"; " -- SIN CONTRATISTA -- "; 1; 3; 100; ABIERTA
+21 ; 01-2009; "Gerencia Operaciones"; "Operaciones Comerciales & Utilities"; "SOT (Civil - Electrico)"; " -- SIN CONTRATISTA -- "; 1; 0; 0; N/A

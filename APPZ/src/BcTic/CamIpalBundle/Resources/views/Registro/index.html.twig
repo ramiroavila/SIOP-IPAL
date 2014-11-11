@@ -1,0 +1,9 @@
+{% extends 'BcTicCamIpalBundle::index.html.twig' %}
+
+{% set title = 'Registros' %}
+{% set data = {'nombre': 'Nombre', 'roles': 'Roles', 'visible': 'Visible'} %}
+{% set path_previous = path('registros', { 'page' : page - 1 }) %}
+{% set path_next = path('registros', { 'page' : page + 1 } ) %}
+{% set path_new = path('registros_new') %}
+{% set path_key_edit = 'registros_edit' %}
+{% set path_key_delete = 'registros_delete' %}

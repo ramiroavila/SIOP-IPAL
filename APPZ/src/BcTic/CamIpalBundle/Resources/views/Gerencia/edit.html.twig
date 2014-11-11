@@ -1,0 +1,8 @@
+{% extends 'BcTicCamIpalBundle::edit.html.twig' %}
+
+{% block breadcrumb_list %}
+<a href="{{ path('gerencias') }}">Gerencias</a>
+{% endblock %}
+
+{% set title = 'Gerencia ' ~ entity.nombre %}
+{% set back_path = path('gerencias') %}

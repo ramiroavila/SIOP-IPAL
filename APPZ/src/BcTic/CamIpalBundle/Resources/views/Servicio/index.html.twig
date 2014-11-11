@@ -1,0 +1,9 @@
+{% extends 'BcTicCamIpalBundle::index.html.twig' %}
+
+{% set title = 'Servicios' %}
+{% set data = {'nombre': 'Nombre', 'area': 'Área','visible': 'Visible'} %}
+{% set path_previous = path('servicios', { 'page' : page - 1 }) %}
+{% set path_next = path('servicios', { 'page' : page + 1 } ) %}
+{% set path_new = path('servicios_new') %}
+{% set path_key_edit = 'servicios_edit' %}
+{% set path_key_delete = 'servicios_delete' %}

@@ -1,0 +1,9 @@
+{% extends 'BcTicCamIpalBundle::index.html.twig' %}
+
+{% set title = 'Gerencias' %}
+{% set data = {'nombre': 'Nombre', 'pais': 'País', 'visible': 'Visible'} %}
+{% set path_previous = path('gerencias', { 'page' : page - 1 }) %}
+{% set path_next = path('gerencias', { 'page' : page + 1 } ) %}
+{% set path_new = path('gerencias_new') %}
+{% set path_key_edit = 'gerencias_edit' %}
+{% set path_key_delete = 'gerencias_delete' %}

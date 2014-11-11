@@ -1,0 +1,9 @@
+          <div class="col-sm-6 alert {{ alert }} ">
+            <div class="form-group">
+              {{ form_label(respuesta, null, {'label_attr': {'class': 'col-sm-9 control-label text-left'}}) }}
+              {{ form_errors(respuesta) }}
+              <div class="col-sm-3">
+               {{ form_widget(respuesta) }}
+              </div>
+            </div>
+          </div>

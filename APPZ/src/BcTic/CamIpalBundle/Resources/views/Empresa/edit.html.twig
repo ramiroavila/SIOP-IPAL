@@ -1,0 +1,8 @@
+{% extends 'BcTicCamIpalBundle::edit.html.twig' %}
+
+{% block breadcrumb_list %}
+<a href="{{ path('empresas') }}">Empresas</a>
+{% endblock %}
+
+{% set title = 'Empresa ' ~ entity.nemo %}
+{% set back_path = path('empresas') %}

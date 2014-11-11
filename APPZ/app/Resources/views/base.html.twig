@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Leonardo Barrientos C. BC TIC Chile">
+    <title>{% block title %}{{ "Sistema de cumplimiento de Seguridad IPAL & OBSERVACIONES - CAM LA" | trans }}{% endblock %}</title>
+    {% block stylesheets %}
+    <link rel="stylesheet" href="//necolas.github.io/normalize.css/3.0.1/normalize.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.10.4.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    {% endblock %}
+    {% block javascript %}
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+  </head>
+  <body>
+    <div id="header">
+      <nav class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            {% if app.user %}
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            {% endif %}
+            <a class="navbar-brand" href="{{ path('welcome') }}" >{{ "Seguridad CAM-LA" | trans }}</a>
+        </div>
+
+        
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              {% if app.user %}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ "Encuestas IPAL" | trans  }}&nbsp;<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+
+                {% if app.user.pais.id == 1 %}
+                  <li><a href="{{ path('encuestas_new', { 'type': 'electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
+                  <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
+                  <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
+                  <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
+                {% endif %}
+
+                {% if app.user.pais.id == 2 %}
+                  <li><a href="{{ path('encuestas_new', { 'type': 'colombia_general'} ) }}">{{ 'Agregar IPAL Colombia' | trans }}</a></li>     
+                {% endif %}
+
+                {% if app.user.pais.id == 3 %}
+                  <li><a href="{{ path('encuestas_new', { 'type': 'electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
+                  <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
+                  <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
+                  <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
+                {% endif %}    
+
+                {% if app.user.pais.id == 4 %}
+                  <li><a href="{{ path('encuestas_new', { 'type': 'brazil_general'} ) }}">{{ 'Agregar IPAL' | trans }}</a></li>
+                  <li><a href="{{ path('encuestas_new', { 'type': 'brazil_interno'} ) }}">{{ 'Agregar IPAL Interno' | trans }}</a></li>
+                {% endif %}   
+
+                {% if app.user.pais.id == 5 %}
+                  <li><a href="{{ path('encuestas_new', { 'type': 'electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
+                  <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
+                  <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
+                  <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
+                {% endif %}  
+
+                  <li><a href="{{ path('encuestas') }}">{{ "Ver Encuestas" | trans }}</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ "Observaciones" | trans }}&nbsp;<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('observaciones_new') }}">{{ "Agregar Observación" | trans }}</a></li>
+                  <li><a href="{{ path('observaciones') }}">{{ "Ver Observaciones" | trans }}</a></li>
+                </ul>
+              </li>
+              {% endif %}
+              {% if is_granted('ROLE_ADMIN') %}
+              <li class="dropdown hidden-xs">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ "Mantenedor" | trans }}&nbsp;<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('empresas') }}">{{ "Empresas" | trans }}</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{{ path('contratos') }}">{{ "Contratos" | trans }}</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{{ path('mandantes') }}">{{ "Mandantes" | trans }}</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{{ path('gerencias') }}">{{ "Gerencias" | trans }}</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{{ path('subgerencias') }}">{{ "Subgerencias" | trans }}</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{{ path('areas') }}">{{ "Áreas" | trans }}</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{{ path('servicios') }}">{{ "Servicios" | trans }}</a></li>
+                </ul>
+              </li>
+              {% endif %}
+
+              {% if is_granted('ROLE_ADMIN') %}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ "Usuarios IPAL" | trans }} &nbsp;<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('usuarios_new') }}">{{ "Agregar Usuario" | trans }}</a></li>
+                  <li><a href="{{ path('usuarios') }}">{{ "Ver Usuarios" | trans }}</a></li>
+                </ul>
+              </li>
+              {% endif %}
+              
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              {% if app.user %}
+              <li class="dropdown hidden-xs">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ "Usuario" | trans }}: {{ app.user.username }}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('usuarios_password') }}">{{ "Cambiar password" | trans }}</a></li>
+                  <li><a href="{{ path('_logout', { '_locale': app.request.locale }) }}">{{ "Cerrar sesión" | trans }}</a></li>
+                </ul>  
+              </li>
+              {% endif %}
+              <li class="hidden-xs"><img alt="logo" style="height:35px; margin-top:7px; margin-right: 13px;" src="{{ asset('images/logo.jpg') }}"/></li>
+            </ul>
+          </div>
+        
+        </div>
+      </nav>
+    </div>
+    <div id="content" class="container">
+    {% block breadcrumb %}{% endblock %}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+      <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ flashMessage }}
+      </div>
+    {% endfor %}
+
+    {% for flashMessage in app.session.flashbag.get('error') %}
+      <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ flashMessage }}
+      </div>
+    {% endfor %}
+
+    {% block body %}{% endblock %}
+    </div>
+    <br/>
+    <div class="footer text-center">
+     {% if app.user %}
+
+     {% else %}
+       Cambiar idioma a: <a href="{{path('welcome', { '_locale': 'es'} )}}">Castellano</a> | <a href="{{path('welcome', { '_locale': 'pt'} )}}">Português</a> 
+      <br/><br/> 
+     {% endif %}
+      <img style="height:35px; " src="{{ asset('images/image2.png') }}"/>
+      <img style="height:35px; " src="{{ asset('images/image3.png') }}"/>
+      <img style="height:35px; " src="{{ asset('images/image4.png') }}"/>
+      <img style="height:35px; " src="{{ asset('images/image5.png') }}"/>
+
+      <h4>{{ "PROMOVIENDO CONDUCTAS SEGURAS" | trans }}</h4>
+      <p>&copy; {{ "CAM - LA - Sistema de Seguridad IPAL y Observaciones siop.cam-la.com" | trans }} 
+      <br/>
+      {{ "PREVENCIÓN DE RIESGOS CAM S.A." | trans }}
+      {% if app.user %}
+      <br/>{{ app.user.pais }}
+      {% endif %}  
+      <br/>Revisión #79 - 10/11/2014
+    </p></div>
+    {% block js %}{% endblock %}
+  </body>
+</html>

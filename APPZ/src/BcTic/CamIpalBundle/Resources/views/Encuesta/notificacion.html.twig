@@ -1,0 +1,27 @@
+<html>
+  <head></head>
+  <body>
+    <p>{{ 'El sistema SIOP le notifica que se acaba de ingresar la encuesta IPAL' | trans }} # {{ entity.id }} {{ 'de tipo' | trans }} {{ entity.key | upper }} {{ 'de la empresa' | trans }} {% if empresa is defined %} {{ empresa }} {% endif %} {{ 'que contiene incumplimientos 50 de los siguientes items' | trans }}: </p>
+    <p>
+    <ul>
+        {% for key, incumplimiento in incumplimientos %}
+        <li> {{ incumplimiento | trans }}</li>
+        {% endfor %}
+    </ul>
+    </p>
+
+    <p>{{ 'Empresa' | trans }}: {% if empresa is defined %} {{ empresa }} {% endif %} </p>
+    <p>{{ 'Contrato' | trans }}: {% if contrato is defined %} {{ contrato }} {% endif %} </p>
+    <p>{{ 'Inspector' | trans }}: {% if inspector is defined %} {{ inspector }} {% endif %} </p>
+    <p>{{ 'Supervisor' | trans }}: {% if supervisor is defined %} {{ supervisor}} {% endif %} </p>
+    <p>{{ 'Lugar' | trans }}: {% if lugar is defined %} {{ lugar }} {% endif %} </p>
+    <p>{{ 'Observaciones' | trans }}: {% if observaciones is defined %} {{ observaciones }} {% endif %} </p>
+              
+<p>{{ 'Atte' | trans }}.<br/>
+Sistema IPAL<br/>
+http://siop.cam-la.com<br/>
+</p>
+
+<p>* {{ 'ESTE ES UN EMAIL GENERADO AUTOMÁTICAMENTE, NO LO RESPONDA' | trans }}.</p>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{% extends 'BcTicCamIpalBundle::index.html.twig' %}
+
+{% set title = 'SubGerencias' %}
+{% set data = {'nombre': 'Nombre', 'gerencia': 'Gerencia', 'visible': 'Visible'} %}
+{% set path_previous = path('subgerencias', { 'page' : page - 1 }) %}
+{% set path_next = path('subgerencias', { 'page' : page + 1 } ) %}
+{% set path_new = path('subgerencias_new') %}
+{% set path_key_edit = 'subgerencias_edit' %}
+{% set path_key_delete = 'subgerencias_delete' %}

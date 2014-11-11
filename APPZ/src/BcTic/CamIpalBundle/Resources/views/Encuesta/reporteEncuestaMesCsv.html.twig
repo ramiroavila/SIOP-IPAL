@@ -1,0 +1,8 @@
+FECHA;IPAL;Q TOTAL ENC;Q ENC CON NC;Q NC
+{% for fecha,item in data %}
+{% set ipal = 0 %}
+{% set tiene_incumplimientos = 0 %}
+{% set cantidad_incumplimientos = 0 %}
+ {% for encuesta_index,encuesta in item %}{% set ipal = ipal + encuesta.ipal %}{% set tiene_incumplimientos = tiene_incumplimientos + encuesta.tiene_incumplimientos %}{% set cantidad_incumplimientos = cantidad_incumplimientos + encuesta.cantidad_incumplimientos %}{% endfor %}
+{{ fecha | date("m-Y") }};{% if item | length == 0 %} 0 {% else %} {{ ( ipal / item | length ) | round }} {% endif %};{{ item | length }};{{ tiene_incumplimientos }};{{ cantidad_incumplimientos }}
+{% endfor %}

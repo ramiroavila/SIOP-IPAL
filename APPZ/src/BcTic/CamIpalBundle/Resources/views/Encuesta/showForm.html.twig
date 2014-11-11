@@ -1,0 +1,99 @@
+{% extends '::base_pdf.html.twig' %}
+
+{% block body -%}
+  <div class="row">
+     <div class="col-md-3 text-center">
+       <img alt="logo" style="height:65px; margin-top:7px;" src="{{ asset('images/logo.jpg') }}"/>
+     </div>  
+     <div class="col-md-9">
+       <h3 class="text-center">{{ 'INSPECCION DE SEGURIDAD' | trans }} {{ entity.key | upper  }}</h3>
+       <h5 class="text-center">{{ 'PREVENCIÓN DE RIESGOS CAM' | trans }}</h5>
+     </div>  
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered ">
+        <tbody>
+          <tr>
+            <th colspan="3" class="text-center">{{ 'ANTECEDENTES GENERALES' | trans }}</th>
+            <th style="width: 25%;">Nº </th>
+          </tr> 
+          <tr>
+            <td colspan="2" style="width: 50%;">{{ 'Empresa' | trans }}: </td>
+            <td colspan="2" style="width: 50%;">{{ 'Área de Cam' | trans }}: </td>
+          </tr>
+          <tr>
+            <td style="width: 25%;">{{ 'Fecha' | trans }}: </td>
+            <td style="width: 25%;">{{ 'Hora' | trans }}: </td>
+            <td colspan="2">{{ 'Actividad' | trans }}: </td>
+          </tr>
+          <tr>
+            <td colspan="3">{{ 'Lugar de Trabajo' | trans }}: </th>
+            <td style="width: 25%;">{{ 'Nº de empleados' | trans }}: </th>
+          </tr>
+          <tr>
+            <td colspan="2" style="width: 50%;">{{ 'Nombre Inspector' | trans }}: </td>
+            <td colspan="2" style="width: 50%;">{{ 'Contrato' | trans }}: #</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="width: 50%;">{{ 'Supervisor de Trabajo' | trans }}: </td>
+            <td colspan="2" style="width: 50%;">{{ 'Subgerencia Cam' | trans }}: </td>
+          </tr> 
+          <tr>
+            <td colspan="2" style="width: 50%;">{{ 'Gerencia Cam' | trans }}: </td>
+            <td colspan="2" style="width: 50%;">{{ 'Mandante' | trans }}: </td>
+          </tr>                                  
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% include "BcTicCamIpalBundle:Encuesta:showForm_" ~ entity.key  ~ ".html.twig" %}
+
+   <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered ">
+        <tbody>
+          <tr>
+            <th colspan="3">I-12 {{ 'Observaciones' | trans }}:</th>
+          </tr> 
+          <tr>
+            <td colspan="3"><br/><br/><br/></td>
+          </tr> 
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered ">
+        <tbody>
+          <tr>
+            <th colspan="3">I-13 {{ 'Cierre' | trans }}:</th>
+          </tr> 
+          <tr>
+            <td colspan="3"><br/><br/><br/></td>
+          </tr>           
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+{% endblock %}
+
+{% block title %}
+IPAL
+{% endblock %}
+
+
+
+{% block js %}
+  {{ parent() }}
+    <script type="text/javascript">
+      $(document).ready( function () { 
+        window.print();
+      });
+    </script>
+{% endblock %}      

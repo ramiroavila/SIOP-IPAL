@@ -1,0 +1,232 @@
+    
+    {{ form_start(form) }}
+
+    <div id="errors"></div>
+  
+    <ul class="nav nav-tabs">
+      <li class="active hidden-xs"><a class="hidden-xs" href="#antecedentes" data-toggle="tab">{{ 'Antecedentes generales' | trans }}</a></li>
+      <li class="hidden-xs"><a class="hidden-xs" href="#ingreso" data-toggle="tab">{{ 'Áreas/Actuaciones' | trans }}</a></li>
+      <li class="hidden-xs"><a class="hidden-xs" href="#adjunto" data-toggle="tab">{{ 'Observaciones/Adjuntos' | trans }}</a></li>
+      <li class="active visible-xs"><a class="visible-xs" href="#antecedentes" data-toggle="tab">{{ 'Antecedentes' | trans }}</a></li>
+      <li class="visible-xs"><a class="visible-xs" href="#ingreso" data-toggle="tab">{{ 'Áreas' | trans }}</a></li>
+      <li class="visible-xs"><a class="visible-xs" href="#adjunto" data-toggle="tab">{{ 'Obs.' | trans }}</a></li>
+    </ul>
+
+  <div class="container" style="width: 98%;">
+    <div class="tab-content">
+      <div class="tab-pane active" id="antecedentes">
+          <br/>
+
+        <div class="row">
+          <div class="col-sm-6">
+            {{ form_row(form.empresa) }}
+          </div>
+          <div class="col-sm-6">
+            {{ form_row(form.contrato) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            {{ form_row(form.fecha) }}
+          </div>
+          <div class="col-sm-6">
+            {{ form_row(form.area) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            {{ form_row(form.hora) }}
+          </div>
+          <div class="col-sm-6">
+            {{ form_row(form.area) }}
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-6">
+            {{ form_row(form.actividad) }}
+          </div>
+          <div class="col-sm-6">
+            {{ form_row(form.servicio) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            {{ form_row(form.lugarDeTrabajo) }}
+          </div>
+          <div class="col-sm-6">
+            {{ form_row(form.gerencia) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            {{ form_row(form.numDeEmpleados) }}
+          </div>
+          <div class="col-sm-6">
+            {{ form_row(form.subGerencia) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            {{ form_row(form.cttaSubcont) }}
+          </div>
+          <div class="col-sm-6">
+            {{ form_row(form.mandante) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            {{ form_row(form.inspector) }}
+          </div>
+          <div class="col-sm-6">
+            {{ form_row(form.pais) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            {{ form_row(form.supervisor_facade) }}
+          </div>
+          <div class="col-sm-6">
+            <div>
+              {{ form_row(form.prevencionista) }}
+            </div>
+          </div>
+        </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                  <button class="btn btn-default btn-xs hidden-xs" type="button" id="bctic_camipalbundle_encuesta_next_1" name="bctic_camipalbundle_encuesta_next_1">
+                    <span class="glyphicon glyphicon-hand-right"></span>
+                    {{ 'Siguiente' | trans }}
+                  </button>
+
+                  <button class="btn btn-default btn-xs visible-xs" type="button" id="bctic_camipalbundle_encuesta_next_1_1" name="bctic_camipalbundle_encuesta_next_1">
+                    <span class="glyphicon glyphicon-hand-right"></span>
+                    {{ 'Siguiente' | trans }}
+                  </button>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+            </div>
+          </div>
+
+         
+      </div>
+
+      <div class="tab-pane survey" id="ingreso">
+
+          <br/>
+          
+          {% include "BcTicCamIpalBundle::edit_encuesta_" ~ type ~ "_format." ~ format ~ ".twig" with { form: form } %}
+          
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                  <button class="btn btn-default btn-xs hidden-xs" type="button" id="bctic_camipalbundle_encuesta_next_2" name="bctic_camipalbundle_encuesta_next_2">
+                    <span class="glyphicon glyphicon-hand-right"></span>
+                    {{ 'Siguiente' | trans }}
+                  </button>
+
+                  <button class="btn btn-default btn-xs visible-xs" type="button" id="bctic_camipalbundle_encuesta_next_2_2" name="bctic_camipalbundle_encuesta_next_2">
+                    <span class="glyphicon glyphicon-hand-right"></span>
+                    {{ 'Siguiente' | trans }}
+                  </button>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+            </div>
+          </div>
+          
+      </div>
+        
+      <div class="tab-pane" id="adjunto">
+        <br/>
+        <div class="row">
+          <div class="col-sm-6">
+              {{ form_row(form.observaciones) }}
+          </div>
+          <div class="col-sm-6">
+              {{ form_row(form.uploadedFile1) }}
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+              {{ form_row(form.uploadedFile2) }}
+            </div>
+            <div class="col-sm-6">
+              {{ form_row(form.uploadedFile3) }}
+            </div>
+        </div>
+
+        <hr class="cierre"/>
+        <div class="row cierre">
+            <div class="col-sm-6">
+              {{ form_row(form.cierre) }}
+            </div>
+            <div class="col-sm-6">
+              {{ form_row(form.uploadedFileCierre1) }}
+            </div>
+        </div>
+
+        <div class="row cierre">
+            <div class="col-sm-6">
+              <div class="form-group "><label class="col-sm-3 control-label" for="bctic_camipalbundle_encuesta_cierre"></label><div class="col-sm-9"><p><i>{{ '* Para cerrar una encuesta con observaciones debe tener texto en el cuadro "Cierre" y al menos 1 foto de cierre.' | trans }}</i></p></div></div>
+              
+            </div>
+            <div class="col-sm-6">
+              {{ form_row(form.uploadedFileCierre2) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+              {{ form_row(form.submit) }}
+            </div>
+            <div class="col-sm-6">
+              
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+    {{ form_end(form) }}
+    
+    <hr/>
+
+
+    {% block js %}
+      <script type="text/javascript"> 
+      
+        $('#bctic_camipalbundle_encuesta_next_1').bind('click', function (e) {
+          $('.nav-tabs a.hidden-xs[href="#ingreso"]').tab('show') // Select tab by name
+        });
+
+        $('#bctic_camipalbundle_encuesta_next_2').bind('click', function (e) {
+          $('.nav-tabs a.hidden-xs[href="#adjunto"]').tab('show') // Select tab by name
+        });
+
+         $('#bctic_camipalbundle_encuesta_next_1_1').bind('click', function (e) {
+          $('.nav-tabs a.hidden-xs[href="#ingreso"]').tab('show') // Select tab by name
+        });
+
+        $('#bctic_camipalbundle_encuesta_next_2_1').bind('click', function (e) {
+          $('.nav-tabs a.hidden-xs[href="#adjunto"]').tab('show') // Select tab by name
+        });
+
+      </script>
+    {% endblock %}

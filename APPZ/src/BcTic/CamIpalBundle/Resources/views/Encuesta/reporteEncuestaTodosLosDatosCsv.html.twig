@@ -1,0 +1,4 @@
+FECHA; GERENCIA CAM; SUB GERENCIA CAM; AREA DE CAM; EMPRESA CONTRATISTA; Nº ENC; Q NC; N IPAL
+{% for item in data %}
+{{ item.fecha | date("m-Y") }};"{{ item.gerencia | raw }}";"{{ item.subgerencia | raw }}";"{{ item.area | raw }}";"{{ item.contratista | raw }}";1;{{ item.cantidad_incumplimientos }};{{ item.ipal }}
+{% endfor %}

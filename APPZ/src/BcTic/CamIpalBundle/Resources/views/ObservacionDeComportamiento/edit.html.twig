@@ -1,0 +1,136 @@
+{% extends '::base.html.twig' %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li><a href="{{ path('welcome') }}">{{ 'Inicio' | trans }}</a></li>
+  <li><a href="{{ path('observaciones') }}">Observaciones</a></li>
+  <li class="active">Editar</li>
+</ol>
+{% endblock %}
+
+{% block body -%}
+    <h3 class="hidden-xs">OBSERVACIÓN DEL COMPORTAMIENTO</h3>
+
+   {% include "BcTicCamIpalBundle::edit_observacion_de_comportamiento.html.twig" with { form: edit_form, format: format, new: false, entity : entity } %}
+
+    <p class="text-left">
+    <a class="hidden-xs" href="{{ path('observaciones') }}">
+      <button type="button" class="btn btn-default btn-xs">
+        <span class="glyphicon glyphicon-th-list"></span> {{ 'Volver' | trans }}  
+      </button>
+    </a>
+    </p>
+    
+{% endblock %}
+
+
+{% block javascript %}
+      {{ parent() }}
+{% endblock %}
+    
+{% block js %}     
+
+  {{ parent() }}
+  <script type="text/javascript">
+     
+     if ($('form .has-error').length > 0) {
+       $('#errors').addClass('alert')
+       $('#errors').addClass('alert-danger');
+       $('#errors').html('{{'El formulario contiene errores, favor corríjalo.' | trans }}');
+     }
+
+    $('#bctic_camipalbundle_observaciondecomportamiento_empresa').bind('change', function (){
+      //Actualizo el contrato
+      $.ajax({
+        dataType: "json",
+        type: "POST",
+        url: "{{ path('contratos_json') }}",
+        data: { empresa_id: $(this).val() } ,
+        success: function (dataSuccess) {
+          $('select#bctic_camipalbundle_observaciondecomportamiento_contrato').empty().append('<option value="-1">-- SELECCIONE CONTRATO --</option>');
+          $.each(dataSuccess, function() {
+            //En base a esto cargo los contratos:
+            $('select#bctic_camipalbundle_observaciondecomportamiento_contrato').append('<option value="' + this.id + '">' + this.nombre + '</option>');
+          });
+        },
+        error: function (a,b,c) {
+          alert("ERROR: " + b);
+        }
+      });
+    });
+
+    $('#bctic_camipalbundle_observaciondecomportamiento_contrato').bind('change', function (){
+      //Actualizo los campos dependientes:
+      if ($(this).val() != -1) {
+        $.ajax({
+          dataType: "json",
+          type: "POST",
+          url: "{{ path('contrato_json') }}",
+          data: { id: $(this).val() } ,
+          success: function (dataSuccess) {
+            $('#bctic_camipalbundle_observaciondecomportamiento_area').val(dataSuccess.area);
+            $('#bctic_camipalbundle_observaciondecomportamiento_servicio').val(dataSuccess.servicio);
+            $('#bctic_camipalbundle_observaciondecomportamiento_gerencia').val(dataSuccess.gerencia);
+            $('#bctic_camipalbundle_observaciondecomportamiento_subGerencia').val(dataSuccess.subgerencia);
+            //$('#bctic_camipalbundle_observaciondecomportamiento_empresa').val(dataSuccess.empresa);
+            $('#bctic_camipalbundle_observaciondecomportamiento_mandante').val(dataSuccess.mandante);
+            $('#bctic_camipalbundle_observaciondecomportamiento_cttaSubcont').attr('disabled',true);
+            if (dataSuccess.subcontrato == true) {
+              $('#bctic_camipalbundle_observaciondecomportamiento_cttaSubcont').attr('disabled',false);
+            }
+          },   
+          error: function (a,b,c) {
+            alert("ERROR: " + b);
+          }
+        });       
+      }
+    });
+
+
+    $(document).ready(function (){
+     $('#bctic_camipalbundle_observaciondecomportamiento_contrato').change();
+     //Autocomplete
+     $("#bctic_camipalbundle_observaciondecomportamiento_supervisor_facade" ).autocomplete({
+        delay: 500,
+        minLength: 3,
+        source: function(request, response) {
+
+          $.ajax({
+            dataType: "json",
+            type: "POST",
+            url: "{{ path('registros_supervisores_json') }}",
+            data: { query: request.term } ,
+            success: function (dataSuccess) {
+                response( $.map( dataSuccess , function( item ) {
+                  return {
+                    label: item.nombre,
+                    value: item.id
+                  }
+                }));
+              },
+            error: function (a,b,c) {
+              alert("ERROR: " + b);
+              }
+          });
+
+        },
+        focus: function(event, ui) {
+          
+        },
+        select: function(event, ui) {
+          if (ui.item) {
+            $("#bctic_camipalbundle_observaciondecomportamiento_supervisor_facade" ).val(ui.item.label);
+            $("#bctic_camipalbundle_observaciondecomportamiento_supervisor" ).val(ui.item.value);
+          } else {
+            
+          }
+          event.preventDefault();
+        }
+
+     });
+
+    });
+
+
+  </script>
+{% endblock %}

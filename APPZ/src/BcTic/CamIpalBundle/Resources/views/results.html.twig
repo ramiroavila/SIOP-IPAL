@@ -1,0 +1,75 @@
+    {% if data | length > 0 %}
+    <table class="records_list table table-striped">
+        <thead>
+            <tr>
+              {% for key, value in data %}
+                <th>{{ value | trans  }} </th>
+              {% endfor %}
+                <th class="actions">{{ 'Opciones' | trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+               {% for key, value in data %}
+                <td>{% set obj = attribute(entity,key) %}
+                  {% set collection = false %}
+                  {% for item in obj %}
+                    {{ item }}
+                    {% set collection = true %}
+                  {% endfor %}
+                  {% if collection == false %}
+                    {% if obj is iterable %}
+                      <!-- DO NOTHING - EMPTY COLLECTION -->
+                     {% else %}
+                       {{ obj }}
+                     {% endif %}
+                  {% endif %}
+                </td>
+               {% endfor %}
+                <td>
+
+                  <a href="{{ path(path_key_edit, { 'id': entity.id }) }}">
+                    <button type="button" class="btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-pencil"></span> {{ 'Editar' | trans }}
+                    </button>
+                  </a>
+                  
+                  <a href="{{ path(path_key_delete, { 'id': entity.id, 'token': csrf.generateCsrfToken('entity' ~ entity.id) }) }}" class="confirm">
+                    <button type="button" class="btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-trash"></span> {{ 'Borrar' | trans }}
+                    </button>
+                  </a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="container" style="text-align: center; width:50%;">
+    <ul class="pagination">
+      <li {% if page < 2 %}class="disabled"{% endif %}><a id="previous" href="{% if page < 2 %}javascript:void();{% else %}javascript:void();{% endif %}">{{ 'Anterior' | trans }}</a></li>
+      <li class="active"><a href="javascript:void()">{{ page }}</a><li>
+      <li {% if entities | length < 25 %}class="disabled"{% endif %}><a id="next" href="{% if entities | length < 25 %}javascript:void();{% else %}javascript:void();{% endif %}">{{ 'Siguiente' | trans }}</a></li>
+    </ul>
+    </div>
+
+    {% else %}
+      <h4>{{ 'No se encontraron registros' | trans }}.</h4>
+    {% endif %}
+
+      <script type="text/javascript">
+        $('a.confirm').bind('click', function () {
+          return confirm("{{ '¿Está seguro quiere borrar?' | trans }}");
+        });
+
+        $('#previous').bind('click', function (e) {
+          $('#results').load('{{ path_action_previous }}');
+        });
+
+        $('#next').bind('click', function (e) {
+          $('#results').load('{{ path_action_next }}');
+        });
+
+      </script>

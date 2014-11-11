@@ -1,0 +1,383 @@
+respuesta1.1_electrica: '1.1 Tribunal de dinheiro todas as fontes de tensão'
+respuesta1.2_electrica: '1.2 Bloquear o aparelho de corte'
+respuesta1.3_electrica: '1.3 Determinar a ausência de tensão'
+respuesta1.4_electrica: '1.4 Aterramento e curto'
+respuesta1.5_electrica: '1.5 Zona de trabalho de Signage'
+respuesta2.1_electrica: '2.1 Com versão votação'
+respuesta2.2_electrica: '2.2 A autorização para a entrada de circuito'
+respuesta2.3_electrica: '2.3 A manobra ou autorização da chave'
+respuesta3.1_electrica: '3.1 Ordem características de trabalho'
+respuesta3.2_electrica: '3.2 O nome do funcionário está na Ordem de Trabalho'
+respuesta3.3_electrica: '3.3 Em conformidade com os procedimentos de trabalho e diretrizes'
+respuesta3.4_electrica: '3.4 A actividade em curso tem procedimentos existentes'
+respuesta3.5_electrica: '3.5 tem planos ou diretrizes para instalações existentes'
+respuesta4.1_electrica: '4.1 Use capacete de segurança com cinta de queixo, em bom estado e normalizados'
+respuesta4.2_electrica: '4.2 Use calçado de segurança em bom estado e normalizado'
+respuesta4.3_electrica: '4.3 Usar luvas de proteção de acordo para trabalhar em boas condições e normalizado'
+respuesta4.4_electrica: '4.4 Use luvas dielétricas em BT ou MT conforme o caso, em bom estado e normalizado'
+respuesta4.5_electrica: '4.5 usa proteção facial, em bom estado e normalizado'
+respuesta4.6_electrica: '4.6 Utilização de sistemas de proteção contra quedas (Belt, Arreio)'
+respuesta4.7_electrica: '4.7 Use linha workwear para trabalhar em boas condições e normalizado.'
+respuesta4.8_electrica: '5.8 Use protetor ocular em bom estado e normalizado'
+respuesta4.9_electrica: '4.9 Usar protetor auditivo em boas condições e normalizados'
+respuesta4.10_electrica: '4.10 Use colete reflector em bom estado e normalizado'
+respuesta4.11_electrica: '4.11 Usar luvas dielétricas em boas condições e normalizados'
+respuesta4.12_electrica: '4.12 Use norma de proteção respiratória em bom estado'
+respuesta5.1_electrica: '5.1 Use os materiais listados'
+respuesta5.2_electrica: '5.2 Usar o equipamento indicado'
+respuesta5.3_electrica: '5.3 Use as ferramentas certas'
+respuesta6.1_electrica: '6.1 Ordem e / ou limpeza da área de trabalho'
+respuesta6.2_electrica: '6.2 Meios de comunicação existente'
+respuesta6.3_electrica: '6.3 Os empregados que trabalham em condições físicas e mentais adequadas'
+respuesta6.4_electrica: '6.4 Acompanhamento da tarefa própria'
+respuesta7.1_electrica: '7.1 Proteção completa da área de trabalho'
+respuesta7.2_electrica: '7.2 Sinalização completa área de trabalho'
+respuesta8.1_electrica: '8.1 Tarefa riscos identificados'
+respuesta8.2_electrica: '8.2 Conversa inicial foi realizada cinco minutos'
+respuesta9.1_electrica: '9.1 Porta cartão de identificação autorizado a trabalhar'
+respuesta9.2_electrica: '9.2 Posee competição para a sua atividade'
+respuesta9.3_electrica: '9.3 saber como agir em caso de emergência ou acidente de trabalho'
+respuesta10.1_electrica: '10.1 O veículo eo equipamento está em conformidade com as especificações técnicas'
+respuesta10.2_electrica: '10.2 Posee documentação legal do veículo e do condutor'
+respuesta10.3_electrica: '10.3 A transferência de pessoal e veículos autorizados padrão'
+respuesta11.1_electrica: '11.1 Primeiros socorros e emergências'
+respuesta12.1_electrica: "12.1 Se amonesta algún trabajador de la cuadrilla por Actos, omisiones o imprudencias temerarias que afecten a la seguridad o al funcionamiento del establecimiento, a la seguridad o a la actividad de los trabajadores, o a la salud de éstos."
+respuesta1.1_logistica: '1.1 Fazer Check List para a máquina e / ou equipamento'
+respuesta1.2_logistica: '1.2 Todas as bobinas possuem cunhas piso.'
+respuesta1.3_logistica: '1.3 respeita níveis de altura para armazenamento de bobinas recomendados pela ACHS.'
+respuesta1.4_logistica: '1.4 As bobinas estão devidamente armazenados e não obstruir áreas de tráfego.'
+respuesta1.5_logistica: '1.5 Flexione pregos de madeira que são removidos a partir das bobinas.'
+respuesta2.1_logistica: '2.1 Não é somente pessoal treinado na área'
+respuesta3.1_logistica: '3.1 Ordem características de trabalho'
+respuesta3.2_logistica: '3.2 A atividade que está sendo executado tem os atuais procedimentos de trabalho'
+respuesta3.3_logistica: '3.3 O pessoal que executa a tarefa foi instruído nos procedimentos de trabalho seguros.'
+respuesta3.4_logistica: '3.4 Em conformidade com PTS e Normas'
+respuesta4.1_logistica: '4.1 Use capacete de segurança com cinta de queixo, em bom estado e normalizados'
+respuesta4.2_logistica: '4.2 Use calçado de segurança em bom estado e normalizado'
+respuesta4.3_logistica: '4.3 Utilização legionário e protetor solar para o trabalho no pátio.'
+respuesta4.4_logistica: '4.4 Use luvas de segurança.'
+respuesta4.5_logistica: '4.5 Use Rosto Protector em bom estado e normalizado'
+respuesta4.6_logistica: '4.6 Altura sistema de proteção Utilização queda (cinto, arnês de corpo inteiro)'
+respuesta4.7_logistica: '4.7 Usar roupa de trabalho adequada para a tarefa, em bom estado e normalizado'
+respuesta4.8_logistica: '4.8 Use protetor ocular em bom estado e normalizado'
+respuesta4.9_logistica: '4.9 uso do protetor auditivo, em bom estado e normalizados'
+respuesta4.10_logistica: '4.10 Use Colete reflector, em bom estado e normalizados'
+respuesta4.11_logistica: '4.11 Use proteção respiratória, em bom estado e normalizados'
+respuesta5.1_logistica: '5.1 Use os materiais listados'
+respuesta5.2_logistica: '5.2 Equipamentos e listados em bom estado'
+respuesta5.3_logistica: '5.3 Ferramentas e listados em bom estado'
+respuesta6.1_logistica: '6.1 Ordem e / ou área de trabalho de limpeza'
+respuesta6.2_logistica: '6.2 Meios de comunicação existente'
+respuesta6.3_logistica: '6.3 Empregado que trabalha em condições físicas e mentais adequadas'
+respuesta6.4_logistica: '6.4 supervisão adequada da tarefa.'
+respuesta6.5_logistica: '6.5 substâncias e / ou produtos perigosos armazenados'
+respuesta7.1_logistica: '7.1 Proteção completa da área de trabalho'
+respuesta7.2_logistica: '7.2 Sinalização completa área de trabalho'
+respuesta8.1_logistica: '8.1 identificados riscos Task'
+respuesta8.2_logistica: '8.2 a conversa inicial de cinco minutos foi realizado'
+respuesta9.1_logistica: '9.1 Os titulares Credencial de Identificação autorizados a trabalhar'
+respuesta9.2_logistica: '9.2 as competências técnicas adequadas para a atividade técnica em execução'
+respuesta9.3_logistica: '9.3 conhecer ou saber como agir em caso de emergência ou acidentes / incidentes de trabalho'
+respuesta10.1_logistica: '10.1 O veículo utilizado para a tarefa e equipamentos e acessórios atender as especificações técnicas exigidas'
+respuesta10.2_logistica: '10.2 Tem os documentos do veículo ou motorista exigidos pelo Código da Estrada'
+respuesta10.3_logistica: '10.3 A transferência de pessoal e veículos em locais autorizados cumpram as regras da estrada'
+respuesta11.1_logistica: '11.1 completo kit de primeiros socorros'
+respuesta12.1_logistica: "12.1 Se amonesta algún trabajador de la cuadrilla por Actos, omisiones o imprudencias temerarias que afecten a la seguridad o al funcionamiento del establecimiento, a la seguridad o a la actividad de los trabajadores, o a la salud de éstos."
+respuesta1.1_obras_civiles: '1.1 Maior do que 1,5 metros são escavações escoradas.'
+respuesta1.2_obras_civiles: '1.2 Todas as escavações têm escalas que se um metro da borda.'
+respuesta1.3_obras_civiles: '1.3 O material é amontoada mais de 50 cm da extremidade da escavação.'
+respuesta1.4_obras_civiles: '1.4 As escavações têm cercas de perímetro e sinalização adequada.'
+respuesta1.5_obras_civiles: '1.5 Há um habilitado e marcado faixa de pedestres.'
+respuesta2.1_obras_civiles: '2.1 tem permissão preventiva'
+respuesta2.2_obras_civiles: '2.2 Com o cartão de segurança pessoal'
+respuesta2.3_obras_civiles: '2.3 A manobra de chave ou autorização.'
+respuesta3.1_obras_civiles: '3.1 Trabalhando com recursos'
+respuesta3.2_obras_civiles: '3.2 A atividade que está sendo executado tem os atuais procedimentos de trabalho'
+respuesta3.3_obras_civiles: '3.3 O pessoal que executa a tarefa foi instruído nos procedimentos de trabalho seguros.'
+respuesta3.4_obras_civiles: '3.4 Em conformidade com os Procedimentos de Trabalho e Padrões'
+respuesta3.5_obras_civiles: '3.5 tem os planos ou instalações existentes guia'
+respuesta4.1_obras_civiles: '4.1 Use capacete de segurança com presilhas em boas condições e normalizado'
+respuesta4.2_obras_civiles: '4.2 Use calçados de segurança, em bom estado e normalizados'
+respuesta4.3_obras_civiles: '4.3 Use witth terno para trabalhar soldadura ou moagem.'
+respuesta4.4_obras_civiles: '4.4 Use luvas de acordo com o trabalho executado.'
+respuesta4.5_obras_civiles: '4.5 usa proteção facial, saudável e normal.'
+respuesta4.6_obras_civiles: '4.6 Altura sistema de proteção Utilização queda (cinto, arnês de corpo inteiro)'
+respuesta4.7_obras_civiles: '4.7 Use linha workwear para trabalhar em boas condições e normalizado.'
+respuesta4.8_obras_civiles: '4.8 Use protetor ocular em bom estado e normalizado'
+respuesta4.9_obras_civiles: '4.9 Usar protetor auditivo em boas condições e normalizados'
+respuesta4.10_obras_civiles: '4.10 Use colete reflector em bom estado e normalizado'
+respuesta4.11_obras_civiles: '4.11 Uso de Proteção Respiratória, saudável e normal.'
+respuesta4.12_obras_civiles: '4,12 tem um extintor de incêndio na área de trabalho. (Min 6 kg)'
+respuesta5.1_obras_civiles: '5.1 Há serviço de limpeza na área de trabalho'
+respuesta5.2_obras_civiles: '5.2 estão em bom equipamento usado.'
+respuesta5.3_obras_civiles: '5.3 É de boas ferramentas usadas.'
+respuesta6.1_obras_civiles: '6.1 A tarefa tem a metade de refrigeração para a equipe de alimentos.'
+respuesta6.2_obras_civiles: '6.2 A tarefa tem banheiros adequados, limpos e higienizados.'
+respuesta6.3_obras_civiles: '6.3 O trabalho tem jantar para o pessoal.'
+respuesta6.4_obras_civiles: '6.4 O trabalho tem de beber bastante água.'
+respuesta7.1_obras_civiles: '7.1 Proteção completa da área de trabalho'
+respuesta7.2_obras_civiles: '7.2 Sinalização completa área de trabalho'
+respuesta8.1_obras_civiles: '8.1 Tarefa riscos identificados'
+respuesta8.2_obras_civiles: '8.2 Conversa inicial foi realizada cinco minutos'
+respuesta9.1_obras_civiles: '9.1 Porta cartão de identificação autorizado a trabalhar'
+respuesta9.2_obras_civiles: '9.2 Possuir competência técnica adequada para a atividade em execução'
+respuesta9.3_obras_civiles: '9.3 conhecer ou saber como agir em caso de emergência ou acidentes ou incidentes de trabalho.'
+respuesta10.1_obras_civiles: '10.1 O veículo utilizado para a tarefa e equipamentos e acessórios atender as especificações técnicas exigidas'
+respuesta10.2_obras_civiles: '10.2 Tem os documentos do veículo ou motorista exigidos pelo Código. O tráfego local.'
+respuesta10.3_obras_civiles: '10.3 A transferência de pessoal e veículos em locais autorizados respeitam as normas de trânsito local'
+respuesta11.1_obras_civiles: '11.1 completo kit de primeiros socorros.'
+respuesta12.1_obras_civiles: "12.1 Se amonesta algún trabajador de la cuadrilla por Actos, omisiones o imprudencias temerarias que afecten a la seguridad o al funcionamiento del establecimiento, a la seguridad o a la actividad de los trabajadores, o a la salud de éstos."
+respuesta1.1_telecomunicaciones: "1.1 Identifica e avalia os riscos Quedas Altura ou diferentes níveis."
+respuesta1.2_telecomunicaciones: "1.2 Planejamento e trabalho de desenvolvimento à altura" 
+respuesta1.3_telecomunicaciones: "1.3 Uso de EPI no trabalho em altura" 
+respuesta1.4_telecomunicaciones: "1.4 Verificação das condições de execução da obra." 
+respuesta1.5_telecomunicaciones: "1.5 Suspensão de trabalho com risco de queda em altura." 
+respuesta2.1_telecomunicaciones: "2.1 Identifica e avalia os riscos elétricos Contato." 
+respuesta2.2_telecomunicaciones: "2.2 Planejamento e desenvolvimento de trabalho perto de linhas de energia." 
+respuesta2.3_telecomunicaciones: "2.3 Uso de EPI em linhas de energia nas proximidades." 
+respuesta2.4_telecomunicaciones: "2.4 A verificação da ausência de electricidade." 
+respuesta2.5_telecomunicaciones: "2.5 Suspensão da atividade na presença de cabos ou equipamentos de energia elétrica." 
+respuesta3.1_telecomunicaciones: "3.1 Não PTS para este trabalho" 
+respuesta3.2_telecomunicaciones: "3.2 Os técnicos são treinados no PTS" 
+respuesta3.3_telecomunicaciones: "3.3 É compatível com que indica o PTS" 
+respuesta3.4_telecomunicaciones: "3.4 Atividade sob normas de segurança ideais" 
+respuesta3.5_telecomunicaciones: "3.5 tem planos ou diretrizes de instalações existentes" 
+respuesta4.1_telecomunicaciones: "4.1 Use capacete de segurança com cinta de queixo, em bom estado e normalizados" 
+respuesta4.2_telecomunicaciones: "4.2 Utilização dielétrico calçado de segurança em bom estado e normalizado." 
+respuesta4.3_telecomunicaciones: "4.3 Usar luvas de cabretilla mosqueteiro tipo de acordo com o trabalho executado conforme o caso, em bom estado e normalizados" 
+respuesta4.4_telecomunicaciones: "4.4 Usar luvas isolantes, em bom estado de conservação e normalizados" 
+respuesta4.5_telecomunicaciones: "altura sistema 4.5 Use proteção contra quedas (cinto, arnês de corpo inteiro)" 
+respuesta4.6_telecomunicaciones: "4.6 Use roupas de proteção adequadas para a tarefa, em bom estado e padronizada" 
+respuesta4.7_telecomunicaciones: "4.7 Utilize óculos de segurança em bom estado de conservação e normalizados" 
+respuesta4.8_telecomunicaciones: "4.8 Use colete reflector, em bom estado e normalizados" 
+respuesta4.9_telecomunicaciones: "4.9 Usa a caneta testador atual" 
+respuesta4.10_telecomunicaciones: "4.10 Use protetor solar" 
+respuesta5.1_telecomunicaciones: "5.1 Use os materiais listados" 
+respuesta5.2_telecomunicaciones: "5.2 A utilização dos equipamentos listados" 
+respuesta5.3_telecomunicaciones: "5.3 Use as ferramentas certas" 
+respuesta6.1_telecomunicaciones: "6.1 Ordem e / ou limpeza da área de trabalho" 
+respuesta6.2_telecomunicaciones: "6.2 meios de comunicação existentes"
+respuesta6.3_telecomunicaciones: "6.3 Os empregados que trabalham em condições físicas e mentais adequadas" 
+respuesta6.4_telecomunicaciones: "6,4 supervisão adequada da tarefa" 
+respuesta7.1_telecomunicaciones: "7.1 Proteção completa da área de trabalho" 
+respuesta7.2_telecomunicaciones: "7.2 Sinalização área de trabalho completo" 
+respuesta8.1_telecomunicaciones: "8.1 riscos identificados de Tarefas"
+respuesta8.2_telecomunicaciones: "8,2 inicial talk 5 minutos foi conduzida"
+respuesta9.1_telecomunicaciones: "9.1 Porta cartão de identificação autorizado a trabalhar"
+respuesta9.2_telecomunicaciones: "9.2 possui os conhecimentos necessários para a atividade técnica em execução" 
+respuesta9.3_telecomunicaciones: "9.3 conhecer ou saber como agir em caso de emergência ou acidentes / incidentes de trabalho" 
+respuesta10.1_telecomunicaciones: "10.1 O veículo utilizado para a tarefa e seus equipamentos e acessórios atender as especificações técnicas exigidas" 
+respuesta10.2_telecomunicaciones: "10.2 tem a documentação do veículo ou do condutor exigido pela Lei de Trânsito" 
+respuesta10.3_telecomunicaciones: "10.3 transferência de pessoal em veículos em locais autorizados e em conformidade com as Regras da Estrada" 
+respuesta11.1_telecomunicaciones: "11.1 Kit completa Primeiros Socorros"
+respuesta11.2_telecomunicaciones: "11.2 escape do veículo"
+respuesta12.1_telecomunicaciones: "12.1 Se amonesta algún trabajador de la cuadrilla por Actos, omisiones o imprudencias temerarias que afecten a la seguridad o al funcionamiento del establecimiento, a la seguridad o a la actividad de los trabajadores, o a la salud de éstos."
+respuesta_0: "Sim"
+respuesta_1: "Não"
+respuesta_2: "N/A"
+observaciones_1: 'Preparar e definir a área de trabalho corretamente'
+observaciones_2: 'Manter e deixar a área das condições de trabalho arrumado, limpo e seguro'
+observaciones_3: 'Esteja atento para o ambiente de trabalho e evitar a interferência com outras atividades'
+observaciones_4: 'Tenha o devido cuidado, enquanto o trabalho é realizado'
+observaciones_5: 'Tome precauções quando se aproxima da área de trabalho ou mover-se dentro'
+observaciones_6: 'Postura correta e movimento para lidar com cargas / empurrar / Esforços'
+observaciones_7: 'Transferências por rotas apropriadas'
+observaciones_8: 'Tome as devidas precauções quando os veículos da empresa são realizadas'
+observaciones_9: 'Realizar trabalho de acordo com os procedimentos estabelecidos'
+observaciones_10: 'Siga os procedimentos de segurança relacionados ao risco de sistemas hidráulicos'
+observaciones_11: 'Siga os procedimentos de segurança relacionados ao risco de sistemas elétricos'
+observaciones_12: 'A utilização correcta de ferramentas / equipamentos / máquinas'
+observaciones_13: 'Preste atenção para o uso de ferramentas / equipamentos / máquinas'
+observaciones_14: 'Use / lidar correctamente com materiais perigosos'
+observaciones_15: 'Disponível e usados ​​corretamente PPE obrigatório'
+observaciones_16: 'Os EPISs estão em bom estado'
+observaciones_nemo_1: '1.1'
+observaciones_nemo_2: '1.2'
+observaciones_nemo_3: '1.3'
+observaciones_nemo_4: '2.1'
+observaciones_nemo_5: '2.2'
+observaciones_nemo_6: '2.3'
+observaciones_nemo_7: '2.4'
+observaciones_nemo_8: '2.5'
+observaciones_nemo_9: '3.1'
+observaciones_nemo_10: '3.2'
+observaciones_nemo_11: '3.3'
+observaciones_nemo_12: '4.1'
+observaciones_nemo_13: '4.2'
+observaciones_nemo_14: '4.3'
+observaciones_nemo_15: '5.1'
+observaciones_nemo_16: '5.2'
+observaciones_respuesta_1: Seguro
+observaciones_respuesta_2: Perigoso
+observaciones_respuesta_3: N/A
+Sí: Sim
+No: Não
+N/A: N/A
+'Encuestas IPAL': 'Enquetes IPAL'
+'Seguridad CAM-LA': 'Segurança CAM-LA'
+'INSPECCIONES Y OBSERVACIONES DE SEGURIDAD': 'OBSERVAÇÕES E INSPEÇÕES DE SEGURANÇA'
+'INSPECC. Y OBSERVACIONES<br/>DE SEGURIDAD': 'OBSERVAÇÕES E INSPEÇÕES DE SEGURANÇA'
+'PROMOVIENDO CONDUCTAS SEGURAS': 'PROMOÇÃO SALVO CONDUTO'
+Usuario: Usuário
+'Usuarios IPAL': 'Usuários IPAL'
+'Agregar Usuario': 'Adicionar Usuário'
+'Ver Usuarios': 'Ver Usuários'
+Password: Senha
+Contraseña: Senha
+Ingresar: Entre
+'Cerrar sesión': Sair
+'Cambiar password': 'Alterar a senha'
+'Agregar IPAL Eléctrica': 'Adicionar IPAL Elétrico'
+'Agregar IPAL Logística': 'Adicionar IPAL Logística'
+'Agregar IPAL Obras Civiles': 'Adicionar IPAL Obras Construção'
+Eléctrico: Elétrico
+ELECTRICA: ELÉTRICA
+Logística: Logística
+LOGISTICA: LOGÍSTICA
+'Obras Civiles': 'Obras Construção'
+OBRAS_CIVILES: 'OBRAS CONSTRUÇÃO'
+'- TODOS LOS TIPOS -': '- Todos os tipos -'
+'- TODOS LOS INSPECTORES -': '- Todos os inspetores -'
+'- TODOS LOS PREVENCIONISTAS -': '- Todos los prevencionistas -'
+'- TODOS LOS SUPERVISORES -': '- Todos los supervisores -'
+'- TODOS LOS SERVICIOS -': '- Todos os serviços -'
+'- TODAS LAS EMPRESAS -': '- Todas as empresas -'
+'- TODAS LAS GERENCIAS -': '- Todas as gerencias -'
+'- TODOS LOS CONTRATOS -': '- Todas os contratos -'
+'- TODOS LOS MANDANTES -': '- Todos os constituintes -'
+'- TODAS LAS SUB GERENCIAS -': '- Todas as sub gerencias -'
+'- TODOS LOS PAISES -': '- Todos os paises -'
+'- TODAS LAS AREAS -': '- Todas as áreas -'
+'Ver Encuestas': 'Ver Enquetes'
+Observaciones: Observações
+'Ver Observaciones': 'Ver Observações'
+'Agregar Observación': 'Adicionar Observaçõe'
+Mantenedor: Gestão
+Empresas: Empresas
+Contratos: Contratos
+Mandantes: Constituintes
+Mandante: Constituinte
+Gerencias: Gerências
+'Sub Gerencias': Sub-Gerências
+Áreas: Áreas
+Servicios: Serviços
+Personal: Pessoal
+Usuarios: Usuários
+Bienvenido: Bem-vindo
+'utiliza las opciones del menú superior para navegar en la aplicación o los botones siguientes': 'utilizar as opções no menu superior para navegar no aplicativo ou os seguintes botões'
+Reportes: Enquetes
+Agregar: 'Adicionar '
+Inicio: Frente
+'Índice IPAL': 'Índice IPAL'
+Listado: Lista
+Mapa: Mapa
+'Nº de inspecciones': 'Nº de inspecções'
+'Riesgo Detectado': 'Risco Detectado'
+'Nº Inspecciones': 'Nº inspecções'
+Informes: Informações
+'Por mes': 'Por mês'
+'Todos los datos': 'Todos os dados'
+'No conformidades': 'Não Conformidades'
+'IPAL Prevenc/Inspector': 'IPAL Prevenc/Inspetor'
+'IPAL tot. Prevenc/Inspec.': 'IPAL tot. Prevenc/Inspec.'
+'Total no 50-20': 'Total de não 50-20'
+'Por status': 'Por status'
+Empresa: Empresa
+Contrato: Contrato
+Inspector: Inspetor
+Inspector/País: Inspetor/País
+'Archivos Obs.': 'Arquivos Obs.'
+'Control de cierre': 'Inspeção final'
+Encuesta: Enquetes
+Opciones: Opções
+Archivo: Arquivos
+'Adjunto 1': 'Arquivo #1'
+'Adjunto 2': 'Arquivo #2'
+'Adjunto 3': 'Arquivo #3'
+Ver: Ver
+Editar: Editar
+Borrar: Tirar
+Fecha: Data
+Hora: Tempo
+'Lugar de trabajo': 'Local de trabalho'
+'Nº de empleados': 'Nº de funcionários'
+'No hay encuestas IPAL que mostrar.': ''
+'Se ha descargado el archivo': 'Você fez o download do arquivo'
+'¿Está seguro quiere borrar?': 'Tem certeza de que deseja excluir?'
+'SE HA PRODUCIDO UN ERROR, CORRIJA EL BUSCADOR E INTÉNTELO NUEVAMENTE.': 'Ocorreu um erro, corrija o pesquisa e tente novamente.'
+'- NINGUN PREVENCIONISTA -': '- No PREVENCIONISTA -'
+'Usted está aquí': 'Você está aqui'
+'Fecha desde': 'A partir de'
+'Fecha hasta': 'Para cima'
+Buscar: Pesquisa
+Volver: Voltar
+'El formulario contiene errores, favor corríjalo.': 'O formulário contém erros, por favor, corrija-o.'
+'PLANILLA DE INSPECCIÓN Y OBSERVACIÓN DE SEGURIDAD': 'FORMULÁRIO DE OBSERVAÇÃO E INSPEÇÃO DE SEGURANÇA'
+'-- SELECCIONE CONTRATO --': '-- SELECCIONE CONTRATO --'
+'Antecedentes generales': 'Informações gerais'
+Áreas/Actuaciones: Áreas/Performances
+Observaciones/Adjuntos: Observações/Arquivos
+Antecedentes: Dados
+Obs.: Obs.
+Siguiente: Seguinte
+Nombre: Nome
+Visible: Visível
+'* Para cerrar una encuesta con observaciones debe tener texto en el cuadro "Cierre" y al menos 1 foto de cierre.': '* Para concluir um observações da pesquisa deve ter texto "Close" e pelo menos 1 imagem.'
+Guardar: Salvar
+'PREVENCIÓN DE RIESGOS CAM CHILE S.A.': 'PREVENÇÃO DE RISCOS CAM'
+'ANTECEDENTES GENERALES': 'INFORMAÇÕES GERAIS'
+'Área de Cam': Área
+Actividad: Actividade
+'Lugar de Trabajo': 'Local de trabalho'
+'Nombre Inspector': Inspetor
+'Supervisor de Trabajo': 'Supervisor de Trabalho'
+'Subgerencia Cam': 'Subgerencia Cam'
+'Gerencia Cam': 'Gerencia Cam'
+'NO EXISTE ARCHIVO 1': 'NÃO HÁ IMAGEM 1'
+'NO EXISTE ARCHIVO 2': 'NÃO HÁ IMAGEM 2'
+'NO EXISTE ARCHIVO 3': 'NÃO HÁ IMAGEM 3'
+Cierre: Conclusão
+'NO EXISTE ARCHIVO 1 DE CIERRE': 'NÃO HÁ IMAGEM 1'
+'NO EXISTE ARCHIVO 2 DE CIERRE': 'NÃO HÁ IMAGEM 2'
+Áreas/Observaciones: Áreas/Observações
+'INSPECCIÓN DE SEGURIDAD': 'INSPEÇÃO DE SEGURIDAD'
+'Cinco Reglas de Oro': 'Cinco Regras de Ouro'
+Cumple: Cumprimento
+'Condiciones de trabajo': 'Condições de trabalho'
+'Autorización para ingreso a circuito': 'Autorização para admissão ao circuito'
+'Señalización y Protección Pública': 'Sinalização e Proteção Pública'
+'Elementos de protección personal': 'Proteção pessoal'
+'Identificación y competencia del personal': 'Identificação e competência do pessoal'
+'Vehículo (Pesado, Liviano y Motocicletas)': 'Veículo (pesada, leve e Motos)'
+'Materiales, equipos y herramientas': 'Materiais, equipamentos e ferramentas'
+'Señalización y protección pública': 'Sinalização e protecção pública'
+'Procedimientos de trabajo': 'Procedimentos de Trabalho'
+'Identificación de Riesgos / charla de 5 minutos': 'Identificação de Riscos / chat cinco minutos'
+'Identificación y Competencia del personal': 'Identificação e competência do pessoal'
+'Elementos de Protección Personal': 'Elementos de Proteção Pessoal'
+'Vehículo (Pesado, liviano y motocicletas)': 'Veículo (pesada, leve e motocicletas)'
+'Primeros Auxilios y Emergencias': 'Primeiros Socorros e Emergências'
+'Identificación de Riesgos/ Charla de 5 minutos': 'Identificação de Riscos / Palestra 5 minutos'
+'Primeros Auxilios & emergencias': 'Primeiros Socorros e Emergências'
+'Autorización para ingreso a corte cable dimensionado': 'Autorização para bitolas admissão corte'
+'Comportamiento durante el Trabajo': 'Comportamento Trabalho'
+Procedimientos: Procedimentos
+'Herramientas y Materiales': 'Ferramentas e Materiais'
+'Equipos de protección individual': 'Equipamento de proteção individual'
+'Materiales, Equipos y Herramientas': 'Materiais, Equipamentos e Ferramentas'
+Anterior: Anterior
+'Se encontraron registros': 'Nenhum registro encontrado'
+'El sistema SIOP le notifica que se acaba de ingresar la encuesta IPAL': 'O sistema SIOP avisa que acabam de ingressar no levantamento IPAL'
+'de tipo': 'de tipo'
+'de la empresa': 'a empresa'
+'que contiene incumplimientos 50 de los siguientes items': 'contendo 50 casos de violação das seguintes itens'
+Supervisor: Supervisor
+Lugar: Lugar
+Atte: Cumprimentos
+'ESTE ES UN EMAIL GENERADO AUTOMÁTICAMENTE, NO LO RESPONDA': 'ESTE É UM EMAIL GERADAS AUTOMATICAMENTE, NÃO RESPONDEM'
+'Informes Observaciones': 'Informações Observações'
+Observación: Observações
+peligrosas: perigoso
+'SE HA PRODUCIDO UN ERROR, CORRIJA EL BUSCADOR E INTÉNTELO NUEVAMENTE': 'Ocorreu um erro, corrija o pesquisa e tente novamente.'
+'OBSERVACIÓN DEL COMPORTAMIENTO': 'OBSERVAÇÃO DO COMPORTAMENTO'
+'Agregar IPAL Telecomunicaciones': '__Agregar IPAL Telecomunicaciones'

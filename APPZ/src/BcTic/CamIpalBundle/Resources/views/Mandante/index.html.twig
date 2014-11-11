@@ -1,0 +1,9 @@
+{% extends 'BcTicCamIpalBundle::index.html.twig' %}
+
+{% set title = 'Mandantes' %}
+{% set data = {'name': 'Nombre', 'pais': 'País','visible': 'Visible'} %}
+{% set path_previous = path('mandantes', { 'page' : page - 1 }) %}
+{% set path_next = path('mandantes', { 'page' : page + 1 } ) %}
+{% set path_new = path('mandantes_new') %}
+{% set path_key_edit = 'mandantes_edit' %}
+{% set path_key_delete = 'mandantes_delete' %}

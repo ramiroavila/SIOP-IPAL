@@ -1,0 +1,4 @@
+FECHA;EMPRESA;CONTRATO;PAIS;INSPECTOR;INDICE
+{% for item in data %}
+{{ item.fecha }};"{{ item.empresa | raw }}";"{{ item.contrato | raw }}";"{{ item.pais | raw }}";"{{ item.inspector | raw }}";{{ item.indice }}
+{% endfor %}

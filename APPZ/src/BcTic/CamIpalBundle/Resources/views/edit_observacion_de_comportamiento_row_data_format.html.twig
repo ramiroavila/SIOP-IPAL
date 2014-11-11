@@ -1,0 +1,16 @@
+          {% set label_text = "observaciones_" ~ registro_de_observacion.observacion.vars.value %}
+          {% set label_nemo = "observaciones_nemo_" ~ registro_de_observacion.observacion.vars.value %}
+          <div class="col-sm-12 alert {{ alert }} ">
+            <div class="form-group">
+              <label class="col-sm-1 control-label text-left">{{  label_nemo | trans({}, "BcTicCamIpalBundle") }}</label>
+              <label class="col-sm-5 control-label text-left">{{  label_text | trans({}, "BcTicCamIpalBundle") }}</label>
+              {{ form_errors(registro_de_observacion) }}
+              <div class="col-sm-3">
+                 {{ form_widget(registro_de_observacion.valor) }}
+              </div>
+              <div class="col-sm-3">
+                 {{ form_widget(registro_de_observacion.notas, { 'attr': {'placeholder': 'Notas de la observación' } }) }}
+                 {{ form_widget(registro_de_observacion.observacion) }}
+              </div>
+            </div>
+          </div>

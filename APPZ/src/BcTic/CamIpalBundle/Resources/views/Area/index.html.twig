@@ -1,0 +1,9 @@
+{% extends 'BcTicCamIpalBundle::index.html.twig' %}
+
+{% set title = 'Áreas' %}
+{% set data = {'nombre': 'Nombre', 'pais': 'País','visible': 'Visible'} %}
+{% set path_previous = path('areas', { 'page' : page - 1 }) %}
+{% set path_next = path('areas', { 'page' : page + 1 } ) %}
+{% set path_new = path('areas_new') %}
+{% set path_key_edit = 'areas_edit' %}
+{% set path_key_delete = 'areas_delete' %}

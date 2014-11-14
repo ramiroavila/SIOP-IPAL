@@ -578,15 +578,18 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("No hay encuestas IPAL que mostrar."), "html", null, true);
         echo "</div>'); 
                } else { 
-                alert(dataSuccess.indiceIPAL);
                  \$('#resultados').html(createResultado(dataSuccess.indiceIPAL,dataSuccess.hits));
                  \$('#resultados').append(createDashboard(dataSuccess.ids));
 
+
+                 \$(\"#dashboard\").html(\" CARGANDO ... \");
+
                  //Jquery de HIGHLIGHTS CHARTS:
+
                  //PANEL 1 3:
                  \$.ajax({
                    url: \"";
-        // line 331
+        // line 334
         echo $this->env->getExtension('routing')->getPath("encuesta_data_dashboard");
         echo "\",
                    data: { ids: JSON.stringify(dataSuccess.ids) } ,
@@ -661,7 +664,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                      type: \"POST\",
                      dataType: \"json\",
                      url: \"";
-        // line 403
+        // line 406
         echo $this->env->getExtension('routing')->getPath("encuesta_reporte_por_mes_csv");
         echo "\",
                      data: { ids: JSON.stringify(entities) },
@@ -669,7 +672,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                         //Descargar el archivo:
                         window.open('reportes/' + data.file + '/download.html');
                         alert(\"";
-        // line 408
+        // line 411
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Se ha descargado el archivo"), "html", null, true);
         echo " \" + data.file + \".csv\");
                      }
@@ -681,7 +684,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                      type: \"POST\",
                      dataType: \"json\",
                      url: \"";
-        // line 417
+        // line 420
         echo $this->env->getExtension('routing')->getPath("encuesta_reporte_todos_los_datos_csv");
         echo "\",
                      data: { ids: JSON.stringify(entities) },
@@ -689,7 +692,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                         //Descargar el archivo:
                         window.open('reportes/' + data.file + '/download.html');
                         alert(\"";
-        // line 422
+        // line 425
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Se ha descargado el archivo"), "html", null, true);
         echo " \" + data.file + \".csv\");
                      }
@@ -701,7 +704,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                      type: \"POST\",
                      dataType: \"json\",
                      url: \"";
-        // line 431
+        // line 434
         echo $this->env->getExtension('routing')->getPath("encuesta_reporte_no_conformidades_csv");
         echo "\",
                      data: { ids: JSON.stringify(entities) },
@@ -709,7 +712,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                         //Descargar el archivo:
                         window.open('reportes/' + data.file + '/download.html');
                         alert(\"";
-        // line 436
+        // line 439
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Se ha descargado el archivo"), "html", null, true);
         echo " \" + data.file + \".csv\");
                      }
@@ -721,7 +724,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                      type: \"POST\",
                      dataType: \"json\",
                      url: \"";
-        // line 445
+        // line 448
         echo $this->env->getExtension('routing')->getPath("encuesta_reporte_total_prevencionistas_csv");
         echo "\",
                      data: { ids: JSON.stringify(entities) },
@@ -729,7 +732,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                         //Descargar el archivo:
                         window.open('reportes/' + data.file + '/download.html');
                         alert(\"";
-        // line 450
+        // line 453
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Se ha descargado el archivo"), "html", null, true);
         echo " \" + data.file + \".csv\");
                      }
@@ -741,7 +744,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                      type: \"POST\",
                      dataType: \"json\",
                      url: \"";
-        // line 459
+        // line 462
         echo $this->env->getExtension('routing')->getPath("encuesta_reporte_total_prevencionistas_csv");
         echo "\",
                      data: { ids: JSON.stringify(entities) },
@@ -749,7 +752,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                         //Descargar el archivo:
                         window.open('reportes/' + data.file + '/download.html');
                         alert(\"";
-        // line 464
+        // line 467
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Se ha descargado el archivo"), "html", null, true);
         echo " \" + data.file + \".csv\");
                      }
@@ -761,7 +764,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                      type: \"POST\",
                      dataType: \"json\",
                      url: \"";
-        // line 473
+        // line 476
         echo $this->env->getExtension('routing')->getPath("encuesta_reporte_total_no_50_20_csv");
         echo "\",
                      data: { ids: JSON.stringify(entities) },
@@ -770,7 +773,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                         window.open('reportes/' + data.file_total + '/download.html');
                         window.open('reportes/' + data.file_no_5020 + '/download.html');
                         alert(\"";
-        // line 479
+        // line 482
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Se ha descargado el archivo"), "html", null, true);
         echo " \" + data.file_total + \".csv y \" + data.file_no_5020 + \".csv\");
                      }
@@ -782,7 +785,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                      type: \"POST\",
                      dataType: \"json\",
                      url: \"";
-        // line 488
+        // line 491
         echo $this->env->getExtension('routing')->getPath("encuesta_reporte_cierre_csv");
         echo "\",
                      data: { ids: JSON.stringify(entities) },
@@ -790,7 +793,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                         //Descargar el archivo:
                         window.open('reportes/' + data.file + '/download.html');
                         alert(\"";
-        // line 493
+        // line 496
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Se ha descargado el archivo"), "html", null, true);
         echo " \" + data.file + \".csv\");
                      }
@@ -819,13 +822,13 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
                  \$.each(dataSuccess.entities, function() {
                    \$('#edit_encuesta_' + this.id ).hide(); 
                    ";
-        // line 519
+        // line 522
         if ($this->env->getExtension('security')->isGranted("ROLE_ADMIN")) {
-            // line 520
+            // line 523
             echo "                     \$('#edit_encuesta_' + this.id ).show();  
                    ";
         }
-        // line 522
+        // line 525
         echo "                   if (this.createdBy == this.actualUser) {
                      \$('#edit_encuesta_' + this.id ).show();  
                    }
@@ -835,7 +838,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
 
                  \$('a.confirm').bind('click', function () {
                    return confirm(\"";
-        // line 530
+        // line 533
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("¿Está seguro quiere borrar?"), "html", null, true);
         echo "\");
                  });
@@ -844,7 +847,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
              },
              error: function (a,b,c) {
                alert(\"";
-        // line 536
+        // line 539
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("SE HA PRODUCIDO UN ERROR, CORRIJA EL BUSCADOR E INTÉNTELO NUEVAMENTE."), "html", null, true);
         echo "\");
              }
@@ -859,7 +862,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
              dataType: \"json\",
              type: \"POST\",
              url: \"";
-        // line 548
+        // line 551
         echo $this->env->getExtension('routing')->getPath("registros_inspectores_json");
         echo "\",
              success: function (dataSuccess) { 
@@ -874,14 +877,14 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
         function listarPrevencionistas() {
                  
           \$('select#bctic_camipalbundle_encuesta_prevencionista').append('<option value=\"0\">";
-        // line 560
+        // line 563
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("- NINGUN PREVENCIONISTA -"), "html", null, true);
         echo "</option>');                 
           \$.ajax({
              dataType: \"json\",
              type: \"POST\",
              url: \"";
-        // line 564
+        // line 567
         echo $this->env->getExtension('routing')->getPath("registros_prevencionistas_json");
         echo "\",
              success: function (dataSuccess) { 
@@ -899,7 +902,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
              dataType: \"json\",
              type: \"POST\",
              url: \"";
-        // line 579
+        // line 582
         echo $this->env->getExtension('routing')->getPath("registros_supervisores_json");
         echo "\",
              success: function (dataSuccess) { 
@@ -914,7 +917,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
       \$(document).ready( function () { 
 
         map = initialize(\"map-canvas\", false, \"";
-        // line 591
+        // line 594
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Usted está aquí"), "html", null, true);
         echo "\",13, 'bctic_camipalbundle_dummy');
          
@@ -927,7 +930,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
         //Elimino todos los objetos:
         \$('select#bctic_camipalbundle_encuesta_pais').empty();
         \$('select#bctic_camipalbundle_encuesta_pais').append('<option value=\"";
-        // line 601
+        // line 604
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "pais"), "id"), "html", null, true);
         echo "\">";
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "pais"), "nombre"), "html", null, true);
@@ -939,12 +942,12 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
           dataType: \"json\",
           type: \"POST\",
           url: \"";
-        // line 608
+        // line 611
         echo $this->env->getExtension('routing')->getPath("contratos_index_json");
         echo "\",
           success: function (dataSuccess) {
             \$('select#bctic_camipalbundle_encuesta_contrato').empty().append('<option value=\"\">";
-        // line 610
+        // line 613
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("-- SELECCIONE CONTRATO --"), "html", null, true);
         echo "</option>');
             \$.each(dataSuccess, function() {
@@ -963,12 +966,12 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
              dataType: \"json\",
              type: \"POST\",
              url: \"";
-        // line 626
+        // line 629
         echo $this->env->getExtension('routing')->getPath("empresas_index_json");
         echo "\",
              success: function (dataSuccess) {
                \$('select#bctic_camipalbundle_encuesta_empresa').empty().append('<option value=\"\">";
-        // line 628
+        // line 631
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("-- SELECCIONE EMPRESA --"), "html", null, true);
         echo "</option>');
                \$.each(dataSuccess, function() {
@@ -987,12 +990,12 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
              dataType: \"json\",
              type: \"POST\",
              url: \"";
-        // line 644
+        // line 647
         echo $this->env->getExtension('routing')->getPath("mandantes_index_json");
         echo "\",
              success: function (dataSuccess) {
                \$('select#bctic_camipalbundle_encuesta_mandante').empty().append('<option value=\"\">";
-        // line 646
+        // line 649
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("-- SELECCIONE MANDANTE --"), "html", null, true);
         echo "</option>');
                \$.each(dataSuccess, function() {
@@ -1011,12 +1014,12 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
              dataType: \"json\",
              type: \"POST\",
              url: \"";
-        // line 662
+        // line 665
         echo $this->env->getExtension('routing')->getPath("areas_index_json");
         echo "\",
              success: function (dataSuccess) {
                \$('select#bctic_camipalbundle_encuesta_area').empty().append('<option value=\"\">";
-        // line 664
+        // line 667
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("-- SELECCIONE ÁREA --"), "html", null, true);
         echo "</option>');
                \$.each(dataSuccess, function() {
@@ -1035,12 +1038,12 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
              dataType: \"json\",
              type: \"POST\",
              url: \"";
-        // line 680
+        // line 683
         echo $this->env->getExtension('routing')->getPath("gerencias_index_json");
         echo "\",
              success: function (dataSuccess) {
                \$('select#bctic_camipalbundle_encuesta_gerencia').empty().append('<option value=\"\">";
-        // line 682
+        // line 685
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("-- SELECCIONE GERENCIA --"), "html", null, true);
         echo "</option>');
                \$.each(dataSuccess, function() {
@@ -1059,12 +1062,12 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
              dataType: \"json\",
              type: \"POST\",
              url: \"";
-        // line 698
+        // line 701
         echo $this->env->getExtension('routing')->getPath("subgerencias_index_json");
         echo "\",
              success: function (dataSuccess) {
                \$('select#bctic_camipalbundle_encuesta_subGerencia').empty().append('<option value=\"\">";
-        // line 700
+        // line 703
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("-- SELECCIONE SUB GERENCIA --"), "html", null, true);
         echo "</option>');
                \$.each(dataSuccess, function() {
@@ -1083,12 +1086,12 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
              dataType: \"json\",
              type: \"POST\",
              url: \"";
-        // line 716
+        // line 719
         echo $this->env->getExtension('routing')->getPath("servicios_index_json");
         echo "\",
              success: function (dataSuccess) {
                \$('select#bctic_camipalbundle_encuesta_servicio').empty().append('<option value=\"\">";
-        // line 718
+        // line 721
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("-- SELECCIONE SERVICIO --"), "html", null, true);
         echo "</option>');
                \$.each(dataSuccess, function() {
@@ -1119,64 +1122,64 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
 
         \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').remove();
         ";
-        // line 746
+        // line 749
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "pais"), "id") == 1)) {
-            // line 747
+            // line 750
             echo "           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaElectrica\">Eléctrico</option>').val('EncuestaElectrica');
            \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaLogistica\">Logística</option>').val('EncuestaLogistica');
            \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaObrasCiviles\">Obras civiles</option>').val('EncuestaObrasCiviles');
            \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaTelecomunicaciones\">Telecomunicaciones</option>').val('EncuestaTelecomunicaciones');
         ";
         }
-        // line 752
+        // line 755
         echo "
         //COLOMBIA
         ";
-        // line 754
+        // line 757
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "pais"), "id") == 2)) {
-            // line 755
+            // line 758
             echo "           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaColombiaGeneral\">IPAL Colombia</option>').val('EncuestaColombiaGeneral');
         ";
         }
-        // line 757
+        // line 760
         echo "
         //PERU
         ";
-        // line 759
+        // line 762
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "pais"), "id") == 3)) {
-            // line 760
+            // line 763
             echo "           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaElectrica\">Eléctrico</option>').val('EncuestaElectrica');
            \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaLogistica\">Logística</option>').val('EncuestaLogistica');
            \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaObrasCiviles\">Obras civiles</option>').val('EncuestaObrasCiviles');
            \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaTelecomunicaciones\">Telecomunicaciones</option>').val('EncuestaTelecomunicaciones');
         ";
         }
-        // line 765
+        // line 768
         echo "
         //BRAZIL
         ";
-        // line 767
+        // line 770
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "pais"), "id") == 4)) {
-            // line 768
+            // line 771
             echo "           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaBrazilGeneral\">IPAL General</option>').val('EncuestaBrazilGeneral');
            \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaBrazilInterno\">IPAL Interno</option>').val('EncuestaBrazilInterno');
         ";
         }
-        // line 770
+        // line 773
         echo "    
 
         //COASIN
         ";
-        // line 773
+        // line 776
         if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "pais"), "id") == 5)) {
-            // line 774
+            // line 777
             echo "           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaElectrica\">Eléctrico</option>').val('EncuestaElectrica');
            \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaLogistica\">Logística</option>').val('EncuestaLogistica');
            \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaObrasCiviles\">Obras civiles</option>').val('EncuestaObrasCiviles');
            \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaTelecomunicaciones\">Telecomunicaciones</option>').val('EncuestaTelecomunicaciones');
         ";
         }
-        // line 778
+        // line 781
         echo "     
 
 
@@ -1200,6 +1203,6 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
 
     public function getDebugInfo()
     {
-        return array (  1180 => 778,  1173 => 774,  1171 => 773,  1166 => 770,  1161 => 768,  1159 => 767,  1155 => 765,  1148 => 760,  1146 => 759,  1142 => 757,  1138 => 755,  1136 => 754,  1132 => 752,  1125 => 747,  1123 => 746,  1092 => 718,  1087 => 716,  1068 => 700,  1063 => 698,  1044 => 682,  1039 => 680,  1020 => 664,  1015 => 662,  996 => 646,  991 => 644,  972 => 628,  967 => 626,  948 => 610,  943 => 608,  931 => 601,  918 => 591,  903 => 579,  885 => 564,  878 => 560,  863 => 548,  848 => 536,  839 => 530,  829 => 522,  825 => 520,  823 => 519,  794 => 493,  786 => 488,  774 => 479,  765 => 473,  753 => 464,  745 => 459,  733 => 450,  725 => 445,  713 => 436,  705 => 431,  693 => 422,  685 => 417,  673 => 408,  665 => 403,  590 => 331,  578 => 322,  574 => 321,  561 => 311,  523 => 275,  516 => 272,  512 => 270,  510 => 269,  504 => 266,  496 => 261,  470 => 238,  461 => 232,  444 => 218,  439 => 216,  429 => 209,  425 => 208,  421 => 207,  417 => 206,  413 => 205,  409 => 204,  405 => 203,  401 => 202,  370 => 174,  364 => 171,  358 => 168,  352 => 165,  346 => 162,  340 => 159,  334 => 156,  328 => 153,  309 => 141,  270 => 106,  267 => 105,  255 => 97,  252 => 96,  243 => 89,  236 => 88,  230 => 87,  224 => 86,  217 => 85,  215 => 84,  211 => 82,  204 => 81,  197 => 80,  195 => 79,  191 => 77,  184 => 76,  178 => 75,  172 => 74,  165 => 73,  163 => 72,  160 => 71,  152 => 69,  150 => 68,  147 => 67,  140 => 65,  134 => 64,  128 => 63,  121 => 62,  119 => 61,  112 => 57,  73 => 21,  69 => 20,  65 => 19,  58 => 14,  56 => 13,  53 => 12,  50 => 10,  43 => 6,  37 => 5,  34 => 4,  31 => 3,);
+        return array (  1183 => 781,  1176 => 777,  1174 => 776,  1169 => 773,  1164 => 771,  1162 => 770,  1158 => 768,  1151 => 763,  1149 => 762,  1145 => 760,  1141 => 758,  1139 => 757,  1135 => 755,  1128 => 750,  1126 => 749,  1095 => 721,  1090 => 719,  1071 => 703,  1066 => 701,  1047 => 685,  1042 => 683,  1023 => 667,  1018 => 665,  999 => 649,  994 => 647,  975 => 631,  970 => 629,  951 => 613,  946 => 611,  934 => 604,  921 => 594,  906 => 582,  888 => 567,  881 => 563,  866 => 551,  851 => 539,  842 => 533,  832 => 525,  828 => 523,  826 => 522,  797 => 496,  789 => 491,  777 => 482,  768 => 476,  756 => 467,  748 => 462,  736 => 453,  728 => 448,  716 => 439,  708 => 434,  696 => 425,  688 => 420,  676 => 411,  668 => 406,  593 => 334,  578 => 322,  574 => 321,  561 => 311,  523 => 275,  516 => 272,  512 => 270,  510 => 269,  504 => 266,  496 => 261,  470 => 238,  461 => 232,  444 => 218,  439 => 216,  429 => 209,  425 => 208,  421 => 207,  417 => 206,  413 => 205,  409 => 204,  405 => 203,  401 => 202,  370 => 174,  364 => 171,  358 => 168,  352 => 165,  346 => 162,  340 => 159,  334 => 156,  328 => 153,  309 => 141,  270 => 106,  267 => 105,  255 => 97,  252 => 96,  243 => 89,  236 => 88,  230 => 87,  224 => 86,  217 => 85,  215 => 84,  211 => 82,  204 => 81,  197 => 80,  195 => 79,  191 => 77,  184 => 76,  178 => 75,  172 => 74,  165 => 73,  163 => 72,  160 => 71,  152 => 69,  150 => 68,  147 => 67,  140 => 65,  134 => 64,  128 => 63,  121 => 62,  119 => 61,  112 => 57,  73 => 21,  69 => 20,  65 => 19,  58 => 14,  56 => 13,  53 => 12,  50 => 10,  43 => 6,  37 => 5,  34 => 4,  31 => 3,);
     }
 }

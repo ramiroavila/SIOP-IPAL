@@ -505,10 +505,12 @@ class EncuestaController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $ids = json_decode($request->request->get('ids'));
+      $ids = json_decode($request->get('ids'),true);
 
-      if (is_array($ids)) {
-        $implode = (count($ids) > 0) ? "id IN (".implode(",",$ids).")" : "1";
+      if (count($ids) > 0) {
+        $logger = $this->get('logger');
+        $logger->error(count($ids));
+        $implode = "id IN (".implode(",",array_values($ids)).")";
       } else {
         $implode = 1;
       }

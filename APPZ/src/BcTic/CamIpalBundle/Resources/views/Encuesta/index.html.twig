@@ -324,7 +324,11 @@
                  $('#resultados').html(createResultado(dataSuccess.indiceIPAL,dataSuccess.hits));
                  $('#resultados').append(createDashboard(dataSuccess.ids));
 
+
+                 $("#dashboard").html(" CARGANDO ... ");
+
                  //Jquery de HIGHLIGHTS CHARTS:
+
                  //PANEL 1 3:
                  $.ajax({
                    url: "{{ path('encuesta_data_dashboard') }}",

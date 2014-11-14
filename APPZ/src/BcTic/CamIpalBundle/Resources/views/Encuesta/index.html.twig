@@ -132,7 +132,7 @@
       var map;
 
       function createResultado(indice,cantidad) {
-
+      
         var data = "<div class='alert alert-";
 
         if (indice >= 80) data = data + 'info';
@@ -182,6 +182,10 @@
         }
 
         function createDashboard(ids) {
+
+          /*$.each(ids, function (e, value) { 
+             alert(value);
+          }); */
 
           var data = '<br/><div id="dashboard"></div><br/>';
 

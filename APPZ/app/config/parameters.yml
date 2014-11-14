@@ -1,0 +1,16 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: ipal
+    database_user: root
+    database_password: .Gf45791.
+    mailer_transport: smtp
+    mailer_host: smtp-relay.gmail.com
+    mailer_user: info@bctic.net
+    mailer_password: 78239487298479282424lkasjdlakdjakmlxas
+    mailer_port: 587
+    mailer_encryption: ssl
+    locale: es
+    secret: 1032910239801983jdkjshkajschdascds

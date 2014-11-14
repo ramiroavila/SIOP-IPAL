@@ -744,6 +744,7 @@ class EncuestaController extends Controller
         $fetch = $stmt->fetchAll();
 
         $ids = $this->array_column($fetch,'id0'); 
+        $riesgoDetectado = $this->array_column($fetch,'indice1');
 
         $inspectoresMatrix = $this->array_column($fetch,'inspector2'); 
         $prevencionistasMatrix = $this->array_column($fetch,'prevencionista3'); 
@@ -758,6 +759,7 @@ class EncuestaController extends Controller
               $delete = array_keys(array_values($inspectoresMatrix),$inspector);
               foreach($delete as $key) {
                 unset($ids[$key]);
+                unset($riesgoDetectado[$key]);
               }               
            }
            
@@ -772,11 +774,12 @@ class EncuestaController extends Controller
               $delete = array_keys(array_values($prevencionistasMatrix),$prevencionista);
               foreach($delete as $key) {
                 unset($ids[$key]);
+                unset($riesgoDetectado[$key]);
               }               
            }
         }
 
-        $riesgoDetectado = array_sum(array_values($this->array_column($fetch,'indice1'))); 
+        $riesgoDetectado = array_sum(array_values($riesgoDetectado)); 
         
         //Ahora le pongo limite y subset, a los ids:
         $whereAnd = (count($ids) > 0) ? "AND e.id IN (".implode(",",$ids).")" : "";

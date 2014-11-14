@@ -505,9 +505,14 @@ class EncuestaController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $ids = json_decode($request->request->get('ids')); 
+      $ids = json_decode($request->request->get('ids'));
 
-      $implode = (count($ids) > 0) ? "id IN (".implode(",",$ids).")" : "1";
+      if (is_array($ids)) {
+        $implode = (count($ids) > 0) ? "id IN (".implode(",",$ids).")" : "1";
+      } else {
+        $implode = 1;
+      }
+
       $sql = "SELECT COUNT(*) as hits, ROUND(SUM(indice) / count(*),2) as ipal,DATE_FORMAT(fecha,'%m-%Y') as fecha FROM Encuesta WHERE ".$implode." GROUP BY DATE_FORMAT(fecha,'%m-%Y') ORDER BY DATE_FORMAT(fecha,'%Y%m') ASC;";    
  
       $stmt = $em->getConnection()->prepare($sql);

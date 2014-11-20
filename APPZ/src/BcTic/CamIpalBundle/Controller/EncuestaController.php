@@ -508,9 +508,12 @@ class EncuestaController extends Controller
       $ids = json_decode($request->get('ids'),true);
 
       if (count($ids) > 0) {
+
         $logger = $this->get('logger');
         $logger->error(count($ids));
+
         $implode = "id IN (".implode(",",array_values($ids)).")";
+        
       } else {
         $implode = 1;
       }
@@ -1075,7 +1078,30 @@ class EncuestaController extends Controller
               );
 
               //EN CASO DE PAIS = COASIN SE ENVIA A corsin@crm.cam-la.com
-              $destinatario = ($this->get('security.context')->getToken()->getUser()->getPais()->getId() == 5) ? 'coasin.cam-la@bctic.net' : 'siop.cam-la@bctic.net';
+              $destinatario = "no-reply@bctic.net";
+              switch ($this->get('security.context')->getToken()->getUser()->getPais()->getId()) {
+
+                case 2: //COLOMBIA
+                  $destinatario = 'siop-colombia.cam-la@bctic.net';
+                  break;                
+
+                case 3: //PERU
+                  $destinatario = 'siop-peru.cam-la@bctic.net';
+                  break;                
+
+                case 4: //BRAZIL
+                  $destinatario = 'siop-brazil.cam-la@bctic.net';
+                  break;                
+
+                case 5: //COASIN
+                  $destinatario = 'coasin.cam-la@bctic.net';
+                  break;
+
+                default:
+                  $destinatario = 'siop.cam-la@bctic.net';
+                  break;
+
+              }
               
               $message = \Swift_Message::newInstance()
                 ->setSubject('IPAL #'.$entity->getId().' CON INCUMPLIMIENTOS 50')

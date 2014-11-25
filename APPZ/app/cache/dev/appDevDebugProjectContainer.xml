@@ -34,9 +34,9 @@
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">smtp-relay.gmail.com</parameter>
     <parameter key="mailer_user">info@bctic.net</parameter>
-    <parameter key="mailer_password">78239487298479282424lkasjdlakdjakmlxas</parameter>
-    <parameter key="mailer_port">587</parameter>
+    <parameter key="mailer_port">465</parameter>
     <parameter key="mailer_encryption">ssl</parameter>
+    <parameter key="mailer_password">78239487298479282424lkasjdlakdjakmlxas</parameter>
     <parameter key="locale">es</parameter>
     <parameter key="secret">1032910239801983jdkjshkajschdascds</parameter>
     <parameter key="controller_resolver.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver</parameter>
@@ -384,7 +384,7 @@
     <parameter key="swiftmailer.mailer.default.transport.name">smtp</parameter>
     <parameter key="swiftmailer.mailer.default.delivery.enabled">true</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">ssl</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.port">587</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.port">465</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.host">smtp-relay.gmail.com</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.username">info@bctic.net</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.password">78239487298479282424lkasjdlakdjakmlxas</parameter>
@@ -2390,7 +2390,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>54617d31128dc</argument>
+            <argument>5473c85d2b077</argument>
           </service>
         </argument>
       </argument>
@@ -2661,7 +2661,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>54617d31128dc</argument>
+            <argument>5473c85d2b077</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -3615,7 +3615,7 @@
         <argument>smtp-relay.gmail.com</argument>
       </call>
       <call method="setPort">
-        <argument>587</argument>
+        <argument>465</argument>
       </call>
       <call method="setEncryption">
         <argument>ssl</argument>

@@ -53,7 +53,7 @@ class EncuestaController extends Controller
     public function reporteEncuestarTotalNo5020CsvAction(Request $request)
     {
 
-      $ids = json_decode($request->request->get('ids')); 
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       //Busco las encuestas que aplican:
       $em = $this->getDoctrine()->getManager();  
@@ -137,7 +137,7 @@ class EncuestaController extends Controller
     public function reporteEncuestaTotalPrevencionistasInspectoresCsvAction(Request $request)
     {
 
-      $ids = json_decode($request->request->get('ids')); 
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       //Busco las encuestas que aplican:
       $em = $this->getDoctrine()->getManager();  
@@ -187,7 +187,7 @@ class EncuestaController extends Controller
     public function reporteEncuestaIpalPorPrevencionistaCsvAction(Request $request)
     {
 
-      $ids = json_decode($request->request->get('ids')); 
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       $em = $this->getDoctrine()->getManager();  
 
@@ -246,7 +246,7 @@ class EncuestaController extends Controller
     public function reporteEncuestaNoConformidadesCsvAction(Request $request)
     {
 
-      $ids = json_decode($request->request->get('ids')); 
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       //Busco las encuestas que aplican:
       $em = $this->getDoctrine()->getManager();  
@@ -296,7 +296,7 @@ class EncuestaController extends Controller
     public function reporteEncuestaTodosLosDatosCsvAction(Request $request)
     {
 
-      $ids = json_decode($request->request->get('ids')); 
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       $em = $this->getDoctrine()->getManager();        
 
@@ -341,7 +341,7 @@ class EncuestaController extends Controller
     public function reporteEncuestaCierreCsvAction(Request $request)
     {
 
-      $ids = json_decode($request->request->get('ids')); 
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       //Busco las encuestas que aplican:
       $em = $this->getDoctrine()->getManager();  
@@ -390,7 +390,7 @@ class EncuestaController extends Controller
     public function reporteEncuestaMesCsvAction(Request $request)
     {
 
-      $ids = json_decode($request->request->get('ids')); 
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       //Una VISTA es mejor!
 
@@ -504,8 +504,8 @@ class EncuestaController extends Controller
 
 
       $em = $this->getDoctrine()->getManager();
-
-      $ids = json_decode($request->get('ids'),true);
+      
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       if (count($ids) > 0) {
 
@@ -857,8 +857,12 @@ class EncuestaController extends Controller
         $indiceIPAL = ( $num_de_inspecciones == 0) ? 0 : round($riesgoDetectado / $num_de_inspecciones,1);
 
         $ultima_pagina = round(count($ids)/$pageSize,0);
+
+        $ids_json = $this->get('kernel')->getRootDir().'/Resources/json/'.md5(uniqid(rand(), true)).'-data.json';
+
+        file_put_contents($ids_json, json_encode($ids));
       
-        return new JsonResponse(array('ultima_pagina' => $ultima_pagina + 1,'pagina' => (int) $pagina,'entities' => $data,'ids' => $ids,'indiceIPAL' => $indiceIPAL,'hits' => $num_de_inspecciones));
+        return new JsonResponse(array('ultima_pagina' => $ultima_pagina + 1,'pagina' => (int) $pagina,'entities' => $data,'ids' => $ids_json ,'indiceIPAL' => $indiceIPAL,'hits' => $num_de_inspecciones));
 
     }
 

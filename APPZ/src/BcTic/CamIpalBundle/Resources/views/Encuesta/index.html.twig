@@ -183,10 +183,6 @@
 
         function createDashboard(ids) {
 
-          /*$.each(ids, function (e, value) { 
-             alert(value);
-          }); */
-
           var data = '<br/><div id="dashboard"></div><br/>';
 
           return data;
@@ -324,7 +320,6 @@
                  $('#resultados').html(createResultado(dataSuccess.indiceIPAL,dataSuccess.hits));
                  $('#resultados').append(createDashboard(dataSuccess.ids));
 
-
                  $("#dashboard").html(" CARGANDO ... ");
 
                  //Jquery de HIGHLIGHTS CHARTS:
@@ -332,7 +327,7 @@
                  //PANEL 1 3:
                  $.ajax({
                    url: "{{ path('encuesta_data_dashboard') }}",
-                   data: { ids: JSON.stringify(dataSuccess.ids) } ,
+                   data: { ids: dataSuccess.ids } ,
                    type: "POST",
                    dataType: "json",
                    success: function(data){
@@ -397,14 +392,12 @@
 
                  $('#resultados').append(createReportes(dataSuccess.indiceIPAL,dataSuccess.hits,dataSuccess.entities));
 
-                 var entities = dataSuccess.ids;
-
                  $('#reporte_por_mes').bind('click', function (e) { 
                    $.ajax({
                      type: "POST",
                      dataType: "json",
                      url: "{{ path('encuesta_reporte_por_mes_csv') }}",
-                     data: { ids: JSON.stringify(entities) },
+                     data: { ids: dataSuccess.ids },
                      success: function (data) {
                         //Descargar el archivo:
                         window.open('reportes/' + data.file + '/download.html');
@@ -418,7 +411,7 @@
                      type: "POST",
                      dataType: "json",
                      url: "{{ path('encuesta_reporte_todos_los_datos_csv') }}",
-                     data: { ids: JSON.stringify(entities) },
+                     data: { ids: dataSuccess.ids },
                      success: function (data) {
                         //Descargar el archivo:
                         window.open('reportes/' + data.file + '/download.html');
@@ -432,7 +425,7 @@
                      type: "POST",
                      dataType: "json",
                      url: "{{ path('encuesta_reporte_no_conformidades_csv') }}",
-                     data: { ids: JSON.stringify(entities) },
+                     data: { ids: dataSuccess.ids },
                      success: function (data) {
                         //Descargar el archivo:
                         window.open('reportes/' + data.file + '/download.html');
@@ -446,7 +439,7 @@
                      type: "POST",
                      dataType: "json",
                      url: "{{ path('encuesta_reporte_total_prevencionistas_csv') }}",
-                     data: { ids: JSON.stringify(entities) },
+                     data: { ids: dataSuccess.ids },
                      success: function (data) {
                         //Descargar el archivo:
                         window.open('reportes/' + data.file + '/download.html');
@@ -460,7 +453,7 @@
                      type: "POST",
                      dataType: "json",
                      url: "{{ path('encuesta_reporte_total_prevencionistas_csv') }}",
-                     data: { ids: JSON.stringify(entities) },
+                     data: { ids: dataSuccess.ids },
                      success: function (data) {
                         //Descargar el archivo:
                         window.open('reportes/' + data.file + '/download.html');
@@ -474,7 +467,7 @@
                      type: "POST",
                      dataType: "json",
                      url: "{{ path('encuesta_reporte_total_no_50_20_csv') }}",
-                     data: { ids: JSON.stringify(entities) },
+                     data: { ids: dataSuccess.ids },
                      success: function (data) {
                         //Descargar el archivo:
                         window.open('reportes/' + data.file_total + '/download.html');
@@ -489,7 +482,7 @@
                      type: "POST",
                      dataType: "json",
                      url: "{{ path('encuesta_reporte_cierre_csv') }}",
-                     data: { ids: JSON.stringify(entities) },
+                     data: { ids: dataSuccess.ids },
                      success: function (data) {
                         //Descargar el archivo:
                         window.open('reportes/' + data.file + '/download.html');

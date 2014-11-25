@@ -9,8 +9,8 @@ parameters:
     mailer_transport: smtp
     mailer_host: smtp-relay.gmail.com
     mailer_user: info@bctic.net
-    mailer_password: 78239487298479282424lkasjdlakdjakmlxas
-    mailer_port: 587
+    mailer_port: 465
     mailer_encryption: ssl
+    mailer_password: 78239487298479282424lkasjdlakdjakmlxas
     locale: es
     secret: 1032910239801983jdkjshkajschdascds

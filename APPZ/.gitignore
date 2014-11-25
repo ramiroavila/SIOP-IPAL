@@ -1,6 +1,5 @@
 /web/bundles/
 /app/bootstrap.php.cache
-.DS_Store
 /app/cache/*
 /app/config/parameters.yml
 /app/logs/*
@@ -9,5 +8,4 @@
 /build/
 /vendor/
 /bin/
-/web/uploads/
 /composer.phar

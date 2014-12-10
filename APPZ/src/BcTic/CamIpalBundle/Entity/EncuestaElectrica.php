@@ -15,6 +15,8 @@ class EncuestaElectrica extends Encuesta
     
 
     public function __construct() {
+
+        $this->setCreatedAt(date('U'));      
         //Respuestas NA por defecto
         $this->setRespuesta11(2);
         $this->setRespuesta12(2);        

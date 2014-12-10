@@ -29,6 +29,13 @@ abstract class Encuesta
      */
     private $id;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="created_at", type="integer", options={"default" = 0})
+     */
+    private $createdAt = 0;   
+
     private $tipoFacade;
 
     /**

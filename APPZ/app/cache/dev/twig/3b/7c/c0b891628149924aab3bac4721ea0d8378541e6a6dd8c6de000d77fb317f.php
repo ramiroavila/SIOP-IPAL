@@ -391,7 +391,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
           <thead>\\
             <tr>\\
                 <th>Nº & Fecha</th>\\
-                <th>Tipo</th>\\
+                <th>Ingreso</th>\\
                 <th class=\"hidden-xs\">";
         // line 198
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Empresa"), "html", null, true);
@@ -472,7 +472,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
             items = items + '\\
             <tr id=\"row_' + this.id + '\">\\
                 <td>' + this.id +  ' - ' + this.fecha + '</td>\\
-                <td>' + this.tipo + '</td>\\
+                <td>' + this.createdAt + '</td>\\
                 <td class=\"hidden-xs\">' + this.empresa + '</td>\\
                 <td class=\"hidden-xs\">' + this.contrato + '</td>\\
                 <td class=\"hidden-xs\">' + this.inspector + '/' + this.pais + '</td>\\

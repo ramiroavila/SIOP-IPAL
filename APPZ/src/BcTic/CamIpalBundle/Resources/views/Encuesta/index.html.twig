@@ -194,7 +194,7 @@
           <thead>\
             <tr>\
                 <th>Nº & Fecha</th>\
-                <th>Tipo</th>\
+                <th>Ingreso</th>\
                 <th class="hidden-xs">{{ 'Empresa' | trans }}</th>\
                 <th class="hidden-xs">{{ 'Contrato' | trans }}</th>\
                 <th class="hidden-xs">{{ 'Inspector/País' | trans }}</th>\
@@ -239,7 +239,7 @@
             items = items + '\
             <tr id="row_' + this.id + '">\
                 <td>' + this.id +  ' - ' + this.fecha + '</td>\
-                <td>' + this.tipo + '</td>\
+                <td>' + this.createdAt + '</td>\
                 <td class="hidden-xs">' + this.empresa + '</td>\
                 <td class="hidden-xs">' + this.contrato + '</td>\
                 <td class="hidden-xs">' + this.inspector + '/' + this.pais + '</td>\

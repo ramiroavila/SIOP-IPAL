@@ -831,6 +831,13 @@ class EncuestaController extends Controller
             $longitud = $localizacion[1];
           }
 
+            
+            $fechaDeCreacion = '';
+            if ($entity->getCreatedAt() > 0) {
+              $createdAt = new \DateTime('@'.$entity->getCreatedAt());
+              $fechaDeCreacion = $createdAt->format('d/m/Y');
+            }
+
             $data[] = array(
              'id' => $entity->getId(),
              'fecha' => $entity->getFecha()->format('d/m/Y'), 
@@ -847,7 +854,8 @@ class EncuestaController extends Controller
              'cierre' => (count($entity->getIncumplimientos()) > 0) ? ( ( (  strlen($entity->getCierre()) > 0 ) and ( (strlen($entity->getFileCierre1()) > 0) or (strlen($entity->getFileCierre2()) > 0) )  ) ? "CERRADA" : "ABIERTA" ) : "N/A",
              'inspector' => ($entity->getInspector() == null) ? "-- No especificado --" : $entity->getInspector(),
              'token' => $csrf->generateCsrfToken('entity'.$entity->getId()),
-             'createdBy' => $entity->getCreatedBy(),
+             'createdBy' => $entity->getCreatedAt(),
+             'createdAt' => $fechaDeCreacion,
              'actualUser' => $this->get('security.context')->getToken()->getUser()->getUsername(),
             );
         }

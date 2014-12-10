@@ -29,6 +29,13 @@ abstract class Encuesta
      */
     private $id;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="created_at", type="integer", options={"default" = 0})
+     */
+    private $createdAt = 0;   
+
     private $tipoFacade;
 
     /**
@@ -3816,5 +3823,28 @@ abstract class Encuesta
     public function getIndice()
     {
         return $this->indice;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param integer $createdAt
+     * @return Encuesta
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return integer 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

@@ -14,6 +14,8 @@ class EncuestaBrazilInterno extends Encuesta
 {
 
     public function __construct() {
+      
+        $this->setCreatedAt(date('U'));      
         //Respuestas NA por defecto
         $this->setRespuesta21(2);
         $this->setRespuesta22(2);        

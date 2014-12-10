@@ -1,0 +1,9 @@
+app/cache
+app/logs
+.DS_Store
+app/config/parameters.yml
+web/uploads
+web/.htaccess
+web/app_dev.php
+app/spool
+app/Resources/data/*

@@ -854,7 +854,7 @@ class EncuestaController extends Controller
              'cierre' => (count($entity->getIncumplimientos()) > 0) ? ( ( (  strlen($entity->getCierre()) > 0 ) and ( (strlen($entity->getFileCierre1()) > 0) or (strlen($entity->getFileCierre2()) > 0) )  ) ? "CERRADA" : "ABIERTA" ) : "N/A",
              'inspector' => ($entity->getInspector() == null) ? "-- No especificado --" : $entity->getInspector(),
              'token' => $csrf->generateCsrfToken('entity'.$entity->getId()),
-             'createdBy' => $entity->getCreatedAt(),
+             'createdBy' => $entity->getCreatedBy(),
              'createdAt' => $fechaDeCreacion,
              'actualUser' => $this->get('security.context')->getToken()->getUser()->getUsername(),
             );

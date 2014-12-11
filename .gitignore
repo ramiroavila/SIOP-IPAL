@@ -3,7 +3,7 @@ APPZ/app/bootstrap.php.cache
 .DS_Store
 APPZ/app/cache/*
 APPZ/app/config/parameters.yml
-APPA/app/logs/*
+APPZ/app/logs/*
 APPZ/app/cache/.gitkeep
 APPZ/app/logs/.gitkeep
 /build/

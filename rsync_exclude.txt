@@ -6,4 +6,5 @@ web/uploads
 web/.htaccess
 web/app_dev.php
 app/spool
-app/Resources/data/*
+app/Resources/json
+app/Resources/json/*

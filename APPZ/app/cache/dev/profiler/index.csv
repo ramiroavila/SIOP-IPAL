@@ -251,3 +251,7 @@ ed3409,127.0.0.1,POST,http://ipal-dev.cam-la.com/servicios/data/index_all.json,1
 95c8d6,127.0.0.1,POST,http://ipal-dev.cam-la.com/registros/data/inspectores.json,1419821949,
 0cf2d5,127.0.0.1,POST,http://ipal-dev.cam-la.com/registros/data/prevencionistas.json,1419821949,
 25e926,127.0.0.1,POST,http://ipal-dev.cam-la.com/encuestas/data/supervisores.json,1419821949,
+901331,127.0.0.1,POST,http://ipal-dev.cam-la.com/encuestas/data/index.json,1419822701,
+957e76,127.0.0.1,POST,http://ipal-dev.cam-la.com/encuestas/data/dashboard.json,1419822701,
+fbd80c,127.0.0.1,POST,http://ipal-dev.cam-la.com/encuestas/data/index.json,1419822738,
+600251,127.0.0.1,POST,http://ipal-dev.cam-la.com/encuestas/data/dashboard.json,1419822738,

@@ -14,7 +14,7 @@ class EncuestaCalculaIndiceCommand extends ContainerAwareCommand
     {
         $this
             ->setName('siop:encuesta_indice')
-            ->setDescription('Calcula el índice IPAL de las últimas 50 encuestas cuyo valor es 0')
+            ->setDescription('Calcula el índice IPAL de las últimas 50 encuestas cuyo valor es -1')
         ;
     }
 

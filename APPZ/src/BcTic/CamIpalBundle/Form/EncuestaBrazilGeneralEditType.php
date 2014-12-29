@@ -74,7 +74,7 @@ class EncuestaBrazilGeneralEditType extends AbstractType
             ->add('respuesta102', new SurveyType(), array('label' => 'respuesta10.2_brazil_general','disabled' => true))
             ->add('respuesta103', new SurveyType(), array('label' => 'respuesta10.3_brazil_general','disabled' => true))
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_brazil_general','disabled' => true))
-            ->add('cierre','textarea', array('label' => 'Cierre'))
+            ->add('cierre','textarea', array('label' => 'Cierre', 'disabled' => true))
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
             ->add('uploadedFileCierre2','file', array('label' => 'Adjunto 2','required'  => false))
             ->add('uploadedFile1','file', array('label' => 'Adjunto 1','required'  => false,'disabled' => true))

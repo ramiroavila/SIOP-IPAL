@@ -73,7 +73,7 @@ class EncuestaTelecomunicacionesEditType extends AbstractType
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_telecomunicaciones','disabled' => true))
             ->add('respuesta112', new SurveyType(), array('label' => 'respuesta11.2_telecomunicaciones','disabled' => true))
             ->add('respuesta121', new SurveyNoType(), array('label' => 'respuesta12.1_telecomunicaciones','disabled' => true))
-            ->add('cierre','textarea', array('label' => 'Cierre'))
+            ->add('cierre','textarea', array('label' => 'Cierre', 'disabled' => true))
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
             ->add('uploadedFileCierre2','file', array('label' => 'Adjunto 2','required'  => false))
             ->add('uploadedFile1','file', array('label' => 'Adjunto 1','required'  => false,'disabled' => true))

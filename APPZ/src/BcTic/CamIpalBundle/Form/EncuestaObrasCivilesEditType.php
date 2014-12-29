@@ -75,7 +75,7 @@ class EncuestaObrasCivilesEditType extends AbstractType
             ->add('respuesta103', new SurveyType(), array('label' => 'respuesta10.3_obras_civiles','disabled' => true))
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_obras_civiles','disabled' => true))
             ->add('respuesta121', new SurveyNoType(), array('label' => 'respuesta12.1_obras_civiles','disabled' => true))
-            ->add('cierre','textarea', array('label' => 'Cierre'))
+            ->add('cierre','textarea', array('label' => 'Cierre', 'disabled' => true))
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
             ->add('uploadedFileCierre2','file', array('label' => 'Adjunto 2','required'  => false))
             ->add('uploadedFile1','file', array('label' => 'Adjunto 1','required'  => false,'disabled' => true))

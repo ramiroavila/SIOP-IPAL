@@ -118,7 +118,7 @@ class EncuestaColombiaGeneralEditType extends AbstractType
             ->add('respuesta139', new SurveyNoType(), array('label' => 'respuesta13.9_colombia_general','disabled' => true))            
             ->add('respuesta1310', new SurveyNoType(), array('label' => 'respuesta13.10_colombia_general','disabled' => true))            
 
-            ->add('cierre','textarea', array('label' => 'Cierre'))
+            ->add('cierre','textarea', array('label' => 'Cierre', 'disabled' => true))
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
             ->add('uploadedFileCierre2','file', array('label' => 'Adjunto 2','required'  => false))
             ->add('uploadedFile1','file', array('label' => 'Adjunto 1','required'  => false,'disabled' => true))

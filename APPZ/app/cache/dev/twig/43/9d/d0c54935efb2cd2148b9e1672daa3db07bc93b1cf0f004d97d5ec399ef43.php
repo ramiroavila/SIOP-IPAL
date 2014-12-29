@@ -314,7 +314,7 @@ class __TwigTemplate_439dd0c54935efb2cd2148b9e1672daa3db07bc93b1cf0f004d97d5ec39
             <div class=\"col-sm-6\">
               <div class=\"form-group \"><label class=\"col-sm-3 control-label\" for=\"bctic_camipalbundle_encuesta_cierre\"></label><div class=\"col-sm-9\"><p><i>";
         // line 187
-        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("* Favor avise por email a su jefatura la edición de una encuesta."), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("* Solo los usuarios administradores puede escribir el cuadro cierre, al ser llenado pasa de ABIERTA a CERRADA una Encuesta con INCUMPLIMIENTOS."), "html", null, true);
         echo "</i></p></div></div>
               
             </div>

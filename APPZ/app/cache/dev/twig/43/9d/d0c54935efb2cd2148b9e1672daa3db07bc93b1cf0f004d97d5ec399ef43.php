@@ -314,7 +314,7 @@ class __TwigTemplate_439dd0c54935efb2cd2148b9e1672daa3db07bc93b1cf0f004d97d5ec39
             <div class=\"col-sm-6\">
               <div class=\"form-group \"><label class=\"col-sm-3 control-label\" for=\"bctic_camipalbundle_encuesta_cierre\"></label><div class=\"col-sm-9\"><p><i>";
         // line 187
-        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("* Para cerrar una encuesta con observaciones debe tener texto en el cuadro \"Cierre\" y al menos 1 foto de cierre."), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("* Solo los usuarios administradores puede escribir el cuadro cierre, al ser llenado pasa de ABIERTA a CERRADA una Encuesta con INCUMPLIMIENTOS."), "html", null, true);
         echo "</i></p></div></div>
               
             </div>
@@ -403,6 +403,10 @@ class __TwigTemplate_439dd0c54935efb2cd2148b9e1672daa3db07bc93b1cf0f004d97d5ec39
 
     public function getDebugInfo()
     {
+<<<<<<< HEAD
         return array (  372 => 222,  366 => 221,  358 => 216,  345 => 206,  333 => 197,  324 => 191,  317 => 187,  308 => 181,  302 => 178,  292 => 171,  286 => 168,  277 => 162,  271 => 159,  252 => 143,  244 => 138,  235 => 131,  232 => 130,  212 => 113,  204 => 108,  190 => 97,  183 => 93,  174 => 87,  168 => 84,  159 => 78,  153 => 75,  145 => 70,  139 => 67,  130 => 61,  124 => 58,  115 => 52,  109 => 49,  100 => 43,  94 => 40,  85 => 34,  79 => 31,  70 => 25,  64 => 22,  51 => 12,  47 => 11,  43 => 10,  39 => 9,  35 => 8,  31 => 7,  23 => 2,  20 => 1,);
+=======
+        return array (  360 => 213,  354 => 212,  346 => 207,  333 => 197,  324 => 191,  317 => 187,  308 => 181,  302 => 178,  292 => 171,  286 => 168,  277 => 162,  271 => 159,  252 => 143,  244 => 138,  235 => 131,  232 => 130,  212 => 113,  204 => 108,  190 => 97,  183 => 93,  174 => 87,  168 => 84,  159 => 78,  153 => 75,  145 => 70,  139 => 67,  130 => 61,  124 => 58,  115 => 52,  109 => 49,  100 => 43,  94 => 40,  85 => 34,  79 => 31,  70 => 25,  64 => 22,  51 => 12,  47 => 11,  43 => 10,  39 => 9,  35 => 8,  31 => 7,  23 => 2,  20 => 1,);
+>>>>>>> 063881ec1a921e20501a4e0a7948e5a838a591b4
     }
 }

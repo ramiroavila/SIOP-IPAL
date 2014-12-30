@@ -14,7 +14,7 @@ class EncuestaCalculaIndiceCommand extends ContainerAwareCommand
     {
         $this
             ->setName('siop:encuesta_indice')
-            ->setDescription('Calcula el índice IPAL de las últimas 100 encuestas cuyo valor es 0')
+            ->setDescription('Calcula el índice IPAL de las últimas 50 encuestas cuyo valor es -1')
         ;
     }
 
@@ -42,7 +42,11 @@ class EncuestaCalculaIndiceCommand extends ContainerAwareCommand
             $stmt->execute();
 
             //HAGO EL INSERT DE MYSQL RAW:
+<<<<<<< HEAD
             $sql = "INSERT INTO EncuestaProxy (id,fecha,gerencia,subgerencia,area,inspector,prevencionista,contratista,ipal,tiene_incumplimientos,cantidad_incumplimientos,cierre,incumplimientos_5,incumplimientos_10,incumplimientos_20,incumplimientos_30,incumplimientos_40,incumplimientos_50) VALUES (".$entity->getId().",'".$entity->getFecha()->format('Y-m-d h:i:s')."','".$entity->getContrato()->getSubGerencia()->getGerencia()->getNombre()."','".$entity->getContrato()->getSubGerencia()->getNombre()."','".$entity->getContrato()->getArea()->getNombre()."','".$entity->getInspector()."','".$entity->getPrevencionista()."','".(($entity->getCttaSubcont() === null) ? " -- SIN CONTRATISTA -- " : $entity->getCttaSubcont()->getNombre())."','".$entity->getIndiceIpal()."',".((count($entity->getIncumplimientos()) > 0) ? 1 : 0 ).",".(count($entity->getIncumplimientos())).",'".$entity->getStatusCierre()."',".$entity->getHits(5).",".$entity->getHits(10).",".$entity->getHits(20).",".$entity->getHits(30).",".$entity->getHits(40).",".$entity->getHits(50).")";
+=======
+            $sql = "INSERT INTO EncuestaProxy (id,fecha,gerencia,subgerencia,area,inspector,prevencionista,contratista,ipal,tiene_incumplimientos,cantidad_incumplimientos,cierre,incumplimientos_5,incumplimientos_10,incumplimientos_20,incumplimientos_30,incumplimientos_40,incumplimientos_50) VALUES (".$entity->getId().",'".$entity->getFecha()->format('Y-m-d h:i:s')."','".$entity->getContrato()->getSubGerencia()->getGerencia()->getNombre()."','".$entity->getContrato()->getSubGerencia()->getNombre()."','".$entity->getContrato()->getArea()->getNombre()."','".$entity->getInspector()."','".$entity->getPrevencionista()."','".(($entity->getCttaSubcont() === null) ? " -- SIN CONTRATISTA -- " : $entity->getCttaSubcont()->getNombre())."','".$entity->getIndiceIpal()."',".((count($entity->getIncumplimientos()) > 0) ? 1 : 0 ).",".(count($entity->getIncumplimientos())).",'". ((count($entity->getIncumplimientos()) > 0) ? ( ( (  strlen($entity->getCierre()) > 0 )) ? "CERRADA" : "TIENE INCUMPLIMIENTO(S), VERIFICAR CIERRE." ) : "N/A")."',".$entity->getHits(5).",".$entity->getHits(10).",".$entity->getHits(20).",".$entity->getHits(30).",".$entity->getHits(40).",".$entity->getHits(50).")";
+>>>>>>> 063881ec1a921e20501a4e0a7948e5a838a591b4
 
             $stmt = $em->getConnection()->prepare($sql);
             $stmt->execute();

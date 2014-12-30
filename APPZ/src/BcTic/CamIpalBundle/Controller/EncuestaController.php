@@ -851,7 +851,7 @@ class EncuestaController extends Controller
              'files' => $files,
              'filesCierre' => $filesCierre,
              'tieneIncumplimientos' => (count($entity->getIncumplimientos()) > 0) ? true : false ,
-             'cierre' => (count($entity->getIncumplimientos()) > 0) ? ( ( (  strlen($entity->getCierre()) > 0 ) and ( (strlen($entity->getFileCierre1()) > 0) or (strlen($entity->getFileCierre2()) > 0) )  ) ? "CERRADA" : "ABIERTA" ) : "N/A",
+             'cierre' => $entity->getStatusCierre(),
              'inspector' => ($entity->getInspector() == null) ? "-- No especificado --" : $entity->getInspector(),
              'token' => $csrf->generateCsrfToken('entity'.$entity->getId()),
              'createdBy' => $entity->getCreatedBy(),
@@ -1070,6 +1070,8 @@ class EncuestaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $entity->upload();
             $entity->setIndice(-1); //Lo obligo a actualizarse
+            //El estado de cierre depende si tiene incumplimientos:
+            if (count($entity->getIncumplimientos()) > 0) $entity->setStatusCierre("ABIERTA");
             $em->persist($entity);
             $em->flush();
 

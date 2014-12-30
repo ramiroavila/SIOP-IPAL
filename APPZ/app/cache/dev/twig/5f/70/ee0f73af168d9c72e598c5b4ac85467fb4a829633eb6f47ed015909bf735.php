@@ -378,6 +378,9 @@ class __TwigTemplate_5f70ee0f73af168d9c72e598c5b4ac85467fb4a829633eb6f47ed015909
             }
            });    
 
+      //COMO ES UN OBJETO NUEVO EL ESTADO DE CIERRE NO APLICA:
+      \$('.status_cierre').hide();     
+
 
     });
 

@@ -850,6 +850,13 @@ abstract class Encuesta
     * @Assert\File(maxSize="20000000")
     */
     private $uploadedFileCierre2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status_cierre", type="string", length=50, options={"default" = "N/A"})
+     */
+    private $statusCierre = "N/A";    
   
     protected $servicio;
   
@@ -3823,5 +3830,28 @@ abstract class Encuesta
     public function getIndice()
     {
         return $this->indice;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param integer $createdAt
+     * @return Encuesta
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return integer 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

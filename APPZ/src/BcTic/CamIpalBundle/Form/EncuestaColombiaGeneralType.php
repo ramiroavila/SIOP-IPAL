@@ -117,6 +117,7 @@ class EncuestaColombiaGeneralType extends AbstractType
             ->add('respuesta1310', new SurveyNoType(), array('label' => 'respuesta13.10_colombia_general'))            
 
             ->add('cierre','textarea', array('label' => 'Cierre'))
+            ->add('status_cierre','choice', array('label' => 'Estado de cierre', 'choices' => array('N/A' => 'N/A: No aplica','ABIERTA' => 'ABIERTA: Tiene incumplimientos no correctamente justificados aún', 'CERRADA' => 'CERRADA: Tiene incumplimientos cuyo cierre ha sido aceptado por el administrador.')))
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
             ->add('uploadedFileCierre2','file', array('label' => 'Adjunto 2','required'  => false))
             ->add('uploadedFile1','file', array('label' => 'Adjunto 1','required'  => false))

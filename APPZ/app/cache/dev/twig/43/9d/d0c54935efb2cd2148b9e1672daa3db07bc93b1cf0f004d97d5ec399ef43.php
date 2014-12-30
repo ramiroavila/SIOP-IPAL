@@ -326,10 +326,22 @@ class __TwigTemplate_439dd0c54935efb2cd2148b9e1672daa3db07bc93b1cf0f004d97d5ec39
             </div>
         </div>
 
-        <div class=\"row\">
+        <div class=\"row status_cierre\">
             <div class=\"col-sm-6\">
               ";
         // line 197
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "status_cierre"), 'row');
+        echo "
+            </div>
+            <div class=\"col-sm-6\">
+              
+            </div>
+        </div>        
+
+        <div class=\"row\">
+            <div class=\"col-sm-6\">
+              ";
+        // line 206
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "submit"), 'row');
         echo "
             </div>
@@ -342,7 +354,7 @@ class __TwigTemplate_439dd0c54935efb2cd2148b9e1672daa3db07bc93b1cf0f004d97d5ec39
   </div>  
 
     ";
-        // line 207
+        // line 216
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
     
@@ -350,13 +362,13 @@ class __TwigTemplate_439dd0c54935efb2cd2148b9e1672daa3db07bc93b1cf0f004d97d5ec39
 
 
     ";
-        // line 212
+        // line 221
         $this->displayBlock('js', $context, $blocks);
     }
 
     public function block_js($context, array $blocks = array())
     {
-        // line 213
+        // line 222
         echo "      <script type=\"text/javascript\"> 
       
         \$('#bctic_camipalbundle_encuesta_next_1').bind('click', function (e) {
@@ -391,6 +403,6 @@ class __TwigTemplate_439dd0c54935efb2cd2148b9e1672daa3db07bc93b1cf0f004d97d5ec39
 
     public function getDebugInfo()
     {
-        return array (  360 => 213,  354 => 212,  346 => 207,  333 => 197,  324 => 191,  317 => 187,  308 => 181,  302 => 178,  292 => 171,  286 => 168,  277 => 162,  271 => 159,  252 => 143,  244 => 138,  235 => 131,  232 => 130,  204 => 108,  190 => 97,  183 => 93,  174 => 87,  159 => 78,  153 => 75,  145 => 70,  139 => 67,  130 => 61,  124 => 58,  115 => 52,  109 => 49,  100 => 43,  94 => 40,  85 => 34,  79 => 31,  70 => 25,  64 => 22,  51 => 12,  47 => 11,  39 => 9,  35 => 8,  23 => 2,  20 => 1,  369 => 253,  364 => 251,  344 => 234,  339 => 232,  309 => 205,  287 => 186,  281 => 183,  246 => 151,  227 => 135,  222 => 133,  212 => 113,  205 => 124,  197 => 119,  168 => 84,  126 => 54,  108 => 39,  102 => 37,  91 => 30,  88 => 29,  78 => 21,  73 => 19,  67 => 15,  65 => 14,  59 => 12,  56 => 11,  49 => 7,  43 => 10,  37 => 5,  34 => 4,  31 => 7,);
+        return array (  372 => 222,  366 => 221,  358 => 216,  345 => 206,  333 => 197,  324 => 191,  317 => 187,  308 => 181,  302 => 178,  292 => 171,  286 => 168,  277 => 162,  271 => 159,  252 => 143,  244 => 138,  235 => 131,  232 => 130,  212 => 113,  204 => 108,  190 => 97,  183 => 93,  174 => 87,  168 => 84,  159 => 78,  153 => 75,  145 => 70,  139 => 67,  130 => 61,  124 => 58,  115 => 52,  109 => 49,  100 => 43,  94 => 40,  85 => 34,  79 => 31,  70 => 25,  64 => 22,  51 => 12,  47 => 11,  43 => 10,  39 => 9,  35 => 8,  31 => 7,  23 => 2,  20 => 1,);
     }
 }

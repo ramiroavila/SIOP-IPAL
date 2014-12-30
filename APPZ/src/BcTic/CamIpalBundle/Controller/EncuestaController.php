@@ -838,6 +838,11 @@ class EncuestaController extends Controller
               $fechaDeCreacion = $createdAt->format('d/m/Y');
             }
 
+            $cierre = $entity->getCierre();
+            if ($cierre == 'ABIERTA') {
+              $cierre = (count($entity->getIncumplimientos()) > 0) ? ( ( (  strlen($entity->getCierre()) > 0 ) and ( (strlen($entity->getFileCierre1()) > 0) or (strlen($entity->getFileCierre2()) > 0) )  ) ? "POR VERIFICAR" : "ABIERTA" ) : "N/A",
+            }
+
             $data[] = array(
              'id' => $entity->getId(),
              'fecha' => $entity->getFecha()->format('d/m/Y'), 
@@ -851,7 +856,7 @@ class EncuestaController extends Controller
              'files' => $files,
              'filesCierre' => $filesCierre,
              'tieneIncumplimientos' => (count($entity->getIncumplimientos()) > 0) ? true : false ,
-             'cierre' => $entity->getStatusCierre(),
+             'cierre' => $cierre,
              'inspector' => ($entity->getInspector() == null) ? "-- No especificado --" : $entity->getInspector(),
              'token' => $csrf->generateCsrfToken('entity'.$entity->getId()),
              'createdBy' => $entity->getCreatedBy(),

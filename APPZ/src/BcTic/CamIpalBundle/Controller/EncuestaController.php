@@ -851,11 +851,7 @@ class EncuestaController extends Controller
              'files' => $files,
              'filesCierre' => $filesCierre,
              'tieneIncumplimientos' => (count($entity->getIncumplimientos()) > 0) ? true : false ,
-<<<<<<< HEAD
-             'cierre' => $entity->getStatusCierre(),
-=======
              'cierre' => (count($entity->getIncumplimientos()) > 0) ? ( ( (  strlen($entity->getCierre()) > 0 )) ? "CERRADA" : "TIENE INCUMPLIMIENTO(S), VERIFICAR CIERRE." ) : "N/A",
->>>>>>> 063881ec1a921e20501a4e0a7948e5a838a591b4
              'inspector' => ($entity->getInspector() == null) ? "-- No especificado --" : $entity->getInspector(),
              'token' => $csrf->generateCsrfToken('entity'.$entity->getId()),
              'createdBy' => $entity->getCreatedBy(),

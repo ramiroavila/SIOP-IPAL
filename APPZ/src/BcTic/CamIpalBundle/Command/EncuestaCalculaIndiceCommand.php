@@ -36,7 +36,6 @@ class EncuestaCalculaIndiceCommand extends ContainerAwareCommand
             $entity->setIndice($entity->getIndiceIpal());
 
             //BORRO EL ID CORRESPONDIENTE:
-
             $sql = "DELETE FROM EncuestaProxy WHERE id = ".$entity->getId();
             $stmt = $em->getConnection()->prepare($sql);
             $stmt->execute();

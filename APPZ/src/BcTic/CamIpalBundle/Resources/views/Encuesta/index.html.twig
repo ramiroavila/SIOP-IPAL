@@ -305,7 +305,7 @@
              dataType: "json",
              type: "POST",
              url: "{{ path('encuestas_json') }}",
-             data: { items_por_pagina: items_por_pagina, pagina: pagina, empresa_id : $('#bctic_camipalbundle_encuesta_empresa').val(), contrato_id : $('#bctic_camipalbundle_encuesta_contrato').val(), mandante_id : $('#bctic_camipalbundle_encuesta_mandante').val(), gerencia_id : $('#bctic_camipalbundle_encuesta_gerencia').val(), subgerencia_id : $('#bctic_camipalbundle_encuesta_subGerencia').val(), area_id : $('#bctic_camipalbundle_encuesta_area').val(), inspector : $('#bctic_camipalbundle_encuesta_inspector').val(), prevencionista : $('#bctic_camipalbundle_encuesta_prevencionista').val(), supervisor : $('#bctic_camipalbundle_encuesta_supervisorFacade').val(), servicio_id : $('#bctic_camipalbundle_encuesta_servicio').val(),pais_id : $('#bctic_camipalbundle_encuesta_pais').val(), fecha_desde : $('#bctic_camipalbundle_encuesta_fecha_desde').val(), fecha_hasta : $('#bctic_camipalbundle_encuesta_fecha_hasta').val(), tipo : $('#bctic_camipalbundle_encuesta_tipo_facade').val() } ,
+             data: { items_por_pagina: items_por_pagina, pagina: pagina, empresa_id : $('#bctic_camipalbundle_encuesta_empresa').val(), contrato_id : $('#bctic_camipalbundle_encuesta_contrato').val(), mandante_id : $('#bctic_camipalbundle_encuesta_mandante').val(), gerencia_id : $('#bctic_camipalbundle_encuesta_gerencia').val(), subgerencia_id : $('#bctic_camipalbundle_encuesta_subGerencia').val(), area_id : $('#bctic_camipalbundle_encuesta_area').val(), inspector : $('#bctic_camipalbundle_encuesta_inspector').val(), prevencionista : $('#bctic_camipalbundle_encuesta_prevencionista').val(), supervisor : $('#bctic_camipalbundle_encuesta_supervisorFacade').val(), servicio_id : "",pais_id : $('#bctic_camipalbundle_encuesta_pais').val(), fecha_desde : $('#bctic_camipalbundle_encuesta_fecha_desde').val(), fecha_hasta : $('#bctic_camipalbundle_encuesta_fecha_hasta').val(), tipo : "", status_cierre: $('#bctic_camipalbundle_encuesta_status_cierre').val() } ,
              beforeSend: function () {
                $('#resultados').html("<div class='spinner'></div>");
                $('#encuestas').html("<div class='spinner'></div>");
@@ -704,23 +704,6 @@
             }
         }); 
 
-        //Elimino todos los objetos:
-        //Solo muestro las servicio según el pais y rol - si aplica - esto lo hace el controlador:
-        $.ajax({
-             dataType: "json",
-             type: "POST",
-             url: "{{ path('servicios_index_json') }}",
-             success: function (dataSuccess) {
-               $('select#bctic_camipalbundle_encuesta_servicio').empty().append('<option value="">{{ '-- SELECCIONE SERVICIO --' | trans }}</option>');
-               $.each(dataSuccess, function() {
-               //En base a esto cargo las áreas:
-               $('select#bctic_camipalbundle_encuesta_servicio').append('<option value="' + this.id + '">' + this.nombre + '</option>');
-             });
-            },
-            error: function (a,b,c) {
-              alert("ERROR: " + b + " - " + a + " - " + c );
-            }
-        }); 
 
         //Actualizo la lista de inspectores
         listarInspectores();
@@ -733,48 +716,6 @@
            updateDataEncuestas(1);
         });
 
-         
-
-        //El select de la lista de filtro:
-        //Borro todos los valores de bctic_camipalbundle_encuesta_tipo_facade
-
-        $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').remove();
-        {% if app.user.pais.id == 1 %}
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaElectrica">Eléctrico</option>').val('EncuestaElectrica');
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaLogistica">Logística</option>').val('EncuestaLogistica');
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaObrasCiviles">Obras civiles</option>').val('EncuestaObrasCiviles');
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaTelecomunicaciones">Telecomunicaciones</option>').val('EncuestaTelecomunicaciones');
-        {% endif %}
-
-        //COLOMBIA
-        {% if app.user.pais.id == 2 %}
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaColombiaGeneral">IPAL Colombia</option>').val('EncuestaColombiaGeneral');
-        {% endif %}
-
-        //PERU
-        {% if app.user.pais.id == 3 %}
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaElectrica">Eléctrico</option>').val('EncuestaElectrica');
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaLogistica">Logística</option>').val('EncuestaLogistica');
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaObrasCiviles">Obras civiles</option>').val('EncuestaObrasCiviles');
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaTelecomunicaciones">Telecomunicaciones</option>').val('EncuestaTelecomunicaciones');
-        {% endif %}
-
-        //BRAZIL
-        {% if app.user.pais.id == 4 %}
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaBrazilGeneral">IPAL General</option>').val('EncuestaBrazilGeneral');
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaBrazilInterno">IPAL Interno</option>').val('EncuestaBrazilInterno');
-        {% endif %}    
-
-        //COASIN
-        {% if app.user.pais.id == 5 %}
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaElectrica">Eléctrico</option>').val('EncuestaElectrica');
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaLogistica">Logística</option>').val('EncuestaLogistica');
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaObrasCiviles">Obras civiles</option>').val('EncuestaObrasCiviles');
-           $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="EncuestaTelecomunicaciones">Telecomunicaciones</option>').val('EncuestaTelecomunicaciones');
-        {% endif %}     
-
-
-        $('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value="">- TODOS LOS TIPOS -</option>').val('');
 
       });
 

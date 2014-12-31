@@ -556,7 +556,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
         // line 307
         echo $this->env->getExtension('routing')->getPath("encuestas_json");
         echo "\",
-             data: { items_por_pagina: items_por_pagina, pagina: pagina, empresa_id : \$('#bctic_camipalbundle_encuesta_empresa').val(), contrato_id : \$('#bctic_camipalbundle_encuesta_contrato').val(), mandante_id : \$('#bctic_camipalbundle_encuesta_mandante').val(), gerencia_id : \$('#bctic_camipalbundle_encuesta_gerencia').val(), subgerencia_id : \$('#bctic_camipalbundle_encuesta_subGerencia').val(), area_id : \$('#bctic_camipalbundle_encuesta_area').val(), inspector : \$('#bctic_camipalbundle_encuesta_inspector').val(), prevencionista : \$('#bctic_camipalbundle_encuesta_prevencionista').val(), supervisor : \$('#bctic_camipalbundle_encuesta_supervisorFacade').val(), servicio_id : \$('#bctic_camipalbundle_encuesta_servicio').val(),pais_id : \$('#bctic_camipalbundle_encuesta_pais').val(), fecha_desde : \$('#bctic_camipalbundle_encuesta_fecha_desde').val(), fecha_hasta : \$('#bctic_camipalbundle_encuesta_fecha_hasta').val(), tipo : \$('#bctic_camipalbundle_encuesta_tipo_facade').val() } ,
+             data: { items_por_pagina: items_por_pagina, pagina: pagina, empresa_id : \$('#bctic_camipalbundle_encuesta_empresa').val(), contrato_id : \$('#bctic_camipalbundle_encuesta_contrato').val(), mandante_id : \$('#bctic_camipalbundle_encuesta_mandante').val(), gerencia_id : \$('#bctic_camipalbundle_encuesta_gerencia').val(), subgerencia_id : \$('#bctic_camipalbundle_encuesta_subGerencia').val(), area_id : \$('#bctic_camipalbundle_encuesta_area').val(), inspector : \$('#bctic_camipalbundle_encuesta_inspector').val(), prevencionista : \$('#bctic_camipalbundle_encuesta_prevencionista').val(), supervisor : \$('#bctic_camipalbundle_encuesta_supervisorFacade').val(), servicio_id : \"\",pais_id : \$('#bctic_camipalbundle_encuesta_pais').val(), fecha_desde : \$('#bctic_camipalbundle_encuesta_fecha_desde').val(), fecha_hasta : \$('#bctic_camipalbundle_encuesta_fecha_hasta').val(), tipo : \"\", status_cierre: \$('#bctic_camipalbundle_encuesta_status_cierre').val() } ,
              beforeSend: function () {
                \$('#resultados').html(\"<div class='spinner'></div>\");
                \$('#encuestas').html(\"<div class='spinner'></div>\");
@@ -1073,29 +1073,6 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
             }
         }); 
 
-        //Elimino todos los objetos:
-        //Solo muestro las servicio según el pais y rol - si aplica - esto lo hace el controlador:
-        \$.ajax({
-             dataType: \"json\",
-             type: \"POST\",
-             url: \"";
-        // line 712
-        echo $this->env->getExtension('routing')->getPath("servicios_index_json");
-        echo "\",
-             success: function (dataSuccess) {
-               \$('select#bctic_camipalbundle_encuesta_servicio').empty().append('<option value=\"\">";
-        // line 714
-        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("-- SELECCIONE SERVICIO --"), "html", null, true);
-        echo "</option>');
-               \$.each(dataSuccess, function() {
-               //En base a esto cargo las áreas:
-               \$('select#bctic_camipalbundle_encuesta_servicio').append('<option value=\"' + this.id + '\">' + this.nombre + '</option>');
-             });
-            },
-            error: function (a,b,c) {
-              alert(\"ERROR: \" + b + \" - \" + a + \" - \" + c );
-            }
-        }); 
 
         //Actualizo la lista de inspectores
         listarInspectores();
@@ -1108,75 +1085,6 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
            updateDataEncuestas(1);
         });
 
-         
-
-        //El select de la lista de filtro:
-        //Borro todos los valores de bctic_camipalbundle_encuesta_tipo_facade
-
-        \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').remove();
-        ";
-        // line 742
-        if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "pais"), "id") == 1)) {
-            // line 743
-            echo "           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaElectrica\">Eléctrico</option>').val('EncuestaElectrica');
-           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaLogistica\">Logística</option>').val('EncuestaLogistica');
-           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaObrasCiviles\">Obras civiles</option>').val('EncuestaObrasCiviles');
-           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaTelecomunicaciones\">Telecomunicaciones</option>').val('EncuestaTelecomunicaciones');
-        ";
-        }
-        // line 748
-        echo "
-        //COLOMBIA
-        ";
-        // line 750
-        if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "pais"), "id") == 2)) {
-            // line 751
-            echo "           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaColombiaGeneral\">IPAL Colombia</option>').val('EncuestaColombiaGeneral');
-        ";
-        }
-        // line 753
-        echo "
-        //PERU
-        ";
-        // line 755
-        if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "pais"), "id") == 3)) {
-            // line 756
-            echo "           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaElectrica\">Eléctrico</option>').val('EncuestaElectrica');
-           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaLogistica\">Logística</option>').val('EncuestaLogistica');
-           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaObrasCiviles\">Obras civiles</option>').val('EncuestaObrasCiviles');
-           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaTelecomunicaciones\">Telecomunicaciones</option>').val('EncuestaTelecomunicaciones');
-        ";
-        }
-        // line 761
-        echo "
-        //BRAZIL
-        ";
-        // line 763
-        if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "pais"), "id") == 4)) {
-            // line 764
-            echo "           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaBrazilGeneral\">IPAL General</option>').val('EncuestaBrazilGeneral');
-           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaBrazilInterno\">IPAL Interno</option>').val('EncuestaBrazilInterno');
-        ";
-        }
-        // line 766
-        echo "    
-
-        //COASIN
-        ";
-        // line 769
-        if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "pais"), "id") == 5)) {
-            // line 770
-            echo "           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaElectrica\">Eléctrico</option>').val('EncuestaElectrica');
-           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaLogistica\">Logística</option>').val('EncuestaLogistica');
-           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaObrasCiviles\">Obras civiles</option>').val('EncuestaObrasCiviles');
-           \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"EncuestaTelecomunicaciones\">Telecomunicaciones</option>').val('EncuestaTelecomunicaciones');
-        ";
-        }
-        // line 774
-        echo "     
-
-
-        \$('#bctic_camipalbundle_encuesta_tipo_facade').find('option').end().append('<option value=\"\">- TODOS LOS TIPOS -</option>').val('');
 
       });
 
@@ -1196,6 +1104,6 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
 
     public function getDebugInfo()
     {
-        return array (  1176 => 774,  1169 => 770,  1167 => 769,  1162 => 766,  1157 => 764,  1155 => 763,  1151 => 761,  1144 => 756,  1142 => 755,  1138 => 753,  1134 => 751,  1132 => 750,  1128 => 748,  1121 => 743,  1119 => 742,  1088 => 714,  1083 => 712,  1064 => 696,  1059 => 694,  1040 => 678,  1035 => 676,  1016 => 660,  1011 => 658,  992 => 642,  987 => 640,  968 => 624,  963 => 622,  944 => 606,  939 => 604,  927 => 597,  914 => 587,  899 => 575,  881 => 560,  874 => 556,  859 => 544,  844 => 532,  835 => 526,  825 => 518,  821 => 516,  819 => 515,  790 => 489,  782 => 484,  770 => 475,  761 => 469,  749 => 460,  741 => 455,  729 => 446,  721 => 441,  709 => 432,  701 => 427,  689 => 418,  681 => 413,  669 => 404,  661 => 399,  588 => 329,  574 => 318,  570 => 317,  557 => 307,  519 => 271,  512 => 268,  508 => 266,  506 => 265,  500 => 262,  492 => 257,  466 => 234,  457 => 228,  440 => 214,  435 => 212,  425 => 205,  421 => 204,  417 => 203,  413 => 202,  409 => 201,  405 => 200,  401 => 199,  397 => 198,  370 => 174,  364 => 171,  358 => 168,  352 => 165,  346 => 162,  340 => 159,  334 => 156,  328 => 153,  309 => 141,  270 => 106,  267 => 105,  255 => 97,  252 => 96,  243 => 89,  236 => 88,  230 => 87,  224 => 86,  217 => 85,  215 => 84,  211 => 82,  204 => 81,  197 => 80,  195 => 79,  191 => 77,  184 => 76,  178 => 75,  172 => 74,  165 => 73,  163 => 72,  160 => 71,  152 => 69,  150 => 68,  147 => 67,  140 => 65,  134 => 64,  128 => 63,  121 => 62,  119 => 61,  112 => 57,  73 => 21,  69 => 20,  65 => 19,  58 => 14,  56 => 13,  53 => 12,  50 => 10,  43 => 6,  37 => 5,  34 => 4,  31 => 3,);
+        return array (  1064 => 696,  1059 => 694,  1040 => 678,  1035 => 676,  1016 => 660,  1011 => 658,  992 => 642,  987 => 640,  968 => 624,  963 => 622,  944 => 606,  939 => 604,  927 => 597,  914 => 587,  899 => 575,  881 => 560,  874 => 556,  859 => 544,  844 => 532,  835 => 526,  825 => 518,  821 => 516,  819 => 515,  790 => 489,  782 => 484,  770 => 475,  761 => 469,  749 => 460,  741 => 455,  729 => 446,  721 => 441,  709 => 432,  701 => 427,  689 => 418,  681 => 413,  669 => 404,  661 => 399,  588 => 329,  574 => 318,  570 => 317,  557 => 307,  519 => 271,  512 => 268,  508 => 266,  506 => 265,  500 => 262,  492 => 257,  466 => 234,  457 => 228,  440 => 214,  435 => 212,  425 => 205,  421 => 204,  417 => 203,  413 => 202,  409 => 201,  405 => 200,  401 => 199,  397 => 198,  370 => 174,  364 => 171,  358 => 168,  352 => 165,  346 => 162,  340 => 159,  334 => 156,  328 => 153,  309 => 141,  270 => 106,  267 => 105,  255 => 97,  252 => 96,  243 => 89,  236 => 88,  230 => 87,  224 => 86,  217 => 85,  215 => 84,  211 => 82,  204 => 81,  197 => 80,  195 => 79,  191 => 77,  184 => 76,  178 => 75,  172 => 74,  165 => 73,  163 => 72,  160 => 71,  152 => 69,  150 => 68,  147 => 67,  140 => 65,  134 => 64,  128 => 63,  121 => 62,  119 => 61,  112 => 57,  73 => 21,  69 => 20,  65 => 19,  58 => 14,  56 => 13,  53 => 12,  50 => 10,  43 => 6,  37 => 5,  34 => 4,  31 => 3,);
     }
 }

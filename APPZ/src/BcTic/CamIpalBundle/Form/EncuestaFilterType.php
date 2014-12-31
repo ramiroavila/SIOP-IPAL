@@ -17,6 +17,16 @@ class EncuestaFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('status_cierre','choice', array(
+                'label' => 'Control cierre',
+                'empty_data'  => null,
+                'empty_value' => "- TODOS LOS ESTADOS -",
+                'choices' => array(
+                    'N/A' => 'N/A: No aplica',
+                    'ABIERTA' => 'ABIERTA: Tiene incumplimientos no correctamente justificados aún', 
+                    'CERRADA' => 'CERRADA: Tiene incumplimientos cuyo cierre ha sido aceptado por el administrador.')
+                  )
+              )
             ->add('empresa','entity', array(
                   'label' => 'Empresa',
                   'class' => 'BcTicCamIpalBundle:Empresa',
@@ -88,19 +98,7 @@ class EncuestaFilterType extends AbstractType
                     },
                    'empty_value' => '- TODOS LOS CONTRATOS -',
                    'empty_data' => "",
-                )) 
-             ->add('servicio','entity', array(
-                  'label' => 'Servicio',
-                  'class' => 'BcTicCamIpalBundle:Servicio',
-                  'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('r')
-                           ->where('r.visible = :visible')
-                           ->setParameter('visible',1)
-                           ->orderBy('r.nombre', 'ASC');
-                    },
-                   'empty_value' => '- TODOS LOS SERVICIOS -',
-                   'empty_data' => "",
-                ))              
+                ))             
              ->add('inspector','choice', array(
                        'label' => 'Inspector',
                        'empty_value' => '- TODOS LOS INSPECTORES -',
@@ -131,19 +129,6 @@ class EncuestaFilterType extends AbstractType
                 ))  
              ->add('fecha_desde','text', array('label' => 'Fecha desde'))
              ->add('fecha_hasta','text', array('label' => 'Fecha hasta'))   
-             ->add('tipo_facade','choice', array(
-                     'label' => 'Tipo',
-                     'choices'   => array('EncuestaElectrica' => 'Eléctrico', 
-                                          'EncuestaLogistica' => 'Logística',
-                                          'EncuestaObrasCiviles' => 'Obras Civiles',
-                                          'EncuestaTelecomunicaciones' => 'Telecomunicaciones',
-                                          'EncuestaColombiaGeneral' => 'Colombia',
-                                          'EncuestaBrazilGeneral' => 'Brazil general',
-                                          'EncuestaBrazilInterno' => 'BRazil interno'),
-                     'required'  => false,
-                     'empty_value' => '- TODOS LOS TIPOS -',
-                     'empty_data' => "",      
-                   ))
              ;
     }
     

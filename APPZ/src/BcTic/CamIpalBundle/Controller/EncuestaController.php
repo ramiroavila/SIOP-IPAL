@@ -459,7 +459,9 @@ class EncuestaController extends Controller
     public function indexAction($page)
     {
       //Muestra el form y carga con Ajax el resto.
-      $form = $this->createFilterForm(new EncuestaLogistica());
+      $encuesta = new EncuestaLogistica();
+      $encuesta->setStatusCierre(null);
+      $form = $this->createFilterForm($encuesta);
 
       return array(
         'filter' => $form->createView(),
@@ -599,6 +601,9 @@ class EncuestaController extends Controller
         $pageSize = $request->get('items_por_pagina',15);
 
         $whereAnd = "";
+
+        $status_cierre = ($request->request->get('status_cierre') != "") ? " AND e.statusCierre = '".$request->request->get('status_cierre')."'" : "";
+        $whereAnd .= $status_cierre;
 
         $empresa = ($request->request->get('empresa_id') != "") ? " AND em.id = ".$request->request->get('empresa_id') : "";
         $whereAnd .= $empresa;

@@ -844,9 +844,6 @@ class EncuestaController extends Controller
             }
 
             $cierre = $entity->getStatusCierre();
-            if ($cierre == 'ABIERTA') {
-              $cierre = (count($entity->getIncumplimientos()) > 0) ? ( ( (  strlen($entity->getCierre()) > 0 ) and ( (strlen($entity->getFileCierre1()) > 0) or (strlen($entity->getFileCierre2()) > 0) )  ) ? "POR VALIDAR" : "ABIERTA" ) : "N/A";
-            }
 
             $data[] = array(
              'id' => $entity->getId(),

@@ -23,8 +23,9 @@ class EncuestaFilterType extends AbstractType
                 'empty_value' => "- TODOS LOS ESTADOS -",
                 'choices' => array(
                     'N/A' => 'N/A: No aplica',
+                    'POR_VALIDAR' => 'POR VALIDAR: Las justificaciones de cierre no han sido verificadas aún por el administrador',
                     'ABIERTA' => 'ABIERTA: Tiene incumplimientos no correctamente justificados aún', 
-                    'CERRADA' => 'CERRADA: Tiene incumplimientos cuyo cierre ha sido aceptado por el administrador.')
+                    'CERRADA' => 'CERRADA: Tiene incumplimientos cuyo cierre ha sido aceptado por el administrador')
                   )
               )
             ->add('empresa','entity', array(

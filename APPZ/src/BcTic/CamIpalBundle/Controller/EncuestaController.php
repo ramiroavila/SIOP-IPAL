@@ -1437,6 +1437,20 @@ class EncuestaController extends Controller
 
             $entity->upload();
             $entity->setIndice(-1); //Lo obligo a actualizarse via COMMAND
+
+            if ($role == false) {
+              //Si el editor no es el admin.
+              //Si el estado == 'ABIERTA' pero tiene el Texto y almenos una foto, entonces el status_cierre = 'POR_VERIFICAR'
+              switch ($entity->getStatusCierre()) {
+                case 'ABIERTA':
+                  $cierre = (count($entity->getIncumplimientos()) > 0) ? ( ( (  strlen($entity->getCierre()) > 0 ) and ( (strlen($entity->getFileCierre1()) > 0) or (strlen($entity->getFileCierre2()) > 0) )  ) ? "POR_VALIDAR" : "ABIERTA" ) : "N/A";
+                  $entity->setStatusCierre($cierre);
+                  break;
+              }
+            }
+
+
+
             $em->flush();
 
             $this->get('session')->getFlashBag()->add(

@@ -1455,13 +1455,14 @@ class EncuestaController extends Controller
               'La IPAL Nº '.$entity->getId().' ha sido editada satisfactoriamente.'
             );
 
-            return $this->redirect($this->generateUrl('encuestas', array('id' => $id)));
-        }
+    
+        } else {
 
             $this->get('session')->getFlashBag()->add(
               'error',
               'La IPAL Nº '.$entity->getId().' no ha sido editada satisfactoriamente.'
             );
+        }    
       
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
         

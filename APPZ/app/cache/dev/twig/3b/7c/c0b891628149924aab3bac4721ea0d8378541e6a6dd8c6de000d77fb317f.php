@@ -493,7 +493,7 @@ class __TwigTemplate_3b7cc0b891628149924aab3bac4721ea0d8378541e6a6dd8c6de000d77f
         echo " \\
                     </button>\\
                   </a>\\
-                  <a id=\"edit_encuesta_' + this.id + '\" href=\"/encuestas/edit/' + this.id + '\">\\
+                  <a id=\"edit_encuesta_' + this.id + '\" target=\"_blank\" href=\"/encuestas/edit/' + this.id + '\">\\
                     <button type=\"button\" class=\"btn btn-default btn-xs\">\\
                       <span class=\"glyphicon glyphicon-pencil\"></span> ";
         // line 262

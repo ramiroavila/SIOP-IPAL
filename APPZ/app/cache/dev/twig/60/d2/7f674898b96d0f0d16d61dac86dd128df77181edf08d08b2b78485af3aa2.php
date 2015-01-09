@@ -217,22 +217,28 @@ class __TwigTemplate_60d27f674898b96d0f0d16d61dac86dd128df77181edf08d08b2b78485a
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Ver Encuestas"), "html", null, true);
             echo "</a></li>
+                  <li><a href=\"";
+            // line 79
+            echo $this->env->getExtension('routing')->getPath("metas_dashboard");
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Ver Metas"), "html", null, true);
+            echo "</a></li>
                 </ul>
               </li>
               <li class=\"dropdown\">
                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">";
-            // line 82
+            // line 83
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Observaciones"), "html", null, true);
             echo "&nbsp;<b class=\"caret\"></b></a>
                 <ul class=\"dropdown-menu\">
                   <li><a href=\"";
-            // line 84
+            // line 85
             echo $this->env->getExtension('routing')->getPath("observaciones_new");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Agregar Observación"), "html", null, true);
             echo "</a></li>
                   <li><a href=\"";
-            // line 85
+            // line 86
             echo $this->env->getExtension('routing')->getPath("observaciones");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Ver Observaciones"), "html", null, true);
@@ -241,67 +247,67 @@ class __TwigTemplate_60d27f674898b96d0f0d16d61dac86dd128df77181edf08d08b2b78485a
               </li>
               ";
         }
-        // line 89
+        // line 90
         echo "              ";
         if ($this->env->getExtension('security')->isGranted("ROLE_ADMIN")) {
-            // line 90
+            // line 91
             echo "              <li class=\"dropdown hidden-xs\">
                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">";
-            // line 91
+            // line 92
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Mantenedor"), "html", null, true);
             echo "&nbsp;<b class=\"caret\"></b></a>
                 <ul class=\"dropdown-menu\">
                   <li><a href=\"";
-            // line 93
+            // line 94
             echo $this->env->getExtension('routing')->getPath("empresas");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Empresas"), "html", null, true);
             echo "</a></li>
                   <li class=\"divider\"></li>
                   <li><a href=\"";
-            // line 95
+            // line 96
             echo $this->env->getExtension('routing')->getPath("contratos");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Contratos"), "html", null, true);
             echo "</a></li>
                   <li class=\"divider\"></li>
                   <li><a href=\"";
-            // line 97
+            // line 98
             echo $this->env->getExtension('routing')->getPath("mandantes");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Mandantes"), "html", null, true);
             echo "</a></li>
                   <li class=\"divider\"></li>
                   <li><a href=\"";
-            // line 99
+            // line 100
             echo $this->env->getExtension('routing')->getPath("gerencias");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Gerencias"), "html", null, true);
             echo "</a></li>
                   <li class=\"divider\"></li>
                   <li><a href=\"";
-            // line 101
+            // line 102
             echo $this->env->getExtension('routing')->getPath("subgerencias");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Subgerencias"), "html", null, true);
             echo "</a></li>
                   <li class=\"divider\"></li>
                   <li><a href=\"";
-            // line 103
+            // line 104
             echo $this->env->getExtension('routing')->getPath("areas");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Áreas"), "html", null, true);
             echo "</a></li>
                   <li class=\"divider\"></li>
                   <li><a href=\"";
-            // line 105
+            // line 106
             echo $this->env->getExtension('routing')->getPath("servicios");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Servicios"), "html", null, true);
             echo "</a></li>
                   <li class=\"divider\"></li>
                   <li><a href=\"";
-            // line 107
+            // line 108
             echo $this->env->getExtension('routing')->getPath("metas");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Metas"), "html", null, true);
@@ -310,26 +316,26 @@ class __TwigTemplate_60d27f674898b96d0f0d16d61dac86dd128df77181edf08d08b2b78485a
               </li>
               ";
         }
-        // line 111
+        // line 112
         echo "
               ";
-        // line 112
+        // line 113
         if ($this->env->getExtension('security')->isGranted("ROLE_ADMIN")) {
-            // line 113
+            // line 114
             echo "              <li class=\"dropdown\">
                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">";
-            // line 114
+            // line 115
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Usuarios IPAL"), "html", null, true);
             echo " &nbsp;<b class=\"caret\"></b></a>
                 <ul class=\"dropdown-menu\">
                   <li><a href=\"";
-            // line 116
+            // line 117
             echo $this->env->getExtension('routing')->getPath("usuarios_new");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Agregar Usuario"), "html", null, true);
             echo "</a></li>
                   <li><a href=\"";
-            // line 117
+            // line 118
             echo $this->env->getExtension('routing')->getPath("usuarios");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Ver Usuarios"), "html", null, true);
@@ -338,30 +344,30 @@ class __TwigTemplate_60d27f674898b96d0f0d16d61dac86dd128df77181edf08d08b2b78485a
               </li>
               ";
         }
-        // line 121
+        // line 122
         echo "              
             </ul>
             <ul class=\"nav navbar-nav navbar-right\">
               ";
-        // line 124
+        // line 125
         if ($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user")) {
-            // line 125
+            // line 126
             echo "              <li class=\"dropdown hidden-xs\">
                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">";
-            // line 126
+            // line 127
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Usuario"), "html", null, true);
             echo ": ";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "username"), "html", null, true);
             echo "<b class=\"caret\"></b></a>
                 <ul class=\"dropdown-menu\">
                   <li><a href=\"";
-            // line 128
+            // line 129
             echo $this->env->getExtension('routing')->getPath("usuarios_password");
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Cambiar password"), "html", null, true);
             echo "</a></li>
                   <li><a href=\"";
-            // line 129
+            // line 130
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("_logout", array("_locale" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "request"), "locale"))), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Cerrar sesión"), "html", null, true);
@@ -370,7 +376,7 @@ class __TwigTemplate_60d27f674898b96d0f0d16d61dac86dd128df77181edf08d08b2b78485a
               </li>
               ";
         }
-        // line 133
+        // line 134
         echo "              <li class=\"hidden-xs\"><img alt=\"logo\" style=\"height:35px; margin-top:7px; margin-right: 13px;\" src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/logo.jpg"), "html", null, true);
         echo "\"/></li>
@@ -382,20 +388,20 @@ class __TwigTemplate_60d27f674898b96d0f0d16d61dac86dd128df77181edf08d08b2b78485a
     </div>
     <div id=\"content\" class=\"container\">
     ";
-        // line 141
-        $this->displayBlock('breadcrumb', $context, $blocks);
         // line 142
+        $this->displayBlock('breadcrumb', $context, $blocks);
+        // line 143
         echo "
     ";
-        // line 143
+        // line 144
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "flashbag"), "get", array(0 => "notice"), "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["flashMessage"]) {
-            // line 144
+            // line 145
             echo "      <div class=\"alert alert-success alert-dismissable\">
         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
         ";
-            // line 146
+            // line 147
             echo twig_escape_filter($this->env, (isset($context["flashMessage"]) ? $context["flashMessage"] : $this->getContext($context, "flashMessage")), "html", null, true);
             echo "
       </div>
@@ -404,18 +410,18 @@ class __TwigTemplate_60d27f674898b96d0f0d16d61dac86dd128df77181edf08d08b2b78485a
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['flashMessage'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 149
+        // line 150
         echo "
     ";
-        // line 150
+        // line 151
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "flashbag"), "get", array(0 => "error"), "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["flashMessage"]) {
-            // line 151
+            // line 152
             echo "      <div class=\"alert alert-danger alert-dismissable\">
         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
         ";
-            // line 153
+            // line 154
             echo twig_escape_filter($this->env, (isset($context["flashMessage"]) ? $context["flashMessage"] : $this->getContext($context, "flashMessage")), "html", null, true);
             echo "
       </div>
@@ -424,23 +430,23 @@ class __TwigTemplate_60d27f674898b96d0f0d16d61dac86dd128df77181edf08d08b2b78485a
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['flashMessage'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 156
+        // line 157
         echo "
     ";
-        // line 157
-        $this->displayBlock('body', $context, $blocks);
         // line 158
+        $this->displayBlock('body', $context, $blocks);
+        // line 159
         echo "    </div>
     <br/>
     <div class=\"footer text-center\">
      ";
-        // line 161
+        // line 162
         if ($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user")) {
-            // line 162
+            // line 163
             echo "
      ";
         } else {
-            // line 164
+            // line 165
             echo "       Cambiar idioma a: <a href=\"";
             echo $this->env->getExtension('routing')->getPath("welcome", array("_locale" => "es"));
             echo "\">Castellano</a> | <a href=\"";
@@ -449,53 +455,53 @@ class __TwigTemplate_60d27f674898b96d0f0d16d61dac86dd128df77181edf08d08b2b78485a
       <br/><br/> 
      ";
         }
-        // line 167
+        // line 168
         echo "      <img style=\"height:35px; \" src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/image2.png"), "html", null, true);
         echo "\"/>
       <img style=\"height:35px; \" src=\"";
-        // line 168
+        // line 169
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/image3.png"), "html", null, true);
         echo "\"/>
       <img style=\"height:35px; \" src=\"";
-        // line 169
+        // line 170
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/image4.png"), "html", null, true);
         echo "\"/>
       <img style=\"height:35px; \" src=\"";
-        // line 170
+        // line 171
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/image5.png"), "html", null, true);
         echo "\"/>
 
       <h4>";
-        // line 172
+        // line 173
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("PROMOVIENDO CONDUCTAS SEGURAS"), "html", null, true);
         echo "</h4>
       <p>&copy; ";
-        // line 173
+        // line 174
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("CAM - LA - Sistema de Seguridad IPAL y Observaciones siop.cam-la.com"), "html", null, true);
         echo " 
       <br/>
       ";
-        // line 175
+        // line 176
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("PREVENCIÓN DE RIESGOS CAM S.A."), "html", null, true);
         echo "
       ";
-        // line 176
+        // line 177
         if ($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user")) {
-            // line 177
+            // line 178
             echo "      <br/>";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "pais"), "html", null, true);
             echo "
       ";
         }
-        // line 178
+        // line 179
         echo "  
       <br/>Revisión #98 - 08/01/2015
     </p></div>
     ";
-        // line 181
-        $this->displayBlock('js', $context, $blocks);
         // line 182
+        $this->displayBlock('js', $context, $blocks);
+        // line 183
         echo "  </body>
 </html>
 ";
@@ -530,17 +536,17 @@ class __TwigTemplate_60d27f674898b96d0f0d16d61dac86dd128df77181edf08d08b2b78485a
     ";
     }
 
-    // line 141
+    // line 142
     public function block_breadcrumb($context, array $blocks = array())
     {
     }
 
-    // line 157
+    // line 158
     public function block_body($context, array $blocks = array())
     {
     }
 
-    // line 181
+    // line 182
     public function block_js($context, array $blocks = array())
     {
     }
@@ -557,6 +563,6 @@ class __TwigTemplate_60d27f674898b96d0f0d16d61dac86dd128df77181edf08d08b2b78485a
 
     public function getDebugInfo()
     {
-        return array (  544 => 181,  539 => 157,  534 => 141,  526 => 17,  523 => 16,  514 => 10,  511 => 9,  505 => 8,  499 => 182,  497 => 181,  492 => 178,  486 => 177,  484 => 176,  480 => 175,  475 => 173,  471 => 172,  466 => 170,  462 => 169,  458 => 168,  453 => 167,  444 => 164,  440 => 162,  438 => 161,  433 => 158,  431 => 157,  428 => 156,  419 => 153,  415 => 151,  411 => 150,  408 => 149,  399 => 146,  395 => 144,  391 => 143,  388 => 142,  386 => 141,  374 => 133,  365 => 129,  359 => 128,  352 => 126,  349 => 125,  347 => 124,  342 => 121,  333 => 117,  327 => 116,  322 => 114,  319 => 113,  317 => 112,  314 => 111,  305 => 107,  298 => 105,  291 => 103,  284 => 101,  277 => 99,  270 => 97,  263 => 95,  256 => 93,  251 => 91,  248 => 90,  245 => 89,  236 => 85,  230 => 84,  225 => 82,  216 => 78,  212 => 76,  205 => 75,  199 => 74,  193 => 73,  186 => 72,  184 => 71,  180 => 69,  173 => 68,  166 => 67,  164 => 66,  160 => 64,  153 => 63,  147 => 62,  141 => 61,  134 => 60,  132 => 59,  129 => 58,  121 => 56,  119 => 55,  116 => 54,  109 => 52,  103 => 51,  97 => 50,  90 => 49,  88 => 48,  82 => 45,  79 => 44,  77 => 43,  65 => 37,  56 => 30,  54 => 29,  43 => 22,  40 => 16,  38 => 9,  34 => 8,  25 => 1,);
+        return array (  550 => 182,  545 => 158,  540 => 142,  532 => 17,  529 => 16,  520 => 10,  517 => 9,  511 => 8,  505 => 183,  503 => 182,  498 => 179,  492 => 178,  490 => 177,  486 => 176,  481 => 174,  477 => 173,  472 => 171,  468 => 170,  464 => 169,  459 => 168,  450 => 165,  446 => 163,  444 => 162,  439 => 159,  437 => 158,  434 => 157,  425 => 154,  421 => 152,  417 => 151,  414 => 150,  405 => 147,  401 => 145,  397 => 144,  394 => 143,  392 => 142,  380 => 134,  371 => 130,  358 => 127,  355 => 126,  353 => 125,  348 => 122,  339 => 118,  333 => 117,  328 => 115,  325 => 114,  323 => 113,  311 => 108,  290 => 102,  283 => 100,  276 => 98,  269 => 96,  262 => 94,  254 => 91,  251 => 90,  242 => 86,  236 => 85,  231 => 83,  212 => 76,  205 => 75,  199 => 74,  193 => 73,  186 => 72,  180 => 69,  173 => 68,  166 => 67,  164 => 66,  160 => 64,  153 => 63,  147 => 62,  141 => 61,  134 => 60,  129 => 58,  121 => 56,  116 => 54,  109 => 52,  103 => 51,  97 => 50,  90 => 49,  82 => 45,  79 => 44,  77 => 43,  65 => 37,  56 => 30,  54 => 29,  43 => 22,  40 => 16,  38 => 9,  34 => 8,  25 => 1,  370 => 99,  365 => 129,  361 => 96,  354 => 91,  347 => 90,  341 => 89,  335 => 88,  329 => 87,  322 => 86,  320 => 112,  317 => 84,  310 => 83,  304 => 106,  297 => 104,  295 => 80,  292 => 79,  285 => 78,  279 => 77,  273 => 76,  267 => 75,  260 => 74,  257 => 92,  250 => 71,  238 => 65,  235 => 64,  228 => 62,  222 => 79,  216 => 78,  210 => 59,  203 => 58,  201 => 57,  195 => 54,  184 => 71,  177 => 44,  171 => 43,  165 => 42,  158 => 41,  156 => 40,  152 => 38,  145 => 37,  138 => 36,  136 => 35,  132 => 59,  125 => 32,  119 => 55,  113 => 30,  106 => 29,  104 => 28,  101 => 27,  93 => 25,  91 => 24,  88 => 48,  81 => 21,  75 => 20,  69 => 19,  62 => 18,  60 => 17,  53 => 13,  42 => 7,  31 => 4,  28 => 3,);
     }
 }

@@ -299,6 +299,9 @@ class MetaController extends Controller
               'subgerencia' => $entity['SUBGERENCIA'],
               'cantidad' => $entity['CANTIDAD'],
               'indice' => $entity['INDICE'],
+              'meta' => 0,
+              'cumplimiento' => 0,
+              'cantidad_abiertas' => 0,
             );
       }
 

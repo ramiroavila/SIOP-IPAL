@@ -12,8 +12,16 @@
   <tbody>  
     {% for item in data %}
     <tr>
-      
+      <td class="text-left">{{ item.subgerencia }} </td>
+      <td>{{ item.cantidad }} </td>
+      <td>{{ item.meta }} </td>
+      <td>{{ item.cumplimiento }} </td>
+      <td>{{ item.indice }} </td>
+      <td>{{ item.cantidad_abiertas }} </td>
     </tr>      
     {% endfor %}
+    {% if data|lenght == 0 %}
+      <td colspan="6">-- NO HAY DATOS QUE MOSTRAR --</td>
+    {% endif %}
   </tbody> 
 </table>

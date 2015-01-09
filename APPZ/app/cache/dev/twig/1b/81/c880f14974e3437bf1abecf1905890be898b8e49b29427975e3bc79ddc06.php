@@ -369,7 +369,7 @@ class __TwigTemplate_1b81c880f14974e3437bf1abecf1905890be898b8e49b29427975e3bc79
         // line 99
         echo $this->env->getExtension('routing')->getPath("metas_dashboard");
         echo "\"><button type=\"button\" class=\"btn btn-danger btn-lg btn-block\">";
-        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Metas"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Ver metas"), "html", null, true);
         echo "</button></a>
   
 

@@ -295,13 +295,15 @@ class MetaController extends Controller
 
       $data = array();
       foreach($stmt->fetchAll() as $entity) {
+        $meta = 0;
+        $abiertas = 0;
         $data[] = array(
               'subgerencia' => $entity['SUBGERENCIA'],
               'cantidad' => $entity['CANTIDAD'],
               'indice' => $entity['INDICE'],
-              'meta' => 0,
-              'cumplimiento' => 0,
-              'cantidad_abiertas' => 0,
+              'meta' => $meta,
+              'cumplimiento' => ($meta > 0) ? round(100*($cantidad/$meta),0) : '--',
+              'cantidad_abiertas' => $abiertas,
             );
       }
 

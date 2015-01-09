@@ -782,83 +782,183 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/mandantes')) {
-            // mandantes
-            if (0 === strpos($pathinfo, '/mandantes/index') && preg_match('#^/mandantes/index(?:/(?P<page>[^/]++))?$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('GET', 'HEAD'));
-                    goto not_mandantes;
+        if (0 === strpos($pathinfo, '/m')) {
+            if (0 === strpos($pathinfo, '/mandantes')) {
+                // mandantes
+                if (0 === strpos($pathinfo, '/mandantes/index') && preg_match('#^/mandantes/index(?:/(?P<page>[^/]++))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_mandantes;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'mandantes')), array (  'page' => 1,  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::indexAction',));
+                }
+                not_mandantes:
+
+                // mandantes_index_json
+                if ($pathinfo === '/mandantes/data/index_all.json') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_mandantes_index_json;
+                    }
+
+                    return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::indexAllJsonAction',  '_route' => 'mandantes_index_json',);
+                }
+                not_mandantes_index_json:
+
+                // mandantes_create
+                if ($pathinfo === '/mandantes/add') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_mandantes_create;
+                    }
+
+                    return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::createAction',  '_route' => 'mandantes_create',);
+                }
+                not_mandantes_create:
+
+                // mandantes_new
+                if ($pathinfo === '/mandantes/new') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_mandantes_new;
+                    }
+
+                    return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::newAction',  '_route' => 'mandantes_new',);
+                }
+                not_mandantes_new:
+
+                // mandantes_edit
+                if (0 === strpos($pathinfo, '/mandantes/edit') && preg_match('#^/mandantes/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_mandantes_edit;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'mandantes_edit')), array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::editAction',));
+                }
+                not_mandantes_edit:
+
+                // mandantes_update
+                if (0 === strpos($pathinfo, '/mandantes/update') && preg_match('#^/mandantes/update/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'PUT') {
+                        $allow[] = 'PUT';
+                        goto not_mandantes_update;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'mandantes_update')), array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::updateAction',));
+                }
+                not_mandantes_update:
+
+                // mandantes_delete
+                if (0 === strpos($pathinfo, '/mandantes/delete') && preg_match('#^/mandantes/delete/(?P<id>[^/]++)/(?P<token>[^/]++)$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_mandantes_delete;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'mandantes_delete')), array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::deleteAction',));
+                }
+                not_mandantes_delete:
+
+            }
+
+            if (0 === strpos($pathinfo, '/metas')) {
+                // metas
+                if (0 === strpos($pathinfo, '/metas/index') && preg_match('#^/metas/index(?:/(?P<page>[^/]++))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_metas;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'metas')), array (  'page' => 1,  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::indexAction',));
+                }
+                not_metas:
+
+                // metas_create
+                if ($pathinfo === '/metas/') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_metas_create;
+                    }
+
+                    return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::createAction',  '_route' => 'metas_create',);
+                }
+                not_metas_create:
+
+                // metas_new
+                if ($pathinfo === '/metas/new') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_metas_new;
+                    }
+
+                    return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::newAction',  '_route' => 'metas_new',);
+                }
+                not_metas_new:
+
+                // metas_edit
+                if (preg_match('#^/metas/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_metas_edit;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'metas_edit')), array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::editAction',));
+                }
+                not_metas_edit:
+
+                // metas_update
+                if (preg_match('#^/metas/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'PUT') {
+                        $allow[] = 'PUT';
+                        goto not_metas_update;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'metas_update')), array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::updateAction',));
+                }
+                not_metas_update:
+
+                if (0 === strpos($pathinfo, '/metas/d')) {
+                    // metas_delete
+                    if (0 === strpos($pathinfo, '/metas/delete') && preg_match('#^/metas/delete/(?P<id>[^/]++)/(?P<token>[^/]++)$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_metas_delete;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'metas_delete')), array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::deleteAction',));
+                    }
+                    not_metas_delete:
+
+                    if (0 === strpos($pathinfo, '/metas/dashboard')) {
+                        // metas_dashboard
+                        if ($pathinfo === '/metas/dashboard') {
+                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                                $allow = array_merge($allow, array('GET', 'HEAD'));
+                                goto not_metas_dashboard;
+                            }
+
+                            return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::dashboardAction',  '_route' => 'metas_dashboard',);
+                        }
+                        not_metas_dashboard:
+
+                        // metas_show_dashboard
+                        if ($pathinfo === '/metas/dashboard/results.html') {
+                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                                $allow = array_merge($allow, array('GET', 'HEAD'));
+                                goto not_metas_show_dashboard;
+                            }
+
+                            return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::dashboardResultsAction',  '_route' => 'metas_show_dashboard',);
+                        }
+                        not_metas_show_dashboard:
+
+                    }
+
                 }
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'mandantes')), array (  'page' => 1,  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::indexAction',));
             }
-            not_mandantes:
-
-            // mandantes_index_json
-            if ($pathinfo === '/mandantes/data/index_all.json') {
-                if ($this->context->getMethod() != 'POST') {
-                    $allow[] = 'POST';
-                    goto not_mandantes_index_json;
-                }
-
-                return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::indexAllJsonAction',  '_route' => 'mandantes_index_json',);
-            }
-            not_mandantes_index_json:
-
-            // mandantes_create
-            if ($pathinfo === '/mandantes/add') {
-                if ($this->context->getMethod() != 'POST') {
-                    $allow[] = 'POST';
-                    goto not_mandantes_create;
-                }
-
-                return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::createAction',  '_route' => 'mandantes_create',);
-            }
-            not_mandantes_create:
-
-            // mandantes_new
-            if ($pathinfo === '/mandantes/new') {
-                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('GET', 'HEAD'));
-                    goto not_mandantes_new;
-                }
-
-                return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::newAction',  '_route' => 'mandantes_new',);
-            }
-            not_mandantes_new:
-
-            // mandantes_edit
-            if (0 === strpos($pathinfo, '/mandantes/edit') && preg_match('#^/mandantes/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('GET', 'HEAD'));
-                    goto not_mandantes_edit;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'mandantes_edit')), array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::editAction',));
-            }
-            not_mandantes_edit:
-
-            // mandantes_update
-            if (0 === strpos($pathinfo, '/mandantes/update') && preg_match('#^/mandantes/update/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                if ($this->context->getMethod() != 'PUT') {
-                    $allow[] = 'PUT';
-                    goto not_mandantes_update;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'mandantes_update')), array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::updateAction',));
-            }
-            not_mandantes_update:
-
-            // mandantes_delete
-            if (0 === strpos($pathinfo, '/mandantes/delete') && preg_match('#^/mandantes/delete/(?P<id>[^/]++)/(?P<token>[^/]++)$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('GET', 'HEAD'));
-                    goto not_mandantes_delete;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'mandantes_delete')), array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MandanteController::deleteAction',));
-            }
-            not_mandantes_delete:
 
         }
 

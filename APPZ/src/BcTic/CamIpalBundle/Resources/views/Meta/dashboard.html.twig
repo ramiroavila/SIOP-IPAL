@@ -1,0 +1,41 @@
+{% extends '::base.html.twig' %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li><a href="{{ path('welcome') }}">{{ 'Inicio' | trans }}</a></li>
+  <li class="active">Metas</li>
+</ol>
+{% endblock %}
+
+{% block body -%}
+
+    <!-- FORM BEGIN -->
+    {% include "BcTicCamIpalBundle:Meta:filter_meta.html.twig" with { form: filter } %}
+    <!-- FORM END -->
+
+    <br/>
+    <div class="container" style="width: 80%; text-align: center;">
+      <div id="dashboard">
+
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+  {{ parent() }}
+  <script type="text/javascript">
+
+    $('#bctic_camipalbundle_meta_rango_button').bind('click', function () { 
+      $.ajax({
+        type: "GET",
+        url: "{{ path('metas_show_dashboard') }}",
+        success: function (dataSuccess) { 
+          $('#dashboard').html(dataSuccess);
+        },
+      });
+    });
+
+  </script>
+
+{% endblock %}

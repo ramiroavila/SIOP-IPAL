@@ -82,7 +82,7 @@ class RegistroController extends Controller
                            ->createQueryBuilder('u')
                            ->join('u.roles','rol')
                            ->join('u.pais','p')
-                           ->where('rol.nombre = :rol')
+                           ->where('rol.nombre = :rol AND u.visible = 1')
                            ->andWhere('u.nombre LIKE :query')
                            ->setParameters(array('rol' => 'INSPECTOR','query' => '%'.$request->request->get('query','').'%'))
                            ->orderBy('u.nombre', 'ASC');
@@ -143,7 +143,7 @@ class RegistroController extends Controller
                            ->createQueryBuilder('u')
                            ->join('u.roles','rol')
                            ->join('u.pais','p')
-                           ->where('rol.nombre = :rol')
+                           ->where('rol.nombre = :rol AND u.visible = 1')
                            ->andWhere('u.nombre LIKE :query')
                            ->setParameters(array('rol' => 'PREVENCIONISTA','query' => '%'.$request->request->get('query','').'%'))
                            ->orderBy('u.nombre', 'ASC');

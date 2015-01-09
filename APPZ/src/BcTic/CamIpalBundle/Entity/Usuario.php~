@@ -283,27 +283,4 @@ class Usuario implements UserInterface, \Serializable {
     public function __toString() {
       return $this->nombre;
     }
-
-    /**
-     * Set visible
-     *
-     * @param boolean $visible
-     * @return Usuario
-     */
-    public function setVisible($visible)
-    {
-        $this->visible = $visible;
-
-        return $this;
-    }
-
-    /**
-     * Get visible
-     *
-     * @return boolean 
-     */
-    public function getVisible()
-    {
-        return $this->visible;
-    }
 }

@@ -43,6 +43,7 @@ class UsuarioType extends AbstractType
                     })
             )
             ->add('salt','hidden')
+            ->add('visible')
             ;
     }
     

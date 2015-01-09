@@ -23,7 +23,7 @@ class __TwigTemplate_a2c29e2846637423d39111f9e1991da637fd98aea48935b3f994233572c
         // line 3
         $context["title"] = "Usuarios";
         // line 4
-        $context["data"] = array("username" => "Usuario", "nombre" => "Nombre", "pais" => "País", "roles" => "Roles");
+        $context["data"] = array("username" => "Usuario", "nombre" => "Nombre", "visible" => "Visible", "pais" => "País", "roles" => "Roles");
         // line 5
         $context["path_previous"] = $this->env->getExtension('routing')->getPath("usuarios", array("page" => ((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")) - 1)));
         // line 6

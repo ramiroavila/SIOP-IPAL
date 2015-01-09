@@ -2,39 +2,21 @@
 
        {{ form_start(form) }}
 
+
         <div class="row">
-          <div class="col-sm-4">
-            <h6 class="text-center">Desde:</h6>
+          <div class="col-sm-6 datepicker">
+            {{ form_row(form.fecha_desde) }}
           </div>
-          <div class="col-sm-4">
-            <h6 class="text-center">Hasta:</h6>
+          <div class="col-sm-6 datepicker">
+            {{ form_row(form.fecha_hasta) }}
           </div>
-          <div class="col-sm-4">
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
             
           </div>
-        </div>
-
-
-        <div class="row">
-          <div class="col-sm-4">
-            {{ form_row(form.anno_desde) }}
-          </div>
-          <div class="col-sm-4">
-            {{ form_row(form.anno_hasta) }}
-          </div>
-          <div class="col-sm-4">
-            {{ form_row(form.subGerencia) }}
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-4">
-            {{ form_row(form.mes_desde) }}
-          </div>
-          <div class="col-sm-4">
-            {{ form_row(form.mes_hasta) }}
-          </div>
-          <div class="col-sm-4">
+          <div class="col-sm-6">
             {{ form_row(form.button) }}
           </div>
         </div>        

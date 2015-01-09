@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use BcTic\CamIpalBundle\Entity\Meta;
 use BcTic\CamIpalBundle\Entity\MetaRango;
-use BcTic\CamIpalBundle\Form\MetaType;
 use BcTic\CamIpalBundle\Form\MetaRangoFilterType;
 
 /**
@@ -89,7 +88,7 @@ class MetaController extends Controller
     */
     private function createCreateForm(Meta $entity)
     {
-        $form = $this->createForm(new MetaType(), $entity, array(
+        $form = $this->createForm($this->get('form.type.meta'), $entity, array(
             'action' => $this->generateUrl('metas_create'),
             'method' => 'POST',
         ));
@@ -151,7 +150,7 @@ class MetaController extends Controller
     */
     private function createEditForm(Meta $entity)
     {
-        $form = $this->createForm(new MetaType(), $entity, array(
+        $form = $this->createForm($this->get('form.type.meta'), $entity, array(
             'action' => $this->generateUrl('metas_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -264,10 +263,6 @@ class MetaController extends Controller
   
       //Muestra el form y carga con Ajax el resto.
       $meta = new MetaRango();
-      $meta->setAnnoDesde(date('Y'));
-      $meta->setMesDesde(date('m'));
-      $meta->setAnnoHasta(date('Y'));
-      $meta->setMesHasta(12);
       $form = $this->createFilterForm($meta);
 
       return array(
@@ -280,15 +275,18 @@ class MetaController extends Controller
      * Metas Dashboard
      *
      * @Route("/dashboard/results.html", name="metas_show_dashboard")
-     * @Method("GET")
+     * @Method("POST")
      * @Template()     
      */
-    public function dashboardResultsAction()
+    public function dashboardResultsAction(Request $request)
     {
   
       $em = $this->getDoctrine()->getManager();  
 
-      $sql = "SELECT UCASE(subgerencia) as SUBGERENCIA, count(*) as CANTIDAD, ROUND(SUM(ipal)/count(*),1) as INDICE FROM EncuestaProxy WHERE DATE_FORMAT(fecha,'%Y-%m-%d') BETWEEN '2014-01-01' AND '2014-12-01' GROUP BY subgerencia ORDER BY SUBGERENCIA;";
+      $fechaDesde = ($request->request->get('fecha_desde') == '' ) ? '01/01/1999' : $request->request->get('fecha_desde');
+      $fechaHasta = ($request->request->get('fecha_hasta') == '' ) ? '01/01/2999': $request->request->get('fecha_desde');
+
+      $sql = "SELECT UCASE(subgerencia) as SUBGERENCIA, count(*) as CANTIDAD, ROUND(SUM(ipal)/count(*),1) as INDICE FROM EncuestaProxy INNER JOIN SubGerencia ON SubGerencia.nombre = subgerencia INNER JOIN Gerencia ON Gerencia.id = SubGerencia.gerencia_id WHERE Gerencia.pais_id = ".$this->get('security.context')->getToken()->getUser()->getPais()->getId()." AND DATE_FORMAT(fecha,'%Y-%m-%d') BETWEEN '".date_format(date_create_from_format('d/m/Y',$fechaDesde),'Y-m-d')."' AND '".date_format(date_create_from_format('d/m/Y',$fechaHasta),'Y-m-d')."' GROUP BY subgerencia ORDER BY SUBGERENCIA;";
 
       $stmt = $em->getConnection()->prepare($sql);
       $stmt->execute();

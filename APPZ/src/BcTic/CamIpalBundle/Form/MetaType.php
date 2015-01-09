@@ -4,11 +4,21 @@ namespace BcTic\CamIpalBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Security\Core\SecurityContext as SecurityContext;
 
 class MetaType extends AbstractType
 {
-        /**
+
+    private $securityContext;
+
+    public function __construct(SecurityContext $securityContext)
+    {
+        $this->securityContext = $securityContext;
+    }
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -31,7 +41,20 @@ class MetaType extends AbstractType
                 12 => 'Diciembre',
                 )))
             ->add('valor')
-            ->add('subGerencia')
+            ->add('subGerencia','entity', array(
+                  'label' => 'Sub Gerencia',
+                  'class' => 'BcTicCamIpalBundle:SubGerencia',
+                  'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('s')
+                           ->join('s.gerencia','gerencia')
+                           ->join('gerencia.pais','pais')
+                           ->where('s.visible = :visible AND pais.id = :pais')
+                           ->setParameters(array('visible' => 1, 'pais' => $this->securityContext->getToken()->getUser()->getPais()->getId()))
+                           ->orderBy('s.nombre', 'ASC');
+                    },
+                  'read_only' => false,
+                  'disabled' => false,
+                ))
         ;
     }
     

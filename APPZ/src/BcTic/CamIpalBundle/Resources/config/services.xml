@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="bc_tic_cam_ipal.bundle.class">BcTic\CamIpalBundle\Form\Type\EntityHiddenType</parameter>
         <parameter key="bc_tic_cam_ipal.bundle.inspector_validator.class">BcTic\CamIpalBundle\Validator\Constraints\ContainsInspectorValidator</parameter>
+        <parameter key="bc_tic_cam_ipal.bundle.meta.class">BcTic\CamIpalBundle\Form\MetaType</parameter>
     </parameters>
 
     <services>
@@ -24,6 +25,11 @@
           <argument type="service" id="doctrine.orm.default_entity_manager" />
           <tag name="validator.constraint_validator" alias="inspector_validator" />
         </service>
+
+        <service id="form.type.meta" class="%bc_tic_cam_ipal.bundle.meta.class%">
+          <argument type="service" id="security.context" />
+          <tag name="form.type" alias="meta" />
+        </service>    
 
     </services> 
     

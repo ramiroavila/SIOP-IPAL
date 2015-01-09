@@ -4,15 +4,10 @@ namespace BcTic\CamIpalBundle\Entity;
 
 class MetaRango
 {
-    private $annoDesde;
+    private $fechaDesde;
 
-    private $mesDesde;
+    private $fechaHasta;
 
-    private $annoHasta;
-
-    private $mesHasta;
-
-    private $subGerencia;
 
     /**
      * Set anno
@@ -20,9 +15,9 @@ class MetaRango
      * @param integer $anno
      * @return Meta
      */
-    public function setAnnoDesde($anno)
+    public function setFechaDesde($fechaDesde)
     {
-        $this->annoDesde = $anno;
+        $this->fechaDesde = $fechaDesde;
 
         return $this;
     }
@@ -32,9 +27,9 @@ class MetaRango
      *
      * @return integer 
      */
-    public function getAnnoDesde()
+    public function getFechaDesde()
     {
-        return $this->annoDesde;
+        return $this->fechaDesde;
     }
 
     /**
@@ -43,9 +38,9 @@ class MetaRango
      * @param integer $mes
      * @return Meta
      */
-    public function setMesDesde($mes)
+    public function setFechaHasta($fechaHasta)
     {
-        $this->mesDesde = $mes;
+        $this->fechaHasta = $fechaHasta;
     }
 
 
@@ -54,76 +49,9 @@ class MetaRango
      *
      * @return integer 
      */
-    public function getMesDesde()
+    public function getFechaHasta()
     {
-        return $this->mesDesde;
+        return $this->fechaHasta;
     }    
 
-    /**
-     * Set anno
-     *
-     * @param integer $anno
-     * @return Meta
-     */
-    public function setAnnoHasta($anno)
-    {
-        $this->annoHasta = $anno;
-
-        return $this;
-    }
-
-    /**
-     * Get anno
-     *
-     * @return integer 
-     */
-    public function getAnnoHasta()
-    {
-        return $this->annoHasta;
-    }
-
-    /**
-     * Set mes
-     *
-     * @param integer $mes
-     * @return Meta
-     */
-    public function setMesHasta($mes)
-    {
-        $this->mesHasta = $mes;
-    }
-
-
-    /**
-     * Get mes
-     *
-     * @return integer 
-     */
-    public function getMesHasta()
-    {
-        return $this->mesHasta;
-    } 
-
-    /**
-     * Set subGerencia
-     *
-     * @param \BcTic\CamIpalBundle\Entity\SubGerencia $subGerencia
-     * @return Meta
-     */
-    public function setSubGerencia(\BcTic\CamIpalBundle\Entity\SubGerencia $subGerencia = null)
-    {
-        $this->subGerencia = $subGerencia;
-
-        return $this;
-    }
-
-    /**
-     * Get subGerencia
-     *
-     * @return \BcTic\CamIpalBundle\Entity\SubGerencia 
-     */
-    public function getSubGerencia()
-    {
-        return $this->subGerencia;
-    }
 }

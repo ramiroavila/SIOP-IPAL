@@ -507,6 +507,7 @@
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
     <parameter key="bc_tic_cam_ipal.bundle.class">BcTic\CamIpalBundle\Form\Type\EntityHiddenType</parameter>
     <parameter key="bc_tic_cam_ipal.bundle.inspector_validator.class">BcTic\CamIpalBundle\Validator\Constraints\ContainsInspectorValidator</parameter>
+    <parameter key="bc_tic_cam_ipal.bundle.meta.class">BcTic\CamIpalBundle\Form\MetaType</parameter>
     <parameter key="gregwar_image.cache_dir">uploads/cache/images</parameter>
     <parameter key="gregwar_image.throw_exception">false</parameter>
     <parameter key="gregwar_image.fallback_image">null</parameter>
@@ -1868,6 +1869,7 @@
               <argument key="currency">form.type.currency</argument>
               <argument key="entity">form.type.entity</argument>
               <argument key="entity_hidden">bc_tic_cam_ipal.type.entity_hidden</argument>
+              <argument key="meta">form.type.meta</argument>
             </argument>
             <argument type="collection">
               <argument key="form" type="collection">
@@ -2390,7 +2392,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>54a2e6bdc4372</argument>
+            <argument>54afe3c67e779</argument>
           </service>
         </argument>
       </argument>
@@ -2661,7 +2663,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>54a2e6bdc4372</argument>
+            <argument>54afe3c67e779</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -3217,6 +3219,10 @@
     <service id="validator.unique.inspector_validator" class="BcTic\CamIpalBundle\Validator\Constraints\ContainsInspectorValidator">
       <tag name="validator.constraint_validator" alias="inspector_validator"/>
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="form.type.meta" class="BcTic\CamIpalBundle\Form\MetaType">
+      <tag name="form.type" alias="meta"/>
+      <argument type="service" id="security.context"/>
     </service>
     <service id="image.handling" class="Gregwar\ImageBundle\Services\ImageHandling">
       <argument>uploads/cache/images</argument>

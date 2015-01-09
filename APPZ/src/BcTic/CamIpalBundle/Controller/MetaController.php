@@ -286,18 +286,43 @@ class MetaController extends Controller
       $fechaDesde = ($request->request->get('fecha_desde') == '' ) ? '01/01/1999' : $request->request->get('fecha_desde');
       $fechaHasta = ($request->request->get('fecha_hasta') == '' ) ? '01/01/2999': $request->request->get('fecha_desde');
 
-      $sql = "SELECT UCASE(subgerencia) as SUBGERENCIA, count(*) as CANTIDAD, ROUND(SUM(ipal)/count(*),1) as INDICE FROM EncuestaProxy INNER JOIN SubGerencia ON SubGerencia.nombre = subgerencia INNER JOIN Gerencia ON Gerencia.id = SubGerencia.gerencia_id WHERE Gerencia.pais_id = ".$this->get('security.context')->getToken()->getUser()->getPais()->getId()." AND DATE_FORMAT(fecha,'%Y-%m-%d') BETWEEN '".date_format(date_create_from_format('d/m/Y',$fechaDesde),'Y-m-d')."' AND '".date_format(date_create_from_format('d/m/Y',$fechaHasta),'Y-m-d')."' GROUP BY subgerencia ORDER BY SUBGERENCIA;";
+      $sql = "SELECT UCASE(subgerencia) as SUBGERENCIA, count(*) as CANTIDAD, ROUND(SUM(ipal)/count(*),1) as INDICE, SubGerencia.id as subgerencia_id FROM EncuestaProxy INNER JOIN SubGerencia ON SubGerencia.nombre = subgerencia INNER JOIN Gerencia ON Gerencia.id = SubGerencia.gerencia_id WHERE Gerencia.pais_id = ".$this->get('security.context')->getToken()->getUser()->getPais()->getId()." AND DATE_FORMAT(fecha,'%Y-%m-%d') BETWEEN '".date_format(date_create_from_format('d/m/Y',$fechaDesde),'Y-m-d')."' AND '".date_format(date_create_from_format('d/m/Y',$fechaHasta),'Y-m-d')."' GROUP BY subgerencia ORDER BY SUBGERENCIA;";
 
       $stmt = $em->getConnection()->prepare($sql);
       $stmt->execute();
 
+      //CARGO LAS METAS COMO SUMA:
+      $fechaDesde = date_create_from_format('d/m/Y',$fechaDesde);
+      $fechaHasta = date_create_from_format('d/m/Y',$fechaHasta);
+      $sql = "SELECT SUM(valor) as suma, SubGerencia.id as subgerencia FROM Meta INNER JOIN SubGerencia ON SubGerencia.id = Meta.subgerencia_id INNER JOIN Gerencia ON Gerencia.id = SubGerencia.gerencia_id WHERE Gerencia.pais_id = ".$this->get('security.context')->getToken()->getUser()->getPais()->getId()." AND DATE_FORMAT(CONCAT(anno,'-',mes,'-',01),'%Y-%m-%d') BETWEEN DATE_FORMAT(CONCAT('".$fechaDesde->format('Y-m')."','-',01),'%Y-%m-%d') AND DATE_FORMAT(CONCAT('".$fechaHasta->format('Y-m')."','-',01),'%Y-%m-%d') GROUP BY subgerencia_id";
+
+      $stmtAux = $em->getConnection()->prepare($sql);
+      $stmtAux->execute();
+
+      $metas = array();
+      foreach($stmtAux->fetchAll() as $entity) {
+        $metas[$entity['subgerencia']] = $entity['suma'];
+      }  
+
+      //CARGO LAS ABIERTAS COMO SUMA:
+      $sql = "SELECT count(*) as CANTIDAD, SubGerencia.id as subgerencia_id FROM EncuestaProxy INNER JOIN SubGerencia ON SubGerencia.nombre = subgerencia INNER JOIN Gerencia ON Gerencia.id = SubGerencia.gerencia_id WHERE Gerencia.pais_id = ".$this->get('security.context')->getToken()->getUser()->getPais()->getId()." AND cierre = 'ABIERTA' AND DATE_FORMAT(fecha,'%Y-%m-%d') BETWEEN '".date_format($fechaDesde,'Y-m-d')."' AND '".date_format($fechaHasta,'Y-m-d')."' GROUP BY subgerencia ORDER BY SUBGERENCIA;";
+
+      $stmtAux = $em->getConnection()->prepare($sql);
+      $stmtAux->execute();
+
+      $abiertas = array();
+      foreach($stmtAux->fetchAll() as $entity) {
+        $abiertas[$entity['subgerencia_id']] = $entity['CANTIDAD'];
+      }        
+
       $data = array();
       foreach($stmt->fetchAll() as $entity) {
-        $meta = 0;
-        $abiertas = 0;
+        $meta = (isset($metas[$entity['subgerencia_id']])) ? $metas[$entity['subgerencia_id']] : 0;
+        $cantidad = $entity['CANTIDAD'];
+        $abiertas = (isset($abiertas[$entity['subgerencia_id']])) ? $abiertas[$entity['subgerencia_id']] : 0;
         $data[] = array(
               'subgerencia' => $entity['SUBGERENCIA'],
-              'cantidad' => $entity['CANTIDAD'],
+              'cantidad' => $cantidad,
               'indice' => $entity['INDICE'],
               'meta' => $meta,
               'cumplimiento' => ($meta > 0) ? round(100*($cantidad/$meta),0) : '--',

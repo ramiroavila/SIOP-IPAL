@@ -24,6 +24,8 @@ class MetaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        $context = $this->securityContext;
         $builder
             ->add('anno','choice', array('label' => 'Año','choices' => array(2014 => 2014, 2015 => 2015,2016 => 2016)))
             ->add('mes','choice', array('label' => 'Mes','choices' => array( 
@@ -44,12 +46,12 @@ class MetaType extends AbstractType
             ->add('subGerencia','entity', array(
                   'label' => 'Sub Gerencia',
                   'class' => 'BcTicCamIpalBundle:SubGerencia',
-                  'query_builder' => function(EntityRepository $er) {
+                  'query_builder' => function(EntityRepository $er) use ($context) {
                     return $er->createQueryBuilder('s')
                            ->join('s.gerencia','gerencia')
                            ->join('gerencia.pais','pais')
                            ->where('s.visible = :visible AND pais.id = :pais')
-                           ->setParameters(array('visible' => 1, 'pais' => $this->securityContext->getToken()->getUser()->getPais()->getId()))
+                           ->setParameters(array('visible' => 1, 'pais' => $context->getToken()->getUser()->getPais()->getId()))
                            ->orderBy('s.nombre', 'ASC');
                     },
                   'read_only' => false,

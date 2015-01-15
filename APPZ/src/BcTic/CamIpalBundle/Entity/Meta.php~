@@ -44,6 +44,13 @@ class Meta
     private $valor;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="valor_observaciones", type="integer")
+     */
+    private $valorObservaciones;    
+
+    /**
      * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="SubGerencia")
      * @ORM\JoinColumn(name="subgerencia_id", referencedColumnName="id")
@@ -131,4 +138,27 @@ class Meta
     }
 
    
+
+    /**
+     * Set subGerencia
+     *
+     * @param \BcTic\CamIpalBundle\Entity\SubGerencia $subGerencia
+     * @return Meta
+     */
+    public function setSubGerencia(\BcTic\CamIpalBundle\Entity\SubGerencia $subGerencia = null)
+    {
+        $this->subGerencia = $subGerencia;
+
+        return $this;
+    }
+
+    /**
+     * Get subGerencia
+     *
+     * @return \BcTic\CamIpalBundle\Entity\SubGerencia 
+     */
+    public function getSubGerencia()
+    {
+        return $this->subGerencia;
+    }
 }

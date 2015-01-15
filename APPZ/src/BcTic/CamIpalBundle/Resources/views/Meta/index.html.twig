@@ -1,7 +1,7 @@
 {% extends 'BcTicCamIpalBundle::index.html.twig' %}
 
 {% set title = 'Metas' %}
-{% set data = {'anno': 'Año', 'mes': 'Mes','subGerencia': 'Sub Gerencia', 'valor': 'Meta' } %}
+{% set data = {'anno': 'Año', 'mes': 'Mes','subGerencia': 'Sub Gerencia', 'valor': '# Encuestas', 'valorObservaciones': '# Obs.' } %}
 {% set path_previous = path('metas', { 'page' : page - 1 }) %}
 {% set path_next = path('metas', { 'page' : page + 1 } ) %}
 {% set path_new = path('metas_new') %}

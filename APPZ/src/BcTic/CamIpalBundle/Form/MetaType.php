@@ -42,7 +42,8 @@ class MetaType extends AbstractType
                 11 => 'Noviembre',
                 12 => 'Diciembre',
                 )))
-            ->add('valor')
+            ->add('valor','integer', array('label' => 'Cantidad de encuestas'))
+            ->add('valor_observaciones','integer', array('label' => 'Cantidad de observaciones'))
             ->add('subGerencia','entity', array(
                   'label' => 'Sub Gerencia',
                   'class' => 'BcTicCamIpalBundle:SubGerencia',

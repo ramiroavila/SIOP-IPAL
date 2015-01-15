@@ -40,8 +40,17 @@ class Meta
      * @var integer
      *
      * @ORM\Column(name="valor", type="integer")
+     * @Assert\NotBlank()         
      */
     private $valor;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="valor_observaciones", type="integer")
+     * @Assert\NotBlank()         
+     */
+    private $valorObservaciones;    
 
     /**
      * @Assert\NotBlank()
@@ -153,5 +162,28 @@ class Meta
     public function getSubGerencia()
     {
         return $this->subGerencia;
+    }
+
+    /**
+     * Set valorObservaciones
+     *
+     * @param integer $valorObservaciones
+     * @return Meta
+     */
+    public function setValorObservaciones($valorObservaciones)
+    {
+        $this->valorObservaciones = $valorObservaciones;
+
+        return $this;
+    }
+
+    /**
+     * Get valorObservaciones
+     *
+     * @return integer 
+     */
+    public function getValorObservaciones()
+    {
+        return $this->valorObservaciones;
     }
 }

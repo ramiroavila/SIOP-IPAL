@@ -272,6 +272,26 @@ class MetaController extends Controller
     }
 
     /**
+     * Metas Observaciones Dashboard
+     *
+     * @Route("/observaciones/dashboard", name="metas_observaciones_dashboard")
+     * @Method("GET")
+     * @Template()     
+     */
+    public function observacionesDashboardAction()
+    {
+  
+      //Muestra el form y carga con Ajax el resto.
+      $meta = new MetaRango();
+      $form = $this->createFilterForm($meta);
+
+      return array(
+        'filter' => $form->createView(),
+        );
+
+    }    
+
+    /**
      * Metas Dashboard
      *
      * @Route("/dashboard/results.html", name="metas_show_dashboard")
@@ -334,6 +354,61 @@ class MetaController extends Controller
       return array('data' => $data);
 
     }
+
+    /**
+     * Metas Observaciones Dashboard
+     *
+     * @Route("/observaciones/dashboard/results.html", name="metas_observaciones_show_dashboard")
+     * @Method("POST")
+     * @Template()     
+     */
+    public function observacionesDashboardResultsAction(Request $request)
+    {
+  
+      $em = $this->getDoctrine()->getManager();  
+
+      $fechaDesde = ($request->request->get('fecha_desde') == '' ) ? '01/01/1999' : $request->request->get('fecha_desde');
+      $fechaHasta = ($request->request->get('fecha_hasta') == '' ) ? '01/01/2999': $request->request->get('fecha_desde');
+
+      $sql = "SELECT UCASE(Subgerencia.nombre) as SUBGERENCIA, count(*) as CANTIDAD, SubGerencia.id as subgerencia_id FROM ObservacionDeComportamiento INNER JOIN Contrato ON Contrato.id = ObservacionDeComportamiento.contrato_id  INNER JOIN SubGerencia ON SubGerencia.id = Contrato.subgerencia_id INNER JOIN Gerencia ON Gerencia.id = SubGerencia.gerencia_id WHERE Gerencia.pais_id = ".$this->get('security.context')->getToken()->getUser()->getPais()->getId()." AND DATE_FORMAT(fecha,'%Y-%m-%d') BETWEEN '".date_format(date_create_from_format('d/m/Y',$fechaDesde),'Y-m-d')."' AND '".date_format(date_create_from_format('d/m/Y',$fechaHasta),'Y-m-d')."' GROUP BY Contrato.subgerencia_id ORDER BY SUBGERENCIA;";
+
+      $stmt = $em->getConnection()->prepare($sql);
+      $stmt->execute();
+
+      //CARGO LAS METAS COMO SUMA:
+      $fechaDesde = date_create_from_format('d/m/Y',$fechaDesde);
+      $fechaHasta = date_create_from_format('d/m/Y',$fechaHasta);
+
+      $sql = "SELECT SUM(valor) as suma, SubGerencia.id as subgerencia FROM Meta INNER JOIN SubGerencia ON SubGerencia.id = Meta.subgerencia_id INNER JOIN Gerencia ON Gerencia.id = SubGerencia.gerencia_id WHERE Gerencia.pais_id = ".$this->get('security.context')->getToken()->getUser()->getPais()->getId()." AND DATE_FORMAT(CONCAT(anno,'-',mes,'-',01),'%Y-%m-%d') BETWEEN DATE_FORMAT(CONCAT('".$fechaDesde->format('Y-m')."','-',01),'%Y-%m-%d') AND DATE_FORMAT(CONCAT('".$fechaHasta->format('Y-m')."','-',01),'%Y-%m-%d') GROUP BY subgerencia_id";
+
+      $stmtAux = $em->getConnection()->prepare($sql);
+      $stmtAux->execute();
+
+      $metas = array();
+      foreach($stmtAux->fetchAll() as $entity) {
+        $metas[$entity['subgerencia']] = $entity['suma'];
+      }  
+
+      $stmtAux = $em->getConnection()->prepare($sql);
+      $stmtAux->execute();
+      
+
+      $data = array();
+      foreach($stmt->fetchAll() as $entity) {
+        $meta = (isset($metas[$entity['subgerencia_id']])) ? $metas[$entity['subgerencia_id']] : 0;
+        $cantidad = $entity['CANTIDAD'];
+        $data[] = array(
+              'subgerencia' => $entity['SUBGERENCIA'],
+              'cantidad' => $cantidad,
+              'meta' => $meta,
+              'cumplimiento' => ($meta > 0) ? round(100*($cantidad/$meta),0) : '--',
+            );
+      }
+
+      return array('data' => $data);
+
+    }
+
 
 
 

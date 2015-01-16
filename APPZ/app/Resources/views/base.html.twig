@@ -86,6 +86,9 @@
                 <ul class="dropdown-menu">
                   <li><a href="{{ path('observaciones_new') }}">{{ "Agregar Observación" | trans }}</a></li>
                   <li><a href="{{ path('observaciones') }}">{{ "Ver Observaciones" | trans }}</a></li>
+                  {% if is_granted('ROLE_ADMIN') %}
+                  <li><a href="{{ path('metas_observaciones_dashboard' ) }}">{{ "Ver Metas" | trans }}</a></li>
+                  {% endif %}
                 </ul>
               </li>
               {% endif %}
@@ -179,7 +182,7 @@
       {% if app.user %}
       <br/>{{ app.user.pais }}
       {% endif %}  
-      <br/>Revisión #101 - 15/01/2015
+      <br/>Revisión #102 - 15/01/2015
     </p></div>
     {% block js %}{% endblock %}
   </body>

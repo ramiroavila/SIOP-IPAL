@@ -65,9 +65,6 @@
     <li><a href="{{ path('encuestas_show_form', { type: 'colombia_general'}) }}">{{ 'IPAL Colombia' | trans }}</a></li>
 
 
-
-
-
     <li><a href="{{ path('observaciones_show_form')}}">{{ 'Observaciones' | trans }}</a></li> 
     {% endif %}
     {% if app.user.pais.id == 3 %}
@@ -96,9 +93,19 @@
   <a href="{{ path('observaciones') }}">
   <button type="button" class="btn btn-info btn-lg btn-block">{{ 'Observaciones' | trans }}</button></a>
   <br/>
-  <a href="{{ path('metas_dashboard') }}"><button type="button" class="btn btn-danger btn-lg btn-block">{{ 'Ver metas' | trans }}</button></a>
-  
 
+
+ <div class="btn-group btn-block">
+  <button type="button" class="btn btn-danger btn-lg btn-block dropdown-toggle" data-toggle="dropdown">
+    {{ 'Metas' | trans }}&nbsp;<span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu btn-block" role="menu">
+    <li><a href="{{ path('metas_dashboard') }}">{{ 'Ver metas de Encuestas' | trans }}</a></li>
+    <li><a href="{{ path('metas_observaciones_dashboard') }}">{{ 'Ver metas de Observaciones' | trans }}</a></li>
+  </ul>
+  </div>
+
+  
 </div>
 
 {% endblock %}

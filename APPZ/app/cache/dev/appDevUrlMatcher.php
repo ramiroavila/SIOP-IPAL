@@ -931,32 +931,51 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     }
                     not_metas_delete:
 
-                    if (0 === strpos($pathinfo, '/metas/dashboard')) {
-                        // metas_dashboard
-                        if ($pathinfo === '/metas/dashboard') {
-                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                                $allow = array_merge($allow, array('GET', 'HEAD'));
-                                goto not_metas_dashboard;
-                            }
-
-                            return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::dashboardAction',  '_route' => 'metas_dashboard',);
+                    // metas_dashboard
+                    if ($pathinfo === '/metas/dashboard') {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_metas_dashboard;
                         }
-                        not_metas_dashboard:
 
-                        // metas_show_dashboard
-                        if ($pathinfo === '/metas/dashboard/results.html') {
-                            if ($this->context->getMethod() != 'POST') {
-                                $allow[] = 'POST';
-                                goto not_metas_show_dashboard;
-                            }
-
-                            return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::dashboardResultsAction',  '_route' => 'metas_show_dashboard',);
-                        }
-                        not_metas_show_dashboard:
-
+                        return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::dashboardAction',  '_route' => 'metas_dashboard',);
                     }
+                    not_metas_dashboard:
 
                 }
+
+                // metas_observaciones_dashboard
+                if ($pathinfo === '/metas/observaciones/dashboard') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_metas_observaciones_dashboard;
+                    }
+
+                    return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::observacionesDashboardAction',  '_route' => 'metas_observaciones_dashboard',);
+                }
+                not_metas_observaciones_dashboard:
+
+                // metas_show_dashboard
+                if ($pathinfo === '/metas/dashboard/results.html') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_metas_show_dashboard;
+                    }
+
+                    return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::dashboardResultsAction',  '_route' => 'metas_show_dashboard',);
+                }
+                not_metas_show_dashboard:
+
+                // metas_observaciones_show_dashboard
+                if ($pathinfo === '/metas/observaciones/dashboard/results.html') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_metas_observaciones_show_dashboard;
+                    }
+
+                    return array (  '_controller' => 'BcTic\\CamIpalBundle\\Controller\\MetaController::observacionesDashboardResultsAction',  '_route' => 'metas_observaciones_show_dashboard',);
+                }
+                not_metas_observaciones_show_dashboard:
 
             }
 

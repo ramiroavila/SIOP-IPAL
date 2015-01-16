@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>GESTIÓN</th>
+      <th>REAL</th>
+      <th>META OBSERVACIONES</th>
+      <th>% CUMPL. TOTAL</th>
+    </tr>
+  </thead>
+  <tbody>  
+    {% for item in data %}
+    <tr>
+      <td class="text-left">{{ item.subgerencia }} </td>
+      <td>{{ item.cantidad }} </td>
+      <td>{{ item.meta }} </td>
+      <td>{{ item.cumplimiento }} </td>
+    </tr>      
+    {% endfor %}
+    {% if data|length == 0 %}
+      <td colspan="6">-- NO HAY DATOS QUE MOSTRAR --</td>
+    {% endif %}
+  </tbody> 
+</table>

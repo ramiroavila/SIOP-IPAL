@@ -379,7 +379,7 @@ class MetaController extends Controller
       $fechaDesde = date_create_from_format('d/m/Y',$fechaDesde);
       $fechaHasta = date_create_from_format('d/m/Y',$fechaHasta);
 
-      $sql = "SELECT SUM(valor) as suma, SubGerencia.id as subgerencia FROM Meta INNER JOIN SubGerencia ON SubGerencia.id = Meta.subgerencia_id INNER JOIN Gerencia ON Gerencia.id = SubGerencia.gerencia_id WHERE Gerencia.pais_id = ".$this->get('security.context')->getToken()->getUser()->getPais()->getId()." AND DATE_FORMAT(CONCAT(anno,'-',mes,'-',01),'%Y-%m-%d') BETWEEN DATE_FORMAT(CONCAT('".$fechaDesde->format('Y-m')."','-',01),'%Y-%m-%d') AND DATE_FORMAT(CONCAT('".$fechaHasta->format('Y-m')."','-',01),'%Y-%m-%d') GROUP BY subgerencia_id";
+      $sql = "SELECT SUM(valor_observaciones) as suma, SubGerencia.id as subgerencia FROM Meta INNER JOIN SubGerencia ON SubGerencia.id = Meta.subgerencia_id INNER JOIN Gerencia ON Gerencia.id = SubGerencia.gerencia_id WHERE Gerencia.pais_id = ".$this->get('security.context')->getToken()->getUser()->getPais()->getId()." AND DATE_FORMAT(CONCAT(anno,'-',mes,'-',01),'%Y-%m-%d') BETWEEN DATE_FORMAT(CONCAT('".$fechaDesde->format('Y-m')."','-',01),'%Y-%m-%d') AND DATE_FORMAT(CONCAT('".$fechaHasta->format('Y-m')."','-',01),'%Y-%m-%d') GROUP BY subgerencia_id";
 
       $stmtAux = $em->getConnection()->prepare($sql);
       $stmtAux->execute();

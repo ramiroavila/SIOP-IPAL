@@ -260,7 +260,108 @@ class __TwigTemplate_40a0f1055a794bad43cb1cfff0f3aa00092ea463a73873adc7d12147efe
         echo "          ";
         $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig")->display(array_merge($context, array("respuesta" => $this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "respuesta121"), "alert" => "alert")));
         // line 108
-        echo "        </div>  ";
+        echo "        </div>  
+        <div class=\"row\">
+          ";
+        // line 110
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_format.html.twig")->display(array_merge($context, array("content" => "")));
+        // line 111
+        echo "          ";
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_format.html.twig")->display(array_merge($context, array("content" => ("I-13 " . $this->env->getExtension('translator')->trans("Cultura ambiental")))));
+        // line 112
+        echo "        </div>
+        <div class=\"row\">
+          ";
+        // line 114
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_format.html.twig")->display(array_merge($context, array("content" => "")));
+        // line 115
+        echo "          ";
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig")->display(array_merge($context, array("respuesta" => $this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "respuesta131"), "alert" => "alert")));
+        // line 116
+        echo "        </div>
+        <div class=\"row\">
+          ";
+        // line 118
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_format.html.twig")->display(array_merge($context, array("content" => "")));
+        // line 119
+        echo "          ";
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig")->display(array_merge($context, array("respuesta" => $this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "respuesta132"), "alert" => "alert")));
+        // line 120
+        echo "        </div>        
+        <div class=\"row\">
+          ";
+        // line 122
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_format.html.twig")->display(array_merge($context, array("content" => "")));
+        // line 123
+        echo "          ";
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig")->display(array_merge($context, array("respuesta" => $this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "respuesta133"), "alert" => "alert")));
+        // line 124
+        echo "        </div>        
+        <div class=\"row\">
+          ";
+        // line 126
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_format.html.twig")->display(array_merge($context, array("content" => "")));
+        // line 127
+        echo "          ";
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig")->display(array_merge($context, array("respuesta" => $this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "respuesta134"), "alert" => "alert")));
+        // line 128
+        echo "        </div>        
+        <div class=\"row\">
+          ";
+        // line 130
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_format.html.twig")->display(array_merge($context, array("content" => "")));
+        // line 131
+        echo "          ";
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig")->display(array_merge($context, array("respuesta" => $this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "respuesta135"), "alert" => "alert")));
+        // line 132
+        echo "        </div>        
+        <div class=\"row\">
+          ";
+        // line 134
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_format.html.twig")->display(array_merge($context, array("content" => "")));
+        // line 135
+        echo "          ";
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig")->display(array_merge($context, array("respuesta" => $this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "respuesta136"), "alert" => "alert")));
+        // line 136
+        echo "        </div>        
+        <div class=\"row\">
+          ";
+        // line 138
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_format.html.twig")->display(array_merge($context, array("content" => "")));
+        // line 139
+        echo "          ";
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig")->display(array_merge($context, array("respuesta" => $this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "respuesta137"), "alert" => "alert")));
+        // line 140
+        echo "        </div>        
+        <div class=\"row\">
+          ";
+        // line 142
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_format.html.twig")->display(array_merge($context, array("content" => "")));
+        // line 143
+        echo "          ";
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig")->display(array_merge($context, array("respuesta" => $this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "respuesta138"), "alert" => "alert")));
+        // line 144
+        echo "        </div>        
+        <div class=\"row\">
+          ";
+        // line 146
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_format.html.twig")->display(array_merge($context, array("content" => "")));
+        // line 147
+        echo "          ";
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig")->display(array_merge($context, array("respuesta" => $this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "respuesta139"), "alert" => "alert")));
+        // line 148
+        echo "        </div>        
+        <div class=\"row\">
+          ";
+        // line 150
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_format.html.twig")->display(array_merge($context, array("content" => "")));
+        // line 151
+        echo "          ";
+        $this->env->loadTemplate("BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig")->display(array_merge($context, array("respuesta" => $this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "respuesta1310"), "alert" => "alert")));
+        // line 152
+        echo "        </div>             
+
+";
     }
 
     public function getTemplateName()
@@ -275,6 +376,6 @@ class __TwigTemplate_40a0f1055a794bad43cb1cfff0f3aa00092ea463a73873adc7d12147efe
 
     public function getDebugInfo()
     {
-        return array (  263 => 108,  260 => 107,  258 => 106,  254 => 104,  251 => 103,  249 => 102,  245 => 100,  242 => 99,  240 => 98,  236 => 96,  233 => 95,  231 => 94,  227 => 92,  224 => 91,  222 => 90,  218 => 88,  215 => 87,  213 => 86,  209 => 84,  206 => 83,  204 => 82,  200 => 80,  197 => 79,  195 => 78,  191 => 76,  188 => 75,  186 => 74,  182 => 72,  179 => 71,  177 => 70,  173 => 68,  171 => 67,  167 => 66,  163 => 64,  160 => 63,  158 => 62,  154 => 60,  151 => 59,  149 => 58,  145 => 56,  142 => 55,  140 => 54,  136 => 52,  133 => 51,  131 => 50,  127 => 48,  124 => 47,  122 => 46,  118 => 44,  116 => 43,  112 => 42,  108 => 40,  105 => 39,  103 => 38,  96 => 35,  94 => 34,  90 => 32,  87 => 31,  85 => 30,  78 => 27,  76 => 26,  72 => 24,  69 => 23,  67 => 22,  60 => 19,  58 => 18,  54 => 16,  51 => 15,  49 => 14,  45 => 12,  42 => 11,  40 => 10,  36 => 8,  33 => 7,  31 => 6,  27 => 4,  24 => 3,  22 => 2,  19 => 1,);
+        return array (  362 => 152,  359 => 151,  357 => 150,  353 => 148,  350 => 147,  348 => 146,  344 => 144,  341 => 143,  339 => 142,  335 => 140,  332 => 139,  330 => 138,  326 => 136,  323 => 135,  321 => 134,  317 => 132,  314 => 131,  312 => 130,  308 => 128,  305 => 127,  303 => 126,  299 => 124,  296 => 123,  294 => 122,  290 => 120,  287 => 119,  285 => 118,  281 => 116,  278 => 115,  276 => 114,  272 => 112,  269 => 111,  267 => 110,  263 => 108,  260 => 107,  258 => 106,  254 => 104,  251 => 103,  249 => 102,  245 => 100,  242 => 99,  240 => 98,  236 => 96,  233 => 95,  231 => 94,  227 => 92,  224 => 91,  222 => 90,  218 => 88,  215 => 87,  213 => 86,  209 => 84,  206 => 83,  204 => 82,  200 => 80,  197 => 79,  195 => 78,  191 => 76,  188 => 75,  186 => 74,  182 => 72,  179 => 71,  177 => 70,  173 => 68,  171 => 67,  167 => 66,  163 => 64,  160 => 63,  158 => 62,  154 => 60,  151 => 59,  149 => 58,  145 => 56,  142 => 55,  140 => 54,  136 => 52,  133 => 51,  131 => 50,  127 => 48,  124 => 47,  122 => 46,  118 => 44,  116 => 43,  112 => 42,  108 => 40,  105 => 39,  103 => 38,  96 => 35,  94 => 34,  90 => 32,  87 => 31,  85 => 30,  78 => 27,  76 => 26,  72 => 24,  69 => 23,  67 => 22,  60 => 19,  58 => 18,  54 => 16,  51 => 15,  49 => 14,  45 => 12,  42 => 11,  40 => 10,  36 => 8,  33 => 7,  31 => 6,  27 => 4,  24 => 3,  22 => 2,  19 => 1,);
     }
 }

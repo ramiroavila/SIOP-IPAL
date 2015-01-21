@@ -158,6 +158,16 @@ class EncuestaElectrica extends Encuesta
       if ($this->getRespuesta103() == 1) $data[] = "respuesta10.3_electrica";
       if ($this->getRespuesta111() == 1) $data[] = "respuesta11.1_electrica";
       if ($this->getRespuesta121() == 0) $data[] = "respuesta12.1_electrica";
+      if ($this->getRespuesta131() == 1) $data[] = "respuesta13.1_electrica";
+      if ($this->getRespuesta132() == 1) $data[] = "respuesta13.2_electrica";
+      if ($this->getRespuesta133() == 1) $data[] = "respuesta13.3_electrica";
+      if ($this->getRespuesta134() == 1) $data[] = "respuesta13.4_electrica";
+      if ($this->getRespuesta135() == 1) $data[] = "respuesta13.5_electrica";
+      if ($this->getRespuesta136() == 1) $data[] = "respuesta13.6_electrica";
+      if ($this->getRespuesta137() == 1) $data[] = "respuesta13.7_electrica";
+      if ($this->getRespuesta138() == 1) $data[] = "respuesta13.8_electrica";
+      if ($this->getRespuesta139() == 1) $data[] = "respuesta13.9_electrica";
+      if ($this->getRespuesta1310() == 1) $data[] = "respuesta13.10_electrica";
       return $data; 
     }
 

@@ -156,6 +156,16 @@ class EncuestaTelecomunicaciones extends Encuesta
       if ($this->getRespuesta111() == 1) $data[] = "respuesta11.1_telecomunicaciones";
       if ($this->getRespuesta112() == 1) $data[] = "respuesta11.2_telecomunicaciones";
       if ($this->getRespuesta121() == 0) $data[] = "respuesta12.1_telecomunicaciones";
+      if ($this->getRespuesta131() == 1) $data[] = "respuesta13.1_telecomunicaciones";
+      if ($this->getRespuesta132() == 1) $data[] = "respuesta13.2_telecomunicaciones";
+      if ($this->getRespuesta133() == 1) $data[] = "respuesta13.3_telecomunicaciones";
+      if ($this->getRespuesta134() == 1) $data[] = "respuesta13.4_telecomunicaciones";
+      if ($this->getRespuesta135() == 1) $data[] = "respuesta13.5_telecomunicaciones";
+      if ($this->getRespuesta136() == 1) $data[] = "respuesta13.6_telecomunicaciones";
+      if ($this->getRespuesta137() == 1) $data[] = "respuesta13.7_telecomunicaciones";
+      if ($this->getRespuesta138() == 1) $data[] = "respuesta13.8_telecomunicaciones";
+      if ($this->getRespuesta139() == 1) $data[] = "respuesta13.9_telecomunicaciones";
+      if ($this->getRespuesta1310() == 1) $data[] = "respuesta13.10_telecomunicaciones";   
       return $data; 
     }
 

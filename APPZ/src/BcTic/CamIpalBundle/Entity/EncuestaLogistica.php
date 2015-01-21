@@ -84,6 +84,16 @@ class EncuestaLogistica extends Encuesta
       if ($this->getRespuesta103() == 1) $data[] = "respuesta10.3_logistica";
       if ($this->getRespuesta111() == 1) $data[] = "respuesta11.1_logistica";
       if ($this->getRespuesta121() == 0) $data[] = "respuesta12.1_logistica";
+      if ($this->getRespuesta131() == 1) $data[] = "respuesta13.1_logistica";
+      if ($this->getRespuesta132() == 1) $data[] = "respuesta13.2_logistica";
+      if ($this->getRespuesta133() == 1) $data[] = "respuesta13.3_logistica";
+      if ($this->getRespuesta134() == 1) $data[] = "respuesta13.4_logistica";
+      if ($this->getRespuesta135() == 1) $data[] = "respuesta13.5_logistica";
+      if ($this->getRespuesta136() == 1) $data[] = "respuesta13.6_logistica";
+      if ($this->getRespuesta137() == 1) $data[] = "respuesta13.7_logistica";
+      if ($this->getRespuesta138() == 1) $data[] = "respuesta13.8_logistica";
+      if ($this->getRespuesta139() == 1) $data[] = "respuesta13.9_logistica";
+      if ($this->getRespuesta1310() == 1) $data[] = "respuesta13.10_logistica";
       return $data; 
     }
 

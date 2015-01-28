@@ -42,6 +42,18 @@ class EncuestaColombiaGeneral extends Encuesta
         $this->setRespuesta96(2);
         $this->setRespuesta97(2);
 
+        $this->setRespuesta131(2);
+        $this->setRespuesta132(2);
+        $this->setRespuesta133(2);
+        $this->setRespuesta134(2);
+        $this->setRespuesta135(2);
+        $this->setRespuesta136(2);
+        $this->setRespuesta137(2);
+        $this->setRespuesta138(2);
+        $this->setRespuesta139(2);
+        $this->setRespuesta1310(2);
+        
+
     }
   
     public function getKey() {

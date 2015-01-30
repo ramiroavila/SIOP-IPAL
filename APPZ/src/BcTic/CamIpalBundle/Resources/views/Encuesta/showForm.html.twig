@@ -1,9 +1,14 @@
 {% extends '::base_pdf.html.twig' %}
 
+{% set logo = 'images/logo.jpg' %}
+{% if (entity.key == 'telecomunicaciones') %}
+     {% set logo = 'images/logo-coasin.png' %}
+{% endif %}
+
 {% block body -%}
   <div class="row">
      <div class="col-md-3 text-center">
-       <img alt="logo" style="height:65px; margin-top:7px;" src="{{ asset('images/logo.jpg') }}"/>
+       <img alt="logo" style="height:65px; margin-top:7px;" src="{{ asset(logo) }}"/>
      </div>  
      <div class="col-md-9">
        <h3 class="text-center">{{ 'INSPECCION DE SEGURIDAD' | trans }} {{ entity.key | upper  }}</h3>

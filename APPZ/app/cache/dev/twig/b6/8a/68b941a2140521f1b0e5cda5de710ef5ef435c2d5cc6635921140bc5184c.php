@@ -528,7 +528,131 @@ class __TwigTemplate_b68a68b941a2140521f1b0e5cda5de710ef5ef435c2d5cc6635921140bc
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "</td>
             <td></td>            
-          </tr>                            
+          </tr>           
+          <tr>
+            <td colspan=\"2\"></td>
+            <td></td>
+            <td colspan=\"2\">&nbsp;</td>
+          </tr> 
+          <tr>
+            <td colspan=\"2\"></td>
+            <td></td>
+            <td><b>I-13 Cultura ambiental</b></td>
+            <td><b>";
+        // line 243
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Cumple"), "html", null, true);
+        echo "</b></td>
+          </tr> 
+          <tr>
+            <td colspan=\"2\"></td>
+            <td></td>
+            <td>";
+        // line 248
+        $context["name"] = ("respuesta13.1_" . $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "key"));
+        echo " ";
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "</td>
+            <td></td>                  
+          </tr> 
+          <tr>
+            <td colspan=\"2\"></td>
+            <td></td>
+            <td>";
+        // line 254
+        $context["name"] = ("respuesta13.2_" . $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "key"));
+        echo " ";
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "</td>
+            <td></td>                  
+          </tr> 
+          <tr>
+            <td colspan=\"2\"></td>
+            <td></td>
+            <td>";
+        // line 260
+        $context["name"] = ("respuesta13.3_" . $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "key"));
+        echo " ";
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "</td>
+            <td></td>                  
+          </tr> 
+          <tr>
+            <td colspan=\"2\"></td>
+            <td></td>
+            <td>";
+        // line 266
+        $context["name"] = ("respuesta13.4_" . $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "key"));
+        echo " ";
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "</td>
+            <td></td>                  
+          </tr> 
+          <tr>
+            <td colspan=\"2\"></td>
+            <td></td>
+            <td>";
+        // line 272
+        $context["name"] = ("respuesta13.5_" . $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "key"));
+        echo " ";
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "</td>
+            <td></td>                             
+          </tr> 
+          <tr>
+            <td colspan=\"2\"></td>
+            <td></td>
+            <td>";
+        // line 278
+        $context["name"] = ("respuesta13.6_" . $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "key"));
+        echo " ";
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "</td>
+            <td></td>                          
+          </tr> 
+          <tr>
+            <td colspan=\"2\"></td>
+            <td></td>
+            <td>";
+        // line 284
+        $context["name"] = ("respuesta13.7_" . $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "key"));
+        echo " ";
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "</td>
+            <td></td>                  
+          </tr> 
+          <tr>
+            <td colspan=\"2\"></td>
+            <td></td>
+            <td>";
+        // line 290
+        $context["name"] = ("respuesta13.8_" . $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "key"));
+        echo " ";
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "</td>
+            <td></td>                  
+          </tr> 
+          <tr>
+            <td colspan=\"2\"></td>
+            <td></td>
+            <td>";
+        // line 296
+        $context["name"] = ("respuesta13.9_" . $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "key"));
+        echo " ";
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "</td>
+            <td></td>                  
+          </tr> 
+          <tr>
+            <td colspan=\"2\"></td>
+            <td></td>
+            <td>";
+        // line 302
+        $context["name"] = ("respuesta13.10_" . $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "key"));
+        echo " ";
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "</td>
+            <td></td>                            
+          </tr>                                                                                                
         </tbody>
       </table>
     </div>
@@ -547,6 +671,6 @@ class __TwigTemplate_b68a68b941a2140521f1b0e5cda5de710ef5ef435c2d5cc6635921140bc
 
     public function getDebugInfo()
     {
-        return array (  526 => 231,  518 => 226,  504 => 217,  495 => 213,  487 => 210,  481 => 207,  472 => 203,  461 => 197,  452 => 193,  444 => 190,  435 => 186,  427 => 183,  418 => 179,  410 => 176,  404 => 173,  400 => 172,  392 => 169,  381 => 163,  372 => 159,  364 => 156,  355 => 152,  347 => 149,  338 => 145,  330 => 142,  324 => 139,  320 => 138,  315 => 136,  311 => 135,  297 => 126,  289 => 123,  280 => 119,  272 => 116,  266 => 113,  257 => 109,  246 => 103,  237 => 99,  229 => 96,  220 => 92,  215 => 90,  208 => 86,  204 => 85,  182 => 73,  174 => 70,  157 => 63,  148 => 59,  143 => 57,  130 => 52,  118 => 46,  110 => 43,  99 => 37,  90 => 33,  73 => 26,  65 => 23,  56 => 19,  48 => 16,  42 => 13,  38 => 12,  29 => 9,  19 => 1,  191 => 77,  188 => 92,  183 => 87,  180 => 86,  165 => 66,  147 => 59,  139 => 56,  136 => 52,  126 => 45,  122 => 47,  116 => 41,  112 => 40,  106 => 37,  102 => 36,  96 => 33,  92 => 32,  86 => 29,  82 => 30,  78 => 27,  72 => 24,  68 => 23,  61 => 19,  49 => 10,  43 => 9,  37 => 6,  33 => 10,  30 => 3,);
+        return array (  650 => 302,  639 => 296,  628 => 290,  617 => 284,  606 => 278,  595 => 272,  584 => 266,  573 => 260,  562 => 254,  551 => 248,  543 => 243,  526 => 231,  518 => 226,  504 => 217,  495 => 213,  487 => 210,  481 => 207,  472 => 203,  461 => 197,  452 => 193,  444 => 190,  435 => 186,  427 => 183,  418 => 179,  410 => 176,  404 => 173,  400 => 172,  392 => 169,  381 => 163,  372 => 159,  364 => 156,  355 => 152,  347 => 149,  338 => 145,  330 => 142,  324 => 139,  320 => 138,  315 => 136,  311 => 135,  297 => 126,  289 => 123,  280 => 119,  272 => 116,  266 => 113,  257 => 109,  246 => 103,  237 => 99,  229 => 96,  220 => 92,  215 => 90,  208 => 86,  204 => 85,  191 => 77,  182 => 73,  174 => 70,  165 => 66,  157 => 63,  148 => 59,  143 => 57,  139 => 56,  130 => 52,  122 => 47,  118 => 46,  110 => 43,  99 => 37,  90 => 33,  82 => 30,  73 => 26,  65 => 23,  56 => 19,  48 => 16,  42 => 13,  38 => 12,  33 => 10,  29 => 9,  19 => 1,);
     }
 }

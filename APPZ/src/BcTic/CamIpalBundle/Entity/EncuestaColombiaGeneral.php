@@ -246,6 +246,8 @@ class EncuestaColombiaGeneral extends Encuesta
       if ($this->getRespuesta122() == 1) $data[] = "respuesta12.2_colombia_general";
       if ($this->getRespuesta123() == 1) $data[] = "respuesta12.3_colombia_general";
 
+      /* 
+      LOS INCUMPLIMIENTOS DE 13 NO APLICA PARA DEJAR COMO ABIERTO
       if ($this->getRespuesta131() == 0) $data[] = "respuesta13.1_colombia_general";
       if ($this->getRespuesta132() == 0) $data[] = "respuesta13.2_colombia_general";
       if ($this->getRespuesta133() == 0) $data[] = "respuesta13.3_colombia_general";
@@ -256,6 +258,7 @@ class EncuestaColombiaGeneral extends Encuesta
       if ($this->getRespuesta138() == 0) $data[] = "respuesta13.8_colombia_general";
       if ($this->getRespuesta139() == 0) $data[] = "respuesta13.9_colombia_general";
       if ($this->getRespuesta1310() == 0) $data[] = "respuesta13.10_colombia_general";
+      */
 
       return $data; 
     }

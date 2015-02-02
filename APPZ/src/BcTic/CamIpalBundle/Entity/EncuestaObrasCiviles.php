@@ -164,6 +164,8 @@ class EncuestaObrasCiviles extends Encuesta
       if ($this->getRespuesta103() == 1) $data[] = "respuesta10.3_obras_civiles";
       if ($this->getRespuesta111() == 1) $data[] = "respuesta11.1_obras_civiles";
       if ($this->getRespuesta121() == 0) $data[] = "respuesta12.1_obras_civiles";
+      /*
+      LOS INCUMPLIMIENTOS DE 13 NO APLICA PARA DEJAR COMO ABIERTO
       if ($this->getRespuesta131() == 1) $data[] = "respuesta13.1_obras_civiles";
       if ($this->getRespuesta132() == 1) $data[] = "respuesta13.2_obras_civiles";
       if ($this->getRespuesta133() == 1) $data[] = "respuesta13.3_obras_civiles";
@@ -174,6 +176,7 @@ class EncuestaObrasCiviles extends Encuesta
       if ($this->getRespuesta138() == 1) $data[] = "respuesta13.8_obras_civiles";
       if ($this->getRespuesta139() == 1) $data[] = "respuesta13.9_obras_civiles";
       if ($this->getRespuesta1310() == 1) $data[] = "respuesta13.10_obras_civiles";
+      */
       return $data; 
     }
 

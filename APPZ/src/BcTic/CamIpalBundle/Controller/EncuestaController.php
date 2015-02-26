@@ -859,7 +859,7 @@ class EncuestaController extends Controller
              'filesCierre' => $filesCierre,
              'tieneIncumplimientos' => (count($entity->getIncumplimientos()) > 0) ? true : false ,
              'cierre' => $cierre,
-             'cierre_log' => $entity->getCierreLog(),
+             'cierre_log' => (strlen($entity->getCierreLog() > 0)) ? $entity->getCierreLog() : '',
              'inspector' => ($entity->getInspector() == null) ? "-- No especificado --" : $entity->getInspector(),
              'token' => $csrf->generateCsrfToken('entity'.$entity->getId()),
              'createdBy' => $entity->getCreatedBy(),

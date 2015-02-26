@@ -1,0 +1,15 @@
+<html>
+  <head></head>
+  <body>
+
+    <p>Hola {{usuario.nombre}}, {{ 'el sistema SIOP le notifica que la encuesta IPAL' | trans }} #{{ entity.id }} {{ 'de tipo' | trans }} {{ entity.key | upper }} {{ 'de la empresa' | trans }} {% if empresa is defined %} {{ empresa }} {% endif %} {{ 'se mantiene en estado ABIERTA y debe ser completada a la brevedad a estado POR VERIFICAR' | trans }}. </p>
+    
+              
+<p>{{ 'Atte' | trans }}.<br/>
+Sistema IPAL<br/>
+http://siop.cam-la.com<br/>
+</p>
+
+<p>* {{ 'ESTE ES UN EMAIL GENERADO AUTOMÁTICAMENTE, NO LO RESPONDA' | trans }}.</p>
+</body>
+</html>

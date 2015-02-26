@@ -51,6 +51,13 @@ class Usuario implements UserInterface, \Serializable {
     /**
      * @var string
      *
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     */
+    private $email;    
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nombre", type="string", length=100)
      * @Assert\NotBlank()
      * @Assert\Length(min = "5")     
@@ -305,5 +312,28 @@ class Usuario implements UserInterface, \Serializable {
     public function getVisible()
     {
         return $this->visible;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Usuario
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

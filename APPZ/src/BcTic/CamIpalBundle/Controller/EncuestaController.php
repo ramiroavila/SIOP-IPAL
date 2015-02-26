@@ -859,6 +859,7 @@ class EncuestaController extends Controller
              'filesCierre' => $filesCierre,
              'tieneIncumplimientos' => (count($entity->getIncumplimientos()) > 0) ? true : false ,
              'cierre' => $cierre,
+             'cierre_log' => $entity->getCierreLog(),
              'inspector' => ($entity->getInspector() == null) ? "-- No especificado --" : $entity->getInspector(),
              'token' => $csrf->generateCsrfToken('entity'.$entity->getId()),
              'createdBy' => $entity->getCreatedBy(),
@@ -1427,6 +1428,8 @@ class EncuestaController extends Controller
             break;    
         }
 
+        $estadoGuardado = $entity->getStatusCierre();
+
         $editForm = $this->createEditForm($entity, $formType);
         $editForm->handleRequest($request);
 
@@ -1437,13 +1440,22 @@ class EncuestaController extends Controller
 
             if ($role == false) {
               //Si el editor no es el admin.
-              //Si el estado == 'ABIERTA' pero tiene el Texto y almenos una foto, entonces el status_cierre = 'POR_VERIFICAR'
+              //Si el estado == 'ABIERTA' pero tiene el Texto y almenos una foto, entonces el status_cierre = 'POR_VALIDAR'
               switch ($entity->getStatusCierre()) {
                 case 'ABIERTA':
                   $cierre = (count($entity->getIncumplimientos()) > 0) ? ( ( (  strlen($entity->getCierre()) > 0 ) and ( (strlen($entity->getFileCierre1()) > 0) or (strlen($entity->getFileCierre2()) > 0) )  ) ? "POR_VALIDAR" : "ABIERTA" ) : "N/A";
                   $entity->setStatusCierre($cierre);
                   break;
               }
+            }
+
+            //CIERRE DEBE DEJAR LOG DE QUIEN LO CERRÓ:
+            if ($entity->getStatusCierre() == 'CERRADA') {
+               switch ($estadoGuardado) {
+                  case 'POR_VALIDAR':
+                    $entity->setCierreLog($entity->getCierreLog().'CERRADA POR '.$this->get('security.context')->getToken()->getUser()->getUsername().' EL '.date('d-m-Y H:i').chr(10));
+                    break;
+               }
             }
 
 

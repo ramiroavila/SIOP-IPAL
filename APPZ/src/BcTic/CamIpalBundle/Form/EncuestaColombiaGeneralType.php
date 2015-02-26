@@ -124,6 +124,7 @@ class EncuestaColombiaGeneralType extends AbstractType
             ->add('uploadedFile2','file', array('label' => 'Adjunto 2','required'  => false))
             ->add('uploadedFile3','file', array('label' => 'Adjunto 3','required'  => false))
             ->add('visible', 'hidden', array())
+            ->add('cierreLog', 'hidden', array())
             ->add('localizacion', 'hidden', array())
             ->add('empresa','entity', array(
                   'class' => 'BcTicCamIpalBundle:Empresa',

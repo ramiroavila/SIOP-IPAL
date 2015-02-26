@@ -1,7 +1,7 @@
 {% extends 'BcTicCamIpalBundle::results.html.twig' %}
 
 {% set title = 'Usuarios' %}
-{% set data = {'username': 'Usuario', 'nombre': 'Nombre', 'visible': 'Visible', 'pais': 'País','roles': 'Roles'} %}
+{% set data = {'username': 'Usuario', 'nombre': 'Nombre', 'email': 'Email','visible': 'Visible', 'pais': 'País','roles': 'Roles'} %}
 {% set path_previous = path('usuarios', { 'page' : page - 1 }) %}
 {% set path_next = path('usuarios', { 'page' : page + 1 } ) %}
 {% set path_new = path('usuarios_new') %}

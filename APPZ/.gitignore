@@ -1,10 +1,10 @@
 web/bundles/
 app/bootstrap.php.cache
-app/cache/*
-app/cache
+app/cache/
 app/Resources/json/
 app/config/parameters.yml
-app/logs/*
+app/logs/
+app/spool/
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 build/

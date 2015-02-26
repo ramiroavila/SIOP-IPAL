@@ -907,6 +907,13 @@ abstract class Encuesta
      */
     private $createdBy;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cierre_log", type="text", nullable=true)
+     */
+    private $cierreLog;    
+
     abstract function getKey();
     abstract function getIncumplimientos();
     abstract function getIncumplimientos50();
@@ -3853,5 +3860,28 @@ abstract class Encuesta
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set statusCierre
+     *
+     * @param string $statusCierre
+     * @return Encuesta
+     */
+    public function setStatusCierre($statusCierre)
+    {
+        $this->statusCierre = $statusCierre;
+
+        return $this;
+    }
+
+    /**
+     * Get statusCierre
+     *
+     * @return string 
+     */
+    public function getStatusCierre()
+    {
+        return $this->statusCierre;
     }
 }

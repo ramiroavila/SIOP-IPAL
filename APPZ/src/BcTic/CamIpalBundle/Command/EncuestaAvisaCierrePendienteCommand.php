@@ -65,13 +65,13 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
                     'usuario' => $usuario,
                 )); 
 
-      $destinatario = (filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL) === false) ? 'pjmf@cam-la.com' : $usuario->getEmail() ;
+      $destinatario = (filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL) === false) ? 'ipal@cam-la.com' : $usuario->getEmail() ;
 
       $message = \Swift_Message::newInstance()
                 ->setSubject('IPAL #'.$entity->getId().' EN ESTADO ABIERTA')
                 ->setFrom(array('info@bctic.net' => 'SIOP CAM LA'))
                 ->setTo($destinatario)
-                ->setCc('pjmf@cam-la.com')
+                ->setBcc('lbarrientos@bctic.net')
                 ->setCharset('UTF-8')
                 ->setContentType('text/html') 
                 ->setBody($rendered);

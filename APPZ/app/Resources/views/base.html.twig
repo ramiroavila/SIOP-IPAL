@@ -76,9 +76,6 @@
                 {% endif %}  
 
                   <li><a href="{{ path('encuestas') }}">{{ "Ver Encuestas" | trans }}</a></li>
-                  {% if is_granted('ROLE_ADMIN') %}
-                  <li><a href="{{ path('metas_dashboard' ) }}">{{ "Ver Metas" | trans }}</a></li>
-                  {% endif %}
                 </ul>
               </li>
               <li class="dropdown">
@@ -86,9 +83,6 @@
                 <ul class="dropdown-menu">
                   <li><a href="{{ path('observaciones_new') }}">{{ "Agregar Observación" | trans }}</a></li>
                   <li><a href="{{ path('observaciones') }}">{{ "Ver Observaciones" | trans }}</a></li>
-                  {% if is_granted('ROLE_ADMIN') %}
-                  <li><a href="{{ path('metas_observaciones_dashboard' ) }}">{{ "Ver Metas" | trans }}</a></li>
-                  {% endif %}
                 </ul>
               </li>
               {% endif %}
@@ -109,8 +103,6 @@
                   <li><a href="{{ path('areas') }}">{{ "Áreas" | trans }}</a></li>
                   <li class="divider"></li>
                   <li><a href="{{ path('servicios') }}">{{ "Servicios" | trans }}</a></li>
-                  <li class="divider"></li>
-                  <li><a href="{{ path('metas') }}">{{ "Metas" | trans }}</a></li>
                 </ul>
               </li>
               {% endif %}
@@ -182,7 +174,7 @@
       {% if app.user %}
       <br/>{{ app.user.pais }}
       {% endif %}  
-      <br/>Revisión 10.7.3
+      <br/>Revisión 10.8
     </p></div>
     {% block js %}{% endblock %}
   </body>

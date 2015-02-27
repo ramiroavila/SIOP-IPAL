@@ -1,5 +1,65 @@
-{% extends 'BcTicCamIpalBundle::search.html.twig' %}
+{% extends '::base.html.twig' %}
 
-{% set title = 'Usuarios' %}
-{% set path_new = path('usuarios_new') %}
-{% set path_action = path('usuarios_search') %}
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li><a href="{{ path('welcome') }}">{{ 'Inicio' | trans }}</a></li>
+  {% if empty_path is defined %} {% else %} <li class="active">{{ 'Mantenedor' | trans }}</li> {% endif %}
+  <li class="active">Usuarios</li>
+</ol>
+{% endblock %}
+
+{% block body -%}
+
+    <div class="container text-center" style="width: 50%;" >
+    
+      <form id="search" class="form-inline" role="form">
+        <div class="form-group">
+          <label class="control-label" for="key"></label>
+          <input type="text" class="form-control" id="key" placeholder="">
+        </div>
+        <button type="button" id="submit" class="btn btn-default">Buscar</button>
+      </form>
+
+    </div>
+    <br/>
+    <br/>
+    
+    <div id="results"></div>
+
+    <p class="text-left">
+    <a href="{{ path('usuarios_new') }}">
+                    <button type="button" class="btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-plus"></span> {{ 'Agregar' | trans }}
+                    </button>
+    </a>
+    </p>   
+
+    {% endblock %}
+
+    {% block js %}
+      {{ parent() }}
+      <script type="text/javascript">
+        $('#submit').bind('click', function () {
+          var search = ($('#key').val().length == 0) ? "-1": $('#key').val(); 
+          $.ajax({
+            type: 'GET',
+            url: 'search/{{ page }}/key/' + search + '/index.html',
+            success: function (content) {
+              $('#results').html(content);
+            },
+            error: function (a,b,c) {
+
+            }
+          });
+        });
+
+        $('#submit').click();
+
+        $("#key").keydown(function(event) {
+          if (event.keyCode == 13) {
+           $('#submit').click();
+           event.preventDefault();
+         }
+        });
+      </script>
+    {% endblock %}

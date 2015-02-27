@@ -34,16 +34,16 @@ class UsuarioController extends Controller
      /**
      * Search Usuario entities.
      *
-     * @Route("/search/index.html", name="usuarios_search")
-     * @Method("POST")
+     * @Route("/search/{page}/key/{key}/index.html", name="usuarios_search", defaults={"page" = 1, "key" = "-1"})
+     * @Method("GET")
      * @Template("BcTicCamIpalBundle:Usuario:results.html.twig")
      */
-    public function searchAction(Request $request)
+    public function searchAction($page,$key)
     {
-        $key = $request->request->get('key');
-        $page = $request->request->get('page');
 
         $em = $this->getDoctrine()->getManager();
+
+        $key = ($key == -1) ? " " : $key;
 
         $entities = $em->getRepository('BcTicCamIpalBundle:Usuario')
                     ->createQueryBuilder('u')

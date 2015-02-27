@@ -49,13 +49,16 @@ class UsuarioController extends Controller
                     ->createQueryBuilder('u')
                     ->innerJoin('u.pais','p')
                     ->where('u.nombre LIKE :key0 OR u.username LIKE :key1 OR p.nombre LIKE :key2')
+                    ->andWhere('p.id = :pais')
                     ->setParameters(array('key0' => '%'.$key.'%'
                                          ,'key1' => '%'.$key.'%'
-                                         ,'key2' => '%'.$key.'%'))
+                                         ,'key2' => '%'.$key.'%'
+                                         ,'pais' => $this->get('security.context')->getToken()->getUser()->getPais()->getId()
+                                         ))
                     ->orderBy('u.nombre','ASC')
                     ->setMaxResults(25)
                     ->setFirstResult(25 * ($page - 1))
-                    ->getQuery();
+                    ->getQuery();               
 
         $csrf = $this->get('form.csrf_provider');
 

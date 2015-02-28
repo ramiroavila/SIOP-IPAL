@@ -38,17 +38,24 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
           $notificar = false;  
           //Tiene incumplimiento 50:
           if (count($entity->getIncumplimientos50()) > 0) {
-            //Ha pasado más de un día desde la creación:
-            if ( ($entity->getCreatedAt() + 3600) < date('U')) {
+            //Ha pasado más de 1 día desde la creación:
+            if ( ($entity->getCreatedAt() + (24 * 3600)) < date('U')) {
                 $notificar = true;
             }
           } else {
             //Ha pasado más de 7 días desde la creación:
-            if ( ($entity->getCreatedAt() + (7 * 3600)) < date('U')) {
+            if ( ($entity->getCreatedAt() + (7 * 24 * 3600)) < date('U')) {
                 $notificar = true;
             }
           }
-          if ($notificar) $this->notificar($entity,$output, $em);
+          if ($notificar) {
+            //Han pasado más de 30 días?
+            if (   (date('U') - (30 * 24 * 3600)) > $entity->getCreatedAt()  ) {
+              //Do Nothing - Han pasado más de 30 días
+            } else {
+              $this->notificar($entity,$output, $em);
+            }
+          }
         }                   
 
     }
@@ -64,6 +71,9 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
                     'entity' => $entity, 
                     'usuario' => $usuario,
                 )); 
+
+      //SI NO TIENE EMAIL NO SE AVISA
+      if (filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL) === false) return;
 
       $destinatario = (filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL) === false) ? 'ipal@cam-la.com' : $usuario->getEmail() ;
 

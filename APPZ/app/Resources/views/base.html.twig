@@ -75,6 +75,13 @@
                   <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
                 {% endif %}  
 
+                {% if app.user.pais.id == 6 %}
+                  <li><a href="{{ path('encuestas_new', { 'type': 'electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
+                  <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
+                  <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
+                  <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
+                {% endif %}                  
+
                   <li><a href="{{ path('encuestas') }}">{{ "Ver Encuestas" | trans }}</a></li>
                 </ul>
               </li>
@@ -113,6 +120,7 @@
                 <ul class="dropdown-menu">
                   <li><a href="{{ path('usuarios_new') }}">{{ "Agregar Usuario" | trans }}</a></li>
                   <li><a href="{{ path('usuarios') }}">{{ "Ver Usuarios" | trans }}</a></li>
+                  <li><a href="{{ path('grupos') }}">{{ "Ver Grupos" | trans }}</a></li>
                 </ul>
               </li>
               {% endif %}
@@ -135,7 +143,7 @@
         </div>
       </nav>
     </div>
-    <div id="content" class="container">
+    <div id="content" class="container" style="width: 95%;">
     {% block breadcrumb %}{% endblock %}
 
     {% for flashMessage in app.session.flashbag.get('notice') %}
@@ -174,7 +182,7 @@
       {% if app.user %}
       <br/>{{ app.user.pais }}
       {% endif %}  
-      <br/>Revisión 10.10.1
+      <br/>Revisión 10.11
     </p></div>
     {% block js %}{% endblock %}
   </body>

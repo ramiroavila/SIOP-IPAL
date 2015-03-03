@@ -160,15 +160,42 @@
           </div>
           <div class="col-sm-6">
               {{ form_row(form.uploadedFile1) }}
+              <div class="row">
+                <div class="col-sm-offset-3 col-sm-9">
+                  {% if (entity.file1 | length > 0) %}
+                    <a target="_blank" href="/{{ entity.file1 }}">Descargar</a>
+                    <br/>
+                    <br/>
+                  {% endif %}
+                </div>
+              </div>
           </div>
         </div>
 
         <div class="row">
             <div class="col-sm-6">
               {{ form_row(form.uploadedFile2) }}
+              <div class="row">
+                <div class="col-sm-offset-3 col-sm-9">
+                  {% if (entity.file2 | length > 0) %}
+                    <a target="_blank" href="/{{ entity.file2 }}">Descargar</a>
+                    <br/>
+                    <br/>
+                  {% endif %}
+                </div>
+              </div>
             </div>
             <div class="col-sm-6">
               {{ form_row(form.uploadedFile3) }}
+              <div class="row">
+                <div class="col-sm-offset-3 col-sm-9">
+                  {% if (entity.file3 | length > 0) %}
+                    <a target="_blank" href="/{{ entity.file3 }}">Descargar</a>
+                    <br/>
+                    <br/>
+                  {% endif %}
+                </div>
+              </div>
             </div>
         </div>
 

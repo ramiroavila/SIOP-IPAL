@@ -43,6 +43,15 @@ class UsuarioType extends AbstractType
                            ->orderBy('r.nombre', 'DESC');
                     })
             )
+            ->add('grupos' ,'entity', array(
+                  'required' => false,
+                  'multiple' => true,
+                  'class' => 'BcTicCamIpalBundle:Grupo',
+                  'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('r')
+                           ->orderBy('r.nombre', 'ASC');
+                    })
+            )            
             ->add('salt','hidden')
             ->add('visible')
             ;

@@ -24,6 +24,13 @@ class ObservacionDeComportamiento
      */
     private $id;
 
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="created_by", type="string", length=50, nullable=true)
+     */
+    private $createdBy;    
+
     /**
      * @ORM\ManyToOne(targetEntity="Empresa")
      * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
@@ -179,6 +186,11 @@ class ObservacionDeComportamiento
     */
     private $uploadedFile1;    
 
+    /**
+    * PARA USO DEL FILTRO
+    * 
+    */
+    private $grupos;    
 
     /**
      * Get id
@@ -862,4 +874,39 @@ class ObservacionDeComportamiento
     {
         return $this->uploadedFile1;
     }     
+
+    /**
+     * Set createdBy
+     *
+     * @param string $createdBy
+     * @return ObservacionDeComportamiento
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return string 
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    public function setGrupos($grupos)
+    {
+        $this->grupos = $grupos;
+
+        return $this;
+    }
+
+    public function getGrupos()
+    {
+        return $this->grupos;
+    }      
 }

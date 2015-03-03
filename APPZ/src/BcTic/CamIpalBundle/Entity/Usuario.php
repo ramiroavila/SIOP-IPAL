@@ -73,6 +73,15 @@ class Usuario implements UserInterface, \Serializable {
      */
     protected $roles;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Grupo")
+     * @ORM\JoinTable(name="grupo_de_usuario",
+     *     joinColumns={@ORM\JoinColumn(name="usuario_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="grupo_id", referencedColumnName="id")}
+     * )
+     */
+    protected $grupos;    
+
      /**
      * @ORM\ManyToOne(targetEntity="Pais")
      * @ORM\JoinColumn(name="pais_id", referencedColumnName="id")
@@ -335,5 +344,38 @@ class Usuario implements UserInterface, \Serializable {
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Add grupos
+     *
+     * @param \BcTic\CamIpalBundle\Entity\Grupo $grupos
+     * @return Usuario
+     */
+    public function addGrupo(\BcTic\CamIpalBundle\Entity\Grupo $grupos)
+    {
+        $this->grupos[] = $grupos;
+
+        return $this;
+    }
+
+    /**
+     * Remove grupos
+     *
+     * @param \BcTic\CamIpalBundle\Entity\Grupo $grupos
+     */
+    public function removeGrupo(\BcTic\CamIpalBundle\Entity\Grupo $grupos)
+    {
+        $this->grupos->removeElement($grupos);
+    }
+
+    /**
+     * Get grupos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGrupos()
+    {
+        return $this->grupos;
     }
 }

@@ -130,6 +130,16 @@ class EncuestaFilterType extends AbstractType
                 ))  
              ->add('fecha_desde','text', array('label' => 'Fecha desde'))
              ->add('fecha_hasta','text', array('label' => 'Fecha hasta'))   
+             ->add('grupos','entity', array(
+                  'label' => 'Creado por grupo',
+                  'class' => 'BcTicCamIpalBundle:Grupo',
+                  'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('r')
+                           ->orderBy('r.nombre', 'ASC');
+                    },
+                   'empty_value' => '- TODOS LOS GRUPOS -',
+                   'empty_data' => "",
+                ))              
              ;
     }
     

@@ -48,19 +48,24 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
                 $notificar = true;
             }
           }
+
           if ($notificar) {
             //Han pasado más de 30 días?
-            if (   (date('U') - (30 * 24 * 3600)) > $entity->getCreatedAt()  ) {
+            if (   (date('U') - (60 * 24 * 3600)) > $entity->getCreatedAt()  ) {
               //Do Nothing - Han pasado más de 30 días
+              $output->writeln("NO SE NOTIFICARÁ LA ENCUESTA #".$entity->getId().' POR SER MAYOR A 60 DIAS.');
             } else {
               $this->notificar($entity,$output, $em);
             }
           }
+
         }                   
 
     }
 
     protected function notificar(Encuesta $entity, OutputInterface $output, $em) {
+
+      $output->writeln("SE NOTIFICARÁ LA ENCUESTA #".$entity->getId());
       //Avisar al usuario que creó la Encuesta
       $usuarios = $em->getRepository('BcTicCamIpalBundle:Usuario')->findBy(array('username' => $entity->getCreatedBy()));
       if (count($usuarios) == 0) return;
@@ -73,6 +78,7 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
                 )); 
 
       //SI NO TIENE EMAIL NO SE AVISA
+
       if (filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL) === false) return;
 
       $destinatario = (filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL) === false) ? 'ipal@cam-la.com' : $usuario->getEmail() ;

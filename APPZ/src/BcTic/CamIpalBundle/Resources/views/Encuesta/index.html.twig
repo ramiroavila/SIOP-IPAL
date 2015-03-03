@@ -88,6 +88,13 @@
     <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
     {% endif %}  
 
+    {% if app.user.pais.id == 6 %}
+    <li><a href="{{ path('encuestas_new', { 'type': 'electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
+    <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
+    <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
+    <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
+    {% endif %}      
+
     </ul>
 </div>
 

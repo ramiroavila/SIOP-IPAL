@@ -1119,6 +1119,10 @@ class EncuestaController extends Controller
                   $destinatario = 'coasin.cam-la@bctic.net';
                   break;
 
+                case 6: //CONTRATISTAS
+                  $destinatario = 'contratistas.cam-la@bctic.net';
+                  break;                  
+
                 default: //CHILE - DEFECTO
                   $destinatario = 'siop.cam-la@bctic.net';
                   break;

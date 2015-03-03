@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="tipo", type="string")
  * @ORM\DiscriminatorMap({"ELECTRICO" = "EncuestaElectrica", "COLOMBIA_GENERAL" = "EncuestaColombiaGeneral", "BRAZIL_GENERAL" = "EncuestaBrazilGeneral", "BRAZIL_INTERNO" = "EncuestaBrazilInterno", "LOGISTICA" = "EncuestaLogistica", "OBRAS_CIVILES" = "EncuestaObrasCiviles", "TELECOMUNICACIONES" = "EncuestaTelecomunicaciones" })
+ * @BcTicAssert\ContainsUploadedFile 
  */
 abstract class Encuesta
 {
@@ -748,6 +749,7 @@ abstract class Encuesta
     /**
     *
     * @Assert\File(maxSize="20000000")
+    *
     */
     private $uploadedFile1;
 

@@ -120,6 +120,7 @@
                 <ul class="dropdown-menu">
                   <li><a href="{{ path('usuarios_new') }}">{{ "Agregar Usuario" | trans }}</a></li>
                   <li><a href="{{ path('usuarios') }}">{{ "Ver Usuarios" | trans }}</a></li>
+                  <li><a href="{{ path('grupos') }}">{{ "Ver Grupos" | trans }}</a></li>
                 </ul>
               </li>
               {% endif %}
@@ -142,7 +143,7 @@
         </div>
       </nav>
     </div>
-    <div id="content" class="container">
+    <div id="content" class="container" style="width: 95%;">
     {% block breadcrumb %}{% endblock %}
 
     {% for flashMessage in app.session.flashbag.get('notice') %}

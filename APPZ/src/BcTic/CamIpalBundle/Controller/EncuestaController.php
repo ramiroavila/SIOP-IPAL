@@ -511,9 +511,6 @@ class EncuestaController extends Controller
 
       if (count($ids) > 0) {
 
-        $logger = $this->get('logger');
-        $logger->error(count($ids));
-
         $implode = "id IN (".implode(",",array_values($ids)).")";
         
       } else {
@@ -716,13 +713,31 @@ class EncuestaController extends Controller
           $prevencionistas[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
         }    
 
-        unset($prevencionistasResult);       
+        unset($prevencionistasResult);  
 
-        $whereAnd .= $prevencionista;
+        $whereAnd .= $prevencionista;        
+
+        if ($request->request->get('grupo_id') != "") { 
+          $gruposResult = $em->getRepository('BcTicCamIpalBundle:Usuario')
+                           ->createQueryBuilder('r')
+                           ->join('r.grupos','grupo')
+                           ->where('r.visible = 1 AND grupo.id = :grupo')
+                           ->setParameters(array('grupo' => $request->request->get('grupo_id')))
+                           ->orderBy('r.nombre', 'ASC')
+                           ->getQuery()->getResult();
+
+          $grupos = array();                           
+
+          foreach($gruposResult as $entity) {                           
+              $grupos[] = $entity->getUsername();
+          }    
+
+          unset($gruposResult);                
+        }
 
         $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
                            ->createQueryBuilder('e')
-                           ->select('e.id,e.indice, e.inspector, e.prevencionista')
+                           ->select('e.id,e.indice, e.inspector, e.prevencionista, e.createdBy')
                            ->join('e.contrato','c')
                            ->join('e.pais','p')
                            ->join('c.servicio','srv')
@@ -758,6 +773,7 @@ class EncuestaController extends Controller
 
         $inspectoresMatrix = $this->array_column($fetch,'inspector2'); 
         $prevencionistasMatrix = $this->array_column($fetch,'prevencionista3'); 
+        $createdByMatrix = $this->array_column($fetch,'created_by4'); 
 
         if ($eliminateInspector) {
 
@@ -787,6 +803,15 @@ class EncuestaController extends Controller
                 unset($riesgoDetectado[$key]);
               }               
            }
+        }
+
+        if (strlen($request->request->get('grupo_id')) > 0) { 
+          //Array diff: Elimino los que no están:
+          $diff = array_diff($createdByMatrix,$grupos);
+          foreach ($diff as $i => $diffItem) {
+                unset($ids[$i]);
+                unset($riesgoDetectado[$i]);
+          }
         }
 
         $riesgoDetectado = array_sum(array_values($riesgoDetectado)); 

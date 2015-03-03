@@ -7,24 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use BcTic\CamIpalBundle\Entity\Gerencia;
-use BcTic\CamIpalBundle\Form\GerenciaType;
-
-use Symfony\Component\HttpFoundation\Response as Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use BcTic\CamIpalBundle\Entity\Grupo;
+use BcTic\CamIpalBundle\Form\GrupoType;
 
 /**
- * Gerencia controller.
+ * Grupo controller.
  *
- * @Route("/gerencias")
+ * @Route("/grupos")
  */
-class GerenciaController extends Controller
+class GrupoController extends Controller
 {
 
     /**
-     * Lists all Gerencia entities.
+     * Lists all Grupo entities.
      *
-     * @Route("/index/{page}", name="gerencias", defaults = { "page" = 1})
+     * @Route("/index/{page}", name="grupos", defaults = { "page" = 1})     
      * @Method("GET")
      * @Template()
      */
@@ -32,8 +29,8 @@ class GerenciaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BcTicCamIpalBundle:Gerencia')->findBy(
-              array('pais' => $this->get('security.context')->getToken()->getUser()->getPais()->getId()),
+        $entities = $em->getRepository('BcTicCamIpalBundle:Grupo')->findBy(
+              array(),
               array('nombre' => 'ASC'),
               25,
               25 * ($page - 1)
@@ -49,58 +46,15 @@ class GerenciaController extends Controller
     }
 
     /**
-     * Lists all Entities
+     * Creates a new Grupo entity.
      *
-     * @Route("/data/index_all.json", name="gerencias_index_json" )
+     * @Route("/", name="grupos_create")
      * @Method("POST")
-     * @Template()
-     */
-    public function indexAllJsonAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-
-        $entities = $em->getRepository('BcTicCamIpalBundle:Gerencia')
-                           ->createQueryBuilder('g')
-                           ->join('g.subGerencias','sg')
-                           ->join('sg.contratos','c')
-                           ->join('c.empresas','e')
-                           ->join('g.pais','p')
-                           ->where('c.visible = 1')
-                           ->orderBy('g.nombre', 'ASC');
-
-        $role = false;
-
-        if ($role) {
-          //Do Nothing
-        } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
-        }
-
-        $data = array();
-
-        foreach ($entities->getQuery()->getResult() as $entity) {
-          $data[] = array(
-             'id' => $entity->getId(),
-             'nombre' => $entity->__toString()
-          );
-        }
-      
-        return new JsonResponse($data);
-
-    }   
-
-
-    /**
-     * Creates a new Gerencia entity.
-     *
-     * @Route("/add", name="gerencias_create")
-     * @Method("POST")
-     * @Template("BcTicCamIpalBundle:Gerencia:new.html.twig")
+     * @Template("BcTicCamIpalBundle:Grupo:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity = new Gerencia();
+        $entity = new Grupo();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -109,12 +63,13 @@ class GerenciaController extends Controller
             $em->persist($entity);
             $em->flush();
 
+
             $this->get('session')->getFlashBag()->add(
               'notice',
               'Los datos se grabaron correctamente.'
-            );
+            );            
 
-            return $this->redirect($this->generateUrl('gerencias', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('grupos', array('id' => $entity->getId())));
         }
 
         return array(
@@ -124,34 +79,35 @@ class GerenciaController extends Controller
     }
 
     /**
-    * Creates a form to create a Gerencia entity.
+    * Creates a form to create a Grupo entity.
     *
-    * @param Gerencia $entity The entity
+    * @param Grupo $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Gerencia $entity)
+    private function createCreateForm(Grupo $entity)
     {
-        $form = $this->createForm(new GerenciaType(), $entity, array(
-            'action' => $this->generateUrl('gerencias_create'),
+        $form = $this->createForm(new GrupoType(), $entity, array(
+            'action' => $this->generateUrl('grupos_create'),
             'method' => 'POST',
         ));
 
         $form->add('submit', 'submit', array('label' => 'Guardar'));
 
         return $form;
+
     }
 
     /**
-     * Displays a form to create a new Gerencia entity.
+     * Displays a form to create a new Grupo entity.
      *
-     * @Route("/new", name="gerencias_new")
+     * @Route("/new", name="grupos_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Gerencia();
+        $entity = new Grupo();
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -160,10 +116,11 @@ class GerenciaController extends Controller
         );
     }
 
+
     /**
-     * Displays a form to edit an existing Gerencia entity.
+     * Displays a form to edit an existing Grupo entity.
      *
-     * @Route("/edit/{id}", name="gerencias_edit")
+     * @Route("/edit/{id}", name="grupos_edit")
      * @Method("GET")
      * @Template()
      */
@@ -171,7 +128,7 @@ class GerenciaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BcTicCamIpalBundle:Gerencia')->find($id);
+        $entity = $em->getRepository('BcTicCamIpalBundle:Grupo')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Gerencia entity.');
@@ -186,16 +143,16 @@ class GerenciaController extends Controller
     }
 
     /**
-    * Creates a form to edit a Gerencia entity.
+    * Creates a form to edit a Grupo entity.
     *
-    * @param Gerencia $entity The entity
+    * @param Grupo $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Gerencia $entity)
+    private function createEditForm(Grupo $entity)
     {
-        $form = $this->createForm(new GerenciaType(), $entity, array(
-            'action' => $this->generateUrl('gerencias_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new GrupoType(), $entity, array(
+            'action' => $this->generateUrl('grupos_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -204,20 +161,20 @@ class GerenciaController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Gerencia entity.
+     * Edits an existing Grupo entity.
      *
-     * @Route("/update/{id}", name="gerencias_update")
+     * @Route("/{id}", name="grupos_update")
      * @Method("PUT")
-     * @Template("BcTicCamIpalBundle:Gerencia:edit.html.twig")
+     * @Template("BcTicCamIpalBundle:Grupo:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BcTicCamIpalBundle:Gerencia')->find($id);
+        $entity = $em->getRepository('BcTicCamIpalBundle:Grupo')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Gerencia entity.');
+            throw $this->createNotFoundException('Unable to find Grupo entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -231,7 +188,7 @@ class GerenciaController extends Controller
               'Los datos se grabaron correctamente.'
             );
 
-            return $this->redirect($this->generateUrl('gerencias', array('id' => $id)));
+            return $this->redirect($this->generateUrl('grupos', array('id' => $id)));
         }
 
         return array(
@@ -239,11 +196,11 @@ class GerenciaController extends Controller
             'edit_form'   => $editForm->createView()
         );
     }
-    
+
     /**
      * Deletes a Gerencia entity.
      *
-     * @Route("/delete/{id}/{token}", name="gerencias_delete")
+     * @Route("/delete/{id}/{token}", name="grupos_delete")
      * @Method("GET")
      */
     public function deleteAction(Request $request, $id, $token)
@@ -251,10 +208,10 @@ class GerenciaController extends Controller
       $csrf = $this->get('form.csrf_provider');
 
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('BcTicCamIpalBundle:Gerencia')->find($id);
+        $entity = $em->getRepository('BcTicCamIpalBundle:Grupo')->find($id);
 
         if (!$entity) {
-              throw $this->createNotFoundException('Unable to find Gerencia entity.');
+              throw $this->createNotFoundException('Unable to find Grupo entity.');
         }
 
         if ($csrf->isCsrfTokenValid('entity'.$entity->getId(), $token)) {
@@ -273,7 +230,7 @@ class GerenciaController extends Controller
             }
         }
 
-        return $this->redirect($this->generateUrl('gerencias'));
+        return $this->redirect($this->generateUrl('grupos'));
     }
 
 }

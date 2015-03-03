@@ -882,6 +882,12 @@ abstract class Encuesta
      */
     private $fechaHasta;
   
+    /**
+    * PARA USO DEL FILTRO
+    * 
+    */
+    private $grupos;
+
      /**
      * @var string
      *
@@ -3909,4 +3915,16 @@ abstract class Encuesta
     {
         return $this->cierreLog;
     }
+
+    public function setGrupos($grupos)
+    {
+        $this->grupos = $grupos;
+
+        return $this;
+    }
+
+    public function getGrupos()
+    {
+        return $this->grupos;
+    }    
 }

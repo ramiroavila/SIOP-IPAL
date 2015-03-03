@@ -301,11 +301,12 @@
           items_por_pagina = typeof items_por_pagina !== 'undefined' ? items_por_pagina : 15;
 
           //Obtengo un listado de Encuestas en formato json con los datos del Form
+
            $.ajax({
              dataType: "json",
              type: "POST",
              url: "{{ path('encuestas_json') }}",
-             data: { items_por_pagina: items_por_pagina, pagina: pagina, empresa_id : $('#bctic_camipalbundle_encuesta_empresa').val(), contrato_id : $('#bctic_camipalbundle_encuesta_contrato').val(), mandante_id : $('#bctic_camipalbundle_encuesta_mandante').val(), gerencia_id : $('#bctic_camipalbundle_encuesta_gerencia').val(), subgerencia_id : $('#bctic_camipalbundle_encuesta_subGerencia').val(), area_id : $('#bctic_camipalbundle_encuesta_area').val(), inspector : $('#bctic_camipalbundle_encuesta_inspector').val(), prevencionista : $('#bctic_camipalbundle_encuesta_prevencionista').val(), supervisor : $('#bctic_camipalbundle_encuesta_supervisorFacade').val(), servicio_id : "",pais_id : $('#bctic_camipalbundle_encuesta_pais').val(), fecha_desde : $('#bctic_camipalbundle_encuesta_fecha_desde').val(), fecha_hasta : $('#bctic_camipalbundle_encuesta_fecha_hasta').val(), tipo : "", status_cierre: $('#bctic_camipalbundle_encuesta_status_cierre').val() } ,
+             data: { items_por_pagina: items_por_pagina, pagina: pagina, empresa_id : $('#bctic_camipalbundle_encuesta_empresa').val(), contrato_id : $('#bctic_camipalbundle_encuesta_contrato').val(), mandante_id : $('#bctic_camipalbundle_encuesta_mandante').val(), gerencia_id : $('#bctic_camipalbundle_encuesta_gerencia').val(), subgerencia_id : $('#bctic_camipalbundle_encuesta_subGerencia').val(), area_id : $('#bctic_camipalbundle_encuesta_area').val(), inspector : $('#bctic_camipalbundle_encuesta_inspector').val(), prevencionista : $('#bctic_camipalbundle_encuesta_prevencionista').val(), supervisor : $('#bctic_camipalbundle_encuesta_supervisorFacade').val(), servicio_id : "",pais_id : $('#bctic_camipalbundle_encuesta_pais').val(), fecha_desde : $('#bctic_camipalbundle_encuesta_fecha_desde').val(), fecha_hasta : $('#bctic_camipalbundle_encuesta_fecha_hasta').val(), tipo : "", status_cierre: $('#bctic_camipalbundle_encuesta_status_cierre').val(), grupo_id : $('#bctic_camipalbundle_encuesta_grupos').val() } ,
              beforeSend: function () {
                $('#resultados').html("<div class='spinner'></div>");
                $('#encuestas').html("<div class='spinner'></div>");
@@ -501,14 +502,13 @@
                    });
                  }
 
-                 if (Number(dataSuccess.ultima_pagina) == Number(dataSuccess.pagina)) { 
+                 if ( (Number(dataSuccess.ultima_pagina) == Number(dataSuccess.pagina)) || (Number(dataSuccess.entities.length) < 15) ) { 
                    $("a#next").parent().addClass("disabled"); 
                  } else {
                    $('#next').bind('click', function (e) {
                      updateDataEncuestas(dataSuccess.pagina + 1);
                    });
                  }
-
 
                  $.each(dataSuccess.entities, function() {
                    $('#edit_encuesta_' + this.id ).hide(); 

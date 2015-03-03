@@ -300,7 +300,25 @@ class ObservacionDeComportamientoController extends Controller
           $prevencionistas[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
         }           
 
-        $whereAnd .= $prevencionista;    
+        $whereAnd .= $prevencionista;   
+
+        if ($request->request->get('grupo_id') != "") { 
+          $gruposResult = $em->getRepository('BcTicCamIpalBundle:Usuario')
+                           ->createQueryBuilder('r')
+                           ->join('r.grupos','grupo')
+                           ->where('r.visible = 1 AND grupo.id = :grupo')
+                           ->setParameters(array('grupo' => $request->request->get('grupo_id')))
+                           ->orderBy('r.nombre', 'ASC')
+                           ->getQuery()->getResult();
+
+          $grupos = array();                           
+
+          foreach($gruposResult as $entity) {                           
+              $grupos[] = $entity->getUsername();
+          }    
+
+          unset($gruposResult);                
+        }         
 
         $entities = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')
                            ->createQueryBuilder('o')
@@ -343,6 +361,10 @@ class ObservacionDeComportamientoController extends Controller
               if (md5(strtoupper(trim($entity->getPrevencionista()))) == $prevencionista) $flagPrevencionista = true;
             }  
           }
+
+          if (strlen($request->request->get('grupo_id')) > 0) { 
+            if (array_search($entity->getCreatedBy(),$grupos) === false) continue;
+          }          
 
           if ($flagInspector == true) continue; 
           if ($flagPrevencionista == true) continue; 
@@ -394,6 +416,8 @@ class ObservacionDeComportamientoController extends Controller
             $em = $this->getDoctrine()->getManager();
             //Guardo el nombre del usuario en "Prevencionista"
             $entity->setPrevencionista($this->get('security.context')->getToken()->getUser()->getNombre());
+            $entity->setCreatedBy($this->get('security.context')->getToken()->getUser()->getUsername());
+
             $entity->upload();
             $em->persist($entity);
             foreach ($entity->getRegistrosDeObservacion() as $registroDeObservacion) {

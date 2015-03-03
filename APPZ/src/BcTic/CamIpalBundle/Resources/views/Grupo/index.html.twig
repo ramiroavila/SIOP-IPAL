@@ -1,0 +1,9 @@
+{% extends 'BcTicCamIpalBundle::index.html.twig' %}
+
+{% set title = 'Grupos' %}
+{% set data = {'nombre': 'Nombre'} %}
+{% set path_previous = path('grupos', { 'page' : page - 1 }) %}
+{% set path_next = path('grupos', { 'page' : page + 1 } ) %}
+{% set path_new = path('grupos_new') %}
+{% set path_key_edit = 'grupos_edit' %}
+{% set path_key_delete = 'grupos_delete' %}

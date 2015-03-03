@@ -2,13 +2,13 @@
 /APPZ/app/bootstrap.php.cache
 .DS_Store
 /APPZ/app/cache/
-APPZ/app/cache
 /APPZ/app/cache/*
-APPZ/app/config/parameters.yml
+/APPZ/app/config/parameters.yml
 /APPZ/app/logs/*
 /APPZ/app/logs/
 /APPZ/app/cache/.gitkeep
 /APPZ/app/logs/.gitkeep
+/APPZ/app/spool/
 /build/
 /bin/
 /APPZ/web/uploads/

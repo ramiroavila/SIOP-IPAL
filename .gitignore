@@ -8,6 +8,7 @@
 /APPZ/app/logs/
 /APPZ/app/cache/.gitkeep
 /APPZ/app/logs/.gitkeep
+/APPZ/app/spool/
 /build/
 /bin/
 /APPZ/web/uploads/

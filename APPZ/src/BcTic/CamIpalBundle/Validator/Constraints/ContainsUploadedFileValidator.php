@@ -19,6 +19,8 @@ class ContainsUploadedFileValidator extends ConstraintValidator
     public function validate($obj, Constraint $constraint)
     {
      
+      //No aplica a COLOMBIA
+      if ($obj->getPais()->getId() == 2) return;
       //El objeto debe tener al menos una fotografía:
       //En el caso de edición 
       if (strlen($obj->getFile1()) == 0 ) {

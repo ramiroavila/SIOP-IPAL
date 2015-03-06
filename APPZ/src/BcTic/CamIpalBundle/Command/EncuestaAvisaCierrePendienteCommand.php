@@ -96,7 +96,7 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
                 ->setContentType('text/html') 
                 ->setBody($rendered);
     
-     // $this->getContainer()->get('mailer')->send($message);
+      $this->getContainer()->get('mailer')->send($message);
    
     }
   

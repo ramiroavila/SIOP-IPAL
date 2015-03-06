@@ -599,6 +599,9 @@ class EncuestaController extends Controller
 
         $whereAnd = "";
 
+        $id = ($request->request->get('id') != "") ? " AND e.id = '".$request->request->get('id')."'" : "";
+        $whereAnd .= $id;        
+
         $status_cierre = ($request->request->get('status_cierre') != "") ? " AND e.statusCierre = '".$request->request->get('status_cierre')."'" : "";
         $whereAnd .= $status_cierre;
 

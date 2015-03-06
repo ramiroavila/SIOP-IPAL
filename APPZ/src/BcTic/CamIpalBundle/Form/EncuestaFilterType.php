@@ -17,6 +17,7 @@ class EncuestaFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('id','integer', array('label' => 'Nº de IPAL'))
             ->add('status_cierre','choice', array(
                 'label' => 'Control cierre',
                 'empty_data'  => null,

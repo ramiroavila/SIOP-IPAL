@@ -65,7 +65,6 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
 
     protected function notificar(Encuesta $entity, OutputInterface $output, $em) {
 
-      $output->writeln("SE NOTIFICARÁ LA ENCUESTA #".$entity->getId());
       //Avisar al usuario que creó la Encuesta
       $usuarios = $em->getRepository('BcTicCamIpalBundle:Usuario')->findBy(array('username' => $entity->getCreatedBy()));
       if (count($usuarios) == 0) return;
@@ -79,9 +78,14 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
 
       //SI NO TIENE EMAIL NO SE AVISA
 
-      if (filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL) === false) return;
-
+      if (filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL) === false) { 
+        $output->writeln("NO SE NOTIFICARÁ LA ENCUESTA #".$entity->getId().' POR QUE NO TIENE EMAIL.');
+        return; 
+      }
+ 
       $destinatario = (filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL) === false) ? 'ipal@cam-la.com' : $usuario->getEmail() ;
+
+      $output->writeln("SE NOTIFICARÁ LA ENCUESTA #".$entity->getId().' AL EMAIL '.$destinatario);      
 
       $message = \Swift_Message::newInstance()
                 ->setSubject('IPAL #'.$entity->getId().' EN ESTADO ABIERTA')

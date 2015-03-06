@@ -46,21 +46,27 @@
             {{ form_row(form.pais) }}
           </div>
           <div class="col-sm-4">
-            {{ form_row(form.grupos) }}
-          </div>
+            {{ form_row(form.id) }}
+          </div>          
         </div>        
 
         <div class="row">
+          <div class="col-sm-4">
+            {{ form_row(form.grupos) }}
+          </div>        
           <div class="col-sm-4 datepicker">
             {{ form_row(form.fecha_desde) }}
           </div>
           <div class="col-sm-4 datepicker">
             {{ form_row(form.fecha_hasta) }}
           </div>
-          <div class="col-sm-4">
+        </div>    
+
+        <div class="row">
+          <div class="col-sm-offset-8 col-sm-4">
             {{ form_row(form.button) }}
           </div>
-        </div>        
+        </div>       
 
         {{ form_end(form) }}
 

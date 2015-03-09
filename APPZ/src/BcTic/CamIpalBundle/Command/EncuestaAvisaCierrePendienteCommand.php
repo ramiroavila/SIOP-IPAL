@@ -91,7 +91,6 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
                 ->setSubject('IPAL #'.$entity->getId().' EN ESTADO ABIERTA')
                 ->setFrom(array('info@bctic.net' => 'SIOP CAM LA'))
                 ->setTo($destinatario)
-                ->setBcc('lbarrientos@bctic.net')
                 ->setCharset('UTF-8')
                 ->setContentType('text/html') 
                 ->setBody($rendered);

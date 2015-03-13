@@ -26,7 +26,7 @@ class EncuestaCalculaIndiceCommand extends ContainerAwareCommand
         $entities = $em->getRepository('BcTicCamIpalBundle:Encuesta')
                            ->createQueryBuilder('e')
                            ->where('e.indice = -1')
-                           ->setMaxResults(50000)
+                           ->setMaxResults(100)
                            ->orderBy('e.id','DESC')
                            ->getQuery()->getResult();
 
@@ -42,7 +42,7 @@ class EncuestaCalculaIndiceCommand extends ContainerAwareCommand
 
             //HAGO EL INSERT DE MYSQL RAW:
             $cierre = $entity->getStatusCierre();
-            $sql = "INSERT INTO EncuestaProxy (id,fecha,gerencia,subgerencia,area,inspector,prevencionista,contratista,contrato,supervisor, lugar,ipal,tiene_incumplimientos,cantidad_incumplimientos,cierre,incumplimientos_5,incumplimientos_10,incumplimientos_20,incumplimientos_30,incumplimientos_40,incumplimientos_50) VALUES (".$entity->getId().",'".$entity->getFecha()->format('Y-m-d h:i:s')."','".$entity->getContrato()->getSubGerencia()->getGerencia()->getNombre()."','".$entity->getContrato()->getSubGerencia()->getNombre()."','".$entity->getContrato()->getArea()->getNombre()."','".$entity->getInspector()."','".$entity->getPrevencionista()."','".(($entity->getCttaSubcont() === null) ? " -- SIN CONTRATISTA -- " : $entity->getCttaSubcont()->getNombre())."','".$entity->getContrato()->getNombre()."','".$entity->getSupervisorFacade()."','".$entity->getLugarDeTrabajo()."','".$entity->getIndiceIpal()."',".((count($entity->getIncumplimientos()) > 0) ? 1 : 0 ).",".(count($entity->getIncumplimientos())).",'".$cierre."',".$entity->getHits(5).",".$entity->getHits(10).",".$entity->getHits(20).",".$entity->getHits(30).",".$entity->getHits(40).",".$entity->getHits(50).")";
+            $sql = "INSERT INTO EncuestaProxy (id,fecha,gerencia,subgerencia,area,inspector,prevencionista,contratista,contrato,supervisor, lugar,ipal,tiene_incumplimientos,cantidad_incumplimientos,cierre,incumplimientos_5,incumplimientos_10,incumplimientos_20,incumplimientos_30,incumplimientos_40,incumplimientos_50) VALUES (".$entity->getId().",'".$entity->getFecha()->format('Y-m-d h:i:s')."','".addslashes($entity->getContrato()->getSubGerencia()->getGerencia()->getNombre())."','".addslashes($entity->getContrato()->getSubGerencia()->getNombre())."','".addslashes($entity->getContrato()->getArea()->getNombre())."','".addslashes($entity->getInspector())."','".addslashes($entity->getPrevencionista())."','".(($entity->getCttaSubcont() === null) ? " -- SIN CONTRATISTA -- " : addslashes($entity->getCttaSubcont()->getNombre()))."','".addslashes($entity->getContrato()->getNombre())."','".addslashes($entity->getSupervisorFacade())."','".addslashes($entity->getLugarDeTrabajo())."','".addslashes($entity->getIndiceIpal())."',".((count($entity->getIncumplimientos()) > 0) ? 1 : 0 ).",".(count($entity->getIncumplimientos())).",'".addslashes($cierre)."',".$entity->getHits(5).",".$entity->getHits(10).",".$entity->getHits(20).",".$entity->getHits(30).",".$entity->getHits(40).",".$entity->getHits(50).")";
 
             $stmt = $em->getConnection()->prepare($sql);
             $stmt->execute();

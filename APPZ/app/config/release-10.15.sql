@@ -1,0 +1,4 @@
+ALTER TABLE EncuestaProxy ADD COLUMN incumplimientos_50_json TEXT NULL;
+ALTER TABLE EncuestaProxy ADD COLUMN contrato VARCHAR(100) NULL;
+ALTER TABLE EncuestaProxy ADD COLUMN supervisor VARCHAR(100) NULL;
+ALTER TABLE EncuestaProxy ADD COLUMN lugar VARCHAR(100) NULL;

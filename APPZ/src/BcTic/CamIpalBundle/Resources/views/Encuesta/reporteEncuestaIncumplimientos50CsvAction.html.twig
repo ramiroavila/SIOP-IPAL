@@ -1,0 +1,4 @@
+FECHA; INCUMPLIMIENTOS; EMPRESA; CONTRATO; INSPECTOR; SUPERVISOR; LUGAR; N IPAL
+{% for item in data %}
+{{ item.fecha | date("d-m-Y") }};"{% include 'BcTicCamIpalBundle:Encuesta:items.html.twig' with {'items': item.incumplimientos_50 } %}";"{{ item.contratista | raw }}";"{{ item.contrato | raw }}";"{{ item.inspector | raw }}";"{{ item.supervisor | raw }}";"{{ item.lugar | raw }}";{{ item.id }}
+{% endfor %}

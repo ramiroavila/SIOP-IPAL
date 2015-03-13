@@ -171,14 +171,14 @@
                 <div class='btn-group btn-group-sm'>\
                   <button id='reporte_ipal_por_prevencionista' type='button' class='btn btn-default'>{{ 'IPAL Prevenc/Inspector' | trans }}</button>\
                 </div>\
-                <div style='display:none;' class='btn-group btn-group-sm'>\
-                  <button id='reporte_total_prevencionistas' type='button' class='btn btn-default'>{{ 'IPAL tot. Prevenc/Inspec.' | trans }}</button>\
-                </div>\
                 <div class='btn-group btn-group-sm'>\
                   <button id='reporte_total_no_50_20' type='button' class='btn btn-default'>{{ 'Total no 50-20' | trans }}</button>\
                 </div>\
                 <div class='btn-group btn-group-sm'>\
                   <button id='reporte_cierre' type='button' class='btn btn-default'>{{ 'Por status' | trans }}</button>\
+                </div>\
+                <div class='btn-group btn-group-sm'>\
+                  <button id='reporte_total_50' type='button' class='btn btn-default'>{{ 'Total 50' | trans }}</button>\
                 </div>\
               </div>\
             </div>\
@@ -498,6 +498,20 @@
                      }
                    });
                  });  
+
+                 $('#reporte_total_50').bind('click', function (e) { 
+                   $.ajax({
+                     type: "POST",
+                     dataType: "json",
+                     url: "{{ path('encuesta_reporte_incumplimientos_50_csv') }}",
+                     data: { ids: dataSuccess.ids },
+                     success: function (data) {
+                        //Descargar el archivo:
+                        window.open('reportes/' + data.file + '/download.html');
+                        alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
+                     }
+                   });
+                 });                    
 
                  $('#encuestas').html(createListado(dataSuccess.entities, dataSuccess.pagina));
 

@@ -332,6 +332,51 @@ class EncuestaController extends Controller
       return new JsonResponse(array('file' => $file));
     }
 
+    /**
+     *
+     * @Route("/encuesta_reporte_incumplimientos_50_csv/data.csv", name="encuesta_reporte_incumplimientos_50_csv")
+     * @Method("POST")
+     * @Template()     
+     */
+    public function reporteEncuestaIncumplimientos50CsvAction(Request $request)
+    {
+
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
+
+      $em = $this->getDoctrine()->getManager();        
+
+      $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') AND incumplimientos_50 > 0 ORDER BY e.fecha DESC';
+
+      $stmt = $em->getConnection()->prepare($sql);
+      $stmt->execute();
+
+      $data = array();
+      foreach($stmt->fetchAll() as $entity) {
+        $data[] = array(
+                          'fecha' => $entity['fecha'],
+                          'contratista' => $entity['contratista'],
+                          'contrato' => $entity['contrato'],
+                          'inspector' => $entity['inspector'],
+                          'supervisor' => $entity['supervisor'],
+                          'lugar' => $entity['lugar'],
+                          'id' =>  $entity['id'],
+                          'incumplimientos_50' => json_decode($entity['incumplimientos_50_json']),
+                        );
+      }
+
+      $content = $this->renderView(
+        'BcTicCamIpalBundle:Encuesta:reporteEncuestaIncumplimientos50CsvAction.html.twig',
+        array('data' => $data)
+      );
+
+      //Guardo el contenido y devuelvo el ID para descargar el link
+      $fs = new Filesystem();
+      $file = 'INCUMPLIMIENTOS-50-'.date_format(date_create(),'Y-m-d-his');
+      $fs->dumpFile("uploads/".$file.".csv", $content);
+
+      return new JsonResponse(array('file' => $file));
+    }
+
    /**
      *
      * @Route("/encuesta_reporte_cierre_csv/data.csv", name="encuesta_reporte_cierre_csv")

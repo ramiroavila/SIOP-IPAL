@@ -1,4 +1,4 @@
-CORRELATIVO;FECHA;INSPECTOR;PREVENCIONISTA;GERENCIA CAM;SUB GERENCIA CAM;AREA DE CAM;EMPRESA CONTRATISTA;Nº ENC;Q NC;N IPAL;CIERRE
+CORRELATIVO;FECHA;INSPECTOR;PREVENCIONISTA;GERENCIA CAM;SUB GERENCIA CAM;CONTRATO;AREA DE CAM;EMPRESA CONTRATISTA;Nº ENC;Q NC;N IPAL;CIERRE
 {% for item in data %}
-"{{ item.id }}";"{{ item.fecha | date("m-Y") }}";"{{ item.inspector | upper }}";"{{ item.prevencionista | upper }}";"{{ item.gerencia | raw }}";"{{ item.subgerencia | raw }}";"{{ item.area | raw }}";"{{ item.contratista | raw }}";"1";"{{ item.cantidad_incumplimientos }}";"{{ item.ipal }}";"{{ item.cierre }}"
+"{{ item.id }}";"{{ item.fecha | date("d-m-Y") }}";"{{ item.inspector | upper }}";"{{ item.prevencionista | upper }}";"{{ item.gerencia | raw }}";"{{ item.subgerencia | raw }}";"{{ item.contrato | raw }}";"{{ item.area | raw }}";"{{ item.contratista | raw }}";"1";"{{ item.cantidad_incumplimientos }}";"{{ item.ipal }}";"{{ item.cierre }}"
 {% endfor %}

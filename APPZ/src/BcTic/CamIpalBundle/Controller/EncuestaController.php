@@ -406,6 +406,7 @@ class EncuestaController extends Controller
                           'inspector' => $entity['inspector'],
                           'prevencionista' => $entity['prevencionista'],
                           'contratista' => $entity['contratista'],
+                          'contrato' => $entity['contrato'],
                           'ipal' =>  $entity['ipal'],
                           'tiene_incumplimientos' => $entity['tiene_incumplimientos'],
                           'cantidad_incumplimientos' => $entity['cantidad_incumplimientos'],

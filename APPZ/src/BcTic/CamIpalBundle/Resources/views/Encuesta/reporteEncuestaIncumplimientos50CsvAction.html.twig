@@ -1,4 +1,5 @@
-FECHA; INCUMPLIMIENTOS; EMPRESA; CONTRATO; INSPECTOR; SUPERVISOR; LUGAR; N IPAL
+FECHA; EMPRESA; CONTRATO; INSPECTOR; SUPERVISOR; LUGAR; N IPAL; INCUMPLIMIENTO 1; INCUMPLIMIENTO 2;INCUMPLIMIENTO 3;INCUMPLIMIENTO 4;INCUMPLIMIENTO 5;
 {% for item in data %}
-{{ item.fecha | date("d-m-Y") }};"{% include 'BcTicCamIpalBundle:Encuesta:items.html.twig' with {'items': item.incumplimientos_50 } %}";"{{ item.contratista | raw }}";"{{ item.contrato | raw }}";"{{ item.inspector | raw }}";"{{ item.supervisor | raw }}";"{{ item.lugar | raw }}";{{ item.id }}
+{{ item.fecha | date("d-m-Y") }};"{{ item.contratista | raw }}";"{{ item.contrato | raw }}";"{{ item.inspector | raw }}";"{{ item.supervisor | raw }}";"{{ item.lugar | raw }}";{{ item.id }};{% for incumplimiento in item.incumplimientos_50 %}"{{ incumplimiento | trans }}";{% endfor %}
+
 {% endfor %}

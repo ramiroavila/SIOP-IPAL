@@ -60,7 +60,7 @@
     {{ 'Formularios PDF' | trans }}&nbsp;<span class="caret"></span>
   </button>
   <ul class="dropdown-menu btn-block" role="menu">
-    {% if app.user.pais.id == 1 %}
+    {% if (app.user.pais.id == 1 or app.user.pais.id == 6 ) %}
     <li><a href="{{ path('encuestas_show_form', { type: 'electrica' }) }}">{{ 'IPAL Eléctrica' | trans }}</a></li>
     <li><a href="{{ path('encuestas_show_form', { type: 'logistica'}) }}">{{ 'IPAL Logística' | trans }}</a></li>
     <li><a href="{{ path('encuestas_show_form', { type: 'obras_civiles'}) }}">{{ 'IPAL Obras Civiles' | trans }}</a></li>

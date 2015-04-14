@@ -352,6 +352,12 @@ class EncuestaController extends Controller
 
       $data = array();
       foreach($stmt->fetchAll() as $entity) {
+        $incumplimientos = array(0 => '', 1 => '',2 => '',3 => '',4 => '');
+        $i = 0;
+        foreach(json_decode($entity['incumplimientos_50_json']) as $key) {
+          $incumplimientos[$i] = $key;
+          $i++;
+        }
         $data[] = array(
                           'fecha' => $entity['fecha'],
                           'contratista' => $entity['contratista'],
@@ -360,7 +366,7 @@ class EncuestaController extends Controller
                           'supervisor' => $entity['supervisor'],
                           'lugar' => $entity['lugar'],
                           'id' =>  $entity['id'],
-                          'incumplimientos_50' => json_decode($entity['incumplimientos_50_json']),
+                          'incumplimientos_50' => $incumplimientos,
                         );
       }
 

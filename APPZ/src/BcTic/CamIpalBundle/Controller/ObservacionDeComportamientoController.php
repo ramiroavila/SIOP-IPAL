@@ -539,6 +539,30 @@ class ObservacionDeComportamientoController extends Controller
         );
     }
 
+
+    /**
+     * Displays a view existing Observacion entity.
+     *
+     * @Route("/chilectra/{id}.html", name="observaciones_show_chilectra")
+     * @Method("GET")
+     * @Template("")
+     */
+    public function showChilectraAction(Request $request,$id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Observacion entity.');
+        }
+        
+        return array(
+            'entity'      => $entity
+        );
+    }    
+
     /**
      * Displays a view empty
      *

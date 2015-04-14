@@ -127,6 +127,9 @@ class ObservacionDeComportamientoType extends AbstractType
             ->add('prevencionista','hidden')                                                                                           
             ->add('comentarios','textarea', array('required' => ''))
             ->add('parteDeLaPlanta','text',array('label' => 'Lugar de trabajo'))
+            ->add('instalacion','text',array('label' => 'Instalación (Site)'))
+            ->add('unidadOrganizativa','text',array('label' => 'Unidad organizativa'))
+            ->add('parteDeLaInstalacion','text',array('label' => 'Parte de instalación'))
             ->add('condicionesClimaticas', new CheckboxExpandedEntityType(), array(
                   'class' => 'BcTicCamIpalBundle:CondicionClimatica',
                   'query_builder' => function(EntityRepository $er) {

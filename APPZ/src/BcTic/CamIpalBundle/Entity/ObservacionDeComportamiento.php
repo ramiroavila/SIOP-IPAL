@@ -97,13 +97,34 @@ class ObservacionDeComportamiento
     
     protected $area;
 
-     /**
+    /**
      * @var string
      *
      * @ORM\Column(name="parte_de_la_planta", type="string", length=100)
      * @Assert\NotBlank(message = "Este valor no puede estar vacío.")     
      */
     private $parteDeLaPlanta;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instalacion", type="string", length=100)
+     */
+    private $instalacion;    
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="unidad_organizativa", type="string", length=100)
+     */
+    private $unidadOrganizativa;        
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="parte_de_la_instalacion", type="string", length=100)
+     */
+    private $parteDeLaInstalacion;        
 
     /**
      * @var string
@@ -909,4 +930,73 @@ class ObservacionDeComportamiento
     {
         return $this->grupos;
     }      
+
+    /**
+     * Set instalacion
+     *
+     * @param string $instalacion
+     * @return ObservacionDeComportamiento
+     */
+    public function setInstalacion($instalacion)
+    {
+        $this->instalacion = $instalacion;
+
+        return $this;
+    }
+
+    /**
+     * Get instalacion
+     *
+     * @return string 
+     */
+    public function getInstalacion()
+    {
+        return $this->instalacion;
+    }
+
+    /**
+     * Set unidadOrganizativa
+     *
+     * @param string $unidadOrganizativa
+     * @return ObservacionDeComportamiento
+     */
+    public function setUnidadOrganizativa($unidadOrganizativa)
+    {
+        $this->unidadOrganizativa = $unidadOrganizativa;
+
+        return $this;
+    }
+
+    /**
+     * Get unidadOrganizativa
+     *
+     * @return string 
+     */
+    public function getUnidadOrganizativa()
+    {
+        return $this->unidadOrganizativa;
+    }
+
+    /**
+     * Set parteDeLaInstalacion
+     *
+     * @param string $parteDeLaInstalacion
+     * @return ObservacionDeComportamiento
+     */
+    public function setParteDeLaInstalacion($parteDeLaInstalacion)
+    {
+        $this->parteDeLaInstalacion = $parteDeLaInstalacion;
+
+        return $this;
+    }
+
+    /**
+     * Get parteDeLaInstalacion
+     *
+     * @return string 
+     */
+    public function getParteDeLaInstalacion()
+    {
+        return $this->parteDeLaInstalacion;
+    }
 }

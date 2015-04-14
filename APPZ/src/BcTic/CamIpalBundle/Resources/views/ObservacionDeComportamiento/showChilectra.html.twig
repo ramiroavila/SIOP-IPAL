@@ -1,0 +1,289 @@
+{% extends '::base_pdf.html.twig' %}
+
+{% block body -%}
+  <br/>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <tr>
+          <th rowspan="2" style="width: 200px;">
+            <img class="text-center" alt="logo" style="height:133px; margin-bottom:17px;" src="{{ asset('images/logo-enel.jpg') }}"/>
+          </th>
+          <th class="text-center">
+            <h4>Observación de comportamientos para la seguridad Nº {{ entity.id }}</h4>
+          </th>  
+        </tr>
+        <tr>
+          <td>
+            <table style="width: 100%;">
+              <tr>
+                <th style="width: 15%;" class="text-right">
+                  <h5>Instalación (Site)&nbsp;</h5>
+                </th>
+                <td>
+                  <h5>:{{ entity.instalacion | capitalize }}</h5>
+                </td>
+              </tr>
+              <tr>
+                <th style="width: 15%;" class="text-right">
+                  <h5>Unidad organizativa&nbsp;</h5>
+                </th>
+                <td>
+                  <h5>:{{ entity.unidadOrganizativa | capitalize }}</h5>
+                </td>
+              </tr>
+              <tr>
+                <th style="width: 15%;" class="text-right">
+                  <h5>Parte de la instalación&nbsp;</h5>
+                </th>
+                <td>
+                  <h5>:{{ entity.parteDeLainstalacion | capitalize }}</h5>
+                </td>
+              </tr>              
+            </table>    
+          </td>
+        </tr>
+      </table>    
+     </div>  
+  </div>
+  <br/>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th colspan="5" class="text-center">OBSERVACIONES</th>
+          </tr>
+          <tr>
+            <td style="width: 50%;"><b>1 Áreas de trabajo</b></td>
+            <td style="width: 10%;" class="text-center"><b>Seguro</b></td>
+            <td style="width: 10%;" class="text-center"><b>Riesgo</b></td>
+            <td style="width: 30%;" ><b>Notas</b></td>
+          </tr>
+          
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(0).observacion.nemo }} 
+            {% set name = 'observaciones_1'  %} {{ name | trans }} </td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(0).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(0).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(0).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(0).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(1).observacion.nemo }} 
+            {% set name = 'observaciones_2'  %} {{ name | trans }}</td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(1).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(1).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(1).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(1).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(2).observacion.nemo }} 
+            {% set name = 'observaciones_3'  %} {{ name | trans }}</td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(2).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(2).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(2).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(2).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td colspan="3">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td style="width: 50%;"><b>2 Comportamiento durante el Trabajo</b></td>
+            <td style="width: 10%;" class="text-center"><b>Seguro</b></td>
+            <td style="width: 10%;" class="text-center"><b>Riesgo</b></td>
+            <td style="width: 30%;"><b>Notas</b></td>
+          </tr>
+          
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(3).observacion.nemo }} 
+            {% set name = 'observaciones_4'  %} {{ name | trans }} </td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(3).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(3).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(3).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(3).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(4).observacion.nemo }} 
+            {% set name = 'observaciones_5'  %} {{ name | trans }}</td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(4).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(4).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(4).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(4).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(5).observacion.nemo }} 
+            {% set name = 'observaciones_6'  %} {{ name | trans }}</td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(5).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(5).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(5).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(5).notas }}</td>
+          </tr>   
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(6).observacion.nemo }} 
+            {% set name = 'observaciones_7'  %} {{ name | trans }}</td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(6).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(6).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(6).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(6).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(7).observacion.nemo }} 
+            {% set name = 'observaciones_8'  %} {{ name | trans }}</td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(7).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(7).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(7).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(7).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td colspan="3">&nbsp;</td>
+          </tr>          
+
+          <tr>
+            <td style="width: 50%;"><b>3 Procedimientos</b></td>
+            <td style="width: 10%;" class="text-center"><b>Seguro</b></td>
+            <td style="width: 10%;" class="text-center"><b>Riesgo</b></td>
+            <td style="width: 30%;"><b>Notas</b></td>
+          </tr>
+          
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(8).observacion.nemo }} 
+            {% set name = 'observaciones_9'  %} {{ name | trans }} </td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(8).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(8).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(8).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(8).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(9).observacion.nemo }} 
+            {% set name = 'observaciones_10'  %} {{ name | trans }}</td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(9).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(9).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(9).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(9).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(10).observacion.nemo }} 
+            {% set name = 'observaciones_11'  %} {{ name | trans }}</td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(10).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(10).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(10).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(10).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td colspan="3">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td style="width: 50%;"><b>4 Herramientas y Materiales</b></td>
+            <td style="width: 10%;" class="text-center"><b>Seguro</b></td>
+            <td style="width: 10%;" class="text-center"><b>Riesgo</b></td>
+            <td style="width: 30%;"><b>Notas</b></td>
+          </tr>
+          
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(11).observacion.nemo }} 
+            {% set name = 'observaciones_12'  %} {{ name | trans }} </td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(11).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(11).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(11).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(11).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(12).observacion.nemo }} 
+            {% set name = 'observaciones_13'  %} {{ name | trans }}</td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(12).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(12).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(12).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(12).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(13).observacion.nemo }} 
+            {% set name = 'observaciones_14'  %} {{ name | trans }}</td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(13).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(13).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(13).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(13).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td colspan="3">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td style="width: 50%;"><b>5 Equipos de protección individual</b></td>
+            <td style="width: 10%;" class="text-center"><b>Seguro</b></td>
+            <td style="width: 10%;" class="text-center"><b>Riesgo</b></td>
+            <td style="width: 30%;"><b>Notas</b></td>
+          </tr>
+          
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(14).observacion.nemo }} 
+            {% set name = 'observaciones_15'  %} {{ name | trans }} </td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(14).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(14).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(14).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(14).notas }}</td>
+          </tr>  
+
+          <tr>
+            <td>{{ entity.registrosDeObservacion.get(15).observacion.nemo }} 
+            {% set name = 'observaciones_14'  %} {{ name | trans }}</td>
+            {% set name = 'observaciones_respuesta_' ~ entity.registrosDeObservacion.get(15).valor %}
+            <td class="text-center">{% if entity.registrosDeObservacion.get(15).valor == 1 %}X{% endif %}</td>
+            <td class="text-center">{% if entity.registrosDeObservacion.get(15).valor == 2 %}X{% endif %}</td>
+            <td>{{ entity.registrosDeObservacion.get(15).notas }}</td>
+          </tr>                                      
+          
+        </tbody>
+      </table>
+    </div>
+  </div>  
+
+   <br/>
+   <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered ">
+        <tbody>
+          <tr>
+            <th>COMENTARIOS</th>
+          </tr> 
+          <tr>
+            <td>{{ entity.comentarios }}<br/></td>
+          </tr>           
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+{% endblock %}
+
+{% block title %}
+OBSERVACION-{{ entity.id }}-{{ "now" | date("Ymd")}}
+{% endblock %}
+
+
+
+{% block js %}
+  {{ parent() }}
+    <script type="text/javascript">
+      $(document).ready( function () { 
+        window.print();
+      });
+    </script>
+{% endblock %}      

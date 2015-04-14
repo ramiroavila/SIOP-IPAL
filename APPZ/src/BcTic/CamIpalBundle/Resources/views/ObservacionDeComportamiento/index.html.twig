@@ -114,12 +114,11 @@
           <thead>\
             <tr>\
                 <th>Nº & Fecha</th>\
-                <th class="hidden-xs">{{ 'Empresa' | trans }}</th>\
-                <th class="hidden-xs">{{ 'Contrato' | trans }}</th>\
+                <th class="hidden-xs">{{ 'Empresa' | trans }} / {{ 'Contrato' | trans }}</th>\
                 <th class="hidden-xs">{{ 'Inspector/País' | trans }}</th>\
                 <th class="visible-xs">{{ 'Observación' | trans }}</th>\
                 <th># de observ. {{ 'peligrosas' | trans }}</th>\
-                <th class="actions">{{ 'Opciones' | trans }}</th>\
+                <th class="observaciones_actions">{{ 'Opciones' | trans }}</th>\
             </tr>\
           </thead>\
           <tbody>';
@@ -131,8 +130,7 @@
             items = items + '\
             <tr id="row_' + this.id + '">\
                 <td class="hidden-xs">#' + this.id + ' ' + this.fecha + '</td>\
-                <td class="hidden-xs">' + this.empresa + '</td>\
-                <td class="hidden-xs">' + this.contrato + '</td>\
+                <td class="hidden-xs">' + this.empresa + '<br/>' + this.contrato + '</td>\
                 <td class="hidden-xs">' + this.inspector + '<br/>' + this.pais + '</td>\
                 <td class="visible-xs">\
                   ' + this.empresa + '\
@@ -141,12 +139,17 @@
                 </td>\
                 <td>' + this.indice + '</td>\
                 <td>\
-                <a target="blank" id="show_observacion_' + this.id + '" href="/observaciones/' + this.id + '.html">\
+                  <a target="blank" id="show_observacion_' + this.id + '" href="/observaciones/' + this.id + '.html">\
                     <button type="button" class="btn btn-default btn-xs">\
                       <span class="glyphicon glyphicon-print"></span> Ver \
                     </button>\
                   </a>\
-                 <a id="edit_observacion_' + this.id + '" href="/observaciones/edit/' + this.id + '">\
+                  <a target="blank" id="show_observacion_chilectra_' + this.id + '" href="/observaciones/chilectra/' + this.id + '.html">\
+                    <button type="button" class="btn btn-default btn-xs">\
+                      <span class="glyphicon glyphicon-print"></span> Chilectra \
+                    </button>\
+                  </a>\
+                  <a id="edit_observacion_' + this.id + '" href="/observaciones/edit/' + this.id + '">\
                     <button type="button" class="btn btn-default btn-xs">\
                       <span class="glyphicon glyphicon-pencil"></span> {{ 'Editar' | trans }}\
                     </button>\

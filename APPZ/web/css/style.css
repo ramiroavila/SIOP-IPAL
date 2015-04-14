@@ -35,6 +35,11 @@ table.records_list th.actions {
   width: 250px;  
 }
 
+table.records_list th.observaciones_actions {
+  width: 340px;  
+}
+
+
 form div div.date select {
   width: 90px;
   float: left;

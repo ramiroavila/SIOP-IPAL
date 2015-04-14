@@ -4,6 +4,8 @@ namespace BcTic\CamIpalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use BcTic\CamIpalBundle\Validator\Constraints as BcTicAssert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * ObservacionDeComportamiento
@@ -21,6 +23,13 @@ class ObservacionDeComportamiento
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="created_by", type="string", length=50, nullable=true)
+     */
+    private $createdBy;    
 
     /**
      * @ORM\ManyToOne(targetEntity="Empresa")
@@ -53,6 +62,7 @@ class ObservacionDeComportamiento
      * @var string
      *
      * @ORM\Column(name="inspector", type="string", length=255, nullable=true)
+     * @BcTicAssert\ContainsInspector
      *
      */
     protected $inspector;  
@@ -87,13 +97,34 @@ class ObservacionDeComportamiento
     
     protected $area;
 
-     /**
+    /**
      * @var string
      *
      * @ORM\Column(name="parte_de_la_planta", type="string", length=100)
      * @Assert\NotBlank(message = "Este valor no puede estar vacío.")     
      */
     private $parteDeLaPlanta;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instalacion", type="string", length=100)
+     */
+    private $instalacion;    
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="unidad_organizativa", type="string", length=100)
+     */
+    private $unidadOrganizativa;        
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="parte_de_la_instalacion", type="string", length=100)
+     */
+    private $parteDeLaInstalacion;        
 
     /**
      * @var string
@@ -176,6 +207,11 @@ class ObservacionDeComportamiento
     */
     private $uploadedFile1;    
 
+    /**
+    * PARA USO DEL FILTRO
+    * 
+    */
+    private $grupos;    
 
     /**
      * Get id
@@ -825,49 +861,73 @@ class ObservacionDeComportamiento
         $this->uploadedFile1 = null; 
       }
 
-      if (null === $this->getUploadedFile2()) {
-        
-      } else {
-        $this->getUploadedFile2()->move(
-          $this->getUploadRootDir(),
-          $this->getUploadedFile2()->getClientOriginalName()
-        );
-        $this->file2 =$this->getUploadDir().$this->getUploadedFile2()->getClientOriginalName();
-        $this->uploadedFile2 = null;
-      }
-
-      if (null === $this->getUploadedFile3()) {
-        
-      } else {
-        $this->getUploadedFile3()->move(
-          $this->getUploadRootDir(),
-          $this->getUploadedFile3()->getClientOriginalName()
-        );
-        $this->file3 = $this->getUploadDir().$this->getUploadedFile3()->getClientOriginalName();
-        $this->uploadedFile3 = null;
-      }    
-
-      if (null === $this->getUploadedFileCierre1()) {
-        
-      } else {
-        $this->getUploadedFileCierre1()->move(
-          $this->getUploadRootDir(),
-          $this->getUploadedFileCierre1()->getClientOriginalName()
-        );
-        $this->fileCierre1 = $this->getUploadDir().$this->getUploadedFileCierre1()->getClientOriginalName();
-        $this->uploadedFileCierre1 = null; 
-      }
-
-      if (null === $this->getUploadedFileCierre2()) {
-        
-      } else {
-        $this->getUploadedFileCierre2()->move(
-          $this->getUploadRootDir(),
-          $this->getUploadedFileCierre2()->getClientOriginalName()
-        );
-        $this->fileCierre2 = $this->getUploadDir().$this->getUploadedFileCierre2()->getClientOriginalName();
-        $this->uploadedFileCierre2 = null; 
-      }             
-
     }    
+
+    /**
+     * Set file1
+     *
+     * @param string $file1
+     * @return ObservacionDeComportamiento
+     */
+    public function setFile1($file1)
+    {
+        $this->file1 = $file1;
+
+        return $this;
+    }
+
+    /**
+     * Get file1
+     *
+     * @return string 
+     */
+    public function getFile1()
+    {
+        return $this->file1;
+    }
+
+    public function setUploadedFile1(UploadedFile $file = null)
+    {
+        $this->uploadedFile1 = $file;
+    }
+
+    public function getUploadedFile1()
+    {
+        return $this->uploadedFile1;
+    }     
+
+    /**
+     * Set createdBy
+     *
+     * @param string $createdBy
+     * @return ObservacionDeComportamiento
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return string 
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    public function setGrupos($grupos)
+    {
+        $this->grupos = $grupos;
+
+        return $this;
+    }
+
+    public function getGrupos()
+    {
+        return $this->grupos;
+    }      
 }

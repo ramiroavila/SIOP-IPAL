@@ -4,49 +4,118 @@
   <br/>
   <div class="row">
     <div class="col-md-12">
+      <p class="text-right">
+        Distribución checklist
+      </p>
       <table class="table table-bordered">
         <tr>
           <th rowspan="2" style="width: 200px;">
             <img class="text-center" alt="logo" style="height:133px; margin-bottom:17px;" src="{{ asset('images/logo-enel.jpg') }}"/>
           </th>
           <th class="text-center">
-            <h4>Observación de comportamientos para la seguridad Nº {{ entity.id }}</h4>
+            <h4>Observación de comportamientos para la seguridad<br/> Nº {{ entity.id }}</h4>
           </th>  
         </tr>
         <tr>
           <td>
+            <br/>
             <table style="width: 100%;">
               <tr>
-                <th style="width: 15%;" class="text-right">
-                  <h5>Instalación (Site)&nbsp;</h5>
+                <th style="width: 30%;" class="text-right">
+                  <b>Observador&nbsp;</b>
                 </th>
                 <td>
-                  <h5>:{{ entity.instalacion | capitalize }}</h5>
+                  <b>:&nbsp;{{ entity.createdBy | capitalize }}</b>
                 </td>
               </tr>
               <tr>
-                <th style="width: 15%;" class="text-right">
-                  <h5>Unidad organizativa&nbsp;</h5>
+                <th style="width: 30%;" class="text-right">
+                  <b>Instalación (Site)&nbsp;</b>
                 </th>
                 <td>
-                  <h5>:{{ entity.unidadOrganizativa | capitalize }}</h5>
+                  <b>:&nbsp;{{ entity.instalacion | capitalize }}</b>
                 </td>
               </tr>
               <tr>
-                <th style="width: 15%;" class="text-right">
-                  <h5>Parte de la instalación&nbsp;</h5>
+                <th style="width: 30%;" class="text-right">
+                  <b>Unidad organizativa&nbsp;</b>
                 </th>
                 <td>
-                  <h5>:{{ entity.parteDeLainstalacion | capitalize }}</h5>
+                  <b>:&nbsp;{{ entity.unidadOrganizativa | capitalize }}</b>
+                </td>
+              </tr>
+              <tr>
+                <th style="width: 30%;" class="text-right">
+                  <b>Parte de la instalación&nbsp;</b>
+                </th>
+                <td>
+                  <b>:&nbsp;{{ entity.parteDeLainstalacion | capitalize }}</b>
                 </td>
               </tr>              
             </table>    
           </td>
         </tr>
+        <tr>
+          <td colspan="2">
+            <br/>
+            <table style="width: 100%;">
+              <tr>
+                <th style="width: 20%;" class="text-right">
+                  <b>Fecha&nbsp;</b>
+                </th>
+                <td style="width: 30%;">
+                  <b>:&nbsp;{{ entity.fecha | date('d-m-Y') }}</b>
+                </td>
+                <th style="width: 20%;" class="text-right">
+                  <b>Hora&nbsp;</b>
+                </th>
+                <td style="width: 30%;">
+                  <b>:&nbsp;{{ entity.hora | date('h:i') }}</b>
+                </td>                
+              </tr>
+
+              <tr>
+                <th style="width: 20%;" class="text-right">
+                  <b>Endesa/Contratista&nbsp;</b>
+                </th>
+                <td style="width: 30%;">
+                  <b>:&nbsp;{{ entity.empresa.nombre }}</b>
+                </td>
+                <th style="width: 20%;" class="text-right">
+                  <b>Nº de personas observadas&nbsp;</b>
+                </th>
+                <td style="width: 30%;">
+                  <b>:&nbsp;{{ entity.numeroObservados }}</b>
+                </td>                
+              </tr>
+
+              <tr>
+                <th style="width: 20%;" class="text-right">
+                  <b>Actividad&nbsp;</b>
+                </th>
+                <td colspan="3">
+                  <b>:&nbsp;{{ entity.actividad | capitalize }}</b>
+                </td>
+              </tr>   
+
+              <tr>
+                <th style="width: 20%;" class="text-right">
+                  <b>Condiciones atmosféricas&nbsp;</b>
+                </th>
+                <td colspan="3">
+                  <b>:&nbsp;
+                  {% for condicion in entity.condicionesClimaticas %}{{ condicion.nombre }}&nbsp;{% endfor %}
+                  </b>
+                </td>
+              </tr>                           
+
+            </table>  
+            <br/>
+          </td>
+        </tr>
       </table>    
      </div>  
   </div>
-  <br/>
 
   <div class="row">
     <div class="col-md-12">
@@ -283,7 +352,7 @@ OBSERVACION-{{ entity.id }}-{{ "now" | date("Ymd")}}
   {{ parent() }}
     <script type="text/javascript">
       $(document).ready( function () { 
-        window.print();
+       window.print();
       });
     </script>
 {% endblock %}      

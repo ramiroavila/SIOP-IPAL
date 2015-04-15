@@ -108,21 +108,21 @@ class ObservacionDeComportamiento
     /**
      * @var string
      *
-     * @ORM\Column(name="instalacion", type="string", length=100)
+     * @ORM\Column(name="instalacion", type="string", length=100, nullable=true)
      */
     private $instalacion;    
 
      /**
      * @var string
      *
-     * @ORM\Column(name="unidad_organizativa", type="string", length=100)
+     * @ORM\Column(name="unidad_organizativa", type="string", length=100, nullable=true)
      */
     private $unidadOrganizativa;        
 
      /**
      * @var string
      *
-     * @ORM\Column(name="parte_de_la_instalacion", type="string", length=100)
+     * @ORM\Column(name="parte_de_la_instalacion", type="string", length=100, nullable=true)
      */
     private $parteDeLaInstalacion;        
 

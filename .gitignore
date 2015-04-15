@@ -12,4 +12,4 @@
 /build/
 /bin/
 /APPZ/web/uploads/
-/APPZ/composer.phar
+#/APPZ/composer.phar

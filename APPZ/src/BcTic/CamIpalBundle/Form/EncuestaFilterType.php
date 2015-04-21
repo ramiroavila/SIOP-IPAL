@@ -129,6 +129,17 @@ class EncuestaFilterType extends AbstractType
                    'empty_value' => '- TODOS LOS PAISES -',
                    'empty_data' => "",
                 ))  
+             ->add('unidadDeNegocio','entity', array(
+                  'label' => 'Unidad de negocio',
+                  'class' => 'BcTicCamIpalBundle:unidadDeNegocio',
+                  'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('r')
+                           ->orderBy('r.nombre', 'ASC');
+                    },
+
+                   'empty_value' => '- TODAS LAS UNIDADES DE NEGOCIO -',
+                   'empty_data' => "",
+                ))               
              ->add('fecha_desde','text', array('label' => 'Fecha desde'))
              ->add('fecha_hasta','text', array('label' => 'Fecha hasta'))   
              ->add('grupos','entity', array(

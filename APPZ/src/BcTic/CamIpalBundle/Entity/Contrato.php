@@ -103,6 +103,13 @@ class Contrato
     protected $pais;
 
     /**
+     * @ORM\ManyToOne(targetEntity="UnidadDeNegocio")
+     * @ORM\JoinColumn(name="unidad_de_negocio_id", referencedColumnName="id")
+     * @Assert\NotBlank()     
+     */
+    protected $unidadDeNegocio;    
+
+    /**
      * Get id
      *
      * @return integer 
@@ -386,5 +393,28 @@ class Contrato
     public function getPais()
     {
         return $this->pais;
+    }
+
+    /**
+     * Set unidadDeNegocio
+     *
+     * @param \BcTic\CamIpalBundle\Entity\UnidadDeNegocio $unidadDeNegocio
+     * @return Contrato
+     */
+    public function setUnidadDeNegocio(\BcTic\CamIpalBundle\Entity\UnidadDeNegocio $unidadDeNegocio = null)
+    {
+        $this->unidadDeNegocio = $unidadDeNegocio;
+
+        return $this;
+    }
+
+    /**
+     * Get unidadDeNegocio
+     *
+     * @return \BcTic\CamIpalBundle\Entity\UnidadDeNegocio 
+     */
+    public function getUnidadDeNegocio()
+    {
+        return $this->unidadDeNegocio;
     }
 }

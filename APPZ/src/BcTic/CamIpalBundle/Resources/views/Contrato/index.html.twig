@@ -1,7 +1,7 @@
 {% extends 'BcTicCamIpalBundle::index.html.twig' %}
 
 {% set title = 'Contratos' %}
-{% set data = {'numero': 'Nº','nombre': 'Nombre','pais': 'País', 'mandante': 'Mandante' , 'visible': 'Visible'} %}
+{% set data = {'numero': 'Nº','nombre': 'Nombre','unidadDeNegocio' : 'Unidad de negocio' ,'pais': 'País', 'mandante': 'Mandante' , 'visible': 'Visible'} %}
 {% set path_previous = path('contratos', { 'page' : page - 1 }) %}
 {% set path_next = path('contratos', { 'page' : page + 1 } ) %}
 {% set path_new = path('contratos_new') %}

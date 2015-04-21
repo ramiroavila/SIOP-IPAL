@@ -887,6 +887,13 @@ abstract class Encuesta
     * 
     */
     private $grupos;
+    
+    /**
+    * PARA USO DEL FILTRO
+    * 
+    */
+    private $unidadDeNegocio;
+
 
      /**
      * @var string
@@ -3926,5 +3933,17 @@ abstract class Encuesta
     public function getGrupos()
     {
         return $this->grupos;
-    }    
+    }   
+
+    public function setUnidadDeNegocio($unidadeDeNegocio)
+    {
+        $this->unidadeDeNegocio = $unidadDeNegocio;
+
+        return $this;
+    }
+
+    public function getUnidadDeNegocio()
+    {
+        return $this->unidadDeNegocio;
+    }         
 }

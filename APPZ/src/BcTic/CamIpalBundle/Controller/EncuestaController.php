@@ -681,6 +681,9 @@ class EncuestaController extends Controller
         $pais = ($request->request->get('pais_id') != "") ? " AND p.id = ".$request->request->get('pais_id') : "";
         $whereAnd .= $pais;
 
+        $unidadDeNegocio = ($request->request->get('unidad_de_negocio_id') != "") ? " AND u.id = ".$request->request->get('unidad_de_negocio_id') : "";
+        $whereAnd .= $unidadDeNegocio;
+
         $fecha_desde = ($request->request->get('fecha_desde') != "") ? " AND e.fecha >= '".date_format(date_create_from_format('d/m/Y',$request->request->get('fecha_desde')),'Y-m-d')."'": "";
         $whereAnd .= $fecha_desde;
 
@@ -790,7 +793,26 @@ class EncuestaController extends Controller
           unset($gruposResult);                
         }
 
-        $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
+        if ($request->request->get('unidad_de_negocio_id') != "") { 
+
+          $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
+                           ->createQueryBuilder('e')
+                           ->select('e.id,e.indice, e.inspector, e.prevencionista, e.createdBy')
+                           ->join('e.contrato','c')
+                           ->join('c.unidadDeNegocio','u')                           
+                           ->join('e.pais','p')
+                           ->join('c.servicio','srv')
+                           ->join('e.empresa','em')
+                           ->join('c.subGerencia','sgr')
+                           ->join('sgr.gerencia','gr')
+                           ->join('c.area','a')
+                           ->join('c.mandante','ma')
+                           ->where('e.visible = 1 '.$whereAnd)
+                           ->orderBy('e.id', 'DESC');
+
+        } else {
+
+          $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
                            ->createQueryBuilder('e')
                            ->select('e.id,e.indice, e.inspector, e.prevencionista, e.createdBy')
                            ->join('e.contrato','c')
@@ -803,6 +825,7 @@ class EncuestaController extends Controller
                            ->join('c.mandante','ma')
                            ->where('e.visible = 1 '.$whereAnd)
                            ->orderBy('e.id', 'DESC');
+        }
 
         $role = false;
         //Pais   

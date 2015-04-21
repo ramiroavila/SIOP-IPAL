@@ -26,6 +26,14 @@ class ContratoType extends AbstractType
                            ->orderBy('r.nombre', 'ASC');
                     }
                 ))
+            ->add('unidadDeNegocio','entity', array(
+                  'label' => 'Unidad de negocio',
+                  'class' => 'BcTicCamIpalBundle:UnidadDeNegocio',
+                  'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('r')
+                           ->orderBy('r.nombre', 'ASC');
+                    }
+                ))            
             ->add('empresas','entity', array(
                   'class' => 'BcTicCamIpalBundle:Empresa',
                   'query_builder' => function(EntityRepository $er) {

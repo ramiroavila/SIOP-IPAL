@@ -58,7 +58,7 @@ class EncuestaController extends Controller
       //Busco las encuestas que aplican:
       $em = $this->getDoctrine()->getManager();  
 
-      $sql = 'SELECT u.nombre as unidad_de_negocio_nombre, s.nombre as subgerencia_nombre, (SELECT SUM(m2.valor) FROM Meta m2 WHERE m2.id = m.id) as meta_inspecciones, COUNT(e.id) as encuesta_cantidad, SUM(e.ipal) as encuesta_ipal, (SELECT COUNT(cierre) FROM EncuestaProxy e2 WHERE e2.cierre = "ABIERTA" AND e2.id = e.id) as encuesta_abierta FROM UnidadDeNegocio u INNER JOIN Contrato c ON c.unidad_de_negocio_id = u.id INNER JOIN SubGerencia s ON s.id = c.subgerencia_id INNER JOIN Meta m ON m.unidad_de_negocio_id = u.id AND m.subgerencia_id = s.id INNER JOIN EncuestaProxy e ON YEAR(e.fecha) = m.anno AND MONTH(e.fecha) = m.mes WHERE e.id IN ('.implode(",",$ids).')  GROUP BY u.id, s.id, m.id';
+      $sql = 'SELECT u.nombre as unidad_de_negocio_nombre, s.nombre as subgerencia_nombre, (SELECT SUM(m2.valor) FROM Meta m2 WHERE m2.id = m.id) as meta_inspecciones, COUNT(DISTINCT(e.id)) as encuesta_cantidad, SUM(e.ipal) as encuesta_ipal, (SELECT COUNT(cierre) FROM EncuestaProxy e2 WHERE e2.cierre = "ABIERTA" AND e2.id = e.id) as encuesta_abierta FROM UnidadDeNegocio u INNER JOIN Contrato c ON c.unidad_de_negocio_id = u.id INNER JOIN SubGerencia s ON s.id = c.subgerencia_id INNER JOIN Meta m ON m.unidad_de_negocio_id = u.id AND m.subgerencia_id = s.id INNER JOIN EncuestaProxy e ON YEAR(e.fecha) = m.anno AND MONTH(e.fecha) = m.mes WHERE e.id IN ('.implode(",",$ids).')  GROUP BY u.id, s.id, m.id';
 
       $stmt = $em->getConnection()->prepare($sql);
       $stmt->execute();
@@ -75,7 +75,7 @@ class EncuestaController extends Controller
 
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
-      $file = 'TOTAL-PREVENCIONISTA-INSPECTOR-'.date_format(date_create(),'Y-m-d-his');
+      $file = 'TOTAL-TASEG-MES-'.date_format(date_create(),'Y-m-d-his');
       $fs->dumpFile("uploads/".$file.".csv", $content);
 
       return new JsonResponse(array('file' => $file));

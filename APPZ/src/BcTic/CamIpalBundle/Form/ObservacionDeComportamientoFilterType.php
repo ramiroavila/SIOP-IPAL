@@ -120,7 +120,18 @@ class ObservacionDeComportamientoFilterType extends AbstractType
                     },
                    'empty_value' => '- TODAS LOS PAISES -',
                    'empty_data' => "",
-                ))  
+                )) 
+             ->add('unidadDeNegocio','entity', array(
+                  'label' => 'Unidad de negocio',
+                  'class' => 'BcTicCamIpalBundle:unidadDeNegocio',
+                  'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('r')
+                           ->orderBy('r.nombre', 'ASC');
+                    },
+
+                   'empty_value' => '- TODAS LAS UNIDADES DE NEGOCIO -',
+                   'empty_data' => "",
+                ))                                
              ->add('fecha_desde','text', array())
              ->add('fecha_hasta','text', array()) 
              ->add('grupos','entity', array(

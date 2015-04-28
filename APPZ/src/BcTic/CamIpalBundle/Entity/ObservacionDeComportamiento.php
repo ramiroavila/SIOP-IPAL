@@ -214,6 +214,12 @@ class ObservacionDeComportamiento
     private $grupos;    
 
     /**
+    * PARA USO DEL FILTRO
+    * 
+    */
+    private $unidadDeNegocio;    
+
+    /**
      * Get id
      *
      * @return integer 
@@ -999,4 +1005,16 @@ class ObservacionDeComportamiento
     {
         return $this->parteDeLaInstalacion;
     }
+
+    public function setUnidadDeNegocio($unidadeDeNegocio)
+    {
+        $this->unidadeDeNegocio = $unidadDeNegocio;
+
+        return $this;
+    }
+
+    public function getUnidadDeNegocio()
+    {
+        return $this->unidadDeNegocio;
+    }      
 }

@@ -40,6 +40,7 @@ class Meta
      * @var integer
      *
      * @ORM\Column(name="valor", type="integer")
+     * @Assert\NotBlank()         
      */
     private $valor;
 
@@ -47,6 +48,7 @@ class Meta
      * @var integer
      *
      * @ORM\Column(name="valor_observaciones", type="integer")
+     * @Assert\NotBlank()         
      */
     private $valorObservaciones;    
 
@@ -57,6 +59,12 @@ class Meta
      */
     private $subGerencia;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="UnidadDeNegocio")
+     * @ORM\JoinColumn(name="unidad_de_negocio_id", referencedColumnName="id")
+     * @Assert\NotBlank()     
+     */
+    protected $unidadDeNegocio;      
 
     /**
      * Get id
@@ -160,5 +168,28 @@ class Meta
     public function getSubGerencia()
     {
         return $this->subGerencia;
+    }
+
+    /**
+     * Set valorObservaciones
+     *
+     * @param integer $valorObservaciones
+     * @return Meta
+     */
+    public function setValorObservaciones($valorObservaciones)
+    {
+        $this->valorObservaciones = $valorObservaciones;
+
+        return $this;
+    }
+
+    /**
+     * Get valorObservaciones
+     *
+     * @return integer 
+     */
+    public function getValorObservaciones()
+    {
+        return $this->valorObservaciones;
     }
 }

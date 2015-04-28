@@ -58,6 +58,14 @@ class MetaType extends AbstractType
                   'read_only' => false,
                   'disabled' => false,
                 ))
+            ->add('unidadDeNegocio','entity', array(
+                  'label' => 'Unidad de negocio',
+                  'class' => 'BcTicCamIpalBundle:UnidadDeNegocio',
+                  'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('r')
+                           ->orderBy('r.nombre', 'ASC');
+                    }
+                ))                
         ;
     }
     

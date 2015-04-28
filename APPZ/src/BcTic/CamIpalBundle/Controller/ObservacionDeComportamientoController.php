@@ -222,6 +222,8 @@ class ObservacionDeComportamientoController extends Controller
         $supervisor = ($request->request->get('supervisor') != "") ? " AND o.supervisorFacade LIKE '%".$request->request->get('supervisor')."%'" : "";
         $whereAnd .= $supervisor;
 
+        $unidadDeNegocio = ($request->request->get('unidad_de_negocio_id') != "") ? " AND u.id = ".$request->request->get('unidad_de_negocio_id') : "";
+        $whereAnd .= $unidadDeNegocio;        
 
         $inspector = "";
         $eliminateInspector = false;
@@ -318,7 +320,25 @@ class ObservacionDeComportamientoController extends Controller
           }    
 
           unset($gruposResult);                
-        }         
+        }      
+
+        if ($request->request->get('unidad_de_negocio_id') != "") {    
+
+        $entities = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')
+                           ->createQueryBuilder('o')
+                           ->join('o.contrato','c')
+                           ->join('c.unidadDeNegocio','u')  
+                           ->join('o.pais','p')
+                           ->join('c.servicio','srv')
+                           ->join('o.empresa','em')
+                           ->join('c.subGerencia','sgr')
+                           ->join('sgr.gerencia','gr')
+                           ->join('c.area','a')
+                           ->join('c.mandante','ma')
+                           ->where('o.id > 0 '.$whereAnd)
+                           ->orderBy('o.id', 'DESC');
+
+        } else {                           
 
         $entities = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')
                            ->createQueryBuilder('o')
@@ -332,6 +352,7 @@ class ObservacionDeComportamientoController extends Controller
                            ->join('c.mandante','ma')
                            ->where('o.id > 0 '.$whereAnd)
                            ->orderBy('o.id', 'DESC');
+        }  
 
         $ids = array();
         $data = array();

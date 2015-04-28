@@ -59,6 +59,12 @@ class Meta
      */
     private $subGerencia;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="UnidadDeNegocio")
+     * @ORM\JoinColumn(name="unidad_de_negocio_id", referencedColumnName="id")
+     * @Assert\NotBlank()     
+     */
+    protected $unidadDeNegocio;      
 
     /**
      * Get id
@@ -185,5 +191,28 @@ class Meta
     public function getValorObservaciones()
     {
         return $this->valorObservaciones;
+    }
+
+    /**
+     * Set unidadDeNegocio
+     *
+     * @param \BcTic\CamIpalBundle\Entity\UnidadDeNegocio $unidadDeNegocio
+     * @return Meta
+     */
+    public function setUnidadDeNegocio(\BcTic\CamIpalBundle\Entity\UnidadDeNegocio $unidadDeNegocio = null)
+    {
+        $this->unidadDeNegocio = $unidadDeNegocio;
+
+        return $this;
+    }
+
+    /**
+     * Get unidadDeNegocio
+     *
+     * @return \BcTic\CamIpalBundle\Entity\UnidadDeNegocio 
+     */
+    public function getUnidadDeNegocio()
+    {
+        return $this->unidadDeNegocio;
     }
 }

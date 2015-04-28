@@ -183,6 +183,13 @@
               </div>\
             </div>\
             <br/>\
+            <div class='text-center'><h4 class='text-center'>{{ 'Informes' | trans }} TASEG</h4>\
+              <div class='btn-group btn-group-center'>\
+                <div class='btn-group btn-group-sm'>\
+                  <button id='reporte_taseg' type='button' class='btn btn-default'>{{ 'Descargar' | trans }}</button>\
+                </div>\
+              </div>\
+            </div>\
           </div>";
 
           return data;
@@ -511,7 +518,21 @@
                         alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
                      }
                    });
-                 });                    
+                 });    
+
+                 $('#reporte_taseg').bind('click', function (e) { 
+                   $.ajax({
+                     type: "POST",
+                     dataType: "json",
+                     url: "{{ path('encuesta_reporte_taseg_csv') }}",
+                     data: { ids: dataSuccess.ids },
+                     success: function (data) {
+                        //Descargar el archivo:
+                        window.open('reportes/' + data.file + '/download.html');
+                        alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
+                     }
+                   });
+                 });                     
 
                  $('#encuestas').html(createListado(dataSuccess.entities, dataSuccess.pagina));
 

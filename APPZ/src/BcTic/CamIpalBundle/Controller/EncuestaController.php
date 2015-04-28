@@ -46,6 +46,43 @@ class EncuestaController extends Controller
 {
     /**
      *
+     * @Route("/encuesta_reporte_taseg_csv/data.csv", name="encuesta_reporte_taseg_csv")
+     * @Method("POST")
+     * @Template()     
+     */
+    public function reporteEncuestaTasegCsvAction(Request $request)
+    {
+
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
+
+      //Busco las encuestas que aplican:
+      $em = $this->getDoctrine()->getManager();  
+
+      $sql = 'SELECT u.nombre as unidad_de_negocio_nombre, s.nombre as subgerencia_nombre, (SELECT SUM(m2.valor) FROM Meta m2 WHERE m2.id = m.id) as meta_inspecciones, COUNT(e.id) as encuesta_cantidad, SUM(e.ipal) as encuesta_ipal, (SELECT COUNT(cierre) FROM EncuestaProxy e2 WHERE e2.cierre = "ABIERTA" AND e2.id = e.id) as encuesta_abierta FROM UnidadDeNegocio u INNER JOIN Contrato c ON c.unidad_de_negocio_id = u.id INNER JOIN SubGerencia s ON s.id = c.subgerencia_id INNER JOIN Meta m ON m.unidad_de_negocio_id = u.id AND m.subgerencia_id = s.id INNER JOIN EncuestaProxy e ON YEAR(e.fecha) = m.anno AND MONTH(e.fecha) = m.mes WHERE e.id IN ('.implode(",",$ids).')  GROUP BY u.id, s.id, m.id';
+
+      $stmt = $em->getConnection()->prepare($sql);
+      $stmt->execute();
+
+      $data = array();
+      foreach($stmt->fetchAll() as $entity) {
+        $data[] = $entity;
+      }
+
+      $content = $this->renderView(
+        'BcTicCamIpalBundle:Encuesta:reporteEncuestaTasegCsv.html.twig',
+        array('data' => $data)
+      );
+
+      //Guardo el contenido y devuelvo el ID para descargar el link
+      $fs = new Filesystem();
+      $file = 'TOTAL-PREVENCIONISTA-INSPECTOR-'.date_format(date_create(),'Y-m-d-his');
+      $fs->dumpFile("uploads/".$file.".csv", $content);
+
+      return new JsonResponse(array('file' => $file));
+    }
+
+    /**
+     *
      * @Route("/encuesta_reporte_total_no_50_20_csv/data.csv", name="encuesta_reporte_total_no_50_20_csv")
      * @Method("POST")
      * @Template()     

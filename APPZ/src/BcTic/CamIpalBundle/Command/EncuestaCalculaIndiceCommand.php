@@ -26,7 +26,7 @@ class EncuestaCalculaIndiceCommand extends ContainerAwareCommand
         $entities = $em->getRepository('BcTicCamIpalBundle:Encuesta')
                            ->createQueryBuilder('e')
                            ->where('e.indice = -1')
-                           ->setMaxResults(100)
+                           ->setMaxResults(1000)
                            ->orderBy('e.id','DESC')
                            ->getQuery()->getResult();
 

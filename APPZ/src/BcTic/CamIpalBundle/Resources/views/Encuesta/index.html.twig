@@ -63,6 +63,7 @@
     <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
+    <li><a href="{{ path('encuestas_new', { 'type': 'chilectra'} ) }}">{{ 'Agregar IPAL Chilectra' | trans }}</a></li>
     {% endif %}
 
     {% if app.user.pais.id == 2 %}
@@ -209,8 +210,8 @@
             <tr>\
                 <th>Nº & Fecha</th>\
                 <th>Ingreso</th>\
-                <th class="hidden-xs">{{ 'Empresa' | trans }}</th>\
-                <th class="hidden-xs">{{ 'Contrato' | trans }}</th>\
+                <th class="hidden-xs">{{ 'Tipo' | trans }}</th>\
+                <th class="hidden-xs">{{ 'Contrato' | trans }} & {{ 'Empresa' | trans }}</th>\
                 <th class="hidden-xs">{{ 'Inspector/País' | trans }}</th>\
                 <th class="hidden-xs">{{ 'Archivos Obs.' | trans }}</th>\
                 <th class="hidden-xs">{{ 'Control de cierre' | trans }}</th>\
@@ -254,8 +255,8 @@
             <tr id="row_' + this.id + '">\
                 <td>' + this.id +  ' - ' + this.fecha + '</td>\
                 <td>' + this.createdAt + '</td>\
-                <td class="hidden-xs">' + this.empresa + '</td>\
-                <td class="hidden-xs">' + this.contrato + '</td>\
+                <td class="hidden-xs">' + this.tipo + '</td>\
+                <td class="hidden-xs">' + this.contrato + '<br/>' + this.empresa + '</td>\
                 <td class="hidden-xs">' + this.inspector + '/' + this.pais + '</td>\
                 <td class="hidden-xs">' + files  + '</td>\
                 <td class="hidden-xs">' + this.cierre  + '<br/>' + filesCierre  + '<br/><small>' + this.cierre_log + '</small></td>\

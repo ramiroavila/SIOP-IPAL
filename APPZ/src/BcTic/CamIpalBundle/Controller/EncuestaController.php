@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use BcTic\CamIpalBundle\Entity\Encuesta;
 use BcTic\CamIpalBundle\Entity\Empresa as Empresa;
 use BcTic\CamIpalBundle\Entity\EncuestaElectrica as EncuestaElectrica;
+use BcTic\CamIpalBundle\Entity\EncuestaChilectra as EncuestaChilectra;
 use BcTic\CamIpalBundle\Entity\EncuestaLogistica;
 use BcTic\CamIpalBundle\Entity\EncuestaObrasCiviles;
 use BcTic\CamIpalBundle\Entity\EncuestaTelecomunicaciones;
@@ -18,10 +19,12 @@ use BcTic\CamIpalBundle\Entity\EncuestaBrazilGeneral;
 use BcTic\CamIpalBundle\Entity\EncuestaBrazilInterno;
 use BcTic\CamIpalBundle\Form\EncuestaType;
 use BcTic\CamIpalBundle\Form\EncuestaElectricaType;
+use BcTic\CamIpalBundle\Form\EncuestaChilectraType;
 use BcTic\CamIpalBundle\Form\EncuestaLogisticaType;
 use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesType;
 use BcTic\CamIpalBundle\Form\EncuestaTelecomunicacionesType;
 use BcTic\CamIpalBundle\Form\EncuestaElectricaEditType;
+use BcTic\CamIpalBundle\Form\EncuestaChilectraEditType;
 use BcTic\CamIpalBundle\Form\EncuestaLogisticaEditType;
 use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesEditType;
 use BcTic\CamIpalBundle\Form\EncuestaTelecomunicacionesEditType;
@@ -1048,6 +1051,33 @@ class EncuestaController extends Controller
         );
     }
 
+
+  /**
+     * Creates a new Encuesta entity.
+     *
+     * @Route("/add/chilectra", name="encuestas_create_chilectra")
+     * @Method("POST")
+     * @Template("BcTicCamIpalBundle:Encuesta:new.html.twig")
+     */
+    public function createChilectraAction(Request $request)
+    {
+        $entity = new EncuestaChilectra();
+        $form = $this->createCreateForm($entity, new EncuestaChilectraType());
+        $form->handleRequest($request);
+
+        $response = $this->createAction($request, $form, $entity);
+        if (is_object($response)) return $response;
+        
+        $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
+
+        return array(
+            'format' => $format,
+            'entity' => $entity,
+            'form'   => $form->createView(),
+            'type'  => $entity->getKey(),
+        );
+    }
+
   /**
      * Creates a new Encuesta entity.
      *
@@ -1344,6 +1374,10 @@ class EncuestaController extends Controller
     public function newAction(Request $request,$type)
     {
         switch ($type) {
+          case 'chilectra':
+            $entity = new EncuestaChilectra();
+            $formType = new EncuestaChilectraType();
+            break;
           case 'electrica':
             $entity = new EncuestaElectrica();
             $formType = new EncuestaElectricaType();
@@ -1424,6 +1458,9 @@ class EncuestaController extends Controller
     public function showFormAction($type)
     {
          switch ($type) {
+          case 'chilectra':
+            $entity = new EncuestaChilectra();
+            break;          
           case 'electrica':
             $entity = new EncuestaElectrica();
             break;
@@ -1474,6 +1511,9 @@ class EncuestaController extends Controller
         $role = in_array('ROLE_ADMIN',$this->get('security.context')->getToken()->getUser()->getRoles()); 
 
        switch ($entity->getKey()) {
+          case 'chilectra':
+            $formType = $role ? new EncuestaChilectraType() : new EncuestaChilectaEditType();
+            break;        
           case 'electrica':
             $formType = $role ? new EncuestaElectricaType() : new EncuestaElectricaEditType();
             break;

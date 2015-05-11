@@ -19,6 +19,7 @@
     <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
+    <li><a href="{{ path('encuestas_new', { 'type': 'chilectra'} ) }}">{{ 'Agregar IPAL Chilectra' | trans }}</a></li>
     {% endif %}
 
     {% if app.user.pais.id == 2 %}
@@ -65,6 +66,7 @@
     <li><a href="{{ path('encuestas_show_form', { type: 'logistica'}) }}">{{ 'IPAL Logística' | trans }}</a></li>
     <li><a href="{{ path('encuestas_show_form', { type: 'obras_civiles'}) }}">{{ 'IPAL Obras Civiles' | trans }}</a></li>
     <li><a href="{{ path('encuestas_show_form', { type: 'telecomunicaciones'}) }}">{{ 'IPAL Telecomunicaciones' | trans }}</a></li>
+    <li><a href="{{ path('encuestas_show_form', { type: 'chilectra'}) }}">{{ 'IPAL Chilectra' | trans }}</a></li>
     <li><a href="{{ path('observaciones_show_form') }}">{{ 'Observaciones' | trans }}</a></li>
     {% endif %}
     {% if app.user.pais.id == 2 %}

@@ -51,7 +51,7 @@ class EncuestaController extends Controller
      *
      * @Route("/encuesta_reporte_taseg_csv/data.csv", name="encuesta_reporte_taseg_csv")
      * @Method("POST")
-     * @Template()     
+     * @Template()
      */
     public function reporteEncuestaTasegCsvAction(Request $request)
     {
@@ -59,7 +59,7 @@ class EncuestaController extends Controller
       $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       //Busco las encuestas que aplican:
-      $em = $this->getDoctrine()->getManager();  
+      $em = $this->getDoctrine()->getManager();
 
       $sql = 'SELECT u.nombre as unidad_de_negocio_nombre, s.nombre as subgerencia_nombre, (SELECT SUM(m2.valor) FROM Meta m2 WHERE m2.id = m.id) as meta_inspecciones, COUNT(DISTINCT(e.id)) as encuesta_cantidad, SUM(e.ipal) as encuesta_ipal, (SELECT COUNT(cierre) FROM EncuestaProxy e2 WHERE e2.cierre = "ABIERTA" AND e2.id = e.id) as encuesta_abierta FROM UnidadDeNegocio u INNER JOIN Contrato c ON c.unidad_de_negocio_id = u.id INNER JOIN SubGerencia s ON s.id = c.subgerencia_id INNER JOIN Meta m ON m.unidad_de_negocio_id = u.id AND m.subgerencia_id = s.id INNER JOIN EncuestaProxy e ON YEAR(e.fecha) = m.anno AND MONTH(e.fecha) = m.mes WHERE e.id IN ('.implode(",",$ids).')  GROUP BY u.id, s.id, m.id';
 
@@ -88,7 +88,7 @@ class EncuestaController extends Controller
      *
      * @Route("/encuesta_reporte_total_no_50_20_csv/data.csv", name="encuesta_reporte_total_no_50_20_csv")
      * @Method("POST")
-     * @Template()     
+     * @Template()
      */
     public function reporteEncuestarTotalNo5020CsvAction(Request $request)
     {
@@ -96,7 +96,7 @@ class EncuestaController extends Controller
       $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       //Busco las encuestas que aplican:
-      $em = $this->getDoctrine()->getManager();  
+      $em = $this->getDoctrine()->getManager();
 
       $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') ORDER BY e.fecha DESC';
 
@@ -113,18 +113,18 @@ class EncuestaController extends Controller
                 40 => array('hits' => 0),
                 50 => array('hits' => 0),
 
-              );    
+              );
 
       $fetch = $stmt->fetchAll();
 
       foreach($fetch as $entity) {
-      
-        $data[5]['hits'] = $data[5]['hits'] + $entity['incumplimientos_5'];  
-        $data[10]['hits'] = $data[10]['hits'] + $entity['incumplimientos_10'];  
-        $data[20]['hits'] = $data[20]['hits'] + $entity['incumplimientos_20'];  
-        $data[30]['hits'] = $data[30]['hits'] + $entity['incumplimientos_30'];  
-        $data[40]['hits'] = $data[40]['hits'] + $entity['incumplimientos_40'];  
-        $data[50]['hits'] = $data[50]['hits'] + $entity['incumplimientos_50'];  
+
+        $data[5]['hits'] = $data[5]['hits'] + $entity['incumplimientos_5'];
+        $data[10]['hits'] = $data[10]['hits'] + $entity['incumplimientos_10'];
+        $data[20]['hits'] = $data[20]['hits'] + $entity['incumplimientos_20'];
+        $data[30]['hits'] = $data[30]['hits'] + $entity['incumplimientos_30'];
+        $data[40]['hits'] = $data[40]['hits'] + $entity['incumplimientos_40'];
+        $data[50]['hits'] = $data[50]['hits'] + $entity['incumplimientos_50'];
 
       }
 
@@ -138,7 +138,7 @@ class EncuestaController extends Controller
       $file_no_5020 = 'NO-50-20-'.date_format(date_create(),'Y-m-d-his');
       $fs->dumpFile("uploads/".$file_no_5020.".csv", $content);
 
-      $data = array(); 
+      $data = array();
 
       foreach($fetch as $entity) {
          if (strlen($entity['incumplimientos_json']) > 3) {
@@ -172,7 +172,7 @@ class EncuestaController extends Controller
      *
      * @Route("/encuesta_reporte_total_prevencionistas_csv/data.csv", name="encuesta_reporte_total_prevencionistas_csv")
      * @Method("POST")
-     * @Template()     
+     * @Template()
      */
     public function reporteEncuestaTotalPrevencionistasInspectoresCsvAction(Request $request)
     {
@@ -180,7 +180,7 @@ class EncuestaController extends Controller
       $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       //Busco las encuestas que aplican:
-      $em = $this->getDoctrine()->getManager();  
+      $em = $this->getDoctrine()->getManager();
 
       $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') ORDER BY e.fecha DESC';
 
@@ -222,14 +222,14 @@ class EncuestaController extends Controller
      *
      * @Route("/encuesta_reporte_ipal_por_prevencionista_csv/data.csv", name="encuesta_reporte_ipal_por_prevencionista_csv")
      * @Method("POST")
-     * @Template()     
+     * @Template()
      */
     public function reporteEncuestaIpalPorPrevencionistaCsvAction(Request $request)
     {
 
       $ids = json_decode(file_get_contents($request->get('ids')),true);
 
-      $em = $this->getDoctrine()->getManager();  
+      $em = $this->getDoctrine()->getManager();
 
       $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') ORDER BY e.fecha DESC';
 
@@ -242,7 +242,7 @@ class EncuestaController extends Controller
           if (isset($data[$mes])) {
 
           } else {
-            $data[$mes] = array();    
+            $data[$mes] = array();
           }
 
           $prevencionista = strtoupper($entity['prevencionista']);
@@ -252,14 +252,14 @@ class EncuestaController extends Controller
             if (isset($data[$mes][$prevencionista])) {
 
             } else {
-              $data[$mes][$prevencionista] = array();    
+              $data[$mes][$prevencionista] = array();
             }
 
             $data[$mes][$prevencionista][] = array(
                           'ipal' =>  $entity['ipal'],
                           'tiene_incumplimientos' => $entity['tiene_incumplimientos'],
                           'cantidad_incumplimientos' => $entity['cantidad_incumplimientos'],
-                        ); 
+                        );
 
           }
       }
@@ -281,7 +281,7 @@ class EncuestaController extends Controller
      *
      * @Route("/encuesta_reporte_no_conformidades_csv/data.csv", name="encuesta_reporte_no_conformidades_csv")
      * @Method("POST")
-     * @Template()     
+     * @Template()
      */
     public function reporteEncuestaNoConformidadesCsvAction(Request $request)
     {
@@ -289,7 +289,7 @@ class EncuestaController extends Controller
       $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       //Busco las encuestas que aplican:
-      $em = $this->getDoctrine()->getManager();  
+      $em = $this->getDoctrine()->getManager();
 
       $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') ORDER BY e.fecha DESC';
 
@@ -303,7 +303,7 @@ class EncuestaController extends Controller
           if (isset($data[$mes])) {
 
           } else {
-            $data[$mes] = array();    
+            $data[$mes] = array();
           }
 
           $data[$mes][] = array(
@@ -331,14 +331,14 @@ class EncuestaController extends Controller
      *
      * @Route("/encuesta_reporte_todos_los_datos_csv/data.csv", name="encuesta_reporte_todos_los_datos_csv")
      * @Method("POST")
-     * @Template()     
+     * @Template()
      */
     public function reporteEncuestaTodosLosDatosCsvAction(Request $request)
     {
 
       $ids = json_decode(file_get_contents($request->get('ids')),true);
 
-      $em = $this->getDoctrine()->getManager();        
+      $em = $this->getDoctrine()->getManager();
 
       $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') ORDER BY e.fecha DESC';
 
@@ -376,14 +376,14 @@ class EncuestaController extends Controller
      *
      * @Route("/encuesta_reporte_incumplimientos_50_csv/data.csv", name="encuesta_reporte_incumplimientos_50_csv")
      * @Method("POST")
-     * @Template()     
+     * @Template()
      */
     public function reporteEncuestaIncumplimientos50CsvAction(Request $request)
     {
 
       $ids = json_decode(file_get_contents($request->get('ids')),true);
 
-      $em = $this->getDoctrine()->getManager();        
+      $em = $this->getDoctrine()->getManager();
 
       $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') AND incumplimientos_50 > 0 ORDER BY e.fecha DESC';
 
@@ -427,7 +427,7 @@ class EncuestaController extends Controller
      *
      * @Route("/encuesta_reporte_cierre_csv/data.csv", name="encuesta_reporte_cierre_csv")
      * @Method("POST")
-     * @Template()     
+     * @Template()
      */
     public function reporteEncuestaCierreCsvAction(Request $request)
     {
@@ -435,7 +435,7 @@ class EncuestaController extends Controller
       $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       //Busco las encuestas que aplican:
-      $em = $this->getDoctrine()->getManager();  
+      $em = $this->getDoctrine()->getManager();
       $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') ORDER BY e.fecha DESC';
 
       $stmt = $em->getConnection()->prepare($sql);
@@ -477,7 +477,7 @@ class EncuestaController extends Controller
      *
      * @Route("/encuesta_reporte_por_mes_csv/data.csv", name="encuesta_reporte_por_mes_csv")
      * @Method("POST")
-     * @Template()     
+     * @Template()
      */
     public function reporteEncuestaMesCsvAction(Request $request)
     {
@@ -487,7 +487,7 @@ class EncuestaController extends Controller
       //Una VISTA es mejor!
 
       //Busco las encuestas que aplican:
-      $em = $this->getDoctrine()->getManager();  
+      $em = $this->getDoctrine()->getManager();
       $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') ORDER BY e.fecha DESC';
 
       $stmt = $em->getConnection()->prepare($sql);
@@ -500,7 +500,7 @@ class EncuestaController extends Controller
         if (isset($data[$mes])) {
 
         } else {
-          $data[$mes] = array();    
+          $data[$mes] = array();
         }
 
         $data[$mes][] = array(
@@ -533,13 +533,13 @@ class EncuestaController extends Controller
      */
     public function downloadAction($file)
     {
-      $response = new Response(file_get_contents('uploads/'.$file.'.csv')); 
+      $response = new Response(file_get_contents('uploads/'.$file.'.csv'));
       $response->headers->set('Content-Type', 'text/csv');
       $response->headers->set('Charset','utf-8');
       $response->headers->set('Content-Disposition', 'attachment; filename="'.$file.'.csv"');
 
       return $response;
-    }  
+    }
 
     /**
      * Lists all Encuesta entities.
@@ -561,7 +561,7 @@ class EncuestaController extends Controller
     }
 
      /**
-     * 
+     *
      *
      * @Route("/data/dashboard.json", name="encuesta_data_dashboard")
      * @Method("POST")
@@ -594,23 +594,23 @@ class EncuestaController extends Controller
               'valueSuffix' => '',
              ),
             ),
-        );  
+        );
 
 
       $em = $this->getDoctrine()->getManager();
-      
+
       $ids = json_decode(file_get_contents($request->get('ids')),true);
 
       if (count($ids) > 0) {
 
         $implode = "id IN (".implode(",",array_values($ids)).")";
-        
+
       } else {
         $implode = 1;
       }
 
-      $sql = "SELECT COUNT(*) as hits, ROUND(SUM(indice) / count(*),2) as ipal,DATE_FORMAT(fecha,'%m-%Y') as fecha FROM Encuesta WHERE ".$implode." GROUP BY DATE_FORMAT(fecha,'%m-%Y') ORDER BY DATE_FORMAT(fecha,'%Y%m') ASC;";    
- 
+      $sql = "SELECT COUNT(*) as hits, ROUND(SUM(indice) / count(*),2) as ipal,DATE_FORMAT(fecha,'%m-%Y') as fecha FROM Encuesta WHERE ".$implode." GROUP BY DATE_FORMAT(fecha,'%m-%Y') ORDER BY DATE_FORMAT(fecha,'%Y%m') ASC;";
+
       $stmt = $em->getConnection()->prepare($sql);
       $stmt->execute();
       foreach ($stmt->fetchAll() as $info) {
@@ -632,7 +632,7 @@ class EncuestaController extends Controller
      */
     public function indexSupervisorJsonAction(Request $request)
     {
-      
+
         $em = $this->getDoctrine()->getManager();
 
         //LOS SUPERVISORES UNICOS DEL PAIS
@@ -651,17 +651,17 @@ class EncuestaController extends Controller
                            ->setParameter(1, '%'.$request->request->get('query','').'%')
                            ->orderBy('e.supervisorFacade', 'ASC');
 
-        $sql = $entities->getQuery()->getSql();    
+        $sql = $entities->getQuery()->getSql();
 
         //TODOS, SOLO NECESITO LOS ID e IPAL y BORRO:
         $supervisores = array();
 
         //Raw SQL:
         $stmt = $em->getConnection()->prepare($sql);
-        $stmt->bindValue(1, '%'.$request->request->get('query','').'%'); 
+        $stmt->bindValue(1, '%'.$request->request->get('query','').'%');
         $stmt->execute();
         $fetch = $stmt->fetchAll();
-        $supervisores = $this->array_column($fetch,'supervisor_facade0'); 
+        $supervisores = $this->array_column($fetch,'supervisor_facade0');
 
        $data = array();
         foreach ($supervisores as $supervisor) {
@@ -684,7 +684,7 @@ class EncuestaController extends Controller
     public function indexJsonAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $em->getConnection()->getConfiguration()->setSQLLogger(null);          
+        $em->getConnection()->getConfiguration()->setSQLLogger(null);
 
         $pagina = $request->get('pagina',1);
         $pageSize = $request->get('items_por_pagina',15);
@@ -692,7 +692,7 @@ class EncuestaController extends Controller
         $whereAnd = "";
 
         $id = ($request->request->get('id') != "") ? " AND e.id = '".$request->request->get('id')."'" : "";
-        $whereAnd .= $id;        
+        $whereAnd .= $id;
 
         $status_cierre = ($request->request->get('status_cierre') != "") ? " AND e.statusCierre = '".$request->request->get('status_cierre')."'" : "";
         $whereAnd .= $status_cierre;
@@ -740,7 +740,7 @@ class EncuestaController extends Controller
           } else {
             $inspector = " AND e.inspector LIKE '%".$request->request->get('inspector')."%'" ;
           }
-        } 
+        }
 
         //Busco todos los usuarios que tengan ROL PREVENCIONISTA:
         $inspectoresResult = $em->getRepository('BcTicCamIpalBundle:Usuario')
@@ -748,10 +748,10 @@ class EncuestaController extends Controller
                            ->join('u.roles','rol')
                            ->where('rol.nombre LIKE :rol')
                            ->setParameters(array('rol' => 'INSPECTOR'))
-                           ->getQuery()->getResult();  
+                           ->getQuery()->getResult();
 
         $inspectores = array();
-        foreach($inspectoresResult as $entity) {                           
+        foreach($inspectoresResult as $entity) {
           $inspectores[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
         }
 
@@ -764,9 +764,9 @@ class EncuestaController extends Controller
                            ->orderBy('r.nombre', 'ASC')
                            ->getQuery()->getResult();
 
-        foreach($inspectoresResult as $entity) {                           
+        foreach($inspectoresResult as $entity) {
           $inspectores[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
-        }                           
+        }
 
         unset($inspectoresResult);
 
@@ -783,7 +783,7 @@ class EncuestaController extends Controller
           } else {
             $prevencionista = " AND e.prevencionista LIKE '%".$request->request->get('prevencionista')."%'" ;
           }
-        } 
+        }
 
         //Busco todos los usuarios que tengan ROL PREVENCIONISTA:
         $prevencionistasResult = $em->getRepository('BcTicCamIpalBundle:Usuario')
@@ -791,10 +791,10 @@ class EncuestaController extends Controller
                            ->join('u.roles','rol')
                            ->where('rol.nombre LIKE :rol')
                            ->setParameters(array('rol' => 'PREVENCIONISTA'))
-                           ->getQuery()->getResult();  
+                           ->getQuery()->getResult();
 
         $prevencionistas = array();
-        foreach($prevencionistasResult as $entity) {                           
+        foreach($prevencionistasResult as $entity) {
           $prevencionistas[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
         }
 
@@ -807,15 +807,15 @@ class EncuestaController extends Controller
                            ->orderBy('r.nombre', 'ASC')
                            ->getQuery()->getResult();
 
-        foreach($prevencionistasResult as $entity) {                           
+        foreach($prevencionistasResult as $entity) {
           $prevencionistas[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
-        }    
+        }
 
-        unset($prevencionistasResult);  
+        unset($prevencionistasResult);
 
-        $whereAnd .= $prevencionista;        
+        $whereAnd .= $prevencionista;
 
-        if ($request->request->get('grupo_id') != "") { 
+        if ($request->request->get('grupo_id') != "") {
           $gruposResult = $em->getRepository('BcTicCamIpalBundle:Usuario')
                            ->createQueryBuilder('r')
                            ->join('r.grupos','grupo')
@@ -824,22 +824,22 @@ class EncuestaController extends Controller
                            ->orderBy('r.nombre', 'ASC')
                            ->getQuery()->getResult();
 
-          $grupos = array();                           
+          $grupos = array();
 
-          foreach($gruposResult as $entity) {                           
+          foreach($gruposResult as $entity) {
               $grupos[] = $entity->getUsername();
-          }    
+          }
 
-          unset($gruposResult);                
+          unset($gruposResult);
         }
 
-        if ($request->request->get('unidad_de_negocio_id') != "") { 
+        if ($request->request->get('unidad_de_negocio_id') != "") {
 
           $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
                            ->createQueryBuilder('e')
                            ->select('e.id,e.indice, e.inspector, e.prevencionista, e.createdBy')
                            ->join('e.contrato','c')
-                           ->join('c.unidadDeNegocio','u')                           
+                           ->join('c.unidadDeNegocio','u')
                            ->join('e.pais','p')
                            ->join('c.servicio','srv')
                            ->join('e.empresa','em')
@@ -868,14 +868,14 @@ class EncuestaController extends Controller
         }
 
         $role = false;
-        //Pais   
+        //Pais
         if ($role) {
           //Do Nothing
         } else {
           $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
-        }                                           
+        }
 
-        $sql = $entities->getQuery()->getSql();        
+        $sql = $entities->getQuery()->getSql();
 
         //TODOS, SOLO NECESITO LOS ID e IPAL y BORRO:
         $ids = array();
@@ -886,44 +886,44 @@ class EncuestaController extends Controller
         $stmt->execute();
         $fetch = $stmt->fetchAll();
 
-        $ids = $this->array_column($fetch,'id0'); 
+        $ids = $this->array_column($fetch,'id0');
         $riesgoDetectado = $this->array_column($fetch,'indice1');
 
-        $inspectoresMatrix = $this->array_column($fetch,'inspector2'); 
-        $prevencionistasMatrix = $this->array_column($fetch,'prevencionista3'); 
-        $createdByMatrix = $this->array_column($fetch,'created_by4'); 
+        $inspectoresMatrix = $this->array_column($fetch,'inspector2');
+        $prevencionistasMatrix = $this->array_column($fetch,'prevencionista3');
+        $createdByMatrix = $this->array_column($fetch,'created_by4');
 
         if ($eliminateInspector) {
 
-            array_walk($inspectoresMatrix, function(&$i) { 
-              $i = md5(strtoupper(trim($i)));     
-            }); 
+            array_walk($inspectoresMatrix, function(&$i) {
+              $i = md5(strtoupper(trim($i)));
+            });
 
-           foreach($inspectores as $inspector) {  
+           foreach($inspectores as $inspector) {
               $delete = array_keys(array_values($inspectoresMatrix),$inspector);
               foreach($delete as $key) {
                 unset($ids[$key]);
                 unset($riesgoDetectado[$key]);
-              }               
+              }
            }
-           
+
         }
 
         if ($eliminatePrevencionista) {
-            array_walk($prevencionistasMatrix, function(&$i) { 
-              $i = md5(strtoupper(trim($i)));     
-            }); 
+            array_walk($prevencionistasMatrix, function(&$i) {
+              $i = md5(strtoupper(trim($i)));
+            });
 
-           foreach($prevencionistas as $prevencionista) {  
+           foreach($prevencionistas as $prevencionista) {
               $delete = array_keys(array_values($prevencionistasMatrix),$prevencionista);
               foreach($delete as $key) {
                 unset($ids[$key]);
                 unset($riesgoDetectado[$key]);
-              }               
+              }
            }
         }
 
-        if (strlen($request->request->get('grupo_id')) > 0) { 
+        if (strlen($request->request->get('grupo_id')) > 0) {
           //Array diff: Elimino los que no están:
           $diff = array_diff($createdByMatrix,$grupos);
           foreach ($diff as $i => $diffItem) {
@@ -932,8 +932,8 @@ class EncuestaController extends Controller
           }
         }
 
-        $riesgoDetectado = array_sum(array_values($riesgoDetectado)); 
-        
+        $riesgoDetectado = array_sum(array_values($riesgoDetectado));
+
         //Ahora le pongo limite y subset, a los ids:
         $whereAnd = (count($ids) > 0) ? "AND e.id IN (".implode(",",$ids).")" : "";
         $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
@@ -952,7 +952,7 @@ class EncuestaController extends Controller
                            ->orderBy('e.id', 'DESC');
 
 
-        
+
         $data = array();
 
         $csrf = $this->get('form.csrf_provider');
@@ -979,7 +979,7 @@ class EncuestaController extends Controller
             $longitud = $localizacion[1];
           }
 
-            
+
             $fechaDeCreacion = '';
             if ($entity->getCreatedAt() > 0) {
               $createdAt = new \DateTime('@'.$entity->getCreatedAt());
@@ -990,9 +990,9 @@ class EncuestaController extends Controller
 
             $data[] = array(
              'id' => $entity->getId(),
-             'fecha' => $entity->getFecha()->format('d/m/Y'), 
-             'empresa' => ($entity->getEmpresa() instanceof Empresa) ? $entity->getEmpresa()->__toString() : "-- NO DEFINIDO --", 
-             'contrato' => $entity->getContrato()->__toString(), 
+             'fecha' => $entity->getFecha()->format('d/m/Y'),
+             'empresa' => ($entity->getEmpresa() instanceof Empresa) ? $entity->getEmpresa()->__toString() : "-- NO DEFINIDO --",
+             'contrato' => $entity->getContrato()->__toString(),
              'indiceIPAL' => $entity->getIndiceIpal(),
              'pais' => $entity->getPais()->getNombre(),
              'latitud' => $latitud,
@@ -1020,7 +1020,7 @@ class EncuestaController extends Controller
         $ids_json = $this->get('kernel')->getRootDir().'/Resources/json/'.md5(uniqid(rand(), true)).'-data.json';
 
         file_put_contents($ids_json, json_encode($ids));
-      
+
         return new JsonResponse(array('ultima_pagina' => $ultima_pagina + 1,'pagina' => (int) $pagina,'entities' => $data,'ids' => $ids_json ,'indiceIPAL' => $indiceIPAL,'hits' => $num_de_inspecciones));
 
     }
@@ -1040,7 +1040,7 @@ class EncuestaController extends Controller
 
         $response = $this->createAction($request, $form, $entity);
         if (is_object($response)) return $response;
-        
+
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
 
         return array(
@@ -1067,7 +1067,7 @@ class EncuestaController extends Controller
 
         $response = $this->createAction($request, $form, $entity);
         if (is_object($response)) return $response;
-        
+
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
 
         return array(
@@ -1093,7 +1093,7 @@ class EncuestaController extends Controller
 
         $response = $this->createAction($request, $form, $entity);
         if (is_object($response)) return $response;
-        
+
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
 
         return array(
@@ -1102,7 +1102,7 @@ class EncuestaController extends Controller
             'form'   => $form->createView(),
             'type'  => $entity->getKey(),
         );
-    }    
+    }
 
   /**
      * Creates a new Encuesta entity.
@@ -1121,7 +1121,7 @@ class EncuestaController extends Controller
         if (is_object($response)) return $response;
 
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
-        
+
         return array(
             'format' => $format,
             'entity' => $entity,
@@ -1147,14 +1147,14 @@ class EncuestaController extends Controller
         if (is_object($response)) return $response;
 
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
-        
+
         return array(
             'format' => $format,
             'entity' => $entity,
             'form'   => $form->createView(),
             'type'  => $entity->getKey(),
         );
-    } 
+    }
 
     /**
      * Creates a new Encuesta entity.
@@ -1173,14 +1173,14 @@ class EncuestaController extends Controller
         if (is_object($response)) return $response;
 
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
-        
+
         return array(
             'format' => $format,
             'entity' => $entity,
             'form'   => $form->createView(),
             'type'  => $entity->getKey(),
         );
-    }        
+    }
 
     /**
      * Creates a new Encuesta entity.
@@ -1199,14 +1199,14 @@ class EncuestaController extends Controller
         if (is_object($response)) return $response;
 
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
-        
+
         return array(
             'format' => $format,
             'entity' => $entity,
             'form'   => $form->createView(),
             'type'  => $entity->getKey(),
         );
-    }        
+    }
 
     /**
      * Creates a new Encuesta entity.
@@ -1225,14 +1225,14 @@ class EncuestaController extends Controller
         if (is_object($response)) return $response;
 
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
-        
+
         return array(
             'format' => $format,
             'entity' => $entity,
             'form'   => $form->createView(),
             'type'  => $entity->getKey(),
         );
-    }        
+    }
 
 
 
@@ -1262,10 +1262,10 @@ class EncuestaController extends Controller
                        'empresa' => $entity->getEmpresa(),
                        'contrato' => $entity->getContrato()->getNombre(),
                        'inspector' => $entity->getInspector(),
-                       'supervisor' => $entity->getSupervisorFacade(),                                              
+                       'supervisor' => $entity->getSupervisorFacade(),
                        'lugar' => $entity->getLugarDeTrabajo(),
                        'observaciones' => $entity->getObservaciones(),
-                       'entity' => $entity,              
+                       'entity' => $entity,
                        )
               );
 
@@ -1275,15 +1275,15 @@ class EncuestaController extends Controller
 
                 case 2: //COLOMBIA
                   $destinatario = 'siop-colombia.cam-la@bctic.net';
-                  break;                
+                  break;
 
                 case 3: //PERU
                   $destinatario = 'siop-peru.cam-la@bctic.net';
-                  break;                
+                  break;
 
                 case 4: //BRAZIL
                   $destinatario = 'siop-brazil.cam-la@bctic.net';
-                  break;                
+                  break;
 
                 case 5: //COASIN
                   $destinatario = 'coasin.cam-la@bctic.net';
@@ -1291,22 +1291,22 @@ class EncuestaController extends Controller
 
                 case 6: //CONTRATISTAS
                   $destinatario = 'contratistas.cam-la@bctic.net';
-                  break;                  
+                  break;
 
                 default: //CHILE - DEFECTO
                   $destinatario = 'siop.cam-la@bctic.net';
                   break;
 
               }
-              
+
               $message = \Swift_Message::newInstance()
                 ->setSubject('IPAL #'.$entity->getId().' CON INCUMPLIMIENTOS 50')
                 ->setFrom(array('info@bctic.net' => 'SIOP CAM LA'))
                 ->setTo($destinatario)
                 ->setCharset('UTF-8')
-                ->setContentType('text/html') 
+                ->setContentType('text/html')
                 ->setBody($body);
-    
+
               $this->get('mailer')->send($message);
 
             }
@@ -1385,7 +1385,7 @@ class EncuestaController extends Controller
           case 'logistica':
             $entity = new EncuestaLogistica();
             $formType = new EncuestaLogisticaType();
-            break;            
+            break;
           case 'obras_civiles':
             $entity = new EncuestaObrasCiviles();
             $formType = new EncuestaObrasCivilesType();
@@ -1393,28 +1393,28 @@ class EncuestaController extends Controller
           case 'telecomunicaciones':
             $entity = new EncuestaTelecomunicaciones();
             $formType = new EncuestaTelecomunicacionesType();
-            break;     
+            break;
           case 'colombia_general':
             $entity = new EncuestaColombiaGeneral();
             $formType = new EncuestaColombiaGeneralType();
-            break;  
+            break;
           case 'brazil_general':
             $entity = new EncuestaBrazilGeneral();
             $formType = new EncuestaBrazilGeneralType();
-            break;  
+            break;
           case 'brazil_interno':
             $entity = new EncuestaBrazilInterno();
             $formType = new EncuestaBrazilInternoType();
-            break;  
+            break;
         }
         $entity->setNumDeEmpleados(3);
         $entity->setVisible(true);
 
         $form   = $this->createCreateForm($entity, $formType);
 
-      
-        $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; 
-        
+
+        $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html";
+
         return array(
             'format' => $format,
             'entity' => $entity,
@@ -1441,7 +1441,30 @@ class EncuestaController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Encuesta entity.');
         }
-        
+
+        return array(
+            'entity'      => $entity
+        );
+    }
+
+    /**
+     * Displays a view existing Encuesta entity.
+     *
+     * @Route("/coasin/{id}.html", name="encuestas_coasin_show")
+     * @Method("GET")
+     * @Template("")
+     */
+    public function showCoasinAction(Request $request,$id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('BcTicCamIpalBundle:Encuesta')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Encuesta entity.');
+        }
+
         return array(
             'entity'      => $entity
         );
@@ -1460,28 +1483,28 @@ class EncuestaController extends Controller
          switch ($type) {
           case 'chilectra':
             $entity = new EncuestaChilectra();
-            break;          
+            break;
           case 'electrica':
             $entity = new EncuestaElectrica();
             break;
           case 'logistica':
             $entity = new EncuestaLogistica();
-            break;            
+            break;
           case 'obras_civiles':
             $entity = new EncuestaObrasCiviles();
             break;
           case 'telecomunicaciones':
             $entity = new EncuestaTelecomunicaciones();
-            break;     
+            break;
           case 'colombia_general':
             $entity = new EncuestaColombiaGeneral();
-            break;  
+            break;
           case 'brazil_general':
             $entity = new EncuestaBrazilGeneral();
-            break;  
+            break;
           case 'brazil_interno':
             $entity = new EncuestaBrazilInterno();
-            break;  
+            break;
         }
 
         return array(
@@ -1508,39 +1531,39 @@ class EncuestaController extends Controller
             throw $this->createNotFoundException('Unable to find Encuesta entity.');
         }
 
-        $role = in_array('ROLE_ADMIN',$this->get('security.context')->getToken()->getUser()->getRoles()); 
+        $role = in_array('ROLE_ADMIN',$this->get('security.context')->getToken()->getUser()->getRoles());
 
        switch ($entity->getKey()) {
           case 'chilectra':
             $formType = $role ? new EncuestaChilectraType() : new EncuestaChilectaEditType();
-            break;        
+            break;
           case 'electrica':
             $formType = $role ? new EncuestaElectricaType() : new EncuestaElectricaEditType();
             break;
           case 'logistica':
             $formType = $role ? new EncuestaLogisticaType() : new EncuestaLogisticaEditType();
-            break;            
+            break;
           case 'obras_civiles':
             $formType = $role ? new EncuestaObrasCivilesType() : new EncuestaObrasCivilesEditType();
             break;
           case 'telecomunicaciones':
             $formType = $role ? new EncuestaTelecomunicacionesType() : new EncuestaTelecomunicacionesEditType();
-            break;            
+            break;
           case 'colombia_general':
             $formType = $role ? new EncuestaColombiaGeneralType : new EncuestaColombiaGeneralEditType();
-            break;                        
+            break;
           case 'brazil_general':
             $formType = $role ? new EncuestaBrazilGeneralType : new EncuestaBrazilGeneralEditType();
-            break;                        
+            break;
           case 'brazil_interno':
             $formType = $role ? new EncuestaBrazilInternoType : new EncuestaBrazilInternoEditType();
-            break;                                                
+            break;
         }
 
         $editForm = $this->createEditForm($entity, $formType);
-      
+
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
-        
+
         return array(
             'format' => $format,
             'entity'      => $entity,
@@ -1586,7 +1609,7 @@ class EncuestaController extends Controller
             throw $this->createNotFoundException('Unable to find Encuesta entity.');
         }
 
-        $role = in_array('ROLE_ADMIN',$this->get('security.context')->getToken()->getUser()->getRoles()); 
+        $role = in_array('ROLE_ADMIN',$this->get('security.context')->getToken()->getUser()->getRoles());
 
        switch ($entity->getKey()) {
           case 'electrica':
@@ -1594,22 +1617,22 @@ class EncuestaController extends Controller
             break;
           case 'logistica':
             $formType = $role ? new EncuestaLogisticaType() : new EncuestaLogisticaEditType();
-            break;            
+            break;
           case 'obras_civiles':
             $formType = $role ? new EncuestaObrasCivilesType() : new EncuestaObrasCivilesEditType();
             break;
           case 'telecomunicaciones':
             $formType = $role ? new EncuestaTelecomunicacionesType() : new EncuestaTelecomunicacionesEditType();
-            break;  
+            break;
           case 'colombia_general':
             $formType = $role ? new EncuestaColombiaGeneralType() : new EncuestaColombiaGeneralEditType();
-            break;    
+            break;
           case 'brazil_general':
             $formType = $role ? new EncuestaBrazilGeneralType() : new EncuestaBrazilGeneralEditType();
-            break;    
+            break;
           case 'brazil_interno':
             $formType = $role ? new EncuestaBrazilInternoType() : new EncuestaBrazilInternoEditType();
-            break;    
+            break;
         }
 
         $estadoGuardado = $entity->getStatusCierre();
@@ -1651,17 +1674,17 @@ class EncuestaController extends Controller
               'La IPAL Nº '.$entity->getId().' ha sido editada satisfactoriamente.'
             );
 
-    
+
         } else {
 
             $this->get('session')->getFlashBag()->add(
               'error',
               'La IPAL Nº '.$entity->getId().' no ha sido editada satisfactoriamente.'
             );
-        }    
-      
+        }
+
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
-        
+
         return array(
             'format'      => $format,
             'entity'      => $entity,
@@ -1678,7 +1701,7 @@ class EncuestaController extends Controller
      */
     public function deleteAction(Request $request, $id, $token)
     {
-      
+
         $csrf = $this->get('form.csrf_provider');
 
         $em = $this->getDoctrine()->getManager();
@@ -1698,15 +1721,15 @@ class EncuestaController extends Controller
 
         if (!$entity) {
           $entity = $em->getRepository('BcTicCamIpalBundle:EncuestaColombiaGeneral')->find($id);
-        }   
+        }
 
         if (!$entity) {
           $entity = $em->getRepository('BcTicCamIpalBundle:EncuestaBrazilGeneral')->find($id);
-        }  
+        }
 
         if (!$entity) {
           $entity = $em->getRepository('BcTicCamIpalBundle:EncuestaBrazilInterno')->find($id);
-        }                       
+        }
 
         if (!$entity) {
               throw $this->createNotFoundException('Unable to find Encuesta entity.');
@@ -1721,7 +1744,7 @@ class EncuestaController extends Controller
               return new JsonResponse(array('status' => '0', 'message' => 'Los datos no se pudieron borrar por que tiene otros datos relacionados.'));
             }
         } else {
-          return new JsonResponse(array('status' => '0', 'message' => 'no valid token!'));            
+          return new JsonResponse(array('status' => '0', 'message' => 'no valid token!'));
         }
 
         return new JsonResponse(array('status' => '0', 'message' => 'no idea!'));

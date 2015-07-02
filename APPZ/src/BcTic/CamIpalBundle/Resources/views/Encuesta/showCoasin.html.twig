@@ -1,5 +1,5 @@
 {% extends '::base_pdf.html.twig' %}
-{% set logo = 'images/logo.jpg' %}
+{% set logo = 'images/logo-coasin.png' %}
 
 {% block body -%}
   <div class="row">
@@ -8,7 +8,7 @@
      </div>
      <div class="col-md-9">
        <h3 class="text-center">{{ 'INSPECCIÓN DE SEGURIDAD' | trans }}</h3>
-       <h5 class="text-center">{{ 'PREVENCIÓN DE RIESGOS CAM' | trans }}</h5>
+       <h5 class="text-center">{{ 'PREVENCIÓN DE RIESGOS CAM - COASIN' | trans }}</h5>
      </div>
   </div>
   <br/>
@@ -124,7 +124,7 @@
 {% endblock %}
 
 {% block title %}
-IPAL-{{ entity.id }}-{{ "now" | date("Ymd")}}
+IPAL-COASIN-{{ entity.id }}-{{ "now" | date("Ymd")}}
 {% endblock %}
 
 

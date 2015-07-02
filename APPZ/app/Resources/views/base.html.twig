@@ -37,7 +37,7 @@
             <a class="navbar-brand" href="{{ path('welcome') }}" >{{ "Seguridad CAM-LA" | trans }}</a>
         </div>
 
-        
+
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               {% if app.user %}
@@ -54,7 +54,7 @@
                 {% endif %}
 
                 {% if app.user.pais.id == 2 %}
-                  <li><a href="{{ path('encuestas_new', { 'type': 'colombia_general'} ) }}">{{ 'Agregar IPAL Colombia' | trans }}</a></li>     
+                  <li><a href="{{ path('encuestas_new', { 'type': 'colombia_general'} ) }}">{{ 'Agregar IPAL Colombia' | trans }}</a></li>
                 {% endif %}
 
                 {% if app.user.pais.id == 3 %}
@@ -62,26 +62,26 @@
                   <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
                   <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
                   <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
-                {% endif %}    
+                {% endif %}
 
                 {% if app.user.pais.id == 4 %}
                   <li><a href="{{ path('encuestas_new', { 'type': 'brazil_general'} ) }}">{{ 'Agregar IPAL' | trans }}</a></li>
                   <li><a href="{{ path('encuestas_new', { 'type': 'brazil_interno'} ) }}">{{ 'Agregar IPAL Interno' | trans }}</a></li>
-                {% endif %}   
+                {% endif %}
 
                 {% if app.user.pais.id == 5 %}
                   <li><a href="{{ path('encuestas_new', { 'type': 'electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
                   <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
                   <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
                   <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
-                {% endif %}  
+                {% endif %}
 
                 {% if app.user.pais.id == 6 %}
                   <li><a href="{{ path('encuestas_new', { 'type': 'electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
                   <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
                   <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
                   <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
-                {% endif %}                  
+                {% endif %}
 
                   <li><a href="{{ path('encuestas') }}">{{ "Ver Encuestas" | trans }}</a></li>
                 </ul>
@@ -127,7 +127,7 @@
                 </ul>
               </li>
               {% endif %}
-              
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
               {% if app.user %}
@@ -136,13 +136,13 @@
                 <ul class="dropdown-menu">
                   <li><a href="{{ path('usuarios_password') }}">{{ "Cambiar password" | trans }}</a></li>
                   <li><a href="{{ path('_logout', { '_locale': app.request.locale }) }}">{{ "Cerrar sesión" | trans }}</a></li>
-                </ul>  
+                </ul>
               </li>
               {% endif %}
               <li class="hidden-xs"><img alt="logo" style="height:35px; margin-top:7px; margin-right: 13px;" src="{{ asset('images/logo.jpg') }}"/></li>
             </ul>
           </div>
-        
+
         </div>
       </nav>
     </div>
@@ -170,8 +170,8 @@
      {% if app.user %}
 
      {% else %}
-       Cambiar idioma a: <a href="{{path('welcome', { '_locale': 'es'} )}}">Castellano</a> | <a href="{{path('welcome', { '_locale': 'pt'} )}}">Português</a> 
-      <br/><br/> 
+       Cambiar idioma a: <a href="{{path('welcome', { '_locale': 'es'} )}}">Castellano</a> | <a href="{{path('welcome', { '_locale': 'pt'} )}}">Português</a>
+      <br/><br/>
      {% endif %}
       <img style="height:35px; " src="{{ asset('images/image2.png') }}"/>
       <img style="height:35px; " src="{{ asset('images/image3.png') }}"/>
@@ -179,13 +179,13 @@
       <img style="height:35px; " src="{{ asset('images/image5.png') }}"/>
 
       <h4>{{ "PROMOVIENDO CONDUCTAS SEGURAS" | trans }}</h4>
-      <p>&copy; {{ "CAM - LA - Sistema de Seguridad IPAL y Observaciones siop.cam-la.com" | trans }} 
+      <p>&copy; {{ "CAM - LA - Sistema de Seguridad IPAL y Observaciones siop.cam-la.com" | trans }}
       <br/>
       {{ "PREVENCIÓN DE RIESGOS CAM S.A." | trans }}
       {% if app.user %}
       <br/>{{ app.user.pais }}
-      {% endif %}  
-      <br/>Revisión 11.6
+      {% endif %}
+      <br/>Revisión 11.7
     </p></div>
     {% block js %}{% endblock %}
   </body>

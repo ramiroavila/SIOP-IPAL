@@ -14,7 +14,7 @@
     <!-- FORM END -->
 
     <div id="tab-content">
-    
+
     <ul class="nav nav-tabs">
       <li class="active"><a href="#resultado" data-toggle="tab">{{ 'Índice IPAL' | trans }} </a></li>
       <li><a href="#listado" data-toggle="tab">{{ 'Listado' | trans }}</a></li>
@@ -67,7 +67,7 @@
     {% endif %}
 
     {% if app.user.pais.id == 2 %}
-    <li><a href="{{ path('encuestas_new', { 'type': 'colombia_general'} ) }}">{{ 'Agregar IPAL Colombia' | trans }}</a></li>     
+    <li><a href="{{ path('encuestas_new', { 'type': 'colombia_general'} ) }}">{{ 'Agregar IPAL Colombia' | trans }}</a></li>
     {% endif %}
 
     {% if app.user.pais.id == 3 %}
@@ -75,26 +75,26 @@
     <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
-    {% endif %}    
+    {% endif %}
 
     {% if app.user.pais.id == 4 %}
     <li><a href="{{ path('encuestas_new', { 'type': 'brazil_general'} ) }}">{{ 'Agregar IPAL' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'brazil_interno'} ) }}">{{ 'Agregar IPAL Interno' | trans }}</a></li>
-    {% endif %}   
+    {% endif %}
 
     {% if app.user.pais.id == 5 %}
     <li><a href="{{ path('encuestas_new', { 'type': 'electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
-    {% endif %}  
+    {% endif %}
 
     {% if app.user.pais.id == 6 %}
     <li><a href="{{ path('encuestas_new', { 'type': 'electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
-    {% endif %}      
+    {% endif %}
 
     </ul>
 </div>
@@ -109,7 +109,7 @@
         </script>
         <script src="http://code.highcharts.com/highcharts.js"></script>
     {% endblock %}
-    
+
     {% block js %}
       {{ parent() }}
       <script type="text/javascript">
@@ -140,11 +140,11 @@
       var map;
 
       function createResultado(indice,cantidad) {
-      
+
         var data = "<div class='alert alert-";
 
         if (indice >= 80) data = data + 'info';
-        if (indice < 80) data = data + 'warning'; 
+        if (indice < 80) data = data + 'warning';
 
         return data + "'><h4 class='text-center'>IPAL: " + indice + ", {{ "Nº de inspecciones" | trans }}: " + cantidad + "</h4>" + "<p class='text-center'>* IPAL = {{ "Riesgo Detectado" | trans }} (RD) / {{ "Nº Inspecciones" | trans }}</p></div>";
 
@@ -155,7 +155,7 @@
           var data = "<div class='alert alert-";
 
           if (indice >= 80) data = data + 'info';
-          if (indice < 80) data = data + 'warning'; 
+          if (indice < 80) data = data + 'warning';
 
           data = data + "'>\
             <div class='text-center'><h4 class='text-center'>{{ 'Informes' | trans }} IPAL</h4>\
@@ -239,13 +239,13 @@
           $.each(collection, function() {
 
             var files = '';
-            $.each(this.files, function(i, item) { 
+            $.each(this.files, function(i, item) {
               files = files + '<a target="blank" href="/'+ item + '">{{ 'Archivo' | trans }} #'  + ( i + 1 )+ '</a><br/>' ;
             });
             files = files + '';
 
             var filesCierre = '';
-            $.each(this.filesCierre, function(i, item) { 
+            $.each(this.filesCierre, function(i, item) {
               filesCierre = filesCierre + '<a target="blank" href="/'+ item + '">{{ 'Archivo' | trans }} #'  + ( i + 1 )+ '</a><br/>' ;
             });
 
@@ -271,7 +271,12 @@
                     <button type="button" class="btn btn-default btn-xs">\
                       <span class="glyphicon glyphicon-print"></span> {{ 'Ver' | trans }} \
                     </button>\
-                  </a>\
+                  </a>' + ( (this.pais === 'CHILE-COASIN') ? '\
+                  <a target="blank" id="show_encuesta_coasin_' + this.id + '" href="/encuestas/coasin/' + this.id + '.html">\
+                    <button type="button" class="btn btn-default btn-xs">\
+                      <span class="glyphicon glyphicon-print"></span> Coasin \
+                    </button>\
+                  </a>' : '' ) + '\
                   <a id="edit_encuesta_' + this.id + '" target="_blank" href="/encuestas/edit/' + this.id + '">\
                     <button type="button" class="btn btn-default btn-xs">\
                       <span class="glyphicon glyphicon-pencil"></span> {{ 'Editar' | trans }}\
@@ -301,7 +306,7 @@
              dataType: "json",
              type: "GET",
              url: "/encuestas/delete/" + id + "/" +  token + "",
-             success: function (dataSuccess) { 
+             success: function (dataSuccess) {
                  if (dataSuccess.status == "1") {
                    $('tr#row_' + id ).fadeOut();
                  }
@@ -309,9 +314,9 @@
             });
 
         }
-    
+
         function updateDataEncuestas(pagina, items_por_pagina) {
-          
+
           pagina = typeof pagina !== 'undefined' ? pagina : 1;
           items_por_pagina = typeof items_por_pagina !== 'undefined' ? items_por_pagina : 15;
 
@@ -326,13 +331,13 @@
                $('#resultados').html("<div class='spinner'></div>");
                $('#encuestas').html("<div class='spinner'></div>");
              },
-             success: function (dataSuccess) { 
-               //Ahora que tengo los objetos debo parsear  
+             success: function (dataSuccess) {
+               //Ahora que tengo los objetos debo parsear
                //Primero la lista:
                if (dataSuccess.hits < 1) {
-                 $('#resultados').html('<div class="alert alert-info">{{ 'No hay encuestas IPAL que mostrar.' | trans }}</div>'); 
-                 $('#encuestas').html('<div class="alert alert-info">{{ 'No hay encuestas IPAL que mostrar.' | trans }}</div>'); 
-               } else { 
+                 $('#resultados').html('<div class="alert alert-info">{{ 'No hay encuestas IPAL que mostrar.' | trans }}</div>');
+                 $('#encuestas').html('<div class="alert alert-info">{{ 'No hay encuestas IPAL que mostrar.' | trans }}</div>');
+               } else {
                  $('#resultados').html(createResultado(dataSuccess.indiceIPAL,dataSuccess.hits));
                  $('#resultados').append(createDashboard(dataSuccess.ids));
 
@@ -396,7 +401,7 @@
                       yAxis: serie.yAxis,
                       tooltip: {
                           valueSuffix: serie.valueSuffix
-                        }                      
+                        }
                       }
                       options.series.push(data_serie);
                     });
@@ -408,7 +413,7 @@
 
                  $('#resultados').append(createReportes(dataSuccess.indiceIPAL,dataSuccess.hits,dataSuccess.entities));
 
-                 $('#reporte_por_mes').bind('click', function (e) { 
+                 $('#reporte_por_mes').bind('click', function (e) {
                    $.ajax({
                      type: "POST",
                      dataType: "json",
@@ -422,7 +427,7 @@
                    });
                  });
 
-                 $('#reporte_todos_los_datos').bind('click', function (e) { 
+                 $('#reporte_todos_los_datos').bind('click', function (e) {
                    $.ajax({
                      type: "POST",
                      dataType: "json",
@@ -434,9 +439,9 @@
                         alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
                      }
                    });
-                 });   
+                 });
 
-                 $('#reportes_no_conformidades').bind('click', function (e) { 
+                 $('#reportes_no_conformidades').bind('click', function (e) {
                    $.ajax({
                      type: "POST",
                      dataType: "json",
@@ -448,9 +453,9 @@
                         alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
                      }
                    });
-                 });           
+                 });
 
-                 $('#reporte_ipal_por_prevencionista').bind('click', function (e) { 
+                 $('#reporte_ipal_por_prevencionista').bind('click', function (e) {
                    $.ajax({
                      type: "POST",
                      dataType: "json",
@@ -462,9 +467,9 @@
                         alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
                      }
                    });
-                 });    
+                 });
 
-                 $('#reporte_total_prevencionistas').bind('click', function (e) { 
+                 $('#reporte_total_prevencionistas').bind('click', function (e) {
                    $.ajax({
                      type: "POST",
                      dataType: "json",
@@ -476,9 +481,9 @@
                         alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
                      }
                    });
-                 });   
+                 });
 
-                 $('#reporte_total_no_50_20').bind('click', function (e) { 
+                 $('#reporte_total_no_50_20').bind('click', function (e) {
                    $.ajax({
                      type: "POST",
                      dataType: "json",
@@ -491,9 +496,9 @@
                         alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file_total + ".csv y " + data.file_no_5020 + ".csv");
                      }
                    });
-                 });                                                     
+                 });
 
-                 $('#reporte_cierre').bind('click', function (e) { 
+                 $('#reporte_cierre').bind('click', function (e) {
                    $.ajax({
                      type: "POST",
                      dataType: "json",
@@ -505,9 +510,9 @@
                         alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
                      }
                    });
-                 });  
+                 });
 
-                 $('#reporte_total_50').bind('click', function (e) { 
+                 $('#reporte_total_50').bind('click', function (e) {
                    $.ajax({
                      type: "POST",
                      dataType: "json",
@@ -519,9 +524,9 @@
                         alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
                      }
                    });
-                 });    
+                 });
 
-                 $('#reporte_taseg').bind('click', function (e) { 
+                 $('#reporte_taseg').bind('click', function (e) {
                    $.ajax({
                      type: "POST",
                      dataType: "json",
@@ -533,20 +538,20 @@
                         alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
                      }
                    });
-                 });                     
+                 });
 
                  $('#encuestas').html(createListado(dataSuccess.entities, dataSuccess.pagina));
 
-                 if (Number(dataSuccess.pagina) == 1) { 
-                   $("a#previous").parent().addClass("disabled"); 
+                 if (Number(dataSuccess.pagina) == 1) {
+                   $("a#previous").parent().addClass("disabled");
                  } else {
                    $('#previous').bind('click', function (e) {
                      updateDataEncuestas(dataSuccess.pagina - 1);
                    });
                  }
 
-                 if ( (Number(dataSuccess.ultima_pagina) == Number(dataSuccess.pagina)) || (Number(dataSuccess.entities.length) < 15) ) { 
-                   $("a#next").parent().addClass("disabled"); 
+                 if ( (Number(dataSuccess.ultima_pagina) == Number(dataSuccess.pagina)) || (Number(dataSuccess.entities.length) < 15) ) {
+                   $("a#next").parent().addClass("disabled");
                  } else {
                    $('#next').bind('click', function (e) {
                      updateDataEncuestas(dataSuccess.pagina + 1);
@@ -554,15 +559,15 @@
                  }
 
                  $.each(dataSuccess.entities, function() {
-                   $('#edit_encuesta_' + this.id ).hide(); 
+                   $('#edit_encuesta_' + this.id ).hide();
                    {% if is_granted('ROLE_ADMIN') %}
-                     $('#edit_encuesta_' + this.id ).show();  
+                     $('#edit_encuesta_' + this.id ).show();
                    {% endif %}
                    if (this.createdBy == this.actualUser) {
-                     $('#edit_encuesta_' + this.id ).show();  
+                     $('#edit_encuesta_' + this.id ).show();
                    }
 
-                 }); 
+                 });
                  updateMarkers(map, dataSuccess.entities);
 
                  $('a.confirm').bind('click', function () {
@@ -585,7 +590,7 @@
              dataType: "json",
              type: "POST",
              url: "{{ path('registros_inspectores_json') }}",
-             success: function (dataSuccess) { 
+             success: function (dataSuccess) {
                  $.each(dataSuccess, function(i, item) {
                    $('select#bctic_camipalbundle_encuesta_inspector').append('<option value="' + item.nombre + '">' + item.nombre + '</option>');
                  });
@@ -595,13 +600,13 @@
         }
 
         function listarPrevencionistas() {
-                 
-          $('select#bctic_camipalbundle_encuesta_prevencionista').append('<option value="0">{{ '- NINGUN PREVENCIONISTA -' | trans }}</option>');                 
+
+          $('select#bctic_camipalbundle_encuesta_prevencionista').append('<option value="0">{{ '- NINGUN PREVENCIONISTA -' | trans }}</option>');
           $.ajax({
              dataType: "json",
              type: "POST",
              url: "{{ path('registros_prevencionistas_json') }}",
-             success: function (dataSuccess) { 
+             success: function (dataSuccess) {
                  $.each(dataSuccess, function(i, item) {
                    $('select#bctic_camipalbundle_encuesta_prevencionista').append('<option value="' + item.nombre + '">' + item.nombre + '</option>');
                  });
@@ -611,12 +616,12 @@
         }
 
         function listarSupervisores() {
-                 
+
           $.ajax({
              dataType: "json",
              type: "POST",
              url: "{{ path('registros_supervisores_json') }}",
-             success: function (dataSuccess) { 
+             success: function (dataSuccess) {
                  $.each(dataSuccess, function(i, item) {
                    $('select#bctic_camipalbundle_encuesta_supervisorFacade').append('<option value="' + item.nombre + '">' + item.nombre + '</option>');
                  });
@@ -625,10 +630,10 @@
 
         }
 
-      $(document).ready( function () { 
+      $(document).ready( function () {
 
         map = initialize("map-canvas", false, "{{ 'Usted está aquí' | trans }}",13, 'bctic_camipalbundle_dummy');
-         
+
         $('#map-canvas').hide();
         $("#map-tab").on('shown.bs.tab', function() {
           $('#map-canvas').show();
@@ -691,7 +696,7 @@
             error: function (a,b,c) {
               alert("ERROR: " + b + " - " + a + " - " + c );
             }
-        });           
+        });
 
         //Elimino todos los objetos:
         //Solo muestro las areas según el pais y rol - si aplica - esto lo hace el controlador:
@@ -709,7 +714,7 @@
             error: function (a,b,c) {
               alert("ERROR: " + b + " - " + a + " - " + c );
             }
-        });           
+        });
 
         //Elimino todos los objetos:
         //Solo muestro las gerencias según el pais y rol - si aplica - esto lo hace el controlador:
@@ -727,7 +732,7 @@
             error: function (a,b,c) {
               alert("ERROR: " + b + " - " + a + " - " + c );
             }
-        }); 
+        });
 
         //Elimino todos los objetos:
         //Solo muestro las subgerencias según el pais y rol - si aplica - esto lo hace el controlador:
@@ -745,7 +750,7 @@
             error: function (a,b,c) {
 
             }
-        }); 
+        });
 
 
         //Actualizo la lista de inspectores
@@ -755,7 +760,7 @@
         //Actualizo la lista de supervisores - OJO incluye a los Usuarios
         listarSupervisores();
 
-        $('#bctic_camipalbundle_encuesta_button').bind('click', function () { 
+        $('#bctic_camipalbundle_encuesta_button').bind('click', function () {
            updateDataEncuestas(1);
         });
 

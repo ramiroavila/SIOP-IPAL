@@ -14,16 +14,17 @@
   </button>
   <ul class="dropdown-menu btn-block" role="menu">
 
-      {% if app.user.pais.id == 1 %}
+    {% if app.user.pais.id == 1 %}
     <li><a href="{{ path('encuestas_new', { 'type': 'electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'chilectra'} ) }}">{{ 'Agregar IPAL Chilectra' | trans }}</a></li>
+    <li><a href="{{ path('encuestas_new', { 'type': 'llvv'} ) }}">{{ 'Agregar IPAL LLVV' | trans }}</a></li>
     {% endif %}
 
     {% if app.user.pais.id == 2 %}
-    <li><a href="{{ path('encuestas_new', { 'type': 'colombia_general'} ) }}">{{ 'Agregar IPAL Colombia' | trans }}</a></li>     
+    <li><a href="{{ path('encuestas_new', { 'type': 'colombia_general'} ) }}">{{ 'Agregar IPAL Colombia' | trans }}</a></li>
     {% endif %}
 
     {% if app.user.pais.id == 3 %}
@@ -31,26 +32,27 @@
     <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
-    {% endif %}    
+    {% endif %}
 
     {% if app.user.pais.id == 4 %}
     <li><a href="{{ path('encuestas_new', { 'type': 'brazil_general'} ) }}">{{ 'Agregar IPAL' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'brazil_interno'} ) }}">{{ 'Agregar IPAL Interno' | trans }}</a></li>
-    {% endif %}   
+    {% endif %}
 
     {% if app.user.pais.id == 5 %}
     <li><a href="{{ path('encuestas_new', { 'type': 'electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
-    {% endif %}  
+    {% endif %}
 
     {% if app.user.pais.id == 6 %}
     <li><a href="{{ path('encuestas_new', { 'type': 'electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
     <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
-    {% endif %}      
+    <li><a href="{{ path('encuestas_new', { 'type': 'llvv'} ) }}">{{ 'Agregar IPAL LLVV' | trans }}</a></li>
+    {% endif %}
 
   </ul>
   </div>
@@ -67,13 +69,14 @@
     <li><a href="{{ path('encuestas_show_form', { type: 'obras_civiles'}) }}">{{ 'IPAL Obras Civiles' | trans }}</a></li>
     <li><a href="{{ path('encuestas_show_form', { type: 'telecomunicaciones'}) }}">{{ 'IPAL Telecomunicaciones' | trans }}</a></li>
     <li><a href="{{ path('encuestas_show_form', { type: 'chilectra'}) }}">{{ 'IPAL Chilectra' | trans }}</a></li>
+    <li><a href="{{ path('encuestas_show_form', { type: 'llvv'}) }}">{{ 'IPAL LLVV' | trans }}</a></li>
     <li><a href="{{ path('observaciones_show_form') }}">{{ 'Observaciones' | trans }}</a></li>
     {% endif %}
     {% if app.user.pais.id == 2 %}
     <li><a href="{{ path('encuestas_show_form', { type: 'colombia_general'}) }}">{{ 'IPAL Colombia' | trans }}</a></li>
 
 
-    <li><a href="{{ path('observaciones_show_form')}}">{{ 'Observaciones' | trans }}</a></li> 
+    <li><a href="{{ path('observaciones_show_form')}}">{{ 'Observaciones' | trans }}</a></li>
     {% endif %}
     {% if app.user.pais.id == 3 %}
     <li><a href="{{ path('encuestas_show_form', { type: 'electrica'}) }}">{{ 'IPAL Eléctrica' | trans }}</a></li>
@@ -81,19 +84,19 @@
     <li><a href="{{ path('encuestas_show_form', { type: 'obras_civiles'}) }}">{{ 'IPAL Obras Civiles' | trans }}</a></li>
     <li><a href="{{ path('encuestas_show_form', { type: 'telecomunicaciones'}) }}">{{ 'IPAL Telecomunicaciones' | trans }}</a></li>
     <li><a href="{{ path('observaciones_show_form') }}">{{ 'Observaciones' | trans }}</a></li>
-    {% endif %}    
+    {% endif %}
     {% if app.user.pais.id == 4 %}
     <li><a href="{{ path('encuestas_show_form', { type: 'brazil_general'}) }}">{{ 'IPAL' | trans }}</a></li>
     <li><a href="{{ path('encuestas_show_form', { type: 'brazil_interno'}) }}">{{ 'IPAL Interno' | trans }}</a></li>
     <li><a href="{{ path('observaciones_show_form') }}">{{ 'Observaciones' | trans }}</a></li>
-    {% endif %}   
+    {% endif %}
     {% if app.user.pais.id == 5 %}
     <li><a href="{{ path('encuestas_show_form', { type: 'electrica'}) }}">{{ 'IPAL Eléctrica' | trans }}</a></li>
     <li><a href="{{ path('encuestas_show_form', { type: 'logistica'}) }}">{{ 'IPAL Logística' | trans }}</a></li>
     <li><a href="{{ path('encuestas_show_form', { type: 'obras_civiles'}) }}">{{ 'IPAL Obras Civiles' | trans }}</a></li>
     <li><a href="{{ path('encuestas_show_form', { type: 'telecomunicaciones'}) }}">{{ 'IPAL Telecomunicaciones' | trans }}</a></li>
     <li><a href="{{ path('observaciones_show_form') }}">{{ 'Observaciones' | trans }}</a></li>
-    {% endif %}  
+    {% endif %}
   </ul>
   </div>
   <br/>
@@ -101,7 +104,7 @@
   <a href="{{ path('observaciones') }}">
   <button type="button" class="btn btn-info btn-lg btn-block">{{ 'Observaciones' | trans }}</button></a>
   <br/>
-  
+
 </div>
 
 {% endblock %}

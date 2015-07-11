@@ -16,8 +16,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * @ORM\Entity
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="tipo", type="string")
- * @ORM\DiscriminatorMap({"CHILECTRA" = "EncuestaChilectra" ,"ELECTRICO" = "EncuestaElectrica", "COLOMBIA_GENERAL" = "EncuestaColombiaGeneral", "BRAZIL_GENERAL" = "EncuestaBrazilGeneral", "BRAZIL_INTERNO" = "EncuestaBrazilInterno", "LOGISTICA" = "EncuestaLogistica", "OBRAS_CIVILES" = "EncuestaObrasCiviles", "TELECOMUNICACIONES" = "EncuestaTelecomunicaciones" })
- * @BcTicAssert\ContainsUploadedFile 
+ * @ORM\DiscriminatorMap({"CHILECTRA" = "EncuestaChilectra" ,"ELECTRICO" = "EncuestaElectrica", "COLOMBIA_GENERAL" = "EncuestaColombiaGeneral", "BRAZIL_GENERAL" = "EncuestaBrazilGeneral", "BRAZIL_INTERNO" = "EncuestaBrazilInterno", "LOGISTICA" = "EncuestaLogistica", "OBRAS_CIVILES" = "EncuestaObrasCiviles", "TELECOMUNICACIONES" = "EncuestaTelecomunicaciones", "LLVV" = "EncuestaLlvv" })
+ * @BcTicAssert\ContainsUploadedFile
  */
 abstract class Encuesta
 {
@@ -35,7 +35,7 @@ abstract class Encuesta
      *
      * @ORM\Column(name="created_at", type="integer", options={"default" = 0})
      */
-    private $createdAt = 0;   
+    private $createdAt = 0;
 
     private $tipoFacade;
 
@@ -43,7 +43,7 @@ abstract class Encuesta
      * @var \DateTime
      *
      * @ORM\Column(name="fecha", type="date")
-     * 
+     *
      */
     private $fecha;
 
@@ -99,7 +99,7 @@ abstract class Encuesta
      *
      * @ORM\Column(name="indice", type="integer")
      */
-    private $indice = 0;    
+    private $indice = 0;
 
     /**
      * @var integer
@@ -114,7 +114,7 @@ abstract class Encuesta
      * @ORM\Column(name="respuesta_1_2", type="smallint")
      */
     private $respuesta12 = 0;
-  
+
     /**
      * @var integer
      *
@@ -128,14 +128,14 @@ abstract class Encuesta
      * @ORM\Column(name="respuesta_1_4", type="smallint")
      */
     private $respuesta14 = 0;
-  
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_1_5", type="smallint")
      */
     private $respuesta15 = 0;
- 
+
     /**
      * @var integer
      *
@@ -149,14 +149,14 @@ abstract class Encuesta
      * @ORM\Column(name="respuesta_2_1", type="smallint")
      */
     private $respuesta21 = 0;
-  
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_2_2", type="smallint")
      */
     private $respuesta22 = 0;
-  
+
     /**
      * @var integer
      *
@@ -176,14 +176,14 @@ abstract class Encuesta
      *
      * @ORM\Column(name="respuesta_2_5", type="smallint")
      */
-    private $respuesta25 = 0;        
- 
+    private $respuesta25 = 0;
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_2_6", type="smallint")
      */
-    private $respuesta26 = 0;  
+    private $respuesta26 = 0;
 
     /**
      * @var integer
@@ -191,28 +191,28 @@ abstract class Encuesta
      * @ORM\Column(name="respuesta_3_1", type="smallint")
      */
     private $respuesta31 = 0;
-  
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_3_2", type="smallint")
      */
     private $respuesta32 = 0;
-  
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_3_3", type="smallint")
      */
     private $respuesta33 = 0;
- 
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_3_4", type="smallint")
      */
     private $respuesta34 = 0;
-  
+
     /**
      * @var integer
      *
@@ -267,21 +267,21 @@ abstract class Encuesta
      *
      * @ORM\Column(name="respuesta_3_12", type="smallint")
      */
-    private $respuesta312 = 0;        
+    private $respuesta312 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_3_13", type="smallint")
      */
-    private $respuesta313 = 0;  
+    private $respuesta313 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_3_14", type="smallint")
      */
-    private $respuesta314 = 0;      
+    private $respuesta314 = 0;
 
     /**
      * @var integer
@@ -289,78 +289,78 @@ abstract class Encuesta
      * @ORM\Column(name="respuesta_4_1", type="smallint")
      */
     private $respuesta41 = 0;
-  
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_4_2", type="smallint")
      */
     private $respuesta42 = 0;
- 
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_4_3", type="smallint")
      */
     private $respuesta43 = 0;
-  
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_4_4", type="smallint")
      */
     private $respuesta44 = 0;
-  
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_4_5", type="smallint")
      */
     private $respuesta45 = 0;
- 
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_4_6", type="smallint")
      */
     private $respuesta46 = 0;
-  
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_4_7", type="smallint")
      */
     private $respuesta47 = 0;
-  
- 
+
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_4_8", type="smallint")
      */
     private $respuesta48 = 0;
-  
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_4_9", type="smallint")
      */
     private $respuesta49 = 0;
-  
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_4_1_0", type="smallint")
      */
     private $respuesta410 = 0;
- 
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_4_1_1", type="smallint")
      */
     private $respuesta411 = 0;
-  
+
     /**
      * @var integer
      *
@@ -394,15 +394,15 @@ abstract class Encuesta
      *
      * @ORM\Column(name="respuesta_4_1_6", type="smallint")
      */
-    private $respuesta416 = 0;    
- 
+    private $respuesta416 = 0;
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_5_1", type="smallint")
      */
     private $respuesta51 = 0;
-  
+
     /**
      * @var integer
      *
@@ -422,7 +422,7 @@ abstract class Encuesta
      *
      * @ORM\Column(name="respuesta_5_4", type="smallint")
      */
-    private $respuesta54 = 0;    
+    private $respuesta54 = 0;
 
     /**
      * @var integer
@@ -437,14 +437,14 @@ abstract class Encuesta
      * @ORM\Column(name="respuesta_6_2", type="smallint")
      */
     private $respuesta62 = 0;
-  
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_6_3", type="smallint")
      */
     private $respuesta63 = 0;
-  
+
     /**
      * @var integer
      *
@@ -478,15 +478,15 @@ abstract class Encuesta
      *
      * @ORM\Column(name="respuesta_7_3", type="smallint")
      */
-    private $respuesta73 = 0;    
+    private $respuesta73 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_7_4", type="smallint")
      */
-    private $respuesta74 = 0;      
-  
+    private $respuesta74 = 0;
+
     /**
      * @var integer
      *
@@ -506,7 +506,7 @@ abstract class Encuesta
      *
      * @ORM\Column(name="respuesta_8_3", type="smallint")
      */
-    private $respuesta83 = 0;    
+    private $respuesta83 = 0;
 
     /**
      * @var integer
@@ -521,14 +521,14 @@ abstract class Encuesta
      * @ORM\Column(name="respuesta_9_2", type="smallint")
      */
     private $respuesta92 = 0;
-  
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_9_3", type="smallint")
      */
     private $respuesta93 = 0;
- 
+
     /**
      * @var integer
      *
@@ -569,21 +569,21 @@ abstract class Encuesta
      *
      * @ORM\Column(name="respuesta_9_9", type="smallint")
      */
-    private $respuesta99 = 0;                     
+    private $respuesta99 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_9_10", type="smallint")
      */
-    private $respuesta910 = 0;   
+    private $respuesta910 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_9_11", type="smallint")
      */
-    private $respuesta911 = 0;                             
+    private $respuesta911 = 0;
 
     /**
      * @var integer
@@ -598,7 +598,7 @@ abstract class Encuesta
      * @ORM\Column(name="respuesta_10_2", type="smallint")
      */
     private $respuesta102 = 0;
-  
+
     /**
      * @var integer
      *
@@ -611,7 +611,7 @@ abstract class Encuesta
      *
      * @ORM\Column(name="respuesta_10_4", type="smallint")
      */
-    private $respuesta104 = 0;    
+    private $respuesta104 = 0;
 
     /**
      * @var integer
@@ -625,119 +625,126 @@ abstract class Encuesta
      *
      * @ORM\Column(name="respuesta_11_2", type="smallint")
      */
-    private $respuesta112 = 0;    
+    private $respuesta112 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_11_3", type="smallint")
+     */
+    private $respuesta113 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_12_1", type="smallint")
      */
-    private $respuesta121 = 0;    
+    private $respuesta121 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_12_2", type="smallint")
      */
-    private $respuesta122 = 0;   
+    private $respuesta122 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_12_3", type="smallint")
      */
-    private $respuesta123 = 0;   
+    private $respuesta123 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_12_4", type="smallint")
      */
-    private $respuesta124 = 0;   
+    private $respuesta124 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_12_5", type="smallint")
      */
-    private $respuesta125 = 0; 
+    private $respuesta125 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_12_6", type="smallint")
      */
-    private $respuesta126 = 0;                          
-  
+    private $respuesta126 = 0;
+
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_13_1", type="smallint")
      */
-    private $respuesta131 = 0;   
+    private $respuesta131 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_13_2", type="smallint")
      */
-    private $respuesta132 = 0;   
+    private $respuesta132 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_13_3", type="smallint")
      */
-    private $respuesta133 = 0;   
+    private $respuesta133 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_13_4", type="smallint")
      */
-    private $respuesta134 = 0;   
+    private $respuesta134 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_13_5", type="smallint")
      */
-    private $respuesta135 = 0;   
+    private $respuesta135 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_13_6", type="smallint")
      */
-    private $respuesta136 = 0;   
+    private $respuesta136 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_13_7", type="smallint")
      */
-    private $respuesta137 = 0;                       
+    private $respuesta137 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_13_8", type="smallint")
      */
-    private $respuesta138 = 0;       
+    private $respuesta138 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_13_9", type="smallint")
      */
-    private $respuesta139 = 0;                      
+    private $respuesta139 = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_13_10", type="smallint")
      */
-    private $respuesta1310 = 0;             
+    private $respuesta1310 = 0;
 
     /**
      * @var string
@@ -795,7 +802,7 @@ abstract class Encuesta
      * @ORM\Column(name="visible", type="boolean")
      */
     private $visible;
-  
+
     /**
      * @ORM\ManyToOne(targetEntity="Empresa", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
@@ -809,15 +816,15 @@ abstract class Encuesta
     protected $contrato;
 
     protected $mandante;
-  
-  
+
+
     /**
      * @var string
      *
      * @ORM\Column(name="supervisor_facade", type="string", length=255, nullable=true)
      */
     protected $supervisorFacade;
-    
+
     /**
      *
      * @var string
@@ -858,12 +865,12 @@ abstract class Encuesta
      *
      * @ORM\Column(name="status_cierre", type="string", length=50, options={"default" = "N/A"})
      */
-    private $statusCierre = "N/A";    
-  
+    private $statusCierre = "N/A";
+
     protected $servicio;
-  
+
     protected $area;
-  
+
     protected $gerencia;
 
     protected $subGerencia;
@@ -871,26 +878,26 @@ abstract class Encuesta
     /**
      * @var \Date
      *
-     * 
+     *
      */
     private $fechaDesde;
-    
+
     /**
      * @var \Date
      *
-     * 
+     *
      */
     private $fechaHasta;
-  
+
     /**
     * PARA USO DEL FILTRO
-    * 
+    *
     */
     private $grupos;
-    
+
     /**
     * PARA USO DEL FILTRO
-    * 
+    *
     */
     private $unidadDeNegocio;
 
@@ -927,7 +934,7 @@ abstract class Encuesta
      *
      * @ORM\Column(name="cierre_log", type="text", nullable=true)
      */
-    private $cierreLog;    
+    private $cierreLog;
 
     abstract function getKey();
     abstract function getIncumplimientos();
@@ -937,7 +944,7 @@ abstract class Encuesta
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -960,7 +967,7 @@ abstract class Encuesta
     /**
      * Get fecha
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFecha()
     {
@@ -983,7 +990,7 @@ abstract class Encuesta
     /**
      * Get hora
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getHora()
     {
@@ -1006,7 +1013,7 @@ abstract class Encuesta
     /**
      * Get actividad
      *
-     * @return string 
+     * @return string
      */
     public function getActividad()
     {
@@ -1029,7 +1036,7 @@ abstract class Encuesta
     /**
      * Get lugarDeTrabajo
      *
-     * @return string 
+     * @return string
      */
     public function getLugarDeTrabajo()
     {
@@ -1052,7 +1059,7 @@ abstract class Encuesta
     /**
      * Get numDeEmpleados
      *
-     * @return integer 
+     * @return integer
      */
     public function getNumDeEmpleados()
     {
@@ -1075,7 +1082,7 @@ abstract class Encuesta
     /**
      * Get cttaSubcont
      *
-     * @return string 
+     * @return string
      */
     public function getCttaSubcont()
     {
@@ -1098,7 +1105,7 @@ abstract class Encuesta
     /**
      * Get observaciones
      *
-     * @return string 
+     * @return string
      */
     public function getObservaciones()
     {
@@ -1121,7 +1128,7 @@ abstract class Encuesta
     /**
      * Get file1
      *
-     * @return string 
+     * @return string
      */
     public function getFile1()
     {
@@ -1136,7 +1143,7 @@ abstract class Encuesta
     public function getUploadedFile1()
     {
         return $this->uploadedFile1;
-    }    
+    }
 
     /**
      * Set file2
@@ -1154,7 +1161,7 @@ abstract class Encuesta
     /**
      * Get file2
      *
-     * @return string 
+     * @return string
      */
     public function getFile2()
     {
@@ -1169,7 +1176,7 @@ abstract class Encuesta
     public function getUploadedFile2()
     {
         return $this->uploadedFile2;
-    }    
+    }
 
     /**
      * Set file3
@@ -1187,7 +1194,7 @@ abstract class Encuesta
     /**
      * Get file3
      *
-     * @return string 
+     * @return string
      */
     public function getFile3()
     {
@@ -1220,7 +1227,7 @@ abstract class Encuesta
     /**
      * Get visible
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getVisible()
     {
@@ -1243,7 +1250,7 @@ abstract class Encuesta
     /**
      * Get empresa
      *
-     * @return \BcTic\CamIpalBundle\Entity\Empresa 
+     * @return \BcTic\CamIpalBundle\Entity\Empresa
      */
     public function getEmpresa()
     {
@@ -1266,7 +1273,7 @@ abstract class Encuesta
     /**
      * Get contrato
      *
-     * @return \BcTic\CamIpalBundle\Entity\Contrato 
+     * @return \BcTic\CamIpalBundle\Entity\Contrato
      */
     public function getContrato()
     {
@@ -1289,7 +1296,7 @@ abstract class Encuesta
     /**
      * Get mandante
      *
-     * @return \BcTic\CamIpalBundle\Entity\Mandante 
+     * @return \BcTic\CamIpalBundle\Entity\Mandante
      */
     public function getMandante()
     {
@@ -1354,7 +1361,7 @@ abstract class Encuesta
     /**
      * Get servicio
      *
-     * @return \BcTic\CamIpalBundle\Entity\Servicio 
+     * @return \BcTic\CamIpalBundle\Entity\Servicio
      */
     public function getServicio()
     {
@@ -1377,7 +1384,7 @@ abstract class Encuesta
     /**
      * Get area
      *
-     * @return \BcTic\CamIpalBundle\Entity\Area 
+     * @return \BcTic\CamIpalBundle\Entity\Area
      */
     public function getArea()
     {
@@ -1400,7 +1407,7 @@ abstract class Encuesta
     /**
      * Get gerencia
      *
-     * @return \BcTic\CamIpalBundle\Entity\Gerencia 
+     * @return \BcTic\CamIpalBundle\Entity\Gerencia
      */
     public function getGerencia()
     {
@@ -1423,7 +1430,7 @@ abstract class Encuesta
     /**
      * Get subGerencia
      *
-     * @return \BcTic\CamIpalBundle\Entity\SubGerencia 
+     * @return \BcTic\CamIpalBundle\Entity\SubGerencia
      */
     public function getSubGerencia()
     {
@@ -1447,7 +1454,7 @@ abstract class Encuesta
     /**
      * Get respuesta11
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta11()
     {
@@ -1470,7 +1477,7 @@ abstract class Encuesta
     /**
      * Get respuesta12
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta12()
     {
@@ -1493,7 +1500,7 @@ abstract class Encuesta
     /**
      * Get respuesta13
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta13()
     {
@@ -1516,7 +1523,7 @@ abstract class Encuesta
     /**
      * Get respuesta21
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta21()
     {
@@ -1539,7 +1546,7 @@ abstract class Encuesta
     /**
      * Get respuesta22
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta22()
     {
@@ -1562,7 +1569,7 @@ abstract class Encuesta
     /**
      * Get respuesta23
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta23()
     {
@@ -1585,7 +1592,7 @@ abstract class Encuesta
     /**
      * Get respuesta31
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta31()
     {
@@ -1608,7 +1615,7 @@ abstract class Encuesta
     /**
      * Get respuesta32
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta32()
     {
@@ -1631,7 +1638,7 @@ abstract class Encuesta
     /**
      * Get respuesta33
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta33()
     {
@@ -1654,7 +1661,7 @@ abstract class Encuesta
     /**
      * Get respuesta34
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta34()
     {
@@ -1677,7 +1684,7 @@ abstract class Encuesta
     /**
      * Get respuesta35
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta35()
     {
@@ -1700,7 +1707,7 @@ abstract class Encuesta
     /**
      * Get respuesta41
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta41()
     {
@@ -1723,7 +1730,7 @@ abstract class Encuesta
     /**
      * Get respuesta42
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta42()
     {
@@ -1746,7 +1753,7 @@ abstract class Encuesta
     /**
      * Get respuesta43
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta43()
     {
@@ -1769,7 +1776,7 @@ abstract class Encuesta
     /**
      * Get respuesta44
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta44()
     {
@@ -1792,7 +1799,7 @@ abstract class Encuesta
     /**
      * Get respuesta45
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta45()
     {
@@ -1815,7 +1822,7 @@ abstract class Encuesta
     /**
      * Get respuesta46
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta46()
     {
@@ -1838,7 +1845,7 @@ abstract class Encuesta
     /**
      * Get respuesta47
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta47()
     {
@@ -1861,7 +1868,7 @@ abstract class Encuesta
     /**
      * Get respuesta48
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta48()
     {
@@ -1884,7 +1891,7 @@ abstract class Encuesta
     /**
      * Get respuesta49
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta49()
     {
@@ -1907,7 +1914,7 @@ abstract class Encuesta
     /**
      * Get respuesta410
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta410()
     {
@@ -1930,7 +1937,7 @@ abstract class Encuesta
     /**
      * Get respuesta411
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta411()
     {
@@ -1953,7 +1960,7 @@ abstract class Encuesta
     /**
      * Get respuesta412
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta412()
     {
@@ -1976,7 +1983,7 @@ abstract class Encuesta
     /**
      * Get respuesta51
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta51()
     {
@@ -1999,7 +2006,7 @@ abstract class Encuesta
     /**
      * Get respuesta52
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta52()
     {
@@ -2022,7 +2029,7 @@ abstract class Encuesta
     /**
      * Get respuesta53
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta53()
     {
@@ -2045,7 +2052,7 @@ abstract class Encuesta
     /**
      * Get respuesta61
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta61()
     {
@@ -2068,7 +2075,7 @@ abstract class Encuesta
     /**
      * Get respuesta62
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta62()
     {
@@ -2091,7 +2098,7 @@ abstract class Encuesta
     /**
      * Get respuesta71
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta71()
     {
@@ -2114,7 +2121,7 @@ abstract class Encuesta
     /**
      * Get respuesta72
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta72()
     {
@@ -2137,7 +2144,7 @@ abstract class Encuesta
     /**
      * Get respuesta81
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta81()
     {
@@ -2160,7 +2167,7 @@ abstract class Encuesta
     /**
      * Get respuesta82
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta82()
     {
@@ -2183,7 +2190,7 @@ abstract class Encuesta
     /**
      * Get respuesta91
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta91()
     {
@@ -2206,7 +2213,7 @@ abstract class Encuesta
     /**
      * Get respuesta92
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta92()
     {
@@ -2229,7 +2236,7 @@ abstract class Encuesta
     /**
      * Get respuesta93
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta93()
     {
@@ -2252,7 +2259,7 @@ abstract class Encuesta
     /**
      * Get respuesta101
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta101()
     {
@@ -2275,7 +2282,7 @@ abstract class Encuesta
     /**
      * Get respuesta102
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta102()
     {
@@ -2298,7 +2305,7 @@ abstract class Encuesta
     /**
      * Get respuesta103
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta103()
     {
@@ -2321,7 +2328,7 @@ abstract class Encuesta
     /**
      * Get respuesta111
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta111()
     {
@@ -2344,7 +2351,7 @@ abstract class Encuesta
     /**
      * Get respuesta14
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta14()
     {
@@ -2367,7 +2374,7 @@ abstract class Encuesta
     /**
      * Get respuesta15
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta15()
     {
@@ -2390,7 +2397,7 @@ abstract class Encuesta
     /**
      * Get respuesta63
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta63()
     {
@@ -2413,7 +2420,7 @@ abstract class Encuesta
     /**
      * Get respuesta64
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta64()
     {
@@ -2436,7 +2443,7 @@ abstract class Encuesta
     /**
      * Get localizacion
      *
-     * @return string 
+     * @return string
      */
     public function getLocalizacion()
     {
@@ -2459,7 +2466,7 @@ abstract class Encuesta
     /**
      * Get pais
      *
-     * @return \BcTic\CamIpalBundle\Entity\Pais 
+     * @return \BcTic\CamIpalBundle\Entity\Pais
      */
     public function getPais()
     {
@@ -2536,7 +2543,7 @@ abstract class Encuesta
     /**
      * Get respuesta65
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta65()
     {
@@ -2559,18 +2566,18 @@ abstract class Encuesta
     {
       // the file property can be empty if the field is not required
       if (null === $this->getUploadedFile1()) {
-        
+
       } else {
         $this->getUploadedFile1()->move(
           $this->getUploadRootDir(),
           date('U').'-'.$this->getUploadedFile1()->getClientOriginalName()
         );
         $this->file1 = $this->getUploadDir().date('U').'-'.$this->getUploadedFile1()->getClientOriginalName();
-        $this->uploadedFile1 = null; 
+        $this->uploadedFile1 = null;
       }
 
       if (null === $this->getUploadedFile2()) {
-        
+
       } else {
         $this->getUploadedFile2()->move(
           $this->getUploadRootDir(),
@@ -2581,7 +2588,7 @@ abstract class Encuesta
       }
 
       if (null === $this->getUploadedFile3()) {
-        
+
       } else {
         $this->getUploadedFile3()->move(
           $this->getUploadRootDir(),
@@ -2589,29 +2596,29 @@ abstract class Encuesta
         );
         $this->file3 = $this->getUploadDir().date('U').'-'.$this->getUploadedFile3()->getClientOriginalName();
         $this->uploadedFile3 = null;
-      }    
+      }
 
       if (null === $this->getUploadedFileCierre1()) {
-        
+
       } else {
         $this->getUploadedFileCierre1()->move(
           $this->getUploadRootDir(),
           date('U').'-'.$this->getUploadedFileCierre1()->getClientOriginalName()
         );
         $this->fileCierre1 = $this->getUploadDir().date('U').'-'.$this->getUploadedFileCierre1()->getClientOriginalName();
-        $this->uploadedFileCierre1 = null; 
+        $this->uploadedFileCierre1 = null;
       }
 
       if (null === $this->getUploadedFileCierre2()) {
-        
+
       } else {
         $this->getUploadedFileCierre2()->move(
           $this->getUploadRootDir(),
           date('U').'-'.$this->getUploadedFileCierre2()->getClientOriginalName()
         );
         $this->fileCierre2 = $this->getUploadDir().date('U').'-'.$this->getUploadedFileCierre2()->getClientOriginalName();
-        $this->uploadedFileCierre2 = null; 
-      }             
+        $this->uploadedFileCierre2 = null;
+      }
 
     }
 
@@ -2631,7 +2638,7 @@ abstract class Encuesta
     /**
      * Get fileCierre1
      *
-     * @return string 
+     * @return string
      */
     public function getFileCierre1()
     {
@@ -2646,7 +2653,7 @@ abstract class Encuesta
     public function getUploadedFileCierre1()
     {
         return $this->uploadedFileCierre1;
-    }  
+    }
 
     public function setUploadedFileCierre2(UploadedFile $file = null)
     {
@@ -2656,7 +2663,7 @@ abstract class Encuesta
     public function getUploadedFileCierre2()
     {
         return $this->uploadedFileCierre2;
-    }      
+    }
 
     /**
      * Set fileCierre2
@@ -2674,7 +2681,7 @@ abstract class Encuesta
     /**
      * Get fileCierre2
      *
-     * @return string 
+     * @return string
      */
     public function getFileCierre2()
     {
@@ -2697,7 +2704,7 @@ abstract class Encuesta
     /**
      * Get cierre
      *
-     * @return string 
+     * @return string
      */
     public function getCierre()
     {
@@ -2720,7 +2727,7 @@ abstract class Encuesta
     /**
      * Get createdBy
      *
-     * @return string 
+     * @return string
      */
     public function getCreatedBy()
     {
@@ -2766,7 +2773,7 @@ abstract class Encuesta
     /**
      * Get respuesta24
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta24()
     {
@@ -2789,7 +2796,7 @@ abstract class Encuesta
     /**
      * Get respuesta25
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta25()
     {
@@ -2812,12 +2819,36 @@ abstract class Encuesta
     /**
      * Get respuesta112
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta112()
     {
         return $this->respuesta112;
     }
+
+    /**
+     * Set respuesta113
+     *
+     * @param integer $respuesta113
+     * @return Encuesta
+     */
+    public function setRespuesta113($respuesta113)
+    {
+        $this->respuesta113 = $respuesta113;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta113
+     *
+     * @return integer
+     */
+    public function getRespuesta113()
+    {
+        return $this->respuesta113;
+    }
+
 
     /**
      * Set respuesta121
@@ -2835,7 +2866,7 @@ abstract class Encuesta
     /**
      * Get respuesta121
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta121()
     {
@@ -2858,7 +2889,7 @@ abstract class Encuesta
     /**
      * Get respuesta36
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta36()
     {
@@ -2881,7 +2912,7 @@ abstract class Encuesta
     /**
      * Get respuesta37
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta37()
     {
@@ -2904,7 +2935,7 @@ abstract class Encuesta
     /**
      * Get respuesta38
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta38()
     {
@@ -2927,7 +2958,7 @@ abstract class Encuesta
     /**
      * Get respuesta413
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta413()
     {
@@ -2950,7 +2981,7 @@ abstract class Encuesta
     /**
      * Get respuesta414
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta414()
     {
@@ -2973,7 +3004,7 @@ abstract class Encuesta
     /**
      * Get respuesta415
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta415()
     {
@@ -2996,7 +3027,7 @@ abstract class Encuesta
     /**
      * Get respuesta54
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta54()
     {
@@ -3019,7 +3050,7 @@ abstract class Encuesta
     /**
      * Get respuesta83
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta83()
     {
@@ -3042,7 +3073,7 @@ abstract class Encuesta
     /**
      * Get respuesta94
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta94()
     {
@@ -3065,7 +3096,7 @@ abstract class Encuesta
     /**
      * Get respuesta95
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta95()
     {
@@ -3088,7 +3119,7 @@ abstract class Encuesta
     /**
      * Get respuesta96
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta96()
     {
@@ -3111,7 +3142,7 @@ abstract class Encuesta
     /**
      * Get respuesta97
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta97()
     {
@@ -3134,7 +3165,7 @@ abstract class Encuesta
     /**
      * Get respuesta98
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta98()
     {
@@ -3157,7 +3188,7 @@ abstract class Encuesta
     /**
      * Get respuesta99
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta99()
     {
@@ -3180,7 +3211,7 @@ abstract class Encuesta
     /**
      * Get respuesta910
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta910()
     {
@@ -3203,7 +3234,7 @@ abstract class Encuesta
     /**
      * Get respuesta104
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta104()
     {
@@ -3226,7 +3257,7 @@ abstract class Encuesta
     /**
      * Get respuesta122
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta122()
     {
@@ -3249,7 +3280,7 @@ abstract class Encuesta
     /**
      * Get respuesta123
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta123()
     {
@@ -3272,7 +3303,7 @@ abstract class Encuesta
     /**
      * Get respuesta124
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta124()
     {
@@ -3295,7 +3326,7 @@ abstract class Encuesta
     /**
      * Get respuesta125
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta125()
     {
@@ -3318,7 +3349,7 @@ abstract class Encuesta
     /**
      * Get respuesta131
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta131()
     {
@@ -3341,7 +3372,7 @@ abstract class Encuesta
     /**
      * Get respuesta132
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta132()
     {
@@ -3364,7 +3395,7 @@ abstract class Encuesta
     /**
      * Get respuesta133
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta133()
     {
@@ -3387,7 +3418,7 @@ abstract class Encuesta
     /**
      * Get respuesta134
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta134()
     {
@@ -3410,7 +3441,7 @@ abstract class Encuesta
     /**
      * Get respuesta135
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta135()
     {
@@ -3433,7 +3464,7 @@ abstract class Encuesta
     /**
      * Get respuesta136
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta136()
     {
@@ -3456,7 +3487,7 @@ abstract class Encuesta
     /**
      * Get respuesta137
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta137()
     {
@@ -3479,7 +3510,7 @@ abstract class Encuesta
     /**
      * Get respuesta138
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta138()
     {
@@ -3502,7 +3533,7 @@ abstract class Encuesta
     /**
      * Get respuesta139
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta139()
     {
@@ -3525,7 +3556,7 @@ abstract class Encuesta
     /**
      * Get respuesta1310
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta1310()
     {
@@ -3548,7 +3579,7 @@ abstract class Encuesta
     /**
      * Get respuesta911
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta911()
     {
@@ -3571,7 +3602,7 @@ abstract class Encuesta
     /**
      * Get respuesta126
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta126()
     {
@@ -3594,7 +3625,7 @@ abstract class Encuesta
     /**
      * Get respuesta26
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta26()
     {
@@ -3617,7 +3648,7 @@ abstract class Encuesta
     /**
      * Get respuesta16
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta16()
     {
@@ -3640,7 +3671,7 @@ abstract class Encuesta
     /**
      * Get respuesta39
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta39()
     {
@@ -3663,7 +3694,7 @@ abstract class Encuesta
     /**
      * Get respuesta310
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta310()
     {
@@ -3686,7 +3717,7 @@ abstract class Encuesta
     /**
      * Get respuesta311
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta311()
     {
@@ -3709,7 +3740,7 @@ abstract class Encuesta
     /**
      * Get respuesta312
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta312()
     {
@@ -3732,7 +3763,7 @@ abstract class Encuesta
     /**
      * Get respuesta313
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta313()
     {
@@ -3755,7 +3786,7 @@ abstract class Encuesta
     /**
      * Get respuesta314
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta314()
     {
@@ -3778,7 +3809,7 @@ abstract class Encuesta
     /**
      * Get respuesta73
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta73()
     {
@@ -3801,7 +3832,7 @@ abstract class Encuesta
     /**
      * Get respuesta74
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta74()
     {
@@ -3824,7 +3855,7 @@ abstract class Encuesta
     /**
      * Get respuesta416
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta416()
     {
@@ -3847,7 +3878,7 @@ abstract class Encuesta
     /**
      * Get indice
      *
-     * @return integer 
+     * @return integer
      */
     public function getIndice()
     {
@@ -3870,7 +3901,7 @@ abstract class Encuesta
     /**
      * Get createdAt
      *
-     * @return integer 
+     * @return integer
      */
     public function getCreatedAt()
     {
@@ -3893,7 +3924,7 @@ abstract class Encuesta
     /**
      * Get statusCierre
      *
-     * @return string 
+     * @return string
      */
     public function getStatusCierre()
     {
@@ -3916,7 +3947,7 @@ abstract class Encuesta
     /**
      * Get cierreLog
      *
-     * @return string 
+     * @return string
      */
     public function getCierreLog()
     {
@@ -3933,7 +3964,7 @@ abstract class Encuesta
     public function getGrupos()
     {
         return $this->grupos;
-    }   
+    }
 
     public function setUnidadDeNegocio($unidadeDeNegocio)
     {
@@ -3945,5 +3976,5 @@ abstract class Encuesta
     public function getUnidadDeNegocio()
     {
         return $this->unidadDeNegocio;
-    }         
+    }
 }

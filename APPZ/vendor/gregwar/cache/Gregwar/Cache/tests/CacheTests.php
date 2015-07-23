@@ -77,6 +77,21 @@ class CacheTests extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Testing the getOrCreate function with a callable
+     */
+    public function testGetOrCreateWithCallable()
+    {
+        $cache = $this->getCache();
+
+        $this->assertFalse($cache->exists('testing.txt'));
+
+        $data = $cache->getOrCreate('testing.txt', array(), array($this, 'getAnimal'));
+
+        $this->assertTrue($cache->exists('testing.txt'));
+        $this->assertEquals('orangutan', $data);
+    }
+
+    /**
      * Testing the getOrCreate function with $file=true
      */
     public function testGetOrCreateFile()
@@ -106,6 +121,38 @@ class CacheTests extends \PHPUnit_Framework_TestCase
         });
 
         $this->assertEquals('some-data', $data);
+    }
+
+    /**
+     * Testing that directory mode works
+     */
+    public function testDirectoryMode()
+    {
+        $dir = __DIR__;
+        $cache = $this->getCache();
+        $cacheDir = $this->getCacheDirectory();
+
+        // default permissions are 0755
+        $data = $cache->getOrCreate('aaa.txt', array(), function () {
+            return 'abc';
+        });
+        $this->assertTrue((fileperms("$dir/$cacheDir/a") & 0777) == 0755);
+        $this->assertTrue((fileperms("$dir/$cacheDir/a/a") & 0777) == 0755);
+        $this->assertTrue((fileperms("$dir/$cacheDir/a/a/a") & 0777) == 0755);
+
+        // Change permissions to be more restrictive
+        $cache->setDirectoryMode(0700);
+        $data = $cache->getOrCreate('bbb.txt', array(), function () {
+            return 'abc';
+        });
+        $this->assertTrue((fileperms("$dir/$cacheDir/b") & 0777) == 0700);
+        $this->assertTrue((fileperms("$dir/$cacheDir/b/b") & 0777) == 0700);
+        $this->assertTrue((fileperms("$dir/$cacheDir/b/b/b") & 0777) == 0700);
+    }
+
+    public function getAnimal()
+    {
+        return 'orangutan';
     }
 
     protected function getCache()

@@ -41,13 +41,19 @@ use Gregwar\Image\Exceptions\GenerationError;
  * @method Image ellipse($cx, $cy, $width, $height, $color = 0x000000, $filled = false)
  * @method Image circle($cx, $cy, $r, $color = 0x000000, $filled = false)
  * @method Image polygon(array $points, $color, $filled = false)
+ * @method Image flip($flipVertical, $flipHorizontal)
  */
 class Image
 {
     /**
-     * Direcory to use for file caching
+     * Directory to use for file caching
      */
     protected $cacheDir = 'cache/images';
+
+    /**
+     * Directory cache mode
+     */
+    protected $cacheMode = null;
 
     /**
      * Internal adapter
@@ -86,7 +92,7 @@ class Image
         'png'   => 'png',
         'gif'   => 'gif',
     );
-    
+
     /**
      * Fallback image
      */
@@ -110,6 +116,14 @@ class Image
         $this->cache->setCacheDirectory($cacheDir);
 
         return $this;
+    }
+
+    /**
+     * @param int $dirMode
+     */
+    public function setCacheDirMode($dirMode)
+    {
+        $this->cache->setDirectoryMode($dirMode);
     }
 
     /**
@@ -137,12 +151,33 @@ class Image
      */
     public function setPrettyName($name, $prefix = true)
     {
-        $name = strtolower($name);
-        $name = str_replace(' ', '-', $name);
-        $this->prettyName = preg_replace('/([^a-z0-9\-]+)/m', '', $name);
+        if (empty($name)) {
+            return $this;
+        }
+
+        $this->prettyName = $this->urlize($name);
         $this->prettyPrefix = $prefix;
 
         return $this;
+    }
+
+    /**
+     * Urlizes the prettyName
+     */
+    protected function urlize($name)
+    {
+        $transliterator = '\Behat\Transliterator\Transliterator';
+
+        if (class_exists($transliterator)) {
+            $name = $transliterator::transliterate($name);
+            $name = $transliterator::urlize($name);
+        } else {
+            $name = strtolower($name);
+            $name = str_replace(' ', '-', $name);
+            $name = preg_replace('/([^a-z0-9\-]+)/m', '', $name);
+        }
+
+        return $name;
     }
 
     /**
@@ -432,8 +467,8 @@ class Image
         // If the files does not exists, save it
         $image = $this;
 
-        // Target file should be younger than all the current image 
-        // dependencies        
+        // Target file should be younger than all the current image
+        // dependencies
         $conditions = array(
             'younger-than' => $this->getDependencies()
         );
@@ -682,7 +717,7 @@ class Image
      */
     public static function open($file = '')
     {
-        return new self($file);
+        return new static($file);
     }
 
     /**
@@ -690,7 +725,7 @@ class Image
      */
     public static function create($width, $height)
     {
-        return new self(null, $width, $height);
+        return new static(null, $width, $height);
     }
 
     /**
@@ -698,7 +733,7 @@ class Image
      */
     public static function fromData($data)
     {
-        $image = new self();
+        $image = new static();
         $image->setData($data);
 
         return $image;
@@ -709,7 +744,7 @@ class Image
      */
     public static function fromResource($resource)
     {
-        $image = new self();
+        $image = new static();
         $image->setResource($resource);
 
         return $image;

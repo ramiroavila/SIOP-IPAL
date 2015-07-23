@@ -38,6 +38,7 @@ class Entity extends EntityParent implements EntityInterface
     public $reference2;
     private $internal;
     public $data = 'Overridden data';
+    public $initialized = false;
 
     public function __construct($internal = null)
     {
@@ -63,7 +64,7 @@ class Entity extends EntityParent implements EntityInterface
     }
 
     /**
-     * @Assert\True
+     * @Assert\IsTrue
      */
     public function isValid()
     {
@@ -71,7 +72,7 @@ class Entity extends EntityParent implements EntityInterface
     }
 
     /**
-     * @Assert\True
+     * @Assert\IsTrue
      */
     public function hasPermissions()
     {

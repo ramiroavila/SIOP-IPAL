@@ -11,21 +11,30 @@
 
 namespace Symfony\Component\Process\Tests;
 
-use Symfony\Component\Process\Exception\ProcessTimedOutException;
 use Symfony\Component\Process\Exception\LogicException;
-use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessTimedOutException;
 use Symfony\Component\Process\Exception\RuntimeException;
-use Symfony\Component\Process\ProcessPipes;
+use Symfony\Component\Process\PhpExecutableFinder;
+use Symfony\Component\Process\Pipes\PipesInterface;
+use Symfony\Component\Process\Process;
 
 /**
  * @author Robert Schönthal <seroscho@googlemail.com>
  */
 abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 {
+    protected static $phpBin;
+
+    public static function setUpBeforeClass()
+    {
+        $phpBin = new PhpExecutableFinder();
+        self::$phpBin = $phpBin->find();
+    }
+
     public function testThatProcessDoesNotThrowWarningDuringRun()
     {
         @trigger_error('Test Error', E_USER_NOTICE);
-        $process = $this->getProcess("php -r 'sleep(3)'");
+        $process = $this->getProcess(self::$phpBin." -r 'sleep(3)'");
         $process->run();
         $actualError = error_get_last();
         $this->assertEquals('Test Error', $actualError['message']);
@@ -80,7 +89,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         }
         $duration = microtime(true) - $start;
 
-        $this->assertLessThan(1.8, $duration);
+        $this->assertLessThan(4, $duration);
     }
 
     public function testAllOutputIsActuallyReadOnTermination()
@@ -90,12 +99,12 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         // has terminated so the internal pipes array is already empty. normally
         // the call to start() will not read any data as the process will not have
         // generated output, but this is non-deterministic so we must count it as
-        // a possibility.  therefore we need 2 * ProcessPipes::CHUNK_SIZE plus
+        // a possibility.  therefore we need 2 * PipesInterface::CHUNK_SIZE plus
         // another byte which will never be read.
-        $expectedOutputSize = ProcessPipes::CHUNK_SIZE * 2 + 2;
+        $expectedOutputSize = PipesInterface::CHUNK_SIZE * 2 + 2;
 
         $code = sprintf('echo str_repeat(\'*\', %d);', $expectedOutputSize);
-        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg($code)));
+        $p = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg($code)));
 
         $p->start();
         // Let's wait enough time for process to finish...
@@ -128,29 +137,29 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * tests results from sub processes
+     * tests results from sub processes.
      *
      * @dataProvider responsesCodeProvider
      */
     public function testProcessResponses($expected, $getter, $code)
     {
-        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg($code)));
+        $p = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg($code)));
         $p->run();
 
         $this->assertSame($expected, $p->$getter());
     }
 
     /**
-     * tests results from sub processes
+     * tests results from sub processes.
      *
      * @dataProvider pipesCodeProvider
      */
     public function testProcessPipes($code, $size)
     {
-        $expected = str_repeat(str_repeat('*', 1024), $size) . '!';
+        $expected = str_repeat(str_repeat('*', 1024), $size).'!';
         $expectedLength = (1024 * $size) + 1;
 
-        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg($code)));
+        $p = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg($code)));
         $p->setInput($expected);
         $p->run();
 
@@ -158,9 +167,31 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedLength, strlen($p->getErrorOutput()));
     }
 
+    /**
+     * @dataProvider pipesCodeProvider
+     */
+    public function testSetStreamAsInput($code, $size)
+    {
+        $expected = str_repeat(str_repeat('*', 1024), $size).'!';
+        $expectedLength = (1024 * $size) + 1;
+
+        $stream = fopen('php://temporary', 'w+');
+        fwrite($stream, $expected);
+        rewind($stream);
+
+        $p = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg($code)));
+        $p->setInput($stream);
+        $p->run();
+
+        fclose($stream);
+
+        $this->assertEquals($expectedLength, strlen($p->getOutput()));
+        $this->assertEquals($expectedLength, strlen($p->getErrorOutput()));
+    }
+
     public function testSetInputWhileRunningThrowsAnException()
     {
-        $process = $this->getProcess('php -r "usleep(500000);"');
+        $process = $this->getProcess(self::$phpBin.' -r "usleep(500000);"');
         $process->start();
         try {
             $process->setInput('foobar');
@@ -175,11 +206,11 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider provideInvalidInputValues
      * @expectedException \Symfony\Component\Process\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Symfony\Component\Process\Process::setInput only accepts strings.
+     * @expectedExceptionMessage Symfony\Component\Process\Process::setInput only accepts strings or stream resources.
      */
     public function testInvalidInput($value)
     {
-        $process = $this->getProcess('php -v');
+        $process = $this->getProcess(self::$phpBin.' -v');
         $process->setInput($value);
     }
 
@@ -188,7 +219,6 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         return array(
             array(array()),
             array(new NonStringifiable()),
-            array(fopen('php://temporary', 'w')),
         );
     }
 
@@ -197,7 +227,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidInput($expected, $value)
     {
-        $process = $this->getProcess('php -v');
+        $process = $this->getProcess(self::$phpBin.' -v');
         $process->setInput($value);
         $this->assertSame($expected, $process->getInput());
     }
@@ -208,16 +238,32 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
             array(null, null),
             array('24.5', 24.5),
             array('input data', 'input data'),
-            // to maintain BC, supposed to be removed in 3.0
+        );
+    }
+
+    /**
+     * @dataProvider provideLegacyInputValues
+     * @group legacy
+     */
+    public function testLegacyValidInput($expected, $value)
+    {
+        $process = $this->getProcess(self::$phpBin.' -v');
+        $process->setInput($value);
+        $this->assertSame($expected, $process->getInput());
+    }
+
+    public function provideLegacyInputValues()
+    {
+        return array(
             array('stringifiable', new Stringifiable()),
         );
     }
 
     public function chainedCommandsOutputProvider()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             return array(
-                array("2 \r\n2\r\n", '&&', '2')
+                array("2 \r\n2\r\n", '&&', '2'),
             );
         }
 
@@ -228,7 +274,6 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
      * @dataProvider chainedCommandsOutputProvider
      */
     public function testChainedCommandsOutput($expected, $operator, $input)
@@ -240,7 +285,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testCallbackIsExecutedForOutput()
     {
-        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('echo \'foo\';')));
+        $p = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg('echo \'foo\';')));
 
         $called = false;
         $p->run(function ($type, $buffer) use (&$called) {
@@ -252,7 +297,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testGetErrorOutput()
     {
-        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n = 0; while ($n < 3) { file_put_contents(\'php://stderr\', \'ERROR\'); $n++; }')));
+        $p = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg('$n = 0; while ($n < 3) { file_put_contents(\'php://stderr\', \'ERROR\'); $n++; }')));
 
         $p->run();
         $this->assertEquals(3, preg_match_all('/ERROR/', $p->getErrorOutput(), $matches));
@@ -260,27 +305,68 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testGetIncrementalErrorOutput()
     {
-        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n = 0; while ($n < 3) { usleep(100000); file_put_contents(\'php://stderr\', \'ERROR\'); $n++; }')));
+        // use a lock file to toggle between writing ("W") and reading ("R") the
+        // error stream
+        $lock = tempnam(sys_get_temp_dir(), get_class($this).'Lock');
+        file_put_contents($lock, 'W');
+
+        $p = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg('$n = 0; while ($n < 3) { if (\'W\' === file_get_contents('.var_export($lock, true).')) { file_put_contents(\'php://stderr\', \'ERROR\'); $n++; file_put_contents('.var_export($lock, true).', \'R\'); } usleep(100); }')));
 
         $p->start();
         while ($p->isRunning()) {
-            $this->assertLessThanOrEqual(1, preg_match_all('/ERROR/', $p->getIncrementalErrorOutput(), $matches));
-            usleep(20000);
+            if ('R' === file_get_contents($lock)) {
+                $this->assertLessThanOrEqual(1, preg_match_all('/ERROR/', $p->getIncrementalErrorOutput(), $matches));
+                file_put_contents($lock, 'W');
+            }
+            usleep(100);
         }
+
+        unlink($lock);
     }
 
     public function testFlushErrorOutput()
     {
-        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n = 0; while ($n < 3) { file_put_contents(\'php://stderr\', \'ERROR\'); $n++; }')));
+        $p = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg('$n = 0; while ($n < 3) { file_put_contents(\'php://stderr\', \'ERROR\'); $n++; }')));
 
         $p->run();
         $p->clearErrorOutput();
         $this->assertEmpty($p->getErrorOutput());
     }
 
+    public function testGetEmptyIncrementalErrorOutput()
+    {
+        // use a lock file to toggle between writing ("W") and reading ("R") the
+        // output stream
+        $lock = tempnam(sys_get_temp_dir(), get_class($this).'Lock');
+        file_put_contents($lock, 'W');
+
+        $p = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg('$n = 0; while ($n < 3) { if (\'W\' === file_get_contents('.var_export($lock, true).')) { file_put_contents(\'php://stderr\', \'ERROR\'); $n++; file_put_contents('.var_export($lock, true).', \'R\'); } usleep(100); }')));
+
+        $p->start();
+
+        $shouldWrite = false;
+
+        while ($p->isRunning()) {
+            if ('R' === file_get_contents($lock)) {
+                if (!$shouldWrite) {
+                    $this->assertLessThanOrEqual(1, preg_match_all('/ERROR/', $p->getIncrementalOutput(), $matches));
+                    $shouldWrite = true;
+                } else {
+                    $this->assertSame('', $p->getIncrementalOutput());
+
+                    file_put_contents($lock, 'W');
+                    $shouldWrite = false;
+                }
+            }
+            usleep(100);
+        }
+
+        unlink($lock);
+    }
+
     public function testGetOutput()
     {
-        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n=0;while ($n<3) {echo \' foo \';$n++; usleep(500); }')));
+        $p = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg('$n = 0; while ($n < 3) { echo \' foo \'; $n++; }')));
 
         $p->run();
         $this->assertEquals(3, preg_match_all('/foo/', $p->getOutput(), $matches));
@@ -288,27 +374,81 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testGetIncrementalOutput()
     {
-        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n=0;while ($n<3) { echo \' foo \'; usleep(50000); $n++; }')));
+        // use a lock file to toggle between writing ("W") and reading ("R") the
+        // output stream
+        $lock = tempnam(sys_get_temp_dir(), get_class($this).'Lock');
+        file_put_contents($lock, 'W');
+
+        $p = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg('$n = 0; while ($n < 3) { if (\'W\' === file_get_contents('.var_export($lock, true).')) { echo \' foo \'; $n++; file_put_contents('.var_export($lock, true).', \'R\'); } usleep(100); }')));
 
         $p->start();
         while ($p->isRunning()) {
-            $this->assertLessThanOrEqual(1, preg_match_all('/foo/', $p->getIncrementalOutput(), $matches));
-            usleep(20000);
+            if ('R' === file_get_contents($lock)) {
+                $this->assertLessThanOrEqual(1, preg_match_all('/foo/', $p->getIncrementalOutput(), $matches));
+                file_put_contents($lock, 'W');
+            }
+            usleep(100);
         }
+
+        unlink($lock);
     }
 
     public function testFlushOutput()
     {
-        $p = $this->getProcess(sprintf('php -r %s', escapeshellarg('$n=0;while ($n<3) {echo \' foo \';$n++;}')));
+        $p = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg('$n=0;while ($n<3) {echo \' foo \';$n++;}')));
 
         $p->run();
         $p->clearOutput();
         $this->assertEmpty($p->getOutput());
     }
 
+    public function testGetEmptyIncrementalOutput()
+    {
+        // use a lock file to toggle between writing ("W") and reading ("R") the
+        // output stream
+        $lock = tempnam(sys_get_temp_dir(), get_class($this).'Lock');
+        file_put_contents($lock, 'W');
+
+        $p = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg('$n = 0; while ($n < 3) { if (\'W\' === file_get_contents('.var_export($lock, true).')) { echo \' foo \'; $n++; file_put_contents('.var_export($lock, true).', \'R\'); } usleep(100); }')));
+
+        $p->start();
+
+        $shouldWrite = false;
+
+        while ($p->isRunning()) {
+            if ('R' === file_get_contents($lock)) {
+                if (!$shouldWrite) {
+                    $this->assertLessThanOrEqual(1, preg_match_all('/foo/', $p->getIncrementalOutput(), $matches));
+                    $shouldWrite = true;
+                } else {
+                    $this->assertSame('', $p->getIncrementalOutput());
+
+                    file_put_contents($lock, 'W');
+                    $shouldWrite = false;
+                }
+            }
+            usleep(100);
+        }
+
+        unlink($lock);
+    }
+
+    public function testZeroAsOutput()
+    {
+        if ('\\' === DIRECTORY_SEPARATOR) {
+            // see http://stackoverflow.com/questions/7105433/windows-batch-echo-without-new-line
+            $p = $this->getProcess('echo | set /p dummyName=0');
+        } else {
+            $p = $this->getProcess('printf 0');
+        }
+
+        $p->run();
+        $this->assertSame('0', $p->getOutput());
+    }
+
     public function testExitCodeCommandFailed()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX exit code');
         }
 
@@ -321,7 +461,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testTTYCommand()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does have /dev/tty support');
         }
 
@@ -336,7 +476,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testTTYCommandExitCode()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does have /dev/tty support');
         }
 
@@ -349,7 +489,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testTTYInWindowsEnvironment()
     {
-        if (!defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' !== DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('This test is for Windows platform only');
         }
 
@@ -394,7 +534,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Symfony\Component\Process\Exception\ProcessFailedException
+     * @expectedException \Symfony\Component\Process\Exception\ProcessFailedException
      */
     public function testMustRunThrowsException()
     {
@@ -415,7 +555,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testStartIsNonBlocking()
     {
-        $process = $this->getProcess('php -r "usleep(500000);"');
+        $process = $this->getProcess(self::$phpBin.' -r "usleep(500000);"');
         $start = microtime(true);
         $process->start();
         $end = microtime(true);
@@ -425,14 +565,14 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testUpdateStatus()
     {
-        $process = $this->getProcess('php -h');
+        $process = $this->getProcess(self::$phpBin.' -v');
         $process->run();
         $this->assertTrue(strlen($process->getOutput()) > 0);
     }
 
     public function testGetExitCodeIsNullOnStart()
     {
-        $process = $this->getProcess('php -r "usleep(200000);"');
+        $process = $this->getProcess(self::$phpBin.' -r "usleep(200000);"');
         $this->assertNull($process->getExitCode());
         $process->start();
         $this->assertNull($process->getExitCode());
@@ -442,7 +582,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testGetExitCodeIsNullOnWhenStartingAgain()
     {
-        $process = $this->getProcess('php -r "usleep(200000);"');
+        $process = $this->getProcess(self::$phpBin.' -r "usleep(200000);"');
         $process->run();
         $this->assertEquals(0, $process->getExitCode());
         $process->start();
@@ -453,14 +593,14 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testGetExitCode()
     {
-        $process = $this->getProcess('php -m');
+        $process = $this->getProcess(self::$phpBin.' -v');
         $process->run();
         $this->assertSame(0, $process->getExitCode());
     }
 
     public function testStatus()
     {
-        $process = $this->getProcess('php -r "usleep(500000);"');
+        $process = $this->getProcess(self::$phpBin.' -r "usleep(500000);"');
         $this->assertFalse($process->isRunning());
         $this->assertFalse($process->isStarted());
         $this->assertFalse($process->isTerminated());
@@ -479,7 +619,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testStop()
     {
-        $process = $this->getProcess('php -r "sleep(4);"');
+        $process = $this->getProcess(self::$phpBin.' -r "sleep(4);"');
         $process->start();
         $this->assertTrue($process->isRunning());
         $process->stop();
@@ -488,14 +628,14 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testIsSuccessful()
     {
-        $process = $this->getProcess('php -m');
+        $process = $this->getProcess(self::$phpBin.' -v');
         $process->run();
         $this->assertTrue($process->isSuccessful());
     }
 
     public function testIsSuccessfulOnlyAfterTerminated()
     {
-        $process = $this->getProcess('php -r "sleep(1);"');
+        $process = $this->getProcess(self::$phpBin.' -r "sleep(1);"');
         $process->start();
         while ($process->isRunning()) {
             $this->assertFalse($process->isSuccessful());
@@ -507,7 +647,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testIsNotSuccessful()
     {
-        $process = $this->getProcess('php -r "usleep(500000);throw new \Exception(\'BOUM\');"');
+        $process = $this->getProcess(self::$phpBin.' -r "usleep(500000);throw new \Exception(\'BOUM\');"');
         $process->start();
         $this->assertTrue($process->isRunning());
         $process->wait();
@@ -516,44 +656,44 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessIsNotSignaled()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX signals');
         }
 
-        $process = $this->getProcess('php -m');
+        $process = $this->getProcess(self::$phpBin.' -v');
         $process->run();
         $this->assertFalse($process->hasBeenSignaled());
     }
 
     public function testProcessWithoutTermSignalIsNotSignaled()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX signals');
         }
 
-        $process = $this->getProcess('php -m');
+        $process = $this->getProcess(self::$phpBin.' -v');
         $process->run();
         $this->assertFalse($process->hasBeenSignaled());
     }
 
     public function testProcessWithoutTermSignal()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX signals');
         }
 
-        $process = $this->getProcess('php -m');
+        $process = $this->getProcess(self::$phpBin.' -v');
         $process->run();
         $this->assertEquals(0, $process->getTermSignal());
     }
 
     public function testProcessIsSignaledIfStopped()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX signals');
         }
 
-        $process = $this->getProcess('php -r "sleep(4);"');
+        $process = $this->getProcess(self::$phpBin.' -r "sleep(4);"');
         $process->start();
         $process->stop();
         $this->assertTrue($process->hasBeenSignaled());
@@ -561,14 +701,14 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessWithTermSignal()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX signals');
         }
 
         // SIGTERM is only defined if pcntl extension is present
         $termSignal = defined('SIGTERM') ? SIGTERM : 15;
 
-        $process = $this->getProcess('php -r "sleep(4);"');
+        $process = $this->getProcess(self::$phpBin.' -r "sleep(4);"');
         $process->start();
         $process->stop();
 
@@ -577,7 +717,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessThrowsExceptionWhenExternallySignaled()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('Windows does not support POSIX signals');
         }
 
@@ -597,7 +737,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testRestart()
     {
-        $process1 = $this->getProcess('php -r "echo getmypid();"');
+        $process1 = $this->getProcess(self::$phpBin.' -r "echo getmypid();"');
         $process1->run();
         $process2 = $process1->restart();
 
@@ -615,11 +755,11 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testPhpDeadlock()
     {
-        $this->markTestSkipped('Can course PHP to hang');
+        $this->markTestSkipped('Can cause PHP to hang');
 
         // Sleep doesn't work as it will allow the process to handle signals and close
         // file handles from the other end.
-        $process = $this->getProcess('php -r "while (true) {}"');
+        $process = $this->getProcess(self::$phpBin.' -r "while (true) {}"');
         $process->start();
 
         // PHP will deadlock when it tries to cleanup $process
@@ -628,29 +768,35 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     public function testRunProcessWithTimeout()
     {
         $timeout = 0.5;
-        $process = $this->getProcess('php -r "usleep(600000);"');
+        $process = $this->getProcess(self::$phpBin.' -r "usleep(600000);"');
         $process->setTimeout($timeout);
         $start = microtime(true);
         try {
             $process->run();
             $this->fail('A RuntimeException should have been raised');
         } catch (RuntimeException $e) {
-
         }
         $duration = microtime(true) - $start;
 
-        $this->assertLessThan($timeout + Process::TIMEOUT_PRECISION, $duration);
+        if ('\\' === DIRECTORY_SEPARATOR) {
+            // Windows is a bit slower as it read file handles, then allow twice the precision
+            $maxDuration = $timeout + 2 * Process::TIMEOUT_PRECISION;
+        } else {
+            $maxDuration = $timeout + Process::TIMEOUT_PRECISION;
+        }
+
+        $this->assertLessThan($maxDuration, $duration);
     }
 
     public function testCheckTimeoutOnNonStartedProcess()
     {
-        $process = $this->getProcess('php -r "sleep(3);"');
+        $process = $this->getProcess(self::$phpBin.' -r "sleep(3);"');
         $process->checkTimeout();
     }
 
     public function testCheckTimeoutOnTerminatedProcess()
     {
-        $process = $this->getProcess('php -v');
+        $process = $this->getProcess(self::$phpBin.' -v');
         $process->run();
         $process->checkTimeout();
     }
@@ -659,7 +805,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     {
         $timeout = 0.5;
         $precision = 100000;
-        $process = $this->getProcess('php -r "sleep(3);"');
+        $process = $this->getProcess(self::$phpBin.' -r "sleep(3);"');
         $process->setTimeout($timeout);
         $start = microtime(true);
 
@@ -672,7 +818,6 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
             }
             $this->fail('A RuntimeException should have been raised');
         } catch (RuntimeException $e) {
-
         }
         $duration = microtime(true) - $start;
 
@@ -680,12 +825,9 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($process->isSuccessful());
     }
 
-    /**
-     * @group idle-timeout
-     */
     public function testIdleTimeout()
     {
-        $process = $this->getProcess('php -r "sleep(3);"');
+        $process = $this->getProcess(self::$phpBin.' -r "sleep(3);"');
         $process->setTimeout(10);
         $process->setIdleTimeout(0.5);
 
@@ -700,35 +842,31 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * @group idle-timeout
-     */
     public function testIdleTimeoutNotExceededWhenOutputIsSent()
     {
-        $process = $this->getProcess('php -r "echo \'foo\'; sleep(1); echo \'foo\'; sleep(1); echo \'foo\'; sleep(1); "');
+        $process = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg('$n = 30; while ($n--) {echo "foo\n"; usleep(100000); }')));
         $process->setTimeout(2);
-        $process->setIdleTimeout(1.5);
+        $process->setIdleTimeout(1);
 
         try {
             $process->run();
             $this->fail('A timeout exception was expected.');
         } catch (ProcessTimedOutException $ex) {
-            $this->assertTrue($ex->isGeneralTimeout());
-            $this->assertFalse($ex->isIdleTimeout());
+            $this->assertTrue($ex->isGeneralTimeout(), 'A general timeout is expected.');
+            $this->assertFalse($ex->isIdleTimeout(), 'No idle timeout is expected.');
             $this->assertEquals(2, $ex->getExceededTimeout());
         }
     }
 
     public function testStartAfterATimeout()
     {
-        $process = $this->getProcess('php -r "$n = 1000; while ($n--) {echo \'\'; usleep(1000); }"');
+        $process = $this->getProcess(sprintf('%s -r %s', self::$phpBin, escapeshellarg('$n = 1000; while ($n--) {echo \'\'; usleep(1000); }')));
         $process->setTimeout(0.1);
 
         try {
             $process->run();
-            $this->fail('An exception should have been raised.');
-        } catch (\Exception $e) {
-
+            $this->fail('A RuntimeException should have been raised.');
+        } catch (RuntimeException $e) {
         }
         $process->start();
         usleep(1000);
@@ -737,7 +875,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPid()
     {
-        $process = $this->getProcess('php -r "usleep(500000);"');
+        $process = $this->getProcess(self::$phpBin.' -r "usleep(500000);"');
         $process->start();
         $this->assertGreaterThan(0, $process->getPid());
         $process->wait();
@@ -745,13 +883,13 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPidIsNullBeforeStart()
     {
-        $process = $this->getProcess('php -r "sleep(1);"');
+        $process = $this->getProcess(self::$phpBin.' -r "sleep(1);"');
         $this->assertNull($process->getPid());
     }
 
     public function testGetPidIsNullAfterRun()
     {
-        $process = $this->getProcess('php -m');
+        $process = $this->getProcess(self::$phpBin.' -v');
         $process->run();
         $this->assertNull($process->getPid());
     }
@@ -760,12 +898,12 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     {
         $this->verifyPosixIsEnabled();
 
-        $process = $this->getProcess('exec php -f ' . __DIR__ . '/SignalListener.php');
+        $process = $this->getProcess('exec php -f '.__DIR__.'/SignalListener.php');
         $process->start();
         usleep(500000);
         $process->signal(SIGUSR1);
 
-        while ($process->isRunning() && false === strpos($process->getoutput(), 'Caught SIGUSR1')) {
+        while ($process->isRunning() && false === strpos($process->getOutput(), 'Caught SIGUSR1')) {
             usleep(10000);
         }
 
@@ -796,7 +934,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     public function testSignalProcessNotRunning()
     {
         $this->verifyPosixIsEnabled();
-        $process = $this->getProcess('php -m');
+        $process = $this->getProcess(self::$phpBin.' -v');
         $process->signal(SIGHUP);
     }
 
@@ -805,9 +943,9 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
      */
     public function testMethodsThatNeedARunningProcess($method)
     {
-        $process = $this->getProcess('php -m');
+        $process = $this->getProcess(self::$phpBin.' -v');
         $this->setExpectedException('Symfony\Component\Process\Exception\LogicException', sprintf('Process must be started before calling %s.', $method));
-        call_user_func(array($process, $method));
+        $process->{$method}();
     }
 
     public function provideMethodsThatNeedARunningProcess()
@@ -826,10 +964,10 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
      */
     public function testMethodsThatNeedATerminatedProcess($method)
     {
-        $process = $this->getProcess('php -r "sleep(1);"');
+        $process = $this->getProcess(self::$phpBin.' -r "sleep(1);"');
         $process->start();
         try {
-            call_user_func(array($process, $method));
+            $process->{$method}();
             $process->stop(0);
             $this->fail('A LogicException must have been thrown');
         } catch (\Exception $e) {
@@ -851,7 +989,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     private function verifyPosixIsEnabled()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('POSIX signals do not work on Windows');
         }
         if (!defined('SIGUSR1')) {
@@ -864,11 +1002,11 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
      */
     public function testSignalWithWrongIntSignal()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('POSIX signals do not work on Windows');
         }
 
-        $process = $this->getProcess('php -r "sleep(3);"');
+        $process = $this->getProcess(self::$phpBin.' -r "sleep(3);"');
         $process->start();
         $process->signal(-4);
     }
@@ -878,18 +1016,18 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
      */
     public function testSignalWithWrongNonIntSignal()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $this->markTestSkipped('POSIX signals do not work on Windows');
         }
 
-        $process = $this->getProcess('php -r "sleep(3);"');
+        $process = $this->getProcess(self::$phpBin.' -r "sleep(3);"');
         $process->start();
         $process->signal('Céphalopodes');
     }
 
     public function testDisableOutputDisablesTheOutput()
     {
-        $p = $this->getProcess('php -r "usleep(500000);"');
+        $p = $this->getProcess(self::$phpBin.' -r "usleep(500000);"');
         $this->assertFalse($p->isOutputDisabled());
         $p->disableOutput();
         $this->assertTrue($p->isOutputDisabled());
@@ -899,7 +1037,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testDisableOutputWhileRunningThrowsException()
     {
-        $p = $this->getProcess('php -r "usleep(500000);"');
+        $p = $this->getProcess(self::$phpBin.' -r "usleep(500000);"');
         $p->start();
         $this->setExpectedException('Symfony\Component\Process\Exception\RuntimeException', 'Disabling output while the process is running is not possible.');
         $p->disableOutput();
@@ -907,7 +1045,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testEnableOutputWhileRunningThrowsException()
     {
-        $p = $this->getProcess('php -r "usleep(500000);"');
+        $p = $this->getProcess(self::$phpBin.' -r "usleep(500000);"');
         $p->disableOutput();
         $p->start();
         $this->setExpectedException('Symfony\Component\Process\Exception\RuntimeException', 'Enabling output while the process is running is not possible.');
@@ -916,7 +1054,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testEnableOrDisableOutputAfterRunDoesNotThrowException()
     {
-        $p = $this->getProcess('php -r "usleep(500000);"');
+        $p = $this->getProcess(self::$phpBin.' -r "usleep(500000);"');
         $p->disableOutput();
         $p->start();
         $p->wait();
@@ -950,20 +1088,20 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider provideStartMethods
      */
-    public function testStartWithACallbackAndDisabledOutput($startMethod)
+    public function testStartWithACallbackAndDisabledOutput($startMethod, $exception, $exceptionMessage)
     {
-        $p = $this->getProcess('php -r "usleep(500000);"');
+        $p = $this->getProcess(self::$phpBin.' -r "usleep(500000);"');
         $p->disableOutput();
-        $this->setExpectedException('Symfony\Component\Process\Exception\LogicException', 'Output has been disabled, enable it to allow the use of a callback.');
-        call_user_func(array($p, $startMethod), function () {});
+        $this->setExpectedException($exception, $exceptionMessage);
+        $p->{$startMethod}(function () {});
     }
 
     public function provideStartMethods()
     {
         return array(
-            array('start'),
-            array('run'),
-            array('mustRun'),
+            array('start', 'Symfony\Component\Process\Exception\LogicException', 'Output has been disabled, enable it to allow the use of a callback.'),
+            array('run', 'Symfony\Component\Process\Exception\LogicException', 'Output has been disabled, enable it to allow the use of a callback.'),
+            array('mustRun', 'Symfony\Component\Process\Exception\LogicException', 'Output has been disabled, enable it to allow the use of a callback.'),
         );
     }
 
@@ -972,11 +1110,11 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetOutputWhileDisabled($fetchMethod)
     {
-        $p = $this->getProcess('php -r "usleep(500000);"');
+        $p = $this->getProcess(self::$phpBin.' -r "usleep(500000);"');
         $p->disableOutput();
         $p->start();
         $this->setExpectedException('Symfony\Component\Process\Exception\LogicException', 'Output has been disabled.');
-        call_user_func(array($p, $fetchMethod));
+        $p->{$fetchMethod}();
     }
 
     public function provideOutputFetchingMethods()
@@ -1006,7 +1144,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
             'include \''.__DIR__.'/PipeStdinInStdoutStdErrStreamSelect.php\';',
         );
 
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             // Avoid XL buffers on Windows because of https://bugs.php.net/bug.php?id=65650
             $sizes = array(1, 2, 4, 8);
         } else {
@@ -1024,7 +1162,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * provides default method names for simple getter/setter
+     * provides default method names for simple getter/setter.
      */
     public function methodProvider()
     {
@@ -1035,19 +1173,19 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
             array('Env'),
             array('Stdin'),
             array('Input'),
-            array('Options')
+            array('Options'),
         );
 
         return $defaults;
     }
 
     /**
-     * @param string         $commandline
-     * @param null|string    $cwd
-     * @param null|array     $env
-     * @param null|string    $input
-     * @param int            $timeout
-     * @param array          $options
+     * @param string      $commandline
+     * @param null|string $cwd
+     * @param null|array  $env
+     * @param null|string $input
+     * @param int         $timeout
+     * @param array       $options
      *
      * @return Process
      */

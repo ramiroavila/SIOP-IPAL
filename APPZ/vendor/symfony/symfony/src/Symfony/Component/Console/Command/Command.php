@@ -42,7 +42,8 @@ class Command
     private $applicationDefinitionMerged = false;
     private $applicationDefinitionMergedWithArgs = false;
     private $code;
-    private $synopsis;
+    private $synopsis = array();
+    private $usages = array();
     private $helperSet;
 
     /**
@@ -65,7 +66,7 @@ class Command
         $this->configure();
 
         if (!$this->name) {
-            throw new \LogicException('The command name cannot be empty.');
+            throw new \LogicException(sprintf('The command defined in "%s" cannot have an empty name.', get_class($this)));
         }
     }
 
@@ -129,7 +130,7 @@ class Command
     }
 
     /**
-     * Checks whether the command is enabled or not in the current environment
+     * Checks whether the command is enabled or not in the current environment.
      *
      * Override this to check for x or y and return false if the command can not
      * run properly under the current conditions.
@@ -159,10 +160,11 @@ class Command
      * @param InputInterface  $input  An InputInterface instance
      * @param OutputInterface $output An OutputInterface instance
      *
-     * @return null|int     null or 0 if everything went fine, or an error code
+     * @return null|int null or 0 if everything went fine, or an error code
      *
      * @throws \LogicException When this abstract method is not implemented
-     * @see    setCode()
+     *
+     * @see setCode()
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -171,6 +173,10 @@ class Command
 
     /**
      * Interacts with the user.
+     *
+     * This method is executed before the InputDefinition is validated.
+     * This means that this is the only place where the command can
+     * interactively ask for values of missing required arguments.
      *
      * @param InputInterface  $input  An InputInterface instance
      * @param OutputInterface $output An OutputInterface instance
@@ -202,7 +208,7 @@ class Command
      * @param InputInterface  $input  An InputInterface instance
      * @param OutputInterface $output An OutputInterface instance
      *
-     * @return int     The command exit code
+     * @return int The command exit code
      *
      * @throws \Exception
      *
@@ -213,18 +219,9 @@ class Command
      */
     public function run(InputInterface $input, OutputInterface $output)
     {
-        if (null !== $this->processTitle) {
-            if (function_exists('cli_set_process_title')) {
-                cli_set_process_title($this->processTitle);
-            } elseif (function_exists('setproctitle')) {
-                setproctitle($this->processTitle);
-            } elseif (OutputInterface::VERBOSITY_VERY_VERBOSE === $output->getVerbosity()) {
-                $output->writeln('<comment>Install the proctitle PECL to be able to change the process title.</comment>');
-            }
-        }
-
         // force the creation of the synopsis before the merge with the app definition
-        $this->getSynopsis();
+        $this->getSynopsis(true);
+        $this->getSynopsis(false);
 
         // add the application arguments and options
         $this->mergeApplicationDefinition();
@@ -239,6 +236,16 @@ class Command
         }
 
         $this->initialize($input, $output);
+
+        if (null !== $this->processTitle) {
+            if (function_exists('cli_set_process_title')) {
+                cli_set_process_title($this->processTitle);
+            } elseif (function_exists('setproctitle')) {
+                setproctitle($this->processTitle);
+            } elseif (OutputInterface::VERBOSITY_VERY_VERBOSE === $output->getVerbosity()) {
+                $output->writeln('<comment>Install the proctitle PECL to be able to change the process title.</comment>');
+            }
+        }
 
         if ($input->isInteractive()) {
             $this->interact($input, $output);
@@ -287,7 +294,7 @@ class Command
      *
      * This method is not part of public API and should not be used directly.
      *
-     * @param bool    $mergeArgs Whether to merge or not the Application definition arguments to Command definition arguments
+     * @param bool $mergeArgs Whether to merge or not the Application definition arguments to Command definition arguments
      */
     public function mergeApplicationDefinition($mergeArgs = true)
     {
@@ -361,10 +368,10 @@ class Command
     /**
      * Adds an argument.
      *
-     * @param string  $name        The argument name
-     * @param int     $mode        The argument mode: InputArgument::REQUIRED or InputArgument::OPTIONAL
-     * @param string  $description A description text
-     * @param mixed   $default     The default value (for InputArgument::OPTIONAL mode only)
+     * @param string $name        The argument name
+     * @param int    $mode        The argument mode: InputArgument::REQUIRED or InputArgument::OPTIONAL
+     * @param string $description A description text
+     * @param mixed  $default     The default value (for InputArgument::OPTIONAL mode only)
      *
      * @return Command The current instance
      *
@@ -380,11 +387,11 @@ class Command
     /**
      * Adds an option.
      *
-     * @param string  $name        The option name
-     * @param string  $shortcut    The shortcut (can be null)
-     * @param int     $mode        The option mode: One of the InputOption::VALUE_* constants
-     * @param string  $description A description text
-     * @param mixed   $default     The default value (must be null for InputOption::VALUE_REQUIRED or InputOption::VALUE_NONE)
+     * @param string $name        The option name
+     * @param string $shortcut    The shortcut (can be null)
+     * @param int    $mode        The option mode: One of the InputOption::VALUE_* constants
+     * @param string $description A description text
+     * @param mixed  $default     The default value (must be null for InputOption::VALUE_REQUIRED or InputOption::VALUE_NONE)
      *
      * @return Command The current instance
      *
@@ -513,7 +520,7 @@ class Command
      * Returns the processed help for the command replacing the %command.name% and
      * %command.full_name% patterns with the real values dynamically.
      *
-     * @return string  The processed help for the command
+     * @return string The processed help for the command
      */
     public function getProcessedHelp()
     {
@@ -521,11 +528,11 @@ class Command
 
         $placeholders = array(
             '%command.name%',
-            '%command.full_name%'
+            '%command.full_name%',
         );
         $replacements = array(
             $name,
-            $_SERVER['PHP_SELF'].' '.$name
+            $_SERVER['PHP_SELF'].' '.$name,
         );
 
         return str_replace($placeholders, $replacements, $this->getHelp());
@@ -534,7 +541,7 @@ class Command
     /**
      * Sets the aliases for the command.
      *
-     * @param array $aliases An array of aliases for the command
+     * @param string[] $aliases An array of aliases for the command
      *
      * @return Command The current instance
      *
@@ -544,6 +551,10 @@ class Command
      */
     public function setAliases($aliases)
     {
+        if (!is_array($aliases) && !$aliases instanceof \Traversable) {
+            throw new \InvalidArgumentException('$aliases must be an array or an instance of \Traversable');
+        }
+
         foreach ($aliases as $alias) {
             $this->validateName($alias);
         }
@@ -568,15 +579,45 @@ class Command
     /**
      * Returns the synopsis for the command.
      *
+     * @param bool $short Whether to show the short version of the synopsis (with options folded) or not
+     *
      * @return string The synopsis
      */
-    public function getSynopsis()
+    public function getSynopsis($short = false)
     {
-        if (null === $this->synopsis) {
-            $this->synopsis = trim(sprintf('%s %s', $this->name, $this->definition->getSynopsis()));
+        $key = $short ? 'short' : 'long';
+
+        if (!isset($this->synopsis[$key])) {
+            $this->synopsis[$key] = trim(sprintf('%s %s', $this->name, $this->definition->getSynopsis($short)));
         }
 
-        return $this->synopsis;
+        return $this->synopsis[$key];
+    }
+
+    /**
+     * Add a command usage example.
+     *
+     * @param string $usage The usage, it'll be prefixed with the command name
+     */
+    public function addUsage($usage)
+    {
+        if (0 !== strpos($usage, $this->name)) {
+            $usage = sprintf('%s %s', $this->name, $usage);
+        }
+
+        $this->usages[] = $usage;
+
+        return $this;
+    }
+
+    /**
+     * Returns alternative usages of the command.
+     *
+     * @return array
+     */
+    public function getUsages()
+    {
+        return $this->usages;
     }
 
     /**
@@ -600,10 +641,12 @@ class Command
      *
      * @return string A string representing the command
      *
-     * @deprecated Deprecated since version 2.3, to be removed in 3.0.
+     * @deprecated since version 2.3, to be removed in 3.0.
      */
     public function asText()
     {
+        @trigger_error('The '.__METHOD__.' method is deprecated since version 2.3 and will be removed in 3.0.', E_USER_DEPRECATED);
+
         $descriptor = new TextDescriptor();
         $output = new BufferedOutput(BufferedOutput::VERBOSITY_NORMAL, true);
         $descriptor->describe($output, $this, array('raw_output' => true));
@@ -614,14 +657,16 @@ class Command
     /**
      * Returns an XML representation of the command.
      *
-     * @param bool    $asDom Whether to return a DOM or an XML string
+     * @param bool $asDom Whether to return a DOM or an XML string
      *
      * @return string|\DOMDocument An XML string representing the command
      *
-     * @deprecated Deprecated since version 2.3, to be removed in 3.0.
+     * @deprecated since version 2.3, to be removed in 3.0.
      */
     public function asXml($asDom = false)
     {
+        @trigger_error('The '.__METHOD__.' method is deprecated since version 2.3 and will be removed in 3.0.', E_USER_DEPRECATED);
+
         $descriptor = new XmlDescriptor();
 
         if ($asDom) {

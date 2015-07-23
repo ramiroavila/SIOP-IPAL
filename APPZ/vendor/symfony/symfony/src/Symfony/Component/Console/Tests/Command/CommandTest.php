@@ -41,7 +41,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException        \LogicException
-     * @expectedExceptionMessage The command name cannot be empty.
+     * @expectedExceptionMessage The command defined in "Symfony\Component\Console\Command\Command" cannot have an empty name.
      */
     public function testCommandNameCannotBeEmpty()
     {
@@ -111,7 +111,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array(''),
-            array('foo:')
+            array('foo:'),
         );
     }
 
@@ -154,8 +154,8 @@ class CommandTest extends \PHPUnit_Framework_TestCase
     {
         $command = new \TestCommand();
         $command->addOption('foo');
-        $command->addArgument('foo');
-        $this->assertEquals('namespace:name [--foo] [foo]', $command->getSynopsis(), '->getSynopsis() returns the synopsis');
+        $command->addArgument('bar');
+        $this->assertEquals('namespace:name [--foo] [--] [<bar>]', $command->getSynopsis(), '->getSynopsis() returns the synopsis');
     }
 
     public function testGetHelper()
@@ -165,15 +165,6 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $command->setApplication($application);
         $formatterHelper = new FormatterHelper();
         $this->assertEquals($formatterHelper->getName(), $command->getHelper('formatter')->getName(), '->getHelper() returns the correct helper');
-    }
-
-    public function testGet()
-    {
-        $application = new Application();
-        $command = new \TestCommand();
-        $command->setApplication($application);
-        $formatterHelper = new FormatterHelper();
-        $this->assertEquals($formatterHelper->getName(), $command->getHelper('formatter')->getName(), '->__get() returns the correct helper');
     }
 
     public function testMergeApplicationDefinition()
@@ -211,7 +202,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $m = $r->getMethod('mergeApplicationDefinition');
         $m->setAccessible(true);
         $m->invoke($command, false);
-        $this->assertTrue($command->getDefinition()->hasOption('bar'), '->mergeApplicationDefinition(false) merges the application and the commmand options');
+        $this->assertTrue($command->getDefinition()->hasOption('bar'), '->mergeApplicationDefinition(false) merges the application and the command options');
         $this->assertFalse($command->getDefinition()->hasArgument('foo'), '->mergeApplicationDefinition(false) does not merge the application arguments');
 
         $m->invoke($command, true);
@@ -243,7 +234,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
      * @expectedException        \LogicException
      * @expectedExceptionMessage You must override the execute() method in the concrete command class.
      */
-    public function testExecuteMethodNeedsToBeOverriden()
+    public function testExecuteMethodNeedsToBeOverridden()
     {
         $command = new Command('foo');
         $command->run(new StringInput(''), new NullOutput());
@@ -318,7 +309,10 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $output->writeln('from the code...');
     }
 
-    public function testAsText()
+    /**
+     * @group legacy
+     */
+    public function testLegacyAsText()
     {
         $command = new \TestCommand();
         $command->setApplication(new Application());
@@ -327,7 +321,10 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->assertStringEqualsFile(self::$fixturesPath.'/command_astext.txt', $command->asText(), '->asText() returns a text representation of the command');
     }
 
-    public function testAsXml()
+    /**
+     * @group legacy
+     */
+    public function testLegacyAsXml()
     {
         $command = new \TestCommand();
         $command->setApplication(new Application());

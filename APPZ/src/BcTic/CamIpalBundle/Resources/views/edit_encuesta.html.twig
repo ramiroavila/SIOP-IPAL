@@ -1,9 +1,8 @@
-    
-    {{ form_start(form) }}
+ {{ form_start(form) }}
 
     <div id="errors"></div>
-  
-    <ul class="nav nav-tabs">
+
+   <ul class="nav nav-tabs">
       <li class="active hidden-xs"><a class="hidden-xs" href="#antecedentes" data-toggle="tab">{{ 'Antecedentes generales' | trans }}</a></li>
       <li class="hidden-xs"><a class="hidden-xs" href="#ingreso" data-toggle="tab">{{ 'Áreas/Actuaciones' | trans }}</a></li>
       <li class="hidden-xs"><a class="hidden-xs" href="#adjunto" data-toggle="tab">{{ 'Observaciones/Adjuntos' | trans }}</a></li>
@@ -43,7 +42,7 @@
             {{ form_row(form.area) }}
           </div>
         </div>
-        
+
         <div class="row">
           <div class="col-sm-6">
             {{ form_row(form.actividad) }}
@@ -120,15 +119,15 @@
             </div>
           </div>
 
-         
+
       </div>
 
       <div class="tab-pane survey" id="ingreso">
 
           <br/>
-          
+
           {% include "BcTicCamIpalBundle::edit_encuesta_" ~ type ~ "_format." ~ format ~ ".twig" with { form: form } %}
-          
+
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
@@ -149,9 +148,9 @@
             <div class="col-sm-6">
             </div>
           </div>
-          
+
       </div>
-        
+
       <div class="tab-pane" id="adjunto">
         <br/>
         <div class="row">
@@ -163,7 +162,7 @@
               <div class="row">
                 <div class="col-sm-offset-3 col-sm-9">
                   {% if (entity.file1 | length > 0) %}
-                    <a target="_blank" href="/{{ entity.file1 }}">Descargar</a>
+                    <a target="_blank" href="http://d3w47s9tsep5jb.cloudfront.net/{{ entity.file1 }}">Descargar</a>
                     <br/>
                     <br/>
                   {% endif %}
@@ -178,7 +177,7 @@
               <div class="row">
                 <div class="col-sm-offset-3 col-sm-9">
                   {% if (entity.file2 | length > 0) %}
-                    <a target="_blank" href="/{{ entity.file2 }}">Descargar</a>
+                    <a target="_blank" href="http://d3w47s9tsep5jb.cloudfront.net/{{ entity.file2 }}">Descargar</a>
                     <br/>
                     <br/>
                   {% endif %}
@@ -190,7 +189,7 @@
               <div class="row">
                 <div class="col-sm-offset-3 col-sm-9">
                   {% if (entity.file3 | length > 0) %}
-                    <a target="_blank" href="/{{ entity.file3 }}">Descargar</a>
+                    <a target="_blank" href="http://d3w47s9tsep5jb.cloudfront.net/{{ entity.file3 }}">Descargar</a>
                     <br/>
                     <br/>
                   {% endif %}
@@ -212,7 +211,7 @@
         <div class="row cierre">
             <div class="col-sm-6">
               <div class="form-group "><label class="col-sm-3 control-label" for="bctic_camipalbundle_encuesta_cierre"></label><div class="col-sm-9"><p><i>{{ '* EN CASO DE INCUMPLIMIENTOS: Solamente los usuarios administradores pueden cambiar el estado de "Cierre". Para que el usuario adminstrador valide una encuesta ABIERTA debe usted ingresar al menos el texto de cierre y una fotografía, con lo cual el estado será "POR VALIDAR" hasta que el administrador CIERRE la Encuesta.' | trans }}</i></p></div></div>
-              
+
             </div>
             <div class="col-sm-6">
               {{ form_row(form.uploadedFileCierre2) }}
@@ -224,30 +223,30 @@
               {{ form_row(form.status_cierre) }}
             </div>
             <div class="col-sm-6">
-              
+
             </div>
-        </div>        
+        </div>
 
         <div class="row">
             <div class="col-sm-6">
               {{ form_row(form.submit) }}
             </div>
             <div class="col-sm-6">
-              
+
             </div>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
 
     {{ form_end(form) }}
-    
+
     <hr/>
 
 
     {% block js %}
-      <script type="text/javascript"> 
-      
+      <script type="text/javascript">
+
         $('#bctic_camipalbundle_encuesta_next_1').bind('click', function (e) {
           $('.nav-tabs a.hidden-xs[href="#ingreso"]').tab('show') // Select tab by name
         });

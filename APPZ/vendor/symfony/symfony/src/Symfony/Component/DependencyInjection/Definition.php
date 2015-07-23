@@ -25,6 +25,7 @@ class Definition
 {
     private $class;
     private $file;
+    private $factory;
     private $factoryClass;
     private $factoryMethod;
     private $factoryService;
@@ -57,6 +58,34 @@ class Definition
     }
 
     /**
+     * Sets a factory.
+     *
+     * @param string|array $factory A PHP function or an array containing a class/Reference and a method to call
+     *
+     * @return Definition The current instance
+     */
+    public function setFactory($factory)
+    {
+        if (is_string($factory) && strpos($factory, '::') !== false) {
+            $factory = explode('::', $factory, 2);
+        }
+
+        $this->factory = $factory;
+
+        return $this;
+    }
+
+    /**
+     * Gets the factory.
+     *
+     * @return string|array The PHP function or an array containing a class/Reference and a method to call
+     */
+    public function getFactory()
+    {
+        return $this->factory;
+    }
+
+    /**
      * Sets the name of the class that acts as a factory using the factory method,
      * which will be invoked statically.
      *
@@ -65,9 +94,12 @@ class Definition
      * @return Definition The current instance
      *
      * @api
+     * @deprecated since version 2.6, to be removed in 3.0.
      */
     public function setFactoryClass($factoryClass)
     {
+        @trigger_error(sprintf('%s(%s) is deprecated since version 2.6 and will be removed in 3.0. Use Definition::setFactory() instead.', __METHOD__, $factoryClass), E_USER_DEPRECATED);
+
         $this->factoryClass = $factoryClass;
 
         return $this;
@@ -79,9 +111,14 @@ class Definition
      * @return string|null The factory class name
      *
      * @api
+     * @deprecated since version 2.6, to be removed in 3.0.
      */
-    public function getFactoryClass()
+    public function getFactoryClass($triggerDeprecationError = true)
     {
+        if ($triggerDeprecationError) {
+            @trigger_error('The '.__METHOD__.' method is deprecated since version 2.6 and will be removed in 3.0.', E_USER_DEPRECATED);
+        }
+
         return $this->factoryClass;
     }
 
@@ -93,9 +130,12 @@ class Definition
      * @return Definition The current instance
      *
      * @api
+     * @deprecated since version 2.6, to be removed in 3.0.
      */
     public function setFactoryMethod($factoryMethod)
     {
+        @trigger_error(sprintf('%s(%s) is deprecated since version 2.6 and will be removed in 3.0. Use Definition::setFactory() instead.', __METHOD__, $factoryMethod), E_USER_DEPRECATED);
+
         $this->factoryMethod = $factoryMethod;
 
         return $this;
@@ -142,9 +182,14 @@ class Definition
      * @return string|null The factory method name
      *
      * @api
+     * @deprecated since version 2.6, to be removed in 3.0.
      */
-    public function getFactoryMethod()
+    public function getFactoryMethod($triggerDeprecationError = true)
     {
+        if ($triggerDeprecationError) {
+            @trigger_error('The '.__METHOD__.' method is deprecated since version 2.6 and will be removed in 3.0.', E_USER_DEPRECATED);
+        }
+
         return $this->factoryMethod;
     }
 
@@ -156,9 +201,12 @@ class Definition
      * @return Definition The current instance
      *
      * @api
+     * @deprecated since version 2.6, to be removed in 3.0.
      */
     public function setFactoryService($factoryService)
     {
+        @trigger_error(sprintf('%s(%s) is deprecated since version 2.6 and will be removed in 3.0. Use Definition::setFactory() instead.', __METHOD__, $factoryService), E_USER_DEPRECATED);
+
         $this->factoryService = $factoryService;
 
         return $this;
@@ -170,9 +218,14 @@ class Definition
      * @return string|null The factory service id
      *
      * @api
+     * @deprecated since version 2.6, to be removed in 3.0.
      */
-    public function getFactoryService()
+    public function getFactoryService($triggerDeprecationError = true)
     {
+        if ($triggerDeprecationError) {
+            @trigger_error('The '.__METHOD__.' method is deprecated since version 2.6 and will be removed in 3.0.', E_USER_DEPRECATED);
+        }
+
         return $this->factoryService;
     }
 
@@ -265,10 +318,10 @@ class Definition
     }
 
     /**
-     * Sets a specific argument
+     * Sets a specific argument.
      *
-     * @param int     $index
-     * @param mixed   $argument
+     * @param int   $index
+     * @param mixed $argument
      *
      * @return Definition The current instance
      *
@@ -302,7 +355,7 @@ class Definition
     /**
      * Gets an argument to pass to the service constructor/factory method.
      *
-     * @param int     $index
+     * @param int $index
      *
      * @return mixed The argument value
      *
@@ -414,7 +467,7 @@ class Definition
     }
 
     /**
-     * Sets tags for this definition
+     * Sets tags for this definition.
      *
      * @param array $tags
      *
@@ -473,7 +526,7 @@ class Definition
     }
 
     /**
-     * Whether this definition has a tag with the given name
+     * Whether this definition has a tag with the given name.
      *
      * @param string $name
      *
@@ -545,7 +598,7 @@ class Definition
     }
 
     /**
-     * Sets the scope of the service
+     * Sets the scope of the service.
      *
      * @param string $scope Whether the service must be shared or not
      *
@@ -561,7 +614,7 @@ class Definition
     }
 
     /**
-     * Returns the scope of the service
+     * Returns the scope of the service.
      *
      * @return string
      *
@@ -575,7 +628,7 @@ class Definition
     /**
      * Sets the visibility of this service.
      *
-     * @param bool    $boolean
+     * @param bool $boolean
      *
      * @return Definition The current instance
      *
@@ -589,7 +642,7 @@ class Definition
     }
 
     /**
-     * Whether this service is public facing
+     * Whether this service is public facing.
      *
      * @return bool
      *
@@ -603,14 +656,20 @@ class Definition
     /**
      * Sets the synchronized flag of this service.
      *
-     * @param bool    $boolean
+     * @param bool $boolean
      *
      * @return Definition The current instance
      *
      * @api
+     *
+     * @deprecated since version 2.7, will be removed in 3.0.
      */
-    public function setSynchronized($boolean)
+    public function setSynchronized($boolean, $triggerDeprecationError = true)
     {
+        if ($triggerDeprecationError) {
+            @trigger_error('The '.__METHOD__.' method is deprecated since version 2.7 and will be removed in 3.0.', E_USER_DEPRECATED);
+        }
+
         $this->synchronized = (bool) $boolean;
 
         return $this;
@@ -622,16 +681,22 @@ class Definition
      * @return bool
      *
      * @api
+     *
+     * @deprecated since version 2.7, will be removed in 3.0.
      */
-    public function isSynchronized()
+    public function isSynchronized($triggerDeprecationError = true)
     {
+        if ($triggerDeprecationError) {
+            @trigger_error('The '.__METHOD__.' method is deprecated since version 2.7 and will be removed in 3.0.', E_USER_DEPRECATED);
+        }
+
         return $this->synchronized;
     }
 
     /**
      * Sets the lazy flag of this service.
      *
-     * @param bool    $lazy
+     * @param bool $lazy
      *
      * @return Definition The current instance
      */
@@ -656,7 +721,7 @@ class Definition
      * Sets whether this definition is synthetic, that is not constructed by the
      * container, but dynamically injected.
      *
-     * @param bool    $boolean
+     * @param bool $boolean
      *
      * @return Definition the current instance
      *
@@ -686,7 +751,7 @@ class Definition
      * Whether this definition is abstract, that means it merely serves as a
      * template for other definitions.
      *
-     * @param bool    $boolean
+     * @param bool $boolean
      *
      * @return Definition the current instance
      *

@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new BcTic\CamIpalBundle\BcTicCamIpalBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Gregwar\ImageBundle\GregwarImageBundle(),
+            new Aws\Symfony\AwsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

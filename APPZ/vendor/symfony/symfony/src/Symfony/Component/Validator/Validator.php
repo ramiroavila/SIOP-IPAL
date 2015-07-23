@@ -11,6 +11,8 @@
 
 namespace Symfony\Component\Validator;
 
+@trigger_error('The '.__NAMESPACE__.'\Validator class is deprecated since version 2.5 and will be removed in 3.0. Use the Symfony\Component\Validator\Validator\RecursiveValidator class instead.', E_USER_DEPRECATED);
+
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Validator\Exception\ValidatorException;
@@ -21,7 +23,7 @@ use Symfony\Component\Validator\Exception\ValidatorException;
  * @author Fabien Potencier <fabien@symfony.com>
  * @author Bernhard Schussek <bschussek@gmail.com>
  *
- * @deprecated Deprecated since version 2.5, to be removed in Symfony 3.0.
+ * @deprecated since version 2.5, to be removed in 3.0.
  *             Use {@link Validator\RecursiveValidator} instead.
  */
 class Validator implements ValidatorInterface, Mapping\Factory\MetadataFactoryInterface
@@ -57,8 +59,7 @@ class Validator implements ValidatorInterface, Mapping\Factory\MetadataFactoryIn
         TranslatorInterface $translator,
         $translationDomain = 'validators',
         array $objectInitializers = array()
-    )
-    {
+    ) {
         $this->metadataFactory = $metadataFactory;
         $this->validatorFactory = $validatorFactory;
         $this->translator = $translator;
@@ -142,7 +143,7 @@ class Validator implements ValidatorInterface, Mapping\Factory\MetadataFactoryIn
      */
     public function validatePropertyValue($containingValue, $property, $value, $groups = null)
     {
-        $visitor = $this->createVisitor($containingValue);
+        $visitor = $this->createVisitor(is_object($containingValue) ? $containingValue : $value);
         $metadata = $this->metadataFactory->getMetadataFor($containingValue);
 
         if (!$metadata instanceof PropertyMetadataContainerInterface) {
@@ -153,13 +154,17 @@ class Validator implements ValidatorInterface, Mapping\Factory\MetadataFactoryIn
             throw new ValidatorException(sprintf('The metadata for '.$valueAsString.' does not support properties.'));
         }
 
+        // If $containingValue is passed as class name, take $value as root
+        // and start the traversal with an empty property path
+        $propertyPath = is_object($containingValue) ? $property : '';
+
         foreach ($this->resolveGroups($groups) as $group) {
             if (!$metadata->hasPropertyMetadata($property)) {
                 continue;
             }
 
             foreach ($metadata->getPropertyMetadata($property) as $propMeta) {
-                $propMeta->accept($visitor, $value, $group, $property);
+                $propMeta->accept($visitor, $value, $group, $propertyPath);
             }
         }
 

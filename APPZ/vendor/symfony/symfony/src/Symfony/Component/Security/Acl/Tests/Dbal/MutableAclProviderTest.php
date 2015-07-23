@@ -88,7 +88,8 @@ class MutableAclProviderTest extends \PHPUnit_Framework_TestCase
         try {
             $provider->findAcl($oid);
             $this->fail('ACL has not been properly deleted.');
-        } catch (AclNotFoundException $notFound) { }
+        } catch (AclNotFoundException $e) {
+        }
     }
 
     public function testDeleteAclDeletesChildren()
@@ -103,7 +104,8 @@ class MutableAclProviderTest extends \PHPUnit_Framework_TestCase
         try {
             $provider->findAcl(new ObjectIdentity(1, 'Foo'));
             $this->fail('Child-ACLs have not been deleted.');
-        } catch (AclNotFoundException $notFound) { }
+        } catch (AclNotFoundException $e) {
+        }
     }
 
     public function testFindAclsAddsPropertyListener()
@@ -148,7 +150,7 @@ class MutableAclProviderTest extends \PHPUnit_Framework_TestCase
             'parent' => array(
                 'object_identifier' => '1',
                 'class_type' => 'anotherFoo',
-            )
+            ),
         ));
 
         $propertyChanges = $this->getField($provider, 'propertyChanges');
@@ -288,7 +290,8 @@ class MutableAclProviderTest extends \PHPUnit_Framework_TestCase
         try {
             $provider->updateAcl($acl1);
             $this->fail('Provider failed to detect a concurrent modification.');
-        } catch (ConcurrentModificationException $ex) { }
+        } catch (ConcurrentModificationException $e) {
+        }
     }
 
     public function testUpdateAcl()
@@ -438,6 +441,8 @@ class MutableAclProviderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Imports acls.
+     *
      * Data must have the following format:
      * array(
      *     *name* => array(
@@ -449,6 +454,7 @@ class MutableAclProviderTest extends \PHPUnit_Framework_TestCase
      *
      * @param AclProvider $provider
      * @param array       $data
+     *
      * @throws \InvalidArgumentException
      * @throws \Exception
      */
@@ -472,7 +478,7 @@ class MutableAclProviderTest extends \PHPUnit_Framework_TestCase
 
                 if (isset($aclData['parent_acl'])) {
                     if (isset($aclIds[$aclData['parent_acl']])) {
-                        $con->executeQuery("UPDATE acl_object_identities SET parent_object_identity_id = ".$aclIds[$aclData['parent_acl']]." WHERE id = ".$aclId);
+                        $con->executeQuery('UPDATE acl_object_identities SET parent_object_identity_id = '.$aclIds[$aclData['parent_acl']].' WHERE id = '.$aclId);
                         $con->executeQuery($this->callMethod($provider, 'getInsertObjectIdentityRelationSql', array($aclId, $aclIds[$aclData['parent_acl']])));
                     } else {
                         $parentAcls[$aclId] = $aclData['parent_acl'];
@@ -485,7 +491,7 @@ class MutableAclProviderTest extends \PHPUnit_Framework_TestCase
                     throw new \InvalidArgumentException(sprintf('"%s" does not exist.', $name));
                 }
 
-                $con->executeQuery(sprintf("UPDATE acl_object_identities SET parent_object_identity_id = %d WHERE id = %d", $aclIds[$name], $aclId));
+                $con->executeQuery(sprintf('UPDATE acl_object_identities SET parent_object_identity_id = %d WHERE id = %d', $aclIds[$name], $aclId));
                 $con->executeQuery($this->callMethod($provider, 'getInsertObjectIdentityRelationSql', array($aclId, $aclIds[$name])));
             }
 

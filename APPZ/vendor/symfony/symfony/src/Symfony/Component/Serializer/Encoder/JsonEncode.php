@@ -14,13 +14,13 @@ namespace Symfony\Component\Serializer\Encoder;
 use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 
 /**
- * Encodes JSON data
+ * Encodes JSON data.
  *
  * @author Sander Coolen <sander@jibber.nl>
  */
 class JsonEncode implements EncoderInterface
 {
-    private $options ;
+    private $options;
     private $lastError = JSON_ERROR_NONE;
 
     public function __construct($bitmask = 0)
@@ -33,17 +33,20 @@ class JsonEncode implements EncoderInterface
      *
      * @return int
      *
-     * @deprecated since 2.5, encode() throws an exception if error found, will be removed in 3.0
+     * @deprecated since version 2.5, to be removed in 3.0.
+     *             The {@self encode()} throws an exception if error found.
      *
      * @see http://php.net/manual/en/function.json-last-error.php json_last_error
      */
     public function getLastError()
     {
+        @trigger_error('The '.__METHOD__.' method is deprecated since version 2.5 and will be removed in 3.0. Catch the exception raised by the encode() method instead to get the last JSON encoding error.', E_USER_DEPRECATED);
+
         return $this->lastError;
     }
 
     /**
-     * Encodes PHP data to a JSON string
+     * Encodes PHP data to a JSON string.
      *
      * {@inheritdoc}
      */
@@ -72,6 +75,7 @@ class JsonEncode implements EncoderInterface
      * Merge default json encode options with context.
      *
      * @param array $context
+     *
      * @return array
      */
     private function resolveContext(array $context = array())

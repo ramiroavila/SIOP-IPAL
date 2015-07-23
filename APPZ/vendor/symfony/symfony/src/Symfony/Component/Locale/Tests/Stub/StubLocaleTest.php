@@ -21,9 +21,8 @@ class StubLocaleTest extends \PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
+        // Locale extends \Locale, so intl must be present
         IntlTestHelper::requireIntl($this);
-
-        parent::setUp();
     }
 
     public function testGetCurrenciesData()

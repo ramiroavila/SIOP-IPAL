@@ -1,6 +1,8 @@
 Cache
 =====
 
+![Build status](https://travis-ci.org/Gregwar/Cache.svg?branch=master)
+
 This is a lightweight cache system based on file and directories.
 
 Usage
@@ -90,6 +92,8 @@ You can use the following methods:
   returned, else, `NULL` will be returned.
 * `setPrefixSize($prefixSize)`: sets the prefix size for directories, default is 5. For instance, the
   cache file for `helloworld.txt`, will be `'h/e/l/l/o/helloworld.txt`.
+* `setDirectoryMode($directoryMode)`: sets the directory mode when creating direcotries, default is `0755`.
+  Does not affect any directories previously created.
 * `getOrCreate($filename, $conditions = array(), $function, $file = false)`: this will check if the `$filename`
   cache file exists and verifies `$conditions` (see below). If the cache file is OK, it will return its
   contents. Else, it will call the `$function`, passing it the target file, this function can write the

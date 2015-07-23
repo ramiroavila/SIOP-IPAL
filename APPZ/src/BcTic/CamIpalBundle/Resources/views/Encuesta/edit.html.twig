@@ -17,28 +17,28 @@
     <p class="text-left">
     <a class="hidden-xs" href="{{ path('encuestas') }}">
       <button type="button" class="btn btn-default btn-xs">
-        <span class="glyphicon glyphicon-th-list"></span> {{ 'Volver' | trans }}  
+        <span class="glyphicon glyphicon-th-list"></span> {{ 'Volver' | trans }}
       </button>
     </a>
     </p>
 
 {% endblock %}
 
-{% block js %}     
+{% block js %}
 
   {{ parent() }}
   <script type="text/javascript">
-     
+
      if ($('form .has-error').length > 0) {
        $('#errors').addClass('alert')
        $('#errors').addClass('alert-danger');
        $('#errors').html('{{'El formulario contiene errores, favor corríjalo.' | trans }}');
      }
-      
+
      $('form .survey .alert-warning select').unbind('change').change( function () {
        event.preventDefault();
      });
-     
+
      var prev_val;
 
      $('form .survey .alert-warning select').focus(function (event) {
@@ -93,11 +93,11 @@
             if (dataSuccess.subcontrato == true) {
               $('#bctic_camipalbundle_encuesta_cttaSubcont').attr('disabled',false);
             }
-          },   
+          },
           error: function (a,b,c) {
             alert("ERROR: " + b);
           }
-        });       
+        });
       }
     });
 
@@ -130,21 +130,21 @@
 
         },
         focus: function(event, ui) {
-          
+
         },
         select: function(event, ui) {
           if (ui.item) {
             $("#bctic_camipalbundle_encuesta_supervisor_facade" ).val(ui.item.label);
             $("#bctic_camipalbundle_encuesta_supervisor" ).val(ui.item.value);
           } else {
-            
+
           }
           event.preventDefault();
         }
 
      });
 
-     
+
      //Autocomplete
      $("#bctic_camipalbundle_encuesta_inspector" ).autocomplete({
         delay: 500,
@@ -171,7 +171,7 @@
 
         },
         focus: function(event, ui) {
-          
+
         },
         select: function(event, ui) {
 

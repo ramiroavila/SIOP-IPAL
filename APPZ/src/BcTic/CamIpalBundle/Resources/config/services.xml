@@ -7,13 +7,15 @@
     <parameters>
         <parameter key="bc_tic_cam_ipal.bundle.class">BcTic\CamIpalBundle\Form\Type\EntityHiddenType</parameter>
         <parameter key="bc_tic_cam_ipal.bundle.inspector_validator.class">BcTic\CamIpalBundle\Validator\Constraints\ContainsInspectorValidator</parameter>
-        <parameter key="bc_tic_cam_ipal.bundle.uploaded_file_validator.class">BcTic\CamIpalBundle\Validator\Constraints\ContainsUploadedFileValidator</parameter>        
+        <parameter key="bc_tic_cam_ipal.bundle.uploaded_file_validator.class">BcTic\CamIpalBundle\Validator\Constraints\ContainsUploadedFileValidator</parameter>
         <parameter key="bc_tic_cam_ipal.bundle.meta.class">BcTic\CamIpalBundle\Form\MetaType</parameter>
+        <parameter key="bc_tic_cam_ipal.extension.twig_extension.class">BcTic\CamIpalBundle\Extension\TwigExtension</parameter>
+        <parameter key="aws_s3client.class">Aws\S3\S3Client</parameter>
     </parameters>
 
     <services>
         <service id="bc_tic_cam_ipal.type.entity_hidden" class="%bc_tic_cam_ipal.bundle.class%">
-           <argument type="service" id="doctrine.orm.entity_manager" /> 
+           <argument type="service" id="doctrine.orm.entity_manager" />
           <tag name="form.type" alias="entity_hidden" event="kernel.request" method="onKernelRequest"/>
         </service>
 
@@ -30,13 +32,21 @@
         <service id="validator.unique.uploaded_file_validator" class="%bc_tic_cam_ipal.bundle.uploaded_file_validator.class%">
           <argument type="service" id="doctrine.orm.default_entity_manager" />
           <tag name="validator.constraint_validator" alias="uploaded_file_validator" />
-        </service>        
+        </service>
 
         <service id="form.type.meta" class="%bc_tic_cam_ipal.bundle.meta.class%">
           <argument type="service" id="security.context" />
           <tag name="form.type" alias="meta" />
-        </service>    
+        </service>
 
-    </services> 
-    
+        <service id="bc_tic_cam_ipal.extension.twig_extension" class="%bc_tic_cam_ipal.extension.twig_extension.class%">
+          <tag name="twig.extension"/>
+        </service>
+
+        <service id="aws_s3client" class="%aws_s3client.class%">
+          <argument>%aws_params%</argument>
+        </service>
+
+    </services>
+
 </container>

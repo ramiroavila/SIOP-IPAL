@@ -14,32 +14,42 @@ class EncuestaImagenesCommand extends ContainerAwareCommand
     {
         $this
             ->setName('siop:encuesta_imagenes')
-            ->setDescription('Mejora el tamaño de las imágenes de las encuestas.')
+            ->setDescription('Sube las imágenes a Amazon S3 y elimina las imágenes que se han subido.')
+            ->addArgument('file', InputArgument::REQUIRED)
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln("INICIO DE COMANDO");
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
-        
-        $entities = $em->getRepository('BcTicCamIpalBundle:Encuesta')
-                           ->createQueryBuilder('e')->getQuery()->getResult();
 
-        //Recorro todas las encuestas:
-        foreach ($entities as $entity) {
-          //Son 3 archivos:
-          $file = $entity->getFile1();  
-          if (strlen($file) > 0) {
-            $this->checkAndCopy($file);
-          }   
-        }                   
+        $file = $input->getArgument('file');
+        $output->writeln("UPLOADING ".$file);
+
+        $s3 = $this->getContainer()->get('aws_s3client');
+
+        $result = $s3->putObject(array(
+          'Bucket'       => "backup-bctic",
+          'Key'          => "4040-CAM-LA/siop.cam-la.com/".$file,
+          'SourceFile'   => $file,
+          'ContentType'  => 'text/plain',
+          'ACL'          => 'public-read',
+          'StorageClass' => 'STANDARD',
+          'Metadata'     => array()
+        ));
+
+        if (isset($result)) {
+          if (isset($result['@metadata'])) {
+            if (isset($result['@metadata']['statusCode'])) {
+              if ($result['@metadata']['statusCode'] == 200) {
+                unlink($file);
+                $output->writeln("OK - Archivo ".$file." en S3, se borra.");
+              }
+            }
+          }
+        }
 
         $output->writeln("FIN DE COMANDO");
     }
 
-    private function checkAndCopy($file) {
-      //La nueva ruta es /images/uploads
-        
-    }
 }

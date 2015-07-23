@@ -11,9 +11,10 @@
 
 namespace Symfony\Component\Form\Tests\Extension\Core\Type;
 
+use Symfony\Component\Form\Test\TypeTestCase as TestCase;
 use Symfony\Component\Intl\Util\IntlTestHelper;
 
-class NumberTypeTest extends TypeTestCase
+class NumberTypeTest extends TestCase
 {
     protected function setUp()
     {
@@ -43,9 +44,9 @@ class NumberTypeTest extends TypeTestCase
         $this->assertSame('12.345,679', $view->vars['value']);
     }
 
-    public function testDefaultFormattingWithPrecision()
+    public function testDefaultFormattingWithScale()
     {
-        $form = $this->factory->create('number', null, array('precision' => 2));
+        $form = $this->factory->create('number', null, array('scale' => 2));
         $form->setData('12345.67890');
         $view = $form->createView();
 
@@ -54,7 +55,7 @@ class NumberTypeTest extends TypeTestCase
 
     public function testDefaultFormattingWithRounding()
     {
-        $form = $this->factory->create('number', null, array('precision' => 0, 'rounding_mode' => \NumberFormatter::ROUND_UP));
+        $form = $this->factory->create('number', null, array('scale' => 0, 'rounding_mode' => \NumberFormatter::ROUND_UP));
         $form->setData('12345.54321');
         $view = $form->createView();
 

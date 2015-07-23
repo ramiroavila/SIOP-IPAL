@@ -1,3 +1,10 @@
+parameters:
+    web_path: %kernel.root_dir%/../web
+    aws_params:
+        version: "%aws_version%"
+        region: "%aws_region%"
+        credentials: { key: "%aws_credentials_key%", secret: "%aws_credentials_secret%" }
+
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
@@ -29,8 +36,10 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form:
-        resources: 
-          - 'BcTicCamIpalBundle:Default:form_bootstrap_layout.html.twig' 
+        resources:
+          - 'BcTicCamIpalBundle:Default:form_bootstrap_layout.html.twig'
+    globals:
+        web_path: %web_path%
 
 # Assetic Configuration
 assetic:
@@ -64,7 +73,7 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
-        dql:    
+        dql:
             string_functions:
                 CAST: BcTic\CamIpalBundle\DQL\CastFunction
 
@@ -76,7 +85,7 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     encryption: "%mailer_encryption%"
-    spool:     
+    spool:
         type: file
         path: "%kernel.root_dir%/spool"
 

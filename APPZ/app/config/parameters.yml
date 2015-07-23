@@ -14,3 +14,7 @@ parameters:
     mailer_password: 78239487298479282424lkasjdlakdjakmlxas
     locale: es
     secret: 1032910239801983jdkjshkajschdascds
+    aws_version: latest
+    aws_region: us-east-1
+    aws_credentials_key: AKIAJ4QXEEYX75LMMM2Q
+    aws_credentials_secret: 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

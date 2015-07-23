@@ -201,4 +201,29 @@ class JsonResponseTest extends \PHPUnit_Framework_TestCase
     {
         JsonResponse::create("\xB1\x31");
     }
+
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage This error is expected
+     */
+    public function testSetContentJsonSerializeError()
+    {
+        if (!interface_exists('JsonSerializable')) {
+            $this->markTestSkipped('Interface JsonSerializable is available in PHP 5.4+');
+        }
+
+        $serializable = new JsonSerializableObject();
+
+        JsonResponse::create($serializable);
+    }
+}
+
+if (interface_exists('JsonSerializable')) {
+    class JsonSerializableObject implements \JsonSerializable
+    {
+        public function jsonSerialize()
+        {
+            throw new \Exception('This error is expected');
+        }
+    }
 }

@@ -13,6 +13,7 @@ namespace Symfony\Component\Validator\Tests\Validator;
 
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\GroupSequence;
+use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Traverse;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Validator\ConstraintViolationInterface;
@@ -20,6 +21,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\MetadataFactoryInterface;
 use Symfony\Component\Validator\Tests\Fixtures\Entity;
+use Symfony\Component\Validator\Tests\Fixtures\FailingConstraint;
 use Symfony\Component\Validator\Tests\Fixtures\FakeClassMetadata;
 use Symfony\Component\Validator\Tests\Fixtures\Reference;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -42,7 +44,7 @@ abstract class Abstract2Dot5ApiTest extends AbstractValidatorTest
      *
      * @return ValidatorInterface
      */
-    abstract protected function createValidator(MetadataFactoryInterface $metadataFactory);
+    abstract protected function createValidator(MetadataFactoryInterface $metadataFactory, array $objectInitializers = array());
 
     protected function setUp()
     {
@@ -64,6 +66,19 @@ abstract class Abstract2Dot5ApiTest extends AbstractValidatorTest
     protected function validatePropertyValue($object, $propertyName, $value, $groups = null)
     {
         return $this->validator->validatePropertyValue($object, $propertyName, $value, $groups);
+    }
+
+    public function testValidateConstraintWithoutGroup()
+    {
+        $violations = $this->validator->validate(null, new NotNull());
+
+        $this->assertCount(1, $violations);
+    }
+
+    public function testValidateWithEmptyArrayAsConstraint()
+    {
+        $violations = $this->validator->validate('value', array());
+        $this->assertCount(0, $violations);
     }
 
     public function testGroupSequenceAbortsAfterFailedGroup()
@@ -146,12 +161,12 @@ abstract class Abstract2Dot5ApiTest extends AbstractValidatorTest
             $test->assertCount(1, $violations);
             $test->assertSame('Message value', $violations[0]->getMessage());
             $test->assertSame('Message %param%', $violations[0]->getMessageTemplate());
-            $test->assertSame(array('%param%' => 'value'), $violations[0]->getMessageParameters());
+            $test->assertSame(array('%param%' => 'value'), $violations[0]->getParameters());
             $test->assertSame('', $violations[0]->getPropertyPath());
             // The root is different as we're in a new context
             $test->assertSame($entity->reference, $violations[0]->getRoot());
             $test->assertSame($entity->reference, $violations[0]->getInvalidValue());
-            $test->assertNull($violations[0]->getMessagePluralization());
+            $test->assertNull($violations[0]->getPlural());
             $test->assertNull($violations[0]->getCode());
 
             // Verify that this method is called
@@ -193,13 +208,26 @@ abstract class Abstract2Dot5ApiTest extends AbstractValidatorTest
         $entity = new Entity();
         $entity->reference = new Reference();
 
-        $callback1 = function ($value, ExecutionContextInterface $context) {
+        $callback1 = function ($value, ExecutionContextInterface $context) use ($test) {
+            $previousValue = $context->getValue();
+            $previousObject = $context->getObject();
+            $previousMetadata = $context->getMetadata();
+            $previousPath = $context->getPropertyPath();
+            $previousGroup = $context->getGroup();
+
             $context
                 ->getValidator()
                 ->inContext($context)
                 ->atPath('subpath')
                 ->validate($value->reference)
             ;
+
+            // context changes shouldn't leak out of the validate() call
+            $test->assertSame($previousValue, $context->getValue());
+            $test->assertSame($previousObject, $context->getObject());
+            $test->assertSame($previousMetadata, $context->getMetadata());
+            $test->assertSame($previousPath, $context->getPropertyPath());
+            $test->assertSame($previousGroup, $context->getGroup());
         };
 
         $callback2 = function ($value, ExecutionContextInterface $context) use ($test, $entity) {
@@ -230,11 +258,11 @@ abstract class Abstract2Dot5ApiTest extends AbstractValidatorTest
         $this->assertCount(1, $violations);
         $this->assertSame('Message value', $violations[0]->getMessage());
         $this->assertSame('Message %param%', $violations[0]->getMessageTemplate());
-        $this->assertSame(array('%param%' => 'value'), $violations[0]->getMessageParameters());
+        $this->assertSame(array('%param%' => 'value'), $violations[0]->getParameters());
         $this->assertSame('subpath', $violations[0]->getPropertyPath());
         $this->assertSame($entity, $violations[0]->getRoot());
         $this->assertSame($entity->reference, $violations[0]->getInvalidValue());
-        $this->assertNull($violations[0]->getMessagePluralization());
+        $this->assertNull($violations[0]->getPlural());
         $this->assertNull($violations[0]->getCode());
     }
 
@@ -244,13 +272,26 @@ abstract class Abstract2Dot5ApiTest extends AbstractValidatorTest
         $entity = new Entity();
         $entity->reference = new Reference();
 
-        $callback1 = function ($value, ExecutionContextInterface $context) {
+        $callback1 = function ($value, ExecutionContextInterface $context) use ($test) {
+            $previousValue = $context->getValue();
+            $previousObject = $context->getObject();
+            $previousMetadata = $context->getMetadata();
+            $previousPath = $context->getPropertyPath();
+            $previousGroup = $context->getGroup();
+
             $context
                 ->getValidator()
                 ->inContext($context)
                 ->atPath('subpath')
                 ->validate(array('key' => $value->reference))
             ;
+
+            // context changes shouldn't leak out of the validate() call
+            $test->assertSame($previousValue, $context->getValue());
+            $test->assertSame($previousObject, $context->getObject());
+            $test->assertSame($previousMetadata, $context->getMetadata());
+            $test->assertSame($previousPath, $context->getPropertyPath());
+            $test->assertSame($previousGroup, $context->getGroup());
         };
 
         $callback2 = function ($value, ExecutionContextInterface $context) use ($test, $entity) {
@@ -281,11 +322,11 @@ abstract class Abstract2Dot5ApiTest extends AbstractValidatorTest
         $this->assertCount(1, $violations);
         $this->assertSame('Message value', $violations[0]->getMessage());
         $this->assertSame('Message %param%', $violations[0]->getMessageTemplate());
-        $this->assertSame(array('%param%' => 'value'), $violations[0]->getMessageParameters());
+        $this->assertSame(array('%param%' => 'value'), $violations[0]->getParameters());
         $this->assertSame('subpath[key]', $violations[0]->getPropertyPath());
         $this->assertSame($entity, $violations[0]->getRoot());
         $this->assertSame($entity->reference, $violations[0]->getInvalidValue());
-        $this->assertNull($violations[0]->getMessagePluralization());
+        $this->assertNull($violations[0]->getPlural());
         $this->assertNull($violations[0]->getCode());
     }
 
@@ -320,11 +361,11 @@ abstract class Abstract2Dot5ApiTest extends AbstractValidatorTest
         $this->assertCount(1, $violations);
         $this->assertSame('Message value', $violations[0]->getMessage());
         $this->assertSame('Message %param%', $violations[0]->getMessageTemplate());
-        $this->assertSame(array('%param%' => 'value'), $violations[0]->getMessageParameters());
+        $this->assertSame(array('%param%' => 'value'), $violations[0]->getParameters());
         $this->assertSame('[key]', $violations[0]->getPropertyPath());
         $this->assertSame($traversable, $violations[0]->getRoot());
         $this->assertSame($entity, $violations[0]->getInvalidValue());
-        $this->assertNull($violations[0]->getMessagePluralization());
+        $this->assertNull($violations[0]->getPlural());
         $this->assertNull($violations[0]->getCode());
     }
 
@@ -471,65 +512,6 @@ abstract class Abstract2Dot5ApiTest extends AbstractValidatorTest
         $this->assertCount(0, $violations);
     }
 
-    public function testReferenceTraversalRecursionEnabledOnReferenceTraversalEnabledOnClass()
-    {
-        $entity = new Entity();
-        $entity->reference = new \ArrayIterator(array(
-            2 => new \ArrayIterator(array('key' => new Reference())),
-        ));
-
-        $callback = function ($value, ExecutionContextInterface $context) {
-            $context->addViolation('Message');
-        };
-
-        $traversableMetadata = new ClassMetadata('ArrayIterator');
-        $traversableMetadata->addConstraint(new Traverse(true));
-
-        $this->metadataFactory->addMetadata($traversableMetadata);
-        $this->referenceMetadata->addConstraint(new Callback(array(
-            'callback' => $callback,
-            'groups' => 'Group',
-        )));
-        $this->metadata->addPropertyConstraint('reference', new Valid(array(
-            'deep' => true,
-        )));
-
-        $violations = $this->validate($entity, new Valid(), 'Group');
-
-        /** @var ConstraintViolationInterface[] $violations */
-        $this->assertCount(1, $violations);
-    }
-
-    public function testReferenceTraversalRecursionDisabledOnReferenceTraversalEnabledOnClass()
-    {
-        $test = $this;
-        $entity = new Entity();
-        $entity->reference = new \ArrayIterator(array(
-            2 => new \ArrayIterator(array('key' => new Reference())),
-        ));
-
-        $callback = function ($value, ExecutionContextInterface $context) use ($test) {
-            $test->fail('Should not be called');
-        };
-
-        $traversableMetadata = new ClassMetadata('ArrayIterator');
-        $traversableMetadata->addConstraint(new Traverse(true));
-
-        $this->metadataFactory->addMetadata($traversableMetadata);
-        $this->referenceMetadata->addConstraint(new Callback(array(
-            'callback' => $callback,
-            'groups' => 'Group',
-        )));
-        $this->metadata->addPropertyConstraint('reference', new Valid(array(
-            'deep' => false,
-        )));
-
-        $violations = $this->validate($entity, new Valid(), 'Group');
-
-        /** @var ConstraintViolationInterface[] $violations */
-        $this->assertCount(0, $violations);
-    }
-
     public function testAddCustomizedViolation()
     {
         $entity = new Entity();
@@ -539,7 +521,7 @@ abstract class Abstract2Dot5ApiTest extends AbstractValidatorTest
                 ->setParameter('%param%', 'value')
                 ->setInvalidValue('Invalid value')
                 ->setPlural(2)
-                ->setCode('Code')
+                ->setCode(42)
                 ->addViolation();
         };
 
@@ -551,12 +533,12 @@ abstract class Abstract2Dot5ApiTest extends AbstractValidatorTest
         $this->assertCount(1, $violations);
         $this->assertSame('Message value', $violations[0]->getMessage());
         $this->assertSame('Message %param%', $violations[0]->getMessageTemplate());
-        $this->assertSame(array('%param%' => 'value'), $violations[0]->getMessageParameters());
+        $this->assertSame(array('%param%' => 'value'), $violations[0]->getParameters());
         $this->assertSame('', $violations[0]->getPropertyPath());
         $this->assertSame($entity, $violations[0]->getRoot());
         $this->assertSame('Invalid value', $violations[0]->getInvalidValue());
-        $this->assertSame(2, $violations[0]->getMessagePluralization());
-        $this->assertSame('Code', $violations[0]->getCode());
+        $this->assertSame(2, $violations[0]->getPlural());
+        $this->assertSame(42, $violations[0]->getCode());
     }
 
     /**
@@ -598,15 +580,16 @@ abstract class Abstract2Dot5ApiTest extends AbstractValidatorTest
 
     /**
      * @expectedException \Symfony\Component\Validator\Exception\UnsupportedMetadataException
+     * @group legacy
      */
-    public function testPropertyMetadataMustImplementPropertyMetadataInterface()
+    public function testLegacyPropertyMetadataMustImplementPropertyMetadataInterface()
     {
         $entity = new Entity();
 
         // Legacy interface
         $propertyMetadata = $this->getMock('Symfony\Component\Validator\MetadataInterface');
         $metadata = new FakeClassMetadata(get_class($entity));
-        $metadata->addPropertyMetadata('firstName', $propertyMetadata);
+        $metadata->addCustomPropertyMetadata('firstName', $propertyMetadata);
 
         $this->metadataFactory->addMetadata($metadata);
 
@@ -677,5 +660,62 @@ abstract class Abstract2Dot5ApiTest extends AbstractValidatorTest
         $this->validator->validate($entity);
 
         $this->assertTrue($called);
+    }
+
+    public function testInitializeObjectsOnFirstValidation()
+    {
+        $test = $this;
+        $entity = new Entity();
+        $entity->initialized = false;
+
+        // prepare initializers that set "initialized" to true
+        $initializer1 = $this->getMock('Symfony\\Component\\Validator\\ObjectInitializerInterface');
+        $initializer2 = $this->getMock('Symfony\\Component\\Validator\\ObjectInitializerInterface');
+
+        $initializer1->expects($this->once())
+            ->method('initialize')
+            ->with($entity)
+            ->will($this->returnCallback(function ($object) {
+                $object->initialized = true;
+            }));
+
+        $initializer2->expects($this->once())
+            ->method('initialize')
+            ->with($entity);
+
+        $this->validator = $this->createValidator($this->metadataFactory, array(
+            $initializer1,
+            $initializer2,
+        ));
+
+        // prepare constraint which
+        // * checks that "initialized" is set to true
+        // * validates the object again
+        $callback = function ($object, ExecutionContextInterface $context) use ($test) {
+            $test->assertTrue($object->initialized);
+
+            // validate again in same group
+            $validator = $context->getValidator()->inContext($context);
+
+            $validator->validate($object);
+
+            // validate again in other group
+            $validator->validate($object, null, 'SomeGroup');
+        };
+
+        $this->metadata->addConstraint(new Callback($callback));
+
+        $this->validate($entity);
+
+        $this->assertTrue($entity->initialized);
+    }
+
+    public function testPassConstraintToViolation()
+    {
+        $constraint = new FailingConstraint();
+        $violations = $this->validate('Foobar', $constraint);
+
+        $this->assertCount(1, $violations);
+        $this->assertSame($constraint, $violations[0]->getConstraint());
     }
 }

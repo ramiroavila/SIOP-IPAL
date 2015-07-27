@@ -940,6 +940,7 @@ abstract class Encuesta
     abstract function getIncumplimientos();
     abstract function getIncumplimientos50();
     abstract function getHits($criticidad);
+    abstract function getRespuestasAgrupadas();
 
     /**
      * Get id

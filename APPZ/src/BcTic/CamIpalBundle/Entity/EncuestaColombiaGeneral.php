@@ -15,10 +15,10 @@ class EncuestaColombiaGeneral extends Encuesta
 
     public function __construct() {
 
-        $this->setCreatedAt(date('U'));      
+        $this->setCreatedAt(date('U'));
         //Respuestas NA por defecto
         $this->setRespuesta11(2);
-        $this->setRespuesta12(2);        
+        $this->setRespuesta12(2);
         $this->setRespuesta13(2);
         $this->setRespuesta14(2);
         $this->setRespuesta15(2);
@@ -52,12 +52,12 @@ class EncuestaColombiaGeneral extends Encuesta
         $this->setRespuesta138(2);
         $this->setRespuesta139(2);
         $this->setRespuesta1310(2);
-        
+
 
     }
-  
+
     public function getKey() {
-      return "colombia_general";	
+      return "colombia_general";
     }
 
         public function getHits($criticidad) {
@@ -65,16 +65,16 @@ class EncuestaColombiaGeneral extends Encuesta
         $data = array(
                 50 => array (
                     'items' => 20,
-                    'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta12() == 1) ? 1 : 0)+ 
-                                (($this->getRespuesta13() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta14() == 1) ? 1 : 0) + 
+                    'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) +
+                                (($this->getRespuesta12() == 1) ? 1 : 0)+
+                                (($this->getRespuesta13() == 1) ? 1 : 0) +
+                                (($this->getRespuesta14() == 1) ? 1 : 0) +
                                 (($this->getRespuesta15() == 1) ? 1 : 0) +
-                                (($this->getRespuesta21() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta22() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta23() == 1) ? 1 : 0) +  
-                                (($this->getRespuesta31() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta35() == 1) ? 1 : 0) + 
+                                (($this->getRespuesta21() == 1) ? 1 : 0) +
+                                (($this->getRespuesta22() == 1) ? 1 : 0) +
+                                (($this->getRespuesta23() == 1) ? 1 : 0) +
+                                (($this->getRespuesta31() == 1) ? 1 : 0) +
+                                (($this->getRespuesta35() == 1) ? 1 : 0) +
                                 (($this->getRespuesta36() == 1) ? 1 : 0) +
                                 (($this->getRespuesta44() == 1) ? 1 : 0) +
                                 (($this->getRespuesta45() == 1) ? 1 : 0) +
@@ -89,16 +89,16 @@ class EncuestaColombiaGeneral extends Encuesta
 
                 40 => array (
                     'items' => 3,
-                    'indice' => (($this->getRespuesta33() == 1) ? 1 : 0 ) + 
+                    'indice' => (($this->getRespuesta33() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta41() == 1) ? 1 : 0 ) +
-                                (($this->getRespuesta42() == 1) ? 1 : 0 ) 
+                                (($this->getRespuesta42() == 1) ? 1 : 0 )
 
                     ),
 
 
                 30 => array (
                     'items' => 12,
-                    'indice' => (($this->getRespuesta63() == 1) ? 1 : 0 ) + 
+                    'indice' => (($this->getRespuesta63() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta93() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta98() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta99() == 1) ? 1 : 0 ) +
@@ -109,53 +109,53 @@ class EncuestaColombiaGeneral extends Encuesta
                                 (($this->getRespuesta136() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta137() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta139() == 1) ? 1 : 0 ) +
-                                (($this->getRespuesta1310() == 1) ? 1 : 0 ) 
+                                (($this->getRespuesta1310() == 1) ? 1 : 0 )
 
                     ),
 
 
                 20 => array (
                     'items' => 27,
-                    'indice' => (($this->getRespuesta38() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta43() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta49() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta411() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta413() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta414() == 1) ? 1 : 0 ) +  
-                                (($this->getRespuesta415() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta416() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta51() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta52() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta53() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta61() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta62() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta71() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta72() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta81() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta82() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta83() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta91() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta95() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta101() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta102() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta104() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta111() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta132() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta133() == 1) ? 1 : 0 ) + 
+                    'indice' => (($this->getRespuesta38() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta43() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta49() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta411() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta413() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta414() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta415() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta416() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta51() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta52() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta53() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta61() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta62() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta71() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta72() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta81() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta82() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta83() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta91() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta95() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta101() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta102() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta104() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta111() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta132() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta133() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta138() == 1) ? 1 : 0 )
                     ),
                 10 => array (
                     'items' => 11,
-                    'indice' => (($this->getRespuesta32() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta34() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta37() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta410() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta54() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta92() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta911() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta121() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta122() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta123() == 1) ? 1 : 0 ) + 
+                    'indice' => (($this->getRespuesta32() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta34() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta37() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta410() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta54() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta92() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta911() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta121() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta122() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta123() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta131() == 1) ? 1 : 0 )
                     ),
                 5 => array (
@@ -166,6 +166,75 @@ class EncuestaColombiaGeneral extends Encuesta
 
        return $data[$criticidad]['indice'];
 
+    }
+
+    public function getRespuestasAgrupadas() {
+      $data = array(0 => 0,1 => 0,2 => 0);
+      //Debo iterar en todas las respuestas y agrupar las respuestas:
+      $enum = $this->getRespuesta11(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta12(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta13(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta14(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta15(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta21(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta22(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta23(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta31(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta32(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta33(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta34(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta35(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta36(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta37(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta38(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta41(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta42(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta43(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta44(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta45(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta46(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta47(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta48(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta49(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta410(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta411(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta412(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta413(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta414(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta415(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta416(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta51(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta52(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta53(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta54(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta61(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta62(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta63(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta71(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta72(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta81(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta82(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta83(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta91(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta92(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta93(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta94(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta95(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta96(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta97(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta98(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta99(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta910(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta911(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta101(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta102(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta103(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta104(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta111(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta121(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta122(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta123(); $data[$enum] = $data[$enum] + 1;
+      return $data;
     }
 
     public function getIncumplimientos() {
@@ -218,11 +287,11 @@ class EncuestaColombiaGeneral extends Encuesta
 
       if ($this->getRespuesta71() == 1) $data[] = "respuesta7.1_colombia_general";
       if ($this->getRespuesta72() == 1) $data[] = "respuesta7.2_colombia_general";
-      
+
       if ($this->getRespuesta81() == 1) $data[] = "respuesta8.1_colombia_general";
       if ($this->getRespuesta82() == 1) $data[] = "respuesta8.2_colombia_general";
       if ($this->getRespuesta83() == 1) $data[] = "respuesta8.3_colombia_general";
-      
+
       if ($this->getRespuesta91() == 1) $data[] = "respuesta9.1_colombia_general";
       if ($this->getRespuesta92() == 1) $data[] = "respuesta9.2_colombia_general";
       if ($this->getRespuesta93() == 1) $data[] = "respuesta9.3_colombia_general";
@@ -246,7 +315,7 @@ class EncuestaColombiaGeneral extends Encuesta
       if ($this->getRespuesta122() == 1) $data[] = "respuesta12.2_colombia_general";
       if ($this->getRespuesta123() == 1) $data[] = "respuesta12.3_colombia_general";
 
-      /* 
+      /*
       LOS INCUMPLIMIENTOS DE 13 NO APLICA PARA DEJAR COMO ABIERTO
       if ($this->getRespuesta131() == 0) $data[] = "respuesta13.1_colombia_general";
       if ($this->getRespuesta132() == 0) $data[] = "respuesta13.2_colombia_general";
@@ -260,7 +329,7 @@ class EncuestaColombiaGeneral extends Encuesta
       if ($this->getRespuesta1310() == 0) $data[] = "respuesta13.10_colombia_general";
       */
 
-      return $data; 
+      return $data;
     }
 
     public function getIncumplimientos50() {
@@ -299,16 +368,16 @@ class EncuestaColombiaGeneral extends Encuesta
 
           50 => array (
                     'items' => 20,
-                    'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta12() == 1) ? 1 : 0)+ 
-                                (($this->getRespuesta13() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta14() == 1) ? 1 : 0) + 
+                    'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) +
+                                (($this->getRespuesta12() == 1) ? 1 : 0)+
+                                (($this->getRespuesta13() == 1) ? 1 : 0) +
+                                (($this->getRespuesta14() == 1) ? 1 : 0) +
                                 (($this->getRespuesta15() == 1) ? 1 : 0) +
-                                (($this->getRespuesta21() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta22() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta23() == 1) ? 1 : 0) +  
-                                (($this->getRespuesta31() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta35() == 1) ? 1 : 0) + 
+                                (($this->getRespuesta21() == 1) ? 1 : 0) +
+                                (($this->getRespuesta22() == 1) ? 1 : 0) +
+                                (($this->getRespuesta23() == 1) ? 1 : 0) +
+                                (($this->getRespuesta31() == 1) ? 1 : 0) +
+                                (($this->getRespuesta35() == 1) ? 1 : 0) +
                                 (($this->getRespuesta36() == 1) ? 1 : 0) +
                                 (($this->getRespuesta44() == 1) ? 1 : 0) +
                                 (($this->getRespuesta45() == 1) ? 1 : 0) +
@@ -323,16 +392,16 @@ class EncuestaColombiaGeneral extends Encuesta
 
                 40 => array (
                     'items' => 3,
-                    'indice' => (($this->getRespuesta33() == 1) ? 1 : 0 ) + 
+                    'indice' => (($this->getRespuesta33() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta41() == 1) ? 1 : 0 ) +
-                                (($this->getRespuesta42() == 1) ? 1 : 0 ) 
+                                (($this->getRespuesta42() == 1) ? 1 : 0 )
 
                     ),
 
 
                 30 => array (
                     'items' => 12,
-                    'indice' => (($this->getRespuesta63() == 1) ? 1 : 0 ) + 
+                    'indice' => (($this->getRespuesta63() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta93() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta98() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta99() == 1) ? 1 : 0 ) +
@@ -343,53 +412,53 @@ class EncuestaColombiaGeneral extends Encuesta
                                 (($this->getRespuesta136() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta137() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta139() == 1) ? 1 : 0 ) +
-                                (($this->getRespuesta1310() == 1) ? 1 : 0 ) 
+                                (($this->getRespuesta1310() == 1) ? 1 : 0 )
 
                     ),
 
 
                 20 => array (
                     'items' => 27,
-                    'indice' => (($this->getRespuesta38() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta43() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta49() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta411() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta413() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta414() == 1) ? 1 : 0 ) +  
-                                (($this->getRespuesta415() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta416() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta51() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta52() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta53() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta61() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta62() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta71() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta72() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta81() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta82() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta83() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta91() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta95() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta101() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta102() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta104() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta111() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta132() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta133() == 1) ? 1 : 0 ) + 
+                    'indice' => (($this->getRespuesta38() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta43() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta49() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta411() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta413() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta414() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta415() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta416() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta51() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta52() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta53() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta61() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta62() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta71() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta72() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta81() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta82() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta83() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta91() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta95() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta101() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta102() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta104() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta111() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta132() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta133() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta138() == 1) ? 1 : 0 )
                     ),
                 10 => array (
                     'items' => 11,
-                    'indice' => (($this->getRespuesta32() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta34() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta37() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta410() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta54() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta92() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta911() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta121() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta122() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta123() == 1) ? 1 : 0 ) + 
+                    'indice' => (($this->getRespuesta32() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta34() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta37() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta410() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta54() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta92() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta911() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta121() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta122() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta123() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta131() == 1) ? 1 : 0 )
                     ),
                 5 => array (
@@ -403,7 +472,7 @@ class EncuestaColombiaGeneral extends Encuesta
                 foreach ($data as $index => $value) {
                   //Value = items & indice
                   $valor = 0;
-                  if ($value["items"] > 0) {  
+                  if ($value["items"] > 0) {
                     $rango = round(100 * ( $value['indice']/$value['items'] ),0);
                     if ($rango >= 90) $valor = 8;
                     if ( ($rango >= 77 ) and ($rango < 90) )  $valor = 7;
@@ -417,7 +486,7 @@ class EncuestaColombiaGeneral extends Encuesta
                   }
 
                   $data[$index]['valor'] = $valor;
-                } 
+                }
 
                 foreach ($data as $index => $value) {
                    $ipal = $ipal + ($index * $value['valor']);

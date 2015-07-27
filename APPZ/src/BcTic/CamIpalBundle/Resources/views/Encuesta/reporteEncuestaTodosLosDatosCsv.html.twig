@@ -1,4 +1,4 @@
-FECHA; GERENCIA CAM; SUB GERENCIA CAM; AREA DE CAM; EMPRESA CONTRATISTA; Nº ENC; Q NC; N IPAL
+FECHA; GERENCIA CAM; SUB GERENCIA CAM; AREA DE CAM; EMPRESA CONTRATISTA; Nº ENC; Q NC; N IPAL; RESPUESTAS SI; RESPUESTAS NO; RESPUESTAS N/A
 {% for item in data %}
-{{ item.fecha | date("m-Y") }};"{{ item.gerencia | raw }}";"{{ item.subgerencia | raw }}";"{{ item.area | raw }}";"{{ item.contratista | raw }}";1;{{ item.cantidad_incumplimientos }};{{ item.ipal }}
+{{ item.fecha | date("m-Y") }};"{{ item.gerencia | raw }}";"{{ item.subgerencia | raw }}";"{{ item.area | raw }}";"{{ item.contratista | raw }}";1;{{ item.cantidad_incumplimientos }};{{ item.ipal }}; {{ item.respuestas_0 }}; {{ item.respuestas_1 }}; {{ item.respuestas_2 }}
 {% endfor %}

@@ -22,7 +22,7 @@ class EncuestaCalculaIndiceCommand extends ContainerAwareCommand
     {
         $output->writeln("INICIO DE COMANDO");
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
-        
+
         $entities = $em->getRepository('BcTicCamIpalBundle:Encuesta')
                            ->createQueryBuilder('e')
                            ->where('e.indice = -1')
@@ -42,7 +42,8 @@ class EncuestaCalculaIndiceCommand extends ContainerAwareCommand
 
             //HAGO EL INSERT DE MYSQL RAW:
             $cierre = $entity->getStatusCierre();
-            $sql = "INSERT INTO EncuestaProxy (id,fecha,gerencia,subgerencia,area,inspector,prevencionista,contratista,contrato,supervisor, lugar,ipal,tiene_incumplimientos,cantidad_incumplimientos,cierre,incumplimientos_5,incumplimientos_10,incumplimientos_20,incumplimientos_30,incumplimientos_40,incumplimientos_50) VALUES (".$entity->getId().",'".$entity->getFecha()->format('Y-m-d h:i:s')."','".addslashes($entity->getContrato()->getSubGerencia()->getGerencia()->getNombre())."','".addslashes($entity->getContrato()->getSubGerencia()->getNombre())."','".addslashes($entity->getContrato()->getArea()->getNombre())."','".addslashes($entity->getInspector())."','".addslashes($entity->getPrevencionista())."','".(($entity->getCttaSubcont() === null) ? " -- SIN CONTRATISTA -- " : addslashes($entity->getCttaSubcont()->getNombre()))."','".addslashes($entity->getContrato()->getNombre())."','".addslashes($entity->getSupervisorFacade())."','".addslashes($entity->getLugarDeTrabajo())."','".addslashes($entity->getIndiceIpal())."',".((count($entity->getIncumplimientos()) > 0) ? 1 : 0 ).",".(count($entity->getIncumplimientos())).",'".addslashes($cierre)."',".$entity->getHits(5).",".$entity->getHits(10).",".$entity->getHits(20).",".$entity->getHits(30).",".$entity->getHits(40).",".$entity->getHits(50).")";
+            $agrupacion = $entity->getRespuestasAgrupadas();
+            $sql = "INSERT INTO EncuestaProxy (id,fecha,gerencia,subgerencia,area,inspector,prevencionista,contratista,contrato,supervisor, lugar,ipal,tiene_incumplimientos,cantidad_incumplimientos,cierre,incumplimientos_5,incumplimientos_10,incumplimientos_20,incumplimientos_30,incumplimientos_40,incumplimientos_50, respuestas_0, respuestas_1, respuestas_2) VALUES (".$entity->getId().",'".$entity->getFecha()->format('Y-m-d h:i:s')."','".addslashes($entity->getContrato()->getSubGerencia()->getGerencia()->getNombre())."','".addslashes($entity->getContrato()->getSubGerencia()->getNombre())."','".addslashes($entity->getContrato()->getArea()->getNombre())."','".addslashes($entity->getInspector())."','".addslashes($entity->getPrevencionista())."','".(($entity->getCttaSubcont() === null) ? " -- SIN CONTRATISTA -- " : addslashes($entity->getCttaSubcont()->getNombre()))."','".addslashes($entity->getContrato()->getNombre())."','".addslashes($entity->getSupervisorFacade())."','".addslashes($entity->getLugarDeTrabajo())."','".addslashes($entity->getIndiceIpal())."',".((count($entity->getIncumplimientos()) > 0) ? 1 : 0 ).",".(count($entity->getIncumplimientos())).",'".addslashes($cierre)."',".$entity->getHits(5).",".$entity->getHits(10).",".$entity->getHits(20).",".$entity->getHits(30).",".$entity->getHits(40).",".$entity->getHits(50).",".$agrupacion[0].",".$agrupacion[1].",".$agrupacion[2].")";
 
             $stmt = $em->getConnection()->prepare($sql);
             $stmt->execute();
@@ -55,12 +56,12 @@ class EncuestaCalculaIndiceCommand extends ContainerAwareCommand
             $em->persist($entity);
             $em->flush();
             $i++;
-        }                   
+        }
 
         $em->flush();
         $output->writeln("ENCUESTAS CALCULADAS: ".$i);
         $output->writeln("FIN DE COMANDO");
     }
 
-    
+
 }

@@ -205,6 +205,9 @@ class EncuestaController extends Controller
                           'tiene_incumplimientos' => $entity['tiene_incumplimientos'],
                           'cantidad_incumplimientos' => $entity['cantidad_incumplimientos'],
                           'cierre' => $entity['cierre'],
+                          'respuestas_0' => $entity['respuestas_0'],
+                          'respuestas_1' => $entity['respuestas_1'],
+                          'respuestas_2' => $entity['respuestas_2'],
                         );
       }
 
@@ -262,6 +265,9 @@ class EncuestaController extends Controller
                           'ipal' =>  $entity['ipal'],
                           'tiene_incumplimientos' => $entity['tiene_incumplimientos'],
                           'cantidad_incumplimientos' => $entity['cantidad_incumplimientos'],
+                          'respuestas_0' => $entity['respuestas_0'],
+                          'respuestas_1' => $entity['respuestas_1'],
+                          'respuestas_2' => $entity['respuestas_2'],
                         );
 
           }
@@ -313,6 +319,9 @@ class EncuestaController extends Controller
                           'ipal' =>  $entity['ipal'],
                           'tiene_incumplimientos' => $entity['tiene_incumplimientos'],
                           'cantidad_incumplimientos' => $entity['cantidad_incumplimientos'],
+                          'respuestas_0' => $entity['respuestas_0'],
+                          'respuestas_1' => $entity['respuestas_1'],
+                          'respuestas_2' => $entity['respuestas_2'],
                         );
         }
       }
@@ -359,6 +368,9 @@ class EncuestaController extends Controller
                           'ipal' =>  $entity['ipal'],
                           'tiene_incumplimientos' => $entity['tiene_incumplimientos'],
                           'cantidad_incumplimientos' => $entity['cantidad_incumplimientos'],
+                          'respuestas_0' => $entity['respuestas_0'],
+                          'respuestas_1' => $entity['respuestas_1'],
+                          'respuestas_2' => $entity['respuestas_2'],
                         );
       }
 
@@ -410,6 +422,9 @@ class EncuestaController extends Controller
                           'lugar' => $entity['lugar'],
                           'id' =>  $entity['id'],
                           'incumplimientos_50' => $incumplimientos,
+                          'respuestas_0' => $entity['respuestas_0'],
+                          'respuestas_1' => $entity['respuestas_1'],
+                          'respuestas_2' => $entity['respuestas_2'],
                         );
       }
 
@@ -460,6 +475,9 @@ class EncuestaController extends Controller
                           'tiene_incumplimientos' => $entity['tiene_incumplimientos'],
                           'cantidad_incumplimientos' => $entity['cantidad_incumplimientos'],
                           'cierre' => $entity['cierre'],
+                          'respuestas_0' => $entity['respuestas_0'],
+                          'respuestas_1' => $entity['respuestas_1'],
+                          'respuestas_2' => $entity['respuestas_2'],
                         );
       }
 
@@ -487,8 +505,6 @@ class EncuestaController extends Controller
 
       $ids = json_decode(file_get_contents($request->get('ids')),true);
 
-      //Una VISTA es mejor!
-
       //Busco las encuestas que aplican:
       $em = $this->getDoctrine()->getManager();
       $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') ORDER BY e.fecha DESC';
@@ -510,6 +526,9 @@ class EncuestaController extends Controller
                           'ipal' =>  $entity['ipal'],
                           'tiene_incumplimientos' => $entity['tiene_incumplimientos'],
                           'cantidad_incumplimientos' => $entity['cantidad_incumplimientos'],
+                          'respuestas_0' => $entity['respuestas_0'],
+                          'respuestas_1' => $entity['respuestas_1'],
+                          'respuestas_2' => $entity['respuestas_2'],
                         );
       }
 

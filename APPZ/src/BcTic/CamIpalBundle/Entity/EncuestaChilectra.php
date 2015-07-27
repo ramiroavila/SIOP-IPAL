@@ -12,14 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class EncuestaChilectra extends Encuesta
 {
-    
+
 
     public function __construct() {
 
-        $this->setCreatedAt(date('U'));      
+        $this->setCreatedAt(date('U'));
         //Respuestas NA por defecto
         $this->setRespuesta11(2);
-        $this->setRespuesta12(2);        
+        $this->setRespuesta12(2);
         $this->setRespuesta13(2);
         $this->setRespuesta21(2);
         $this->setRespuesta22(2);
@@ -29,7 +29,7 @@ class EncuestaChilectra extends Encuesta
 
 
     public function getKey() {
-      return "chilectra";	
+      return "chilectra";
     }
 
     public function getHits($criticidad) {
@@ -37,34 +37,34 @@ class EncuestaChilectra extends Encuesta
         $data = array(
                 50 => array (
                     'items' => 7,
-                    'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta12() == 1) ? 1 : 0)+ 
-                                (($this->getRespuesta13() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta21() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta22() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta23() == 1) ? 1 : 0) +  
-                                (($this->getRespuesta31() == 1) ? 1 : 0) 
+                    'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) +
+                                (($this->getRespuesta12() == 1) ? 1 : 0)+
+                                (($this->getRespuesta13() == 1) ? 1 : 0) +
+                                (($this->getRespuesta21() == 1) ? 1 : 0) +
+                                (($this->getRespuesta22() == 1) ? 1 : 0) +
+                                (($this->getRespuesta23() == 1) ? 1 : 0) +
+                                (($this->getRespuesta31() == 1) ? 1 : 0)
                     ),
                 40 => array(
                     'items' => 0,
-                    'indice' => 0,  
+                    'indice' => 0,
                     ),
                 30 => array(
                     'items' => 0,
-                    'indice' => 0,  
+                    'indice' => 0,
                     ),
                 20 => array (
                     'items' => 6,
-                    'indice' => (($this->getRespuesta33() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta41() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta42() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta43() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta51() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta52() == 1) ? 1 : 0 )  
+                    'indice' => (($this->getRespuesta33() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta41() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta42() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta43() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta51() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta52() == 1) ? 1 : 0 )
                     ),
                 10 => array (
                     'items' => 1,
-                    'indice' => (($this->getRespuesta32() == 1) ? 1 : 0 ) 
+                    'indice' => (($this->getRespuesta32() == 1) ? 1 : 0 )
                     ),
                 5 => array (
                     'items' => 0,
@@ -75,6 +75,27 @@ class EncuestaChilectra extends Encuesta
        return $data[$criticidad]['indice'];
 
     }
+
+    public function getRespuestasAgrupadas() {
+      $data = array(0 => 0,1 => 0,2 => 0);
+      //Debo iterar en todas las respuestas y agrupar las respuestas:
+      $enum = $this->getRespuesta11(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta12(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta13(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta21(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta22(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta23(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta31(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta32(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta33(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta41(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta42(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta43(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta51(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta52(); $data[$enum] = $data[$enum] + 1;
+      return $data;
+    }
+
 
     public function getIncumplimientos() {
       $data = array();
@@ -92,8 +113,8 @@ class EncuestaChilectra extends Encuesta
       if ($this->getRespuesta43() == 1) $data[] = "respuesta4.3_chilectra";
       if ($this->getRespuesta51() == 1) $data[] = "respuesta5.1_chilectra";
       if ($this->getRespuesta52() == 1) $data[] = "respuesta5.2_chilectra";
-      
-      return $data; 
+
+      return $data;
     }
 
      public function getIncumplimientos50() {
@@ -115,26 +136,26 @@ class EncuestaChilectra extends Encuesta
         $data = array(
                 50 => array (
                     'items' => 7,
-                    'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta12() == 1) ? 1 : 0)+ 
-                                (($this->getRespuesta13() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta21() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta22() == 1) ? 1 : 0) + 
-                                (($this->getRespuesta23() == 1) ? 1 : 0) +  
+                    'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) +
+                                (($this->getRespuesta12() == 1) ? 1 : 0)+
+                                (($this->getRespuesta13() == 1) ? 1 : 0) +
+                                (($this->getRespuesta21() == 1) ? 1 : 0) +
+                                (($this->getRespuesta22() == 1) ? 1 : 0) +
+                                (($this->getRespuesta23() == 1) ? 1 : 0) +
                                 (($this->getRespuesta31() == 1) ? 1 : 0)
                     ),
                 20 => array (
                     'items' => 6,
-                    'indice' => (($this->getRespuesta33() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta41() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta42() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta43() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta51() == 1) ? 1 : 0 ) + 
-                                (($this->getRespuesta52() == 1) ? 1 : 0 ) 
+                    'indice' => (($this->getRespuesta33() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta41() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta42() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta43() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta51() == 1) ? 1 : 0 ) +
+                                (($this->getRespuesta52() == 1) ? 1 : 0 )
                     ),
                 10 => array (
                     'items' => 1,
-                    'indice' => (($this->getRespuesta32() == 1) ? 1 : 0 ) 
+                    'indice' => (($this->getRespuesta32() == 1) ? 1 : 0 )
                     ),
                 5 => array (
                     'items' => 0,
@@ -146,7 +167,7 @@ class EncuestaChilectra extends Encuesta
                 foreach ($data as $index => $value) {
                   //Value = items & indice
                   $valor = 0;
-                  if ($value["items"] > 0) {  
+                  if ($value["items"] > 0) {
                     $rango = round(100 * ( $value['indice']/$value['items'] ),0);
                     if ($rango >= 90) $valor = 8;
                     if ( ($rango >= 77 ) and ($rango < 90) )  $valor = 7;
@@ -160,11 +181,11 @@ class EncuestaChilectra extends Encuesta
                   }
 
                   $data[$index]['valor'] = $valor;
-                } 
+                }
 
                 foreach ($data as $index => $value) {
                    $ipal = $ipal + ( $index * $value['valor'] );
-                } 
+                }
 
         return $ipal;
     }

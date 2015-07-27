@@ -116,6 +116,66 @@ class EncuestaLlvv extends Encuesta
 
     }
 
+    public function getRespuestasAgrupadas() {
+      $data = array(0 => 0,1 => 0,2 => 0);
+      //Debo iterar en todas las respuestas y agrupar las respuestas:
+      $enum = $this->getRespuesta11(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta12(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta13(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta14(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta15(); $data[$enum] = $data[$enum] + 1;
+
+      $enum = $this->getRespuesta21(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta22(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta23(); $data[$enum] = $data[$enum] + 1;
+
+      $enum = $this->getRespuesta31(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta32(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta33(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta34(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta35(); $data[$enum] = $data[$enum] + 1;
+
+      $enum = $this->getRespuesta41(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta42(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta43(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta44(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta45(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta46(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta47(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta48(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta49(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta410(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta411(); $data[$enum] = $data[$enum] + 1;
+
+      $enum = $this->getRespuesta51(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta52(); $data[$enum] = $data[$enum] + 1;
+
+      $enum = $this->getRespuesta61(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta62(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta63(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta64(); $data[$enum] = $data[$enum] + 1;
+
+      $enum = $this->getRespuesta71(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta72(); $data[$enum] = $data[$enum] + 1;
+
+      $enum = $this->getRespuesta81(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta82(); $data[$enum] = $data[$enum] + 1;
+
+      $enum = $this->getRespuesta91(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta92(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta93(); $data[$enum] = $data[$enum] + 1;
+
+      $enum = $this->getRespuesta101(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta102(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta103(); $data[$enum] = $data[$enum] + 1;
+
+      $enum = $this->getRespuesta111(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta112(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta113(); $data[$enum] = $data[$enum] + 1;
+
+      return $data;
+    }
+
     public function getIncumplimientos() {
       $data = array();
       if ($this->getRespuesta11() == 1) $data[] = "respuesta1.1_llvv";

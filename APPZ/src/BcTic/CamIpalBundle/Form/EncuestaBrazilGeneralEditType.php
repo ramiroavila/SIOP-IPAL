@@ -29,7 +29,7 @@ class EncuestaBrazilGeneralEditType extends AbstractType
             ->add('actividad','text', array('label' => 'Actividad', 'disabled' => true))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo', 'disabled' => true))
             ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados', 'disabled' => true))
-            ->add('cttaSubcont','choice', array('disabled' => true))
+            ->add('cttaSubcont')
             ->add('observaciones','textarea', array('label' => 'Observaciones', 'disabled' => true))
             ->add('respuesta11', new SurveyType(),array('label' => 'respuesta1.1_brazil_general','disabled' => true))
             ->add('respuesta12', new SurveyType(), array('label' => 'respuesta1.2_brazil_general','disabled' => true))
@@ -194,7 +194,7 @@ class EncuestaBrazilGeneralEditType extends AbstractType
                 ))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

@@ -29,7 +29,7 @@ class EncuestaObrasCivilesEditType extends AbstractType
             ->add('actividad','text', array('label' => 'Actividad','disabled' => true))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo','disabled' => true))
             ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados','disabled' => true))
-            ->add('cttaSubcont','choice', array('disabled' => true))
+            ->add('cttaSubcont')
             ->add('observaciones','textarea', array('label' => 'Observaciones','disabled' => true))
             ->add('respuesta11', new SurveyType(),array('label' => 'respuesta1.1_obras_civiles','disabled' => true))
             ->add('respuesta12', new SurveyType(), array('label' => 'respuesta1.2_obras_civiles','disabled' => true))
@@ -38,7 +38,7 @@ class EncuestaObrasCivilesEditType extends AbstractType
             ->add('respuesta15', new SurveyType(), array('label' => 'respuesta1.5_obras_civiles','disabled' => true))
             ->add('respuesta21', new SurveyType(), array('label' => 'respuesta2.1_obras_civiles','disabled' => true))
             ->add('respuesta22', new SurveyType(), array('label' => 'respuesta2.2_obras_civiles','disabled' => true))
-            ->add('respuesta23', new SurveyType(), array('label' => 'respuesta2.3_obras_civiles','disabled' => true,'disabled' => true))
+            ->add('respuesta23', new SurveyType(), array('label' => 'respuesta2.3_obras_civiles','disabled' => true))
             ->add('respuesta31', new SurveyType(), array('label' => 'respuesta3.1_obras_civiles','disabled' => true))
             ->add('respuesta32', new SurveyType(), array('label' => 'respuesta3.2_obras_civiles','disabled' => true))
             ->add('respuesta33', new SurveyType(), array('label' => 'respuesta3.3_obras_civiles','disabled' => true))
@@ -84,7 +84,7 @@ class EncuestaObrasCivilesEditType extends AbstractType
             ->add('respuesta137', new SurveyType(), array('label' => 'respuesta13.7_obras_civiles','disabled' => true))
             ->add('respuesta138', new SurveyType(), array('label' => 'respuesta13.8_obras_civiles','disabled' => true))
             ->add('respuesta139', new SurveyType(), array('label' => 'respuesta13.9_obras_civiles','disabled' => true))
-            ->add('respuesta1310', new SurveyType(), array('label' => 'respuesta13.10_obras_civiles','disabled' => true))            
+            ->add('respuesta1310', new SurveyType(), array('label' => 'respuesta13.10_obras_civiles','disabled' => true))
             ->add('cierre','textarea', array('label' => 'Cierre'))
             ->add('status_cierre','hidden')
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
@@ -204,7 +204,7 @@ class EncuestaObrasCivilesEditType extends AbstractType
                 ))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

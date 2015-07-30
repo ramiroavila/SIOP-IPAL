@@ -29,7 +29,7 @@ class EncuestaTelecomunicacionesEditType extends AbstractType
             ->add('actividad','text', array('label' => 'Actividad','disabled' => true))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo','disabled' => true))
             ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados','disabled' => true))
-            ->add('cttaSubcont','choice', array('disabled' => true))
+            ->add('cttaSubcont')
             ->add('observaciones','textarea', array('label' => 'Observaciones','disabled' => true))
             ->add('respuesta11', new SurveyType(),array('label' => 'respuesta1.1_telecomunicaciones','disabled' => true))
             ->add('respuesta12', new SurveyType(), array('label' => 'respuesta1.2_telecomunicaciones','disabled' => true))
@@ -82,7 +82,7 @@ class EncuestaTelecomunicacionesEditType extends AbstractType
             ->add('respuesta137', new SurveyType(), array('label' => 'respuesta13.7_telecomunicaciones','disabled' => true))
             ->add('respuesta138', new SurveyType(), array('label' => 'respuesta13.8_telecomunicaciones','disabled' => true))
             ->add('respuesta139', new SurveyType(), array('label' => 'respuesta13.9_telecomunicaciones','disabled' => true))
-            ->add('respuesta1310', new SurveyType(), array('label' => 'respuesta13.10_telecomunicaciones','disabled' => true))            
+            ->add('respuesta1310', new SurveyType(), array('label' => 'respuesta13.10_telecomunicaciones','disabled' => true))
             ->add('cierre','textarea', array('label' => 'Cierre'))
             ->add('status_cierre','hidden')
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
@@ -202,7 +202,7 @@ class EncuestaTelecomunicacionesEditType extends AbstractType
                 ))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

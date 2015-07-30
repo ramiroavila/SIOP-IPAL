@@ -199,7 +199,7 @@ class EncuestaBrazilInternoType extends AbstractType
                 ))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

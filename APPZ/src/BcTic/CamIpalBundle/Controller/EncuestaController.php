@@ -1618,6 +1618,7 @@ class EncuestaController extends Controller
             break;
         }
 
+
         $editForm = $this->createEditForm($entity, $formType);
 
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
@@ -1629,7 +1630,6 @@ class EncuestaController extends Controller
             'type'  => $entity->getKey()
         );
     }
-
 
     /**
     * Creates a form to edit a Encuesta entity.

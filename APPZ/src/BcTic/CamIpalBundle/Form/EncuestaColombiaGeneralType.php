@@ -105,16 +105,16 @@ class EncuestaColombiaGeneralType extends AbstractType
             ->add('respuesta122', new SurveyNoType(), array('label' => 'respuesta12.2_colombia_general'))
             ->add('respuesta123', new SurveyNoType(), array('label' => 'respuesta12.3_colombia_general'))
 
-            ->add('respuesta131', new SurveyNoType(), array('label' => 'respuesta13.1_colombia_general'))            
-            ->add('respuesta132', new SurveyNoType(), array('label' => 'respuesta13.2_colombia_general'))            
-            ->add('respuesta133', new SurveyNoType(), array('label' => 'respuesta13.3_colombia_general'))            
-            ->add('respuesta134', new SurveyNoType(), array('label' => 'respuesta13.4_colombia_general'))            
-            ->add('respuesta135', new SurveyNoType(), array('label' => 'respuesta13.5_colombia_general'))            
-            ->add('respuesta136', new SurveyNoType(), array('label' => 'respuesta13.6_colombia_general'))            
-            ->add('respuesta137', new SurveyNoType(), array('label' => 'respuesta13.7_colombia_general'))            
-            ->add('respuesta138', new SurveyNoType(), array('label' => 'respuesta13.8_colombia_general'))            
-            ->add('respuesta139', new SurveyNoType(), array('label' => 'respuesta13.9_colombia_general'))            
-            ->add('respuesta1310', new SurveyNoType(), array('label' => 'respuesta13.10_colombia_general'))            
+            ->add('respuesta131', new SurveyNoType(), array('label' => 'respuesta13.1_colombia_general'))
+            ->add('respuesta132', new SurveyNoType(), array('label' => 'respuesta13.2_colombia_general'))
+            ->add('respuesta133', new SurveyNoType(), array('label' => 'respuesta13.3_colombia_general'))
+            ->add('respuesta134', new SurveyNoType(), array('label' => 'respuesta13.4_colombia_general'))
+            ->add('respuesta135', new SurveyNoType(), array('label' => 'respuesta13.5_colombia_general'))
+            ->add('respuesta136', new SurveyNoType(), array('label' => 'respuesta13.6_colombia_general'))
+            ->add('respuesta137', new SurveyNoType(), array('label' => 'respuesta13.7_colombia_general'))
+            ->add('respuesta138', new SurveyNoType(), array('label' => 'respuesta13.8_colombia_general'))
+            ->add('respuesta139', new SurveyNoType(), array('label' => 'respuesta13.9_colombia_general'))
+            ->add('respuesta1310', new SurveyNoType(), array('label' => 'respuesta13.10_colombia_general'))
 
             ->add('cierre','textarea', array('label' => 'Cierre'))
             ->add('status_cierre','choice', array('label' => 'Estado de cierre', 'choices' => array('N/A' => 'N/A: No aplica','POR_VALIDAR' => 'POR VALIDAR: Las justificaciones de cierre no han sido verificadas aún por el administrador','ABIERTA' => 'ABIERTA: Tiene incumplimientos no correctamente justificados aún', 'CERRADA' => 'CERRADA: Tiene incumplimientos cuyo cierre ha sido aceptado por el administrador.')))
@@ -231,7 +231,7 @@ class EncuestaColombiaGeneralType extends AbstractType
                 ))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

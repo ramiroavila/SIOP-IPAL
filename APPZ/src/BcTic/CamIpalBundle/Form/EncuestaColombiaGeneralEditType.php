@@ -29,9 +29,8 @@ class EncuestaColombiaGeneralEditType extends AbstractType
             ->add('actividad','text', array('label' => 'Actividad','disabled' => true))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo','disabled' => true))
             ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados','disabled' => true))
-            ->add('cttaSubcont','choice', array('disabled' => true))
+            ->add('cttaSubcont')
             ->add('observaciones','textarea', array('label' => 'Observaciones','disabled' => true))
-
             ->add('respuesta11', new SurveyType(),array('label' => 'respuesta1.1_colombia_general','disabled' => true))
             ->add('respuesta12', new SurveyType(), array('label' => 'respuesta1.2_colombia_general','disabled' => true))
             ->add('respuesta13', new SurveyType(), array('label' => 'respuesta1.3_colombia_general','disabled' => true))
@@ -107,16 +106,16 @@ class EncuestaColombiaGeneralEditType extends AbstractType
             ->add('respuesta122', new SurveyNoType(), array('label' => 'respuesta12.2_colombia_general','disabled' => true))
             ->add('respuesta123', new SurveyNoType(), array('label' => 'respuesta12.3_colombia_general','disabled' => true))
 
-            ->add('respuesta131', new SurveyNoType(), array('label' => 'respuesta13.1_colombia_general','disabled' => true))            
-            ->add('respuesta132', new SurveyNoType(), array('label' => 'respuesta13.2_colombia_general','disabled' => true))            
-            ->add('respuesta133', new SurveyNoType(), array('label' => 'respuesta13.3_colombia_general','disabled' => true))            
-            ->add('respuesta134', new SurveyNoType(), array('label' => 'respuesta13.4_colombia_general','disabled' => true))            
-            ->add('respuesta135', new SurveyNoType(), array('label' => 'respuesta13.5_colombia_general','disabled' => true))            
-            ->add('respuesta136', new SurveyNoType(), array('label' => 'respuesta13.6_colombia_general','disabled' => true))            
-            ->add('respuesta137', new SurveyNoType(), array('label' => 'respuesta13.7_colombia_general','disabled' => true))            
-            ->add('respuesta138', new SurveyNoType(), array('label' => 'respuesta13.8_colombia_general','disabled' => true))            
-            ->add('respuesta139', new SurveyNoType(), array('label' => 'respuesta13.9_colombia_general','disabled' => true))            
-            ->add('respuesta1310', new SurveyNoType(), array('label' => 'respuesta13.10_colombia_general','disabled' => true))            
+            ->add('respuesta131', new SurveyNoType(), array('label' => 'respuesta13.1_colombia_general','disabled' => true))
+            ->add('respuesta132', new SurveyNoType(), array('label' => 'respuesta13.2_colombia_general','disabled' => true))
+            ->add('respuesta133', new SurveyNoType(), array('label' => 'respuesta13.3_colombia_general','disabled' => true))
+            ->add('respuesta134', new SurveyNoType(), array('label' => 'respuesta13.4_colombia_general','disabled' => true))
+            ->add('respuesta135', new SurveyNoType(), array('label' => 'respuesta13.5_colombia_general','disabled' => true))
+            ->add('respuesta136', new SurveyNoType(), array('label' => 'respuesta13.6_colombia_general','disabled' => true))
+            ->add('respuesta137', new SurveyNoType(), array('label' => 'respuesta13.7_colombia_general','disabled' => true))
+            ->add('respuesta138', new SurveyNoType(), array('label' => 'respuesta13.8_colombia_general','disabled' => true))
+            ->add('respuesta139', new SurveyNoType(), array('label' => 'respuesta13.9_colombia_general','disabled' => true))
+            ->add('respuesta1310', new SurveyNoType(), array('label' => 'respuesta13.10_colombia_general','disabled' => true))
             ->add('cierre','textarea', array('label' => 'Cierre'))
             ->add('status_cierre','hidden')
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
@@ -236,7 +235,7 @@ class EncuestaColombiaGeneralEditType extends AbstractType
                 ))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

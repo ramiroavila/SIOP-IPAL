@@ -545,6 +545,58 @@ class EncuestaController extends Controller
       return new JsonResponse(array('file' => $file));
     }
 
+    /**
+      *
+      * @Route("/encuesta_reporte_i-13_csv/{type}/data.csv", name="reporte_i-13")
+      * @Method("POST")
+      * @Template()
+      */
+     public function reporteEncuestaI13CsvAction(Request $request, $type)
+     {
+
+       $ids = json_decode(file_get_contents($request->get('ids')),true);
+
+       //Busco las encuestas que aplican:
+       $em = $this->getDoctrine()->getManager();
+
+       $respuestas = array('respuesta_13_1',
+                           'respuesta_13_2',
+                           'respuesta_13_3',
+                           'respuesta_13_4',
+                           'respuesta_13_5',
+                           'respuesta_13_6',
+                           'respuesta_13_7',
+                           'respuesta_13_8',
+                           'respuesta_13_9',
+                           'respuesta_13_10');
+
+       $valor = array(0 => "Sí",1 => "No",2 => "N/A");
+       $data = array();
+       foreach ($respuestas as $index => $value) {
+         $sql = 'SELECT SUM('.$value.') as TOTAL, '.$value.' as VALOR FROM Encuesta e WHERE e.id IN ('.implode(",",$ids).') AND tipo = "'.strtoupper($type).'" GROUP BY '.$value.' ORDER BY '.$value;
+
+         $stmt = $em->getConnection()->prepare($sql);
+         $stmt->execute();
+
+         $data[$value] = array(0 => 0, 1 => 0, 2 => 0);
+         foreach($stmt->fetchAll() as $entity) {
+           $data[$value][$entity['VALOR']] = $entity['TOTAL'];
+         }
+      }
+
+       $content = $this->renderView(
+         'BcTicCamIpalBundle:Encuesta:reporteEncuestaI13Csv.html.twig',
+         array('data' => $data, 'valor' => $valor, 'tipo' => strtoupper($type))
+       );
+
+       //Guardo el contenido y devuelvo el ID para descargar el link
+       $fs = new Filesystem();
+       $file = 'I-13-'.date_format(date_create(),'Y-m-d-his');
+       $fs->dumpFile("uploads/".$file.".csv", $content);
+
+       return new JsonResponse(array('file' => $file));
+     }
+
 
     /**
      * Lists all Encuesta entities.

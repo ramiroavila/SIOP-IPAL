@@ -547,7 +547,7 @@ class EncuestaController extends Controller
 
     /**
       *
-      * @Route("/encuesta_reporte_i-13_csv/{type}/data.csv", name="reporte_i-13")
+      * @Route("/encuesta_reporte_agrupado_csv/{type}/data.csv", name="reporte_agrupado")
       * @Method("POST")
       * @Template()
       */
@@ -559,28 +559,62 @@ class EncuestaController extends Controller
        //Busco las encuestas que aplican:
        $em = $this->getDoctrine()->getManager();
 
-       $respuestas = array('respuesta_13_1',
-                           'respuesta_13_2',
-                           'respuesta_13_3',
-                           'respuesta_13_4',
-                           'respuesta_13_5',
-                           'respuesta_13_6',
-                           'respuesta_13_7',
-                           'respuesta_13_8',
-                           'respuesta_13_9',
-                           'respuesta_13_10');
+       //Creo el objeto con el factory:
+       switch ($type) {
+         case 'chilectra':
+           $entity = new EncuestaChilectra();
+           $tipo = "CHILECTRA";
+           break;
+         case 'electrica':
+           $entity = new EncuestaElectrica();
+           $tipo = "ELECTRICO";
+           break;
+         case 'logistica':
+           $entity = new EncuestaLogistica();
+           $tipo = "LOGISTICA";
+           break;
+         case 'obras_civiles':
+           $entity = new EncuestaObrasCiviles();
+           $tipo = "OBRAS_CIVILES";
+           break;
+         case 'telecomunicaciones':
+           $entity = new EncuestaTelecomunicaciones();
+           $tipo = "TELECOMUNICACIONES";
+           break;
+         case 'llvv':
+             $entity = new EncuestaLlvv();
+             $tipo = "LLVV";
+             break;
+         case 'colombia_general':
+           $entity = new EncuestaColombiaGeneral();
+           $tipo = "COLOMBIA_GENERAL";
+           break;
+         case 'brazil_general':
+           $entity = new EncuestaBrazilGeneral();
+           $tipo = "BRAZIL_GENERAL";
+           break;
+         case 'brazil_interno':
+           $entity = new EncuestaBrazilInterno();
+           $tipo = "BRAZIL_INTERNO";
+           break;
+       }
+
+       $respuestas = $entity->getRespuestasAgrupadasNumeral();
 
        $valor = array(0 => "Sí",1 => "No",2 => "N/A");
        $data = array();
        foreach ($respuestas as $index => $value) {
-         $sql = 'SELECT SUM('.$value.') as TOTAL, '.$value.' as VALOR FROM Encuesta e WHERE e.id IN ('.implode(",",$ids).') AND tipo = "'.strtoupper($type).'" GROUP BY '.$value.' ORDER BY '.$value;
+
+         $sql = 'SELECT SUM('.$value.') as TOTAL, '.$value.' as VALOR FROM Encuesta e WHERE e.id IN ('.implode(",",$ids).') AND tipo = "'.$tipo.'" GROUP BY '.$value.' ORDER BY '.$value;
 
          $stmt = $em->getConnection()->prepare($sql);
          $stmt->execute();
 
-         $data[$value] = array(0 => 0, 1 => 0, 2 => 0);
+         $indice = str_replace(array('respuesta_','_'),array('respuesta','.'),$value);
+         $indice = $indice.'_'.$type;
+         $data[$indice] = array(0 => 0, 1 => 0, 2 => 0);
          foreach($stmt->fetchAll() as $entity) {
-           $data[$value][$entity['VALOR']] = $entity['TOTAL'];
+           $data[$indice][$entity['VALOR']] = $entity['TOTAL'];
          }
       }
 
@@ -591,7 +625,7 @@ class EncuestaController extends Controller
 
        //Guardo el contenido y devuelvo el ID para descargar el link
        $fs = new Filesystem();
-       $file = 'I-13-'.date_format(date_create(),'Y-m-d-his');
+       $file = 'I-AGRUPADO-'.date_format(date_create(),'Y-m-d');
        $fs->dumpFile("uploads/".$file.".csv", $content);
 
        return new JsonResponse(array('file' => $file));

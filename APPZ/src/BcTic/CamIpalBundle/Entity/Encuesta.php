@@ -350,49 +350,49 @@ abstract class Encuesta
     /**
      * @var integer
      *
-     * @ORM\Column(name="respuesta_4_1_0", type="smallint")
+     * @ORM\Column(name="respuesta_4_10", type="smallint")
      */
     private $respuesta410 = 0;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="respuesta_4_1_1", type="smallint")
+     * @ORM\Column(name="respuesta_4_11", type="smallint")
      */
     private $respuesta411 = 0;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="respuesta_4_1_2", type="smallint")
+     * @ORM\Column(name="respuesta_4_12", type="smallint")
      */
     private $respuesta412 = 0;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="respuesta_4_1_3", type="smallint")
+     * @ORM\Column(name="respuesta_4_13", type="smallint")
      */
     private $respuesta413 = 0;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="respuesta_4_1_4", type="smallint")
+     * @ORM\Column(name="respuesta_4_14", type="smallint")
      */
     private $respuesta414 = 0;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="respuesta_4_1_5", type="smallint")
+     * @ORM\Column(name="respuesta_4_15", type="smallint")
      */
     private $respuesta415 = 0;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="respuesta_4_1_6", type="smallint")
+     * @ORM\Column(name="respuesta_4_16", type="smallint")
      */
     private $respuesta416 = 0;
 
@@ -941,6 +941,7 @@ abstract class Encuesta
     abstract function getIncumplimientos50();
     abstract function getHits($criticidad);
     abstract function getRespuestasAgrupadas();
+    abstract function getRespuestasAgrupadasNumeral();
 
     /**
      * Get id

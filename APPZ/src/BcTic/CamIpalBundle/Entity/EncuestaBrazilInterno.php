@@ -170,6 +170,78 @@ class EncuestaBrazilInterno extends Encuesta
       return $data;
     }
 
+    public function getRespuestasAgrupadasNumeral() {
+
+      $data = array();
+      $data[] = "respuesta_1_1";
+      $data[] = "respuesta_1_2";
+      $data[] = "respuesta_1_3";
+      $data[] = "respuesta_1_4";
+      $data[] = "respuesta_1_5";
+      $data[] = "respuesta_1_6";
+
+      $data[] = "respuesta_2_1";
+      $data[] = "respuesta_2_2";
+      $data[] = "respuesta_2_3";
+      $data[] = "respuesta_2_4";
+      $data[] = "respuesta_2_5";
+      $data[] = "respuesta_2_6";
+
+      $data[] = "respuesta_3_1";
+      $data[] = "respuesta_3_2";
+      $data[] = "respuesta_3_3";
+      $data[] = "respuesta_3_4";
+      $data[] = "respuesta_3_5";
+      $data[] = "respuesta_3_6";
+      $data[] = "respuesta_3_7";
+      $data[] = "respuesta_3_8";
+      $data[] = "respuesta_3_9";
+      $data[] = "respuesta_3_10";
+      $data[] = "respuesta_3_11";
+      $data[] = "respuesta_3_12";
+      $data[] = "respuesta_3_13";
+      $data[] = "respuesta_3_14";
+
+      $data[] = "respuesta_4_1";
+      $data[] = "respuesta_4_2";
+      $data[] = "respuesta_4_3";
+      $data[] = "respuesta_4_4";
+      $data[] = "respuesta_4_5";
+      $data[] = "respuesta_4_6";
+
+      $data[] = "respuesta_5_1";
+      $data[] = "respuesta_5_2";
+      $data[] = "respuesta_5_3";
+      $data[] = "respuesta_5_4";
+
+      $data[] = "respuesta_6_1";
+      $data[] = "respuesta_6_2";
+      $data[] = "respuesta_6_3";
+      $data[] = "respuesta_6_4";
+      $data[] = "respuesta_6_5";
+
+      $data[] = "respuesta_7_1";
+      $data[] = "respuesta_7_2";
+      $data[] = "respuesta_7_3";
+      $data[] = "respuesta_7_4";
+
+      $data[] = "respuesta_8_1";
+
+      $data[] = "respuesta_13_1";
+      $data[] = "respuesta_13_2";
+      $data[] = "respuesta_13_3";
+      $data[] = "respuesta_13_4";
+      $data[] = "respuesta_13_5";
+      $data[] = "respuesta_13_6";
+      $data[] = "respuesta_13_7";
+      $data[] = "respuesta_13_8";
+      $data[] = "respuesta_13_9";
+      $data[] = "respuesta_13_10";
+
+      return $data;
+
+    }
+
     public function getIncumplimientos() {
       $data = array();
       if ($this->getRespuesta11() == 1) $data[] = "respuesta1.1_brazil_interno";

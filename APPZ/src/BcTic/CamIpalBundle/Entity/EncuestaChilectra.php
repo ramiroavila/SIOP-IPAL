@@ -97,6 +97,30 @@ class EncuestaChilectra extends Encuesta
     }
 
 
+
+        public function getRespuestasAgrupadasNumeral() {
+
+          $data = array();
+          $data[] = "respuesta_1_1";
+          $data[] = "respuesta_1_2";
+          $data[] = "respuesta_1_3";
+          $data[] = "respuesta_2_1";
+          $data[] = "respuesta_2_2";
+          $data[] = "respuesta_2_3";
+          $data[] = "respuesta_3_1";
+          $data[] = "respuesta_3_2";
+          $data[] = "respuesta_3_3";
+          $data[] = "respuesta_4_1";
+          $data[] = "respuesta_4_2";
+          $data[] = "respuesta_4_3";
+          $data[] = "respuesta_5_1";
+          $data[] = "respuesta_5_2";
+
+          return $data;
+
+        }
+
+
     public function getIncumplimientos() {
       $data = array();
       if ($this->getRespuesta11() == 1) $data[] = "respuesta1.1_chilectra";

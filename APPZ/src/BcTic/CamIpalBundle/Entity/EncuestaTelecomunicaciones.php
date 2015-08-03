@@ -159,8 +159,6 @@ class EncuestaTelecomunicaciones extends Encuesta
       $enum = $this->getRespuesta61(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta62(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta63(); $data[$enum] = $data[$enum] + 1;
-      $enum = $this->getRespuesta64(); $data[$enum] = $data[$enum] + 1;
-      $enum = $this->getRespuesta65(); $data[$enum] = $data[$enum] + 1;
 
       $enum = $this->getRespuesta71(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta72(); $data[$enum] = $data[$enum] + 1;
@@ -182,6 +180,79 @@ class EncuestaTelecomunicaciones extends Encuesta
       $enum = $this->getRespuesta121(); $data[$enum] = $data[$enum] + 1;
 
       return $data;
+    }
+
+    public function getRespuestasAgrupadasNumeral() {
+
+      $data = array();
+      $data[] = "respuesta_1_1";
+      $data[] = "respuesta_1_2";
+      $data[] = "respuesta_1_3";
+      $data[] = "respuesta_1_4";
+      $data[] = "respuesta_1_5";
+
+      $data[] = "respuesta_2_1";
+      $data[] = "respuesta_2_2";
+      $data[] = "respuesta_2_3";
+
+      $data[] = "respuesta_3_1";
+      $data[] = "respuesta_3_2";
+      $data[] = "respuesta_3_3";
+      $data[] = "respuesta_3_4";
+      $data[] = "respuesta_3_5";
+
+      $data[] = "respuesta_4_1";
+      $data[] = "respuesta_4_2";
+      $data[] = "respuesta_4_3";
+      $data[] = "respuesta_4_4";
+      $data[] = "respuesta_4_5";
+      $data[] = "respuesta_4_6";
+      $data[] = "respuesta_4_7";
+      $data[] = "respuesta_4_8";
+      $data[] = "respuesta_4_9";
+      $data[] = "respuesta_4_10";
+      $data[] = "respuesta_4_11";
+      $data[] = "respuesta_4_12";
+
+      $data[] = "respuesta_5_1";
+      $data[] = "respuesta_5_2";
+      $data[] = "respuesta_5_3";
+
+      $data[] = "respuesta_6_1";
+      $data[] = "respuesta_6_2";
+      $data[] = "respuesta_6_3";
+
+      $data[] = "respuesta_7_1";
+      $data[] = "respuesta_7_2";
+
+      $data[] = "respuesta_8_1";
+      $data[] = "respuesta_8_2";
+
+      $data[] = "respuesta_9_1";
+      $data[] = "respuesta_9_2";
+      $data[] = "respuesta_9_3";
+
+      $data[] = "respuesta_10_1";
+      $data[] = "respuesta_10_2";
+      $data[] = "respuesta_10_3";
+
+      $data[] = "respuesta_11_1";
+
+      $data[] = "respuesta_12_1";
+
+      $data[] = "respuesta_13_1";
+      $data[] = "respuesta_13_2";
+      $data[] = "respuesta_13_3";
+      $data[] = "respuesta_13_4";
+      $data[] = "respuesta_13_5";
+      $data[] = "respuesta_13_6";
+      $data[] = "respuesta_13_7";
+      $data[] = "respuesta_13_8";
+      $data[] = "respuesta_13_9";
+      $data[] = "respuesta_13_10";
+
+      return $data;
+
     }
 
     public function getIncumplimientos() {
@@ -217,7 +288,6 @@ class EncuestaTelecomunicaciones extends Encuesta
       if ($this->getRespuesta61() == 1) $data[] = "respuesta6.1_telecomunicaciones";
       if ($this->getRespuesta62() == 1) $data[] = "respuesta6.2_telecomunicaciones";
       if ($this->getRespuesta63() == 1) $data[] = "respuesta6.3_telecomunicaciones";
-      if ($this->getRespuesta65() == 1) $data[] = "respuesta6.5_telecomunicaciones";
       if ($this->getRespuesta71() == 1) $data[] = "respuesta7.1_telecomunicaciones";
       if ($this->getRespuesta72() == 1) $data[] = "respuesta7.2_telecomunicaciones";
       if ($this->getRespuesta81() == 1) $data[] = "respuesta8.1_telecomunicaciones";

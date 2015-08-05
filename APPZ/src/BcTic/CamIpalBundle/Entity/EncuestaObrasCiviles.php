@@ -157,7 +157,6 @@ class EncuestaObrasCiviles extends Encuesta
       $enum = $this->getRespuesta62(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta63(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta64(); $data[$enum] = $data[$enum] + 1;
-      $enum = $this->getRespuesta65(); $data[$enum] = $data[$enum] + 1;
 
       $enum = $this->getRespuesta71(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta72(); $data[$enum] = $data[$enum] + 1;
@@ -220,7 +219,6 @@ class EncuestaObrasCiviles extends Encuesta
       $data[] = "respuesta_6_2";
       $data[] = "respuesta_6_3";
       $data[] = "respuesta_6_4";
-      $data[] = "respuesta_6_5";
 
       $data[] = "respuesta_7_1";
       $data[] = "respuesta_7_2";
@@ -289,7 +287,6 @@ class EncuestaObrasCiviles extends Encuesta
       if ($this->getRespuesta62() == 1) $data[] = "respuesta6.2_obras_civiles";
       if ($this->getRespuesta63() == 1) $data[] = "respuesta6.3_obras_civiles";
       if ($this->getRespuesta64() == 1) $data[] = "respuesta6.4_obras_civiles";
-      if ($this->getRespuesta65() == 1) $data[] = "respuesta6.5_obras_civiles";
       if ($this->getRespuesta71() == 1) $data[] = "respuesta7.1_obras_civiles";
       if ($this->getRespuesta72() == 1) $data[] = "respuesta7.2_obras_civiles";
       if ($this->getRespuesta81() == 1) $data[] = "respuesta8.1_obras_civiles";

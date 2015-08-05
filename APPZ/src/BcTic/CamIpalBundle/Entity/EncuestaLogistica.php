@@ -58,14 +58,11 @@ class EncuestaLogistica extends Encuesta
       $enum = $this->getRespuesta15(); $data[$enum] = $data[$enum] + 1;
 
       $enum = $this->getRespuesta21(); $data[$enum] = $data[$enum] + 1;
-      $enum = $this->getRespuesta22(); $data[$enum] = $data[$enum] + 1;
-      $enum = $this->getRespuesta23(); $data[$enum] = $data[$enum] + 1;
 
       $enum = $this->getRespuesta31(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta32(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta33(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta34(); $data[$enum] = $data[$enum] + 1;
-      $enum = $this->getRespuesta35(); $data[$enum] = $data[$enum] + 1;
 
       $enum = $this->getRespuesta41(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta42(); $data[$enum] = $data[$enum] + 1;
@@ -78,7 +75,6 @@ class EncuestaLogistica extends Encuesta
       $enum = $this->getRespuesta49(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta410(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta411(); $data[$enum] = $data[$enum] + 1;
-      $enum = $this->getRespuesta412(); $data[$enum] = $data[$enum] + 1;
 
       $enum = $this->getRespuesta51(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta52(); $data[$enum] = $data[$enum] + 1;
@@ -120,13 +116,10 @@ class EncuestaLogistica extends Encuesta
       $data[] = "respuesta_1_4";
       $data[] = "respuesta_1_5";
       $data[] = "respuesta_2_1";
-      $data[] = "respuesta_2_2";
-      $data[] = "respuesta_2_3";
       $data[] = "respuesta_3_1";
       $data[] = "respuesta_3_2";
       $data[] = "respuesta_3_3";
       $data[] = "respuesta_3_4";
-      $data[] = "respuesta_3_5";
       $data[] = "respuesta_4_1";
       $data[] = "respuesta_4_2";
       $data[] = "respuesta_4_3";
@@ -138,7 +131,6 @@ class EncuestaLogistica extends Encuesta
       $data[] = "respuesta_4_9";
       $data[] = "respuesta_4_10";
       $data[] = "respuesta_4_11";
-      $data[] = "respuesta_4_12";
       $data[] = "respuesta_5_1";
       $data[] = "respuesta_5_2";
       $data[] = "respuesta_5_3";
@@ -182,13 +174,10 @@ class EncuestaLogistica extends Encuesta
       if ($this->getRespuesta14() == 1) $data[] = "respuesta1.4_logistica";
       if ($this->getRespuesta15() == 1) $data[] = "respuesta1.5_logistica";
       if ($this->getRespuesta21() == 1) $data[] = "respuesta2.1_logistica";
-      if ($this->getRespuesta22() == 1) $data[] = "respuesta2.2_logistica";
-      if ($this->getRespuesta23() == 1) $data[] = "respuesta2.3_logistica";
       if ($this->getRespuesta31() == 1) $data[] = "respuesta3.1_logistica";
       if ($this->getRespuesta32() == 1) $data[] = "respuesta3.2_logistica";
       if ($this->getRespuesta33() == 1) $data[] = "respuesta3.3_logistica";
       if ($this->getRespuesta34() == 1) $data[] = "respuesta3.4_logistica";
-      if ($this->getRespuesta35() == 1) $data[] = "respuesta3.5_logistica";
       if ($this->getRespuesta41() == 1) $data[] = "respuesta4.1_logistica";
       if ($this->getRespuesta42() == 1) $data[] = "respuesta4.2_logistica";
       if ($this->getRespuesta43() == 1) $data[] = "respuesta4.3_logistica";
@@ -200,7 +189,6 @@ class EncuestaLogistica extends Encuesta
       if ($this->getRespuesta49() == 1) $data[] = "respuesta4.9_logistica";
       if ($this->getRespuesta410() == 1) $data[] = "respuesta4.10_logistica";
       if ($this->getRespuesta411() == 1) $data[] = "respuesta4.11_logistica";
-      if ($this->getRespuesta412() == 1) $data[] = "respuesta4.12_logistica";
       if ($this->getRespuesta51() == 1) $data[] = "respuesta5.1_logistica";
       if ($this->getRespuesta52() == 1) $data[] = "respuesta5.2_logistica";
       if ($this->getRespuesta53() == 1) $data[] = "respuesta5.3_logistica";
@@ -245,8 +233,6 @@ class EncuestaLogistica extends Encuesta
       if ($this->getRespuesta14() == 1) $data[] = "respuesta1.4_logistica";
       if ($this->getRespuesta15() == 1) $data[] = "respuesta1.5_logistica";
       if ($this->getRespuesta21() == 1) $data[] = "respuesta2.1_logistica";
-      if ($this->getRespuesta22() == 1) $data[] = "respuesta2.2_logistica";
-      if ($this->getRespuesta23() == 1) $data[] = "respuesta2.3_logistica";
       if ($this->getRespuesta31() == 1) $data[] = "respuesta3.1_logistica";
       if ($this->getRespuesta44() == 1) $data[] = "respuesta4.4_logistica";
       if ($this->getRespuesta45() == 1) $data[] = "respuesta4.5_logistica";
@@ -267,8 +253,6 @@ class EncuestaLogistica extends Encuesta
                                 (($this->getRespuesta14() == 1) ? 1 : 0) +
                                 (($this->getRespuesta15() == 1) ? 1 : 0) +
                                 (($this->getRespuesta21() == 1) ? 1 : 0) +
-                                (($this->getRespuesta22() == 1) ? 1 : 0) +
-                                (($this->getRespuesta23() == 1) ? 1 : 0) +
                                 (($this->getRespuesta31() == 1) ? 1 : 0)+
                                 (($this->getRespuesta44() == 1) ? 1 : 0) +
                                 (($this->getRespuesta45() == 1) ? 1 : 0) +
@@ -292,7 +276,6 @@ class EncuestaLogistica extends Encuesta
                                 (($this->getRespuesta47() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta48() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta410() == 1) ? 1 : 0 ) +
-                                (($this->getRespuesta412() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta51() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta52() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta53() == 1) ? 1 : 0 ) +
@@ -313,7 +296,6 @@ class EncuestaLogistica extends Encuesta
                     'items' => 6,
                     'indice' => (($this->getRespuesta32() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta34() == 1) ? 1 : 0 ) +
-                                (($this->getRespuesta35() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta49 () == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta102() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta111() == 1) ? 1 : 0 )
@@ -358,7 +340,6 @@ class EncuestaLogistica extends Encuesta
                                 (($this->getRespuesta47() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta48() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta410() == 1) ? 1 : 0 ) +
-                                (($this->getRespuesta412() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta51() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta52() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta53() == 1) ? 1 : 0 ) +
@@ -379,7 +360,6 @@ class EncuestaLogistica extends Encuesta
                     'items' => 6,
                     'indice' => (($this->getRespuesta32() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta34() == 1) ? 1 : 0 ) +
-                                (($this->getRespuesta35() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta49 () == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta102() == 1) ? 1 : 0 ) +
                                 (($this->getRespuesta111() == 1) ? 1 : 0 )

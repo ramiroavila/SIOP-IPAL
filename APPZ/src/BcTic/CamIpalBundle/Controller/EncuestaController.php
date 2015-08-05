@@ -605,7 +605,7 @@ class EncuestaController extends Controller
        $data = array();
        foreach ($respuestas as $index => $value) {
 
-         $sql = 'SELECT SUM('.$value.') as TOTAL, '.$value.' as VALOR FROM Encuesta e WHERE e.id IN ('.implode(",",$ids).') AND tipo = "'.$tipo.'" GROUP BY '.$value.' ORDER BY '.$value;
+         $sql = 'SELECT COUNT(*) as TOTAL, '.$value.' as VALOR FROM Encuesta e WHERE e.id IN ('.implode(",",$ids).') AND tipo = "'.$tipo.'" GROUP BY '.$value.' ORDER BY '.$value;
 
          $stmt = $em->getConnection()->prepare($sql);
          $stmt->execute();
@@ -625,7 +625,7 @@ class EncuestaController extends Controller
 
        //Guardo el contenido y devuelvo el ID para descargar el link
        $fs = new Filesystem();
-       $file = 'I-AGRUPADO-'.date_format(date_create(),'Y-m-d');
+       $file = 'I-AGRUPADO-'.$tipo.'-'.date_format(date_create(),'Y-m-d');
        $fs->dumpFile("uploads/".$file.".csv", $content);
 
        return new JsonResponse(array('file' => $file));

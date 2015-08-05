@@ -347,7 +347,7 @@ class EncuestaBrazilGeneral extends Encuesta
       if ($this->getRespuesta49() == 1) $data[] = "respuesta4.9_brazil_general";
       if ($this->getRespuesta410() == 1) $data[] = "respuesta4.10_brazil_general";
       if ($this->getRespuesta411() == 1) $data[] = "respuesta4.11_brazil_general";
-      if ($this->getRespuesta421() == 1) $data[] = "respuesta4.12_brazil_general";
+      if ($this->getRespuesta412() == 1) $data[] = "respuesta4.12_brazil_general";
 
       return $data;
     }

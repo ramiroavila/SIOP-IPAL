@@ -149,9 +149,7 @@ class EncuestaTelecomunicaciones extends Encuesta
       $enum = $this->getRespuesta48(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta49(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta410(); $data[$enum] = $data[$enum] + 1;
-      $enum = $this->getRespuesta411(); $data[$enum] = $data[$enum] + 1;
-      $enum = $this->getRespuesta412(); $data[$enum] = $data[$enum] + 1;
-
+    
       $enum = $this->getRespuesta51(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta52(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta53(); $data[$enum] = $data[$enum] + 1;
@@ -280,8 +278,6 @@ class EncuestaTelecomunicaciones extends Encuesta
       if ($this->getRespuesta48() == 1) $data[] = "respuesta4.8_telecomunicaciones";
       if ($this->getRespuesta49() == 1) $data[] = "respuesta4.9_telecomunicaciones";
       if ($this->getRespuesta410() == 1) $data[] = "respuesta4.10_telecomunicaciones";
-      if ($this->getRespuesta411() == 1) $data[] = "respuesta4.11_telecomunicaciones";
-      if ($this->getRespuesta412() == 1) $data[] = "respuesta4.12_telecomunicaciones";
       if ($this->getRespuesta51() == 1) $data[] = "respuesta5.1_telecomunicaciones";
       if ($this->getRespuesta52() == 1) $data[] = "respuesta5.2_telecomunicaciones";
       if ($this->getRespuesta53() == 1) $data[] = "respuesta5.3_telecomunicaciones";

@@ -232,17 +232,6 @@ class EncuestaLlvv extends Encuesta
       $data[] = "respuesta_11_2";
       $data[] = "respuesta_11_3";
 
-      $data[] = "respuesta_13_1";
-      $data[] = "respuesta_13_2";
-      $data[] = "respuesta_13_3";
-      $data[] = "respuesta_13_4";
-      $data[] = "respuesta_13_5";
-      $data[] = "respuesta_13_6";
-      $data[] = "respuesta_13_7";
-      $data[] = "respuesta_13_8";
-      $data[] = "respuesta_13_9";
-      $data[] = "respuesta_13_10";
-
       return $data;
 
     }

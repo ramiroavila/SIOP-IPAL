@@ -29,8 +29,8 @@ class EncuestaImagenesCommand extends ContainerAwareCommand
         $s3 = $this->getContainer()->get('aws_s3client');
 
         $result = $s3->putObject(array(
-          'Bucket'       => "backup-bctic",
-          'Key'          => "4040-CAM-LA/siop.cam-la.com/".$file,
+          'Bucket'       => "backup-4040-cam-la",
+          'Key'          => "siop.cam-la.com/".$file,
           'SourceFile'   => $file,
           'ContentType'  => 'text/plain',
           'ACL'          => 'public-read',

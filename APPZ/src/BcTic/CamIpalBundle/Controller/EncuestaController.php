@@ -1408,34 +1408,34 @@ class EncuestaController extends Controller
               switch ($this->get('security.context')->getToken()->getUser()->getPais()->getId()) {
 
                 case 2: //COLOMBIA
-                  $destinatario = 'siop-colombia.cam-la@bctic.net';
+                  $destinatario = 'siop-colombia@cam-la.com';
                   break;
 
                 case 3: //PERU
-                  $destinatario = 'siop-peru.cam-la@bctic.net';
+                  $destinatario = 'siop-peru@cam-la.com';
                   break;
 
                 case 4: //BRAZIL
-                  $destinatario = 'siop-brazil.cam-la@bctic.net';
+                  $destinatario = 'siop-brazil@cam-la.com';
                   break;
 
                 case 5: //COASIN
-                  $destinatario = 'coasin.cam-la@bctic.net';
+                  $destinatario = 'siop-coasin@cam-la.com';
                   break;
 
                 case 6: //CONTRATISTAS
-                  $destinatario = 'contratistas.cam-la@bctic.net';
+                  $destinatario = 'siop-contratistas@cam-la.com';
                   break;
 
                 default: //CHILE - DEFECTO
-                  $destinatario = 'siop.cam-la@bctic.net';
+                  $destinatario = 'siop@cam-la.com';
                   break;
 
               }
 
               $message = \Swift_Message::newInstance()
                 ->setSubject('IPAL #'.$entity->getId().' CON INCUMPLIMIENTOS 50')
-                ->setFrom(array('info@bctic.net' => 'SIOP CAM LA'))
+                ->setFrom(array('siop@siop.cam-la.com' => 'SIOP CAM LA'))
                 ->setTo($destinatario)
                 ->setCharset('UTF-8')
                 ->setContentType('text/html')

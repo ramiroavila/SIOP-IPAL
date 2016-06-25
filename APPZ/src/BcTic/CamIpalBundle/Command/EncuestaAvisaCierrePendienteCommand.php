@@ -24,7 +24,7 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
     {
         $output->writeln("INICIO DE COMANDO");
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
-        
+
         $entities = $em->getRepository('BcTicCamIpalBundle:Encuesta')
                            ->createQueryBuilder('e')
                            ->where('e.statusCierre = :status')
@@ -35,7 +35,7 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
         //Recorro todas las encuestas:
         $i = 0;
         foreach ($entities as $entity) {
-          $notificar = false;  
+          $notificar = false;
           //Tiene incumplimiento 50:
           if (count($entity->getIncumplimientos50()) > 0) {
             //Ha pasado más de 1 día desde la creación:
@@ -59,7 +59,7 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
             }
           }
 
-        }                   
+        }
 
     }
 
@@ -69,34 +69,34 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
       $usuarios = $em->getRepository('BcTicCamIpalBundle:Usuario')->findBy(array('username' => $entity->getCreatedBy()));
       if (count($usuarios) == 0) return;
       $usuario = $usuarios[0];
-      
+
       //REDACTO EL EMAIL:
-      $rendered = $this->getContainer()->get('templating')->render('BcTicCamIpalBundle:Encuesta:aviso-cierre-email.html.twig', array( 
-                    'entity' => $entity, 
+      $rendered = $this->getContainer()->get('templating')->render('BcTicCamIpalBundle:Encuesta:aviso-cierre-email.html.twig', array(
+                    'entity' => $entity,
                     'usuario' => $usuario,
-                )); 
+                ));
 
       //SI NO TIENE EMAIL NO SE AVISA
 
-      if (filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL) === false) { 
+      if (filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL) === false) {
         $output->writeln("NO SE NOTIFICARÁ LA ENCUESTA #".$entity->getId().' POR QUE NO TIENE EMAIL.');
-        return; 
+        return;
       }
- 
+
       $destinatario = (filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL) === false) ? 'ipal@cam-la.com' : $usuario->getEmail() ;
 
-      $output->writeln("SE NOTIFICARÁ LA ENCUESTA #".$entity->getId().' AL EMAIL '.$destinatario);      
+      $output->writeln("SE NOTIFICARÁ LA ENCUESTA #".$entity->getId().' AL EMAIL '.$destinatario);
 
       $message = \Swift_Message::newInstance()
                 ->setSubject('IPAL #'.$entity->getId().' EN ESTADO ABIERTA')
-                ->setFrom(array('info@bctic.net' => 'SIOP CAM LA'))
+                ->setFrom(array('siop@siop.cam-la.com' => 'SIOP CAM LA'))
                 ->setTo($destinatario)
                 ->setCharset('UTF-8')
-                ->setContentType('text/html') 
+                ->setContentType('text/html')
                 ->setBody($rendered);
-    
+
       $this->getContainer()->get('mailer')->send($message);
-   
+
     }
-  
+
 }

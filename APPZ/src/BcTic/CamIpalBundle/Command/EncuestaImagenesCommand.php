@@ -30,7 +30,7 @@ class EncuestaImagenesCommand extends ContainerAwareCommand
 
         $result = $s3->putObject(array(
           'Bucket'       => "backup-4040-cam-la",
-          'Key'          => "siop.cam-la.com/".$file,
+          'Key'          => "uploads-web-siop.cam-la.com/".$file,
           'SourceFile'   => $file,
           'ContentType'  => 'text/plain',
           'ACL'          => 'public-read',

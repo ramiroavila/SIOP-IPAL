@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Gregwar\ImageBundle\GregwarImageBundle(),
             new Aws\Symfony\AwsBundle(),
+            new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

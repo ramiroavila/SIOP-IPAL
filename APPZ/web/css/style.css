@@ -1,18 +1,18 @@
 a#logo {
   background: url("../images/logo.jpg") left top no-repeat;
   padding-left: 163px;
-  margin: 0px; 
+  margin: 0px;
   padding-bottom: 36px;
 }
 
 div.footer {
   padding-top:13px;
-  padding-bottom: 13px; 
+  padding-bottom: 13px;
   background-color: #f7f7f9 !important;
 }
 
 .footer p {
-  font-size: 11px !important;  
+  font-size: 11px !important;
 }
 
 .footer h4 {
@@ -32,11 +32,11 @@ a button, button {
 }
 
 table.records_list th.actions {
-  width: 250px;  
+  width: 330px;  
 }
 
 table.records_list th.observaciones_actions {
-  width: 340px;  
+  width: 340px;
 }
 
 
@@ -71,12 +71,12 @@ div#mini-hidden-canvas {
 
 .survey .row div.col-sm-6 {
   height: 45px;
-  padding-top: 5px; 
+  padding-top: 5px;
   padding-bottom: 2px;
 }
 
-.survey .row div.col-sm-6 label { 
-  font-size:12px; 
+.survey .row div.col-sm-6 label {
+  font-size:12px;
 }
 
 
@@ -87,17 +87,17 @@ div#mini-hidden-canvas {
 .filter form select {
   font-size:11px;
   padding:0px;
-  height:25px;  
+  height:25px;
 }
 
 .spinner {
-  height: 100px;  
+  height: 100px;
   background: url("../images/spin.gif") no-repeat center;
 }
 
 .login {
   border:1px solid #0e4062;
-  padding: 33px;  
+  padding: 33px;
 }
 
 
@@ -112,6 +112,5 @@ div#mini-hidden-canvas {
 }
 
 .pdf {
-  font-size:11px !important; 
+  font-size:11px !important;
 }
-

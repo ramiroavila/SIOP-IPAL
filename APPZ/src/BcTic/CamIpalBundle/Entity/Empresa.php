@@ -28,7 +28,7 @@ class Empresa
      *
      * @ORM\Column(name="nombre", type="string", length=150)
      * @Assert\NotBlank()
-     * @Assert\Length(min = "5")     
+     * @Assert\Length(min = "5")
      */
     private $nombre;
 
@@ -37,7 +37,7 @@ class Empresa
      *
      * @ORM\Column(name="nemo", type="string", length=20)
      * @Assert\NotBlank()
-     * @Assert\Length(min = "3")     
+     * @Assert\Length(min = "3")
      */
     private $nemo;
 
@@ -53,7 +53,7 @@ class Empresa
      * @ORM\ManyToOne(targetEntity="Pais")
      * @ORM\JoinColumn(name="pais_id", referencedColumnName="id")
      */
-    protected $pais;    
+    protected $pais;
 
     /**
      *  @ORM\ManyToMany(targetEntity="Contrato", mappedBy="empresas")
@@ -64,7 +64,7 @@ class Empresa
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -87,7 +87,7 @@ class Empresa
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -110,7 +110,7 @@ class Empresa
     /**
      * Get nemo
      *
-     * @return string 
+     * @return string
      */
     public function getNemo()
     {
@@ -133,13 +133,13 @@ class Empresa
     /**
      * Get visible
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getVisible()
     {
         return $this->visible;
     }
-  
+
     public function __toString() {
       return $this->nombre.' - '.$this->pais;
     }
@@ -168,7 +168,7 @@ class Empresa
     /**
      * Get pais
      *
-     * @return \BcTic\CamIpalBundle\Entity\Pais 
+     * @return \BcTic\CamIpalBundle\Entity\Pais
      */
     public function getPais()
     {
@@ -201,7 +201,7 @@ class Empresa
     /**
      * Get contratos
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getContratos()
     {

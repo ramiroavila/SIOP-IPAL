@@ -319,6 +319,11 @@
                     </button>\
                   </a>\
                   {% if is_granted('ROLE_ADMIN') %}
+                  <a id="audit_encuesta_' + this.id + '" target="_blank" href="/encuestas/audit/' + this.id + '">\
+                    <button type="button" class="btn btn-default btn-xs">\
+                      <span class="glyphicon glyphicon-zoom-in"></span> {{ 'Auditar' | trans }}\
+                    </button>\
+                  </a>\
                   <a href="javascript:delete_encuesta(' + this.id + ',\' ' +  this.token + ' \')" class="confirm">\
                     <button type="button" class="btn btn-default btn-xs">\
                       <span class="glyphicon glyphicon-trash"></span> {{ 'Borrar' | trans }}\

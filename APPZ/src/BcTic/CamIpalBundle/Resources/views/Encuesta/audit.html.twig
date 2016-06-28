@@ -1,0 +1,57 @@
+{% extends '::base.html.twig' %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li><a href="{{ path('welcome') }}">{{ 'Inicio' | trans }}</a></li>
+  <li><a href="{{ path('encuestas') }}">{{ 'Encuestas IPAL' | trans }}</a></li>
+  <li class="active">Encuesta #{{ entity.id }}</li>
+</ol>
+{% endblock %}
+
+{% block body -%}
+
+  {% if revisions | length > 0 %}
+    <table class="records_list table table-striped">
+         <thead>
+             <tr>
+               <th>Revisión</th>
+               <th>Fecha</th>
+               <th>Usuario</th>
+               <th class="actions">{{ 'Opciones' | trans }}</th>
+             </tr>
+         </thead>
+         <tbody>
+         {% for revision in revisions %}
+             <tr>
+                <td>#{{-revision.rev-}}</td>
+                <td>{{-revision.timestamp| date('d-m-Y H:i')-}}</td>
+                <td>{{-revision.username-}}</td>
+                <td>
+                  <a target="{{-revision.rev-}}" href="{{ path('encuestas_audit_detail', { 'className': className , 'id': entity.id, 'rev': revision.rev, 'fecha': revision.timestamp | date('U'), 'user': revision.username  }) }}">
+                    <button type="button" class="btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-zoom-in"></span> {{ 'Cambios' | trans }}
+                    </button>
+                  </a>
+                </td>
+             </tr>
+         {% endfor %}
+         </tbody>
+     </table>
+
+
+
+     {% else %}
+       <h4>{{ 'No se encontraron registros' | trans }}.</h4>
+     {% endif %}
+
+   <br/>
+
+    <p class="text-left">
+    <a class="hidden-xs" href="{{ path('encuestas') }}">
+      <button type="button" class="btn btn-default btn-xs">
+        <span class="glyphicon glyphicon-th-list"></span> {{ 'Volver' | trans }}
+      </button>
+    </a>
+    </p>
+
+{% endblock %}

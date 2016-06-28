@@ -1903,6 +1903,66 @@ class EncuestaController extends Controller
     }
 
     /**
+     *
+     *
+     * @Route("/audit/{id}", name="encuestas_audit")
+     * @Method("GET")
+     * @Template()
+     */
+    public function auditAction(Request $request,$id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('BcTicCamIpalBundle:Encuesta')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Encuesta entity.');
+        }
+
+        $revisions = $this->container->get('simplethings_entityaudit.reader')->findRevisions(
+          get_class($entity),
+          $id);
+
+        return array(
+          'entity' => $entity,
+          'className' => get_class($entity),
+          'revisions' => $revisions
+        );
+    }
+
+    /**
+     *
+     *
+     * @Route("/auditoria/detalles/{className}/{id}/{rev}/{fecha}/{user}", name="encuestas_audit_detail")
+     * @Method("GET")
+     * @Template("BcTicCamIpalBundle:Encuesta:show.html.twig")
+     */
+    public function auditDetailAction(Request $request,$id, $className, $rev, $fecha, $user)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('BcTicCamIpalBundle:Encuesta')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Encuesta entity.');
+        }
+
+        $revision = $this->container->get('simplethings_entityaudit.reader')->find(
+          $className,
+          $id,
+          $rev);
+
+          $fecha = new \DateTime("@$fecha");
+
+        return array(
+          'entity' => $revision,
+          'revision' => 'Revisión: #'.$rev.' '.$fecha->format('d-m-Y').' por '.$user
+        );
+    }
+
+    /**
      * Returns the values from a single column of the input array, identified by
      * the $columnKey.
      *

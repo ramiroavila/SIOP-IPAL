@@ -1,7 +1,7 @@
 <!--1435325461-IMG_20150625_122106451_HDR.jpg -->
 
 {% if filePath |length > 5 %}
-    <a target="_blank" href="{{-filePath-}}">
+    <a target="_blank" href="/{{-filePath-}}">
       <img src="/{{-filePath|raw-}}" alt="{{ 'NO EXISTE ARCHIVO ' ~ fileNumber | trans }}"/>
     </a>
 {% else %}

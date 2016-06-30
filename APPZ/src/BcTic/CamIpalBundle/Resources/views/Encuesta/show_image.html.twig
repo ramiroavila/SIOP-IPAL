@@ -2,7 +2,7 @@
 
 {% if filePath |length > 5 %}
     <a target="_blank" href="{{-filePath-}}">
-      <img src="{{-filePath-}}" alt="{{ 'NO EXISTE ARCHIVO ' ~ fileNumber | trans }}"/>
+      <img src="{{-filePath|raw-}}" alt="{{ 'NO EXISTE ARCHIVO ' ~ fileNumber | trans }}"/>
     </a>
 {% else %}
    <i>{{ 'NO EXISTE ARCHIVO ' ~ fileNumber | trans }}</i>

@@ -1,3 +1,4 @@
+
 {% extends '::base.html.twig' %}
 
 {% block breadcrumb %}
@@ -18,11 +19,11 @@
     <p class="text-left">
     <a class="hidden-xs" href="{{ path('encuestas') }}">
       <button type="button" class="btn btn-default btn-xs">
-        <span class="glyphicon glyphicon-th-list"></span> {{ 'Volver' | trans }}  
+        <span class="glyphicon glyphicon-th-list"></span> {{ 'Volver' | trans }}
       </button>
     </a>
     </p>
-    
+
 {% endblock %}
 
 
@@ -33,53 +34,14 @@
         <script type="text/javascript" src="/js/google_maps.js">
         </script>
 {% endblock %}
-    
-{% block js %}     
+
+{% block js %}
 
   {{ parent() }}
   <script type="text/javascript">
 
-  $(document).ready( function () { 
+  $(document).ready( function () {
      initialize("mini-hidden-canvas", false, "Lugar de trabajo",14, 'bctic_camipalbundle_encuesta_localizacion');
-
-     //Autocomplete
-     $("#bctic_camipalbundle_encuesta_supervisor_facade" ).autocomplete({
-        delay: 500,
-        minLength: 1,
-        source: function(request, response) {
-
-          $.ajax({
-            dataType: "json",
-            type: "POST",
-            url: "{{ path('registros_supervisores_json') }}",
-            data: { query: request.term } ,
-            success: function (dataSuccess) {
-                response( $.map( dataSuccess , function( item ) {
-                  return {
-                    label: item.nombre,
-                    value: item.nombre
-                  }
-                }));
-              },
-            error: function (a,b,c) {
-              alert("ERROR: " + b);
-              }
-          });
-
-        },
-        focus: function(event, ui) {
-          
-        },
-        select: function(event, ui) {
-          if (ui.item) {
-            $("#bctic_camipalbundle_encuesta_supervisor_facade" ).val(ui.item.label)
-          } else {
-            
-          }
-          event.preventDefault();
-        }
-
-     });
 
      //Autocomplete
      $("#bctic_camipalbundle_encuesta_inspector" ).autocomplete({
@@ -107,7 +69,7 @@
 
         },
         focus: function(event, ui) {
-          
+
         },
         select: function(event, ui) {
 
@@ -118,12 +80,12 @@
      //Pongo el Inspector del Usuario actual.
      $("#bctic_camipalbundle_encuesta_inspector").val("{{ app.user.nombre }}");
 
-      
+
            //Elimino todos los objetos:
            $('select#bctic_camipalbundle_encuesta_pais').empty();
            $('select#bctic_camipalbundle_encuesta_pais').append('<option value="{{ app.user.pais.id }}">{{ app.user.pais.nombre }}</option>');
 
-    $("#bctic_camipalbundle_encuesta_pais").val("{{ app.user.pais.id }}");     
+    $("#bctic_camipalbundle_encuesta_pais").val("{{ app.user.pais.id }}");
 
            //Elimino todos los objetos:
            //Solo muestro las empresas según el pais y rol - si aplica - esto lo hace el controlador:
@@ -141,16 +103,16 @@
             error: function (a,b,c) {
               alert("ERROR: " + b);
             }
-           });    
+           });
 
   });
-     
+
     if ($('form .has-error').length > 0) {
       $('#errors').addClass('alert')
       $('#errors').addClass('alert-danger');
       $('#errors').html('{{'El formulario contiene errores, favor corríjalo.' | trans }}');
     }
-      
+
     $('form .survey .alert-warning select').unbind('change').change( function () {
       event.preventDefault();
     });
@@ -159,7 +121,7 @@
     $('form .survey .alert-warning select').unbind('change').change( function () {
       event.preventDefault();
     });
-     
+
     var prev_val;
 
     $('form .survey .alert-warning select').focus(function (event) {
@@ -214,11 +176,11 @@
             if (dataSuccess.subcontrato == true) {
               $('#bctic_camipalbundle_encuesta_cttaSubcont').attr('disabled',false);
             }
-          },   
+          },
           error: function (a,b,c) {
             alert("ERROR: " + b);
           }
-        });       
+        });
       }
     });
 
@@ -259,10 +221,10 @@
             error: function (a,b,c) {
               alert("ERROR: " + b);
             }
-           });    
+           });
 
       //COMO ES UN OBJETO NUEVO EL ESTADO DE CIERRE NO APLICA:
-      $('.status_cierre').hide();     
+      $('.status_cierre').hide();
 
 
     });

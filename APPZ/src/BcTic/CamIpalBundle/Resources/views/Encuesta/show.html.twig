@@ -18,7 +18,7 @@
         <tbody>
           <tr>
             <th colspan="3" class="text-center">{{ 'ANTECEDENTES GENERALES' | trans }}</th>
-            <th style="width: 25%;">Nº {{ entity.id }}</th>
+            <th style="width: 25%;">Nº {{ entity.id }}<br/>{% if revision is defined %}{{-revision-}}{% endif %}</th>
           </tr>
           <tr>
             <td colspan="2" style="width: 50%;">{{ 'Empresa' | trans }}: {{ entity.empresa.nombre }}</td>
@@ -38,12 +38,16 @@
             <td colspan="2" style="width: 50%;">{{ 'Contrato' | trans }}: #{{ entity.contrato.numero }} {{ entity.contrato.nombre }}</td>
           </tr>
           <tr>
-            <td colspan="2" style="width: 50%;">{{ 'Supervisor de Trabajo' | trans }}: {{ entity.supervisorFacade }}</td>
+            <td colspan="2" style="width: 50%;">{{ 'Supervisor de Trabajo' | trans }}: {{ entity.supervisor }}</td>
             <td colspan="2" style="width: 50%;">{{ 'Subgerencia Cam' | trans }}: {{ entity.contrato.subGerencia.nombre }}</td>
           </tr>
           <tr>
             <td colspan="2" style="width: 50%;">{{ 'Gerencia Cam' | trans }}: {{ entity.contrato.subGerencia.gerencia.nombre }}</td>
             <td colspan="2" style="width: 50%;">{{ 'Mandante' | trans }}: {{ entity.contrato.mandante.name }}</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="width: 50%;">{{ 'Auto inspección' | trans }}: {{ entity.autoInspeccion }}</td>
+            <td colspan="2" style="width: 50%;">{{ 'Charla operativa' | trans }}: {{ entity.charlaOperativa }}</td>
           </tr>
         </tbody>
       </table>

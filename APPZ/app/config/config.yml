@@ -92,3 +92,19 @@ swiftmailer:
 
 gregwar_image:
     cache_dir:  uploads/cache/images
+
+simple_things_entity_audit:
+    audited_entities:
+      - BcTic\CamIpalBundle\Entity\Encuesta
+      - BcTic\CamIpalBundle\Entity\EncuestaChilectra
+      - BcTic\CamIpalBundle\Entity\EncuestaElectrica
+      - BcTic\CamIpalBundle\Entity\EncuestaColombiaGeneral
+      - BcTic\CamIpalBundle\Entity\EncuestaBrazilGeneral
+      - BcTic\CamIpalBundle\Entity\EncuestaBrazilInterno
+      - BcTic\CamIpalBundle\Entity\EncuestaLogistica
+      - BcTic\CamIpalBundle\Entity\EncuestaObrasCiviles
+      - BcTic\CamIpalBundle\Entity\EncuestaTelecomunicaciones
+      - BcTic\CamIpalBundle\Entity\EncuestaLlvv
+      - BcTic\CamIpalBundle\Entity\Observacion
+      - BcTic\CamIpalBundle\Entity\ObservacionDeComportamiento
+      - BcTic\CamIpalBundle\Entity\RegistroDeObservacion

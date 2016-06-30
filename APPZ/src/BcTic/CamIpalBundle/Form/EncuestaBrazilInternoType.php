@@ -22,9 +22,10 @@ class EncuestaBrazilInternoType extends AbstractType
                     'label' => 'Fecha',
                     'input'  => 'datetime',
                     'widget' => 'choice',
-                    'format' => 'ddMMyyyy'
+                    'format' => 'ddMMyyyy',
+                    'disabled' => true
             ))
-            ->add('hora','time', array ('label' => 'Hora'))
+            ->add('hora','time', array ('label' => 'Hora', 'disabled' => true))
             ->add('actividad','text', array('label' => 'Actividad'))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo'))
             ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados'))
@@ -132,14 +133,22 @@ class EncuestaBrazilInternoType extends AbstractType
                 ))
             ->add('inspector','text',array('label' => 'Inspector'))
             ->add('prevencionista', 'hidden')
-            ->add('supervisor_facade','text',array('label' => 'Supervisor'))
+            ->add('supervisor','entity', array(
+                  'class' => 'BcTicCamIpalBundle:Supervisor',
+                  'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('r')
+                           ->where('r.visible = :visible')
+                           ->setParameter('visible',1)
+                           ->orderBy('r.nombre', 'ASC');
+                    },
+                   'empty_value' => '-- SELECCIONE SUPERVISOR --',
+                   'empty_data' => "-1",
+                ))
             ->add('servicio','entity', array(
                   'label' => 'Servicio',
                   'class' => 'BcTicCamIpalBundle:Servicio',
                   'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('r')
-                           ->where('r.visible = :visible')
-                           ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
                     },
                   'read_only' => true,
@@ -197,6 +206,9 @@ class EncuestaBrazilInternoType extends AbstractType
                            ->orderBy('r.nombre', 'ASC');
                     }
                 ))
+              ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('N/A' => 'N/A: No aplica','A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
+              ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('N/A' => 'N/A: No aplica','B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
+                
         ;
     }
 

@@ -104,47 +104,7 @@
 
     $(document).ready(function (){
      $('#bctic_camipalbundle_encuesta_contrato').change();
-     //Autocomplete
-     $("#bctic_camipalbundle_encuesta_supervisor_facade" ).autocomplete({
-        delay: 500,
-        minLength: 3,
-        source: function(request, response) {
-
-          $.ajax({
-            dataType: "json",
-            type: "POST",
-            url: "{{ path('registros_supervisores_json') }}",
-            data: { query: request.term } ,
-            success: function (dataSuccess) {
-                response( $.map( dataSuccess , function( item ) {
-                  return {
-                    label: item.nombre,
-                    value: item.id
-                  }
-                }));
-              },
-            error: function (a,b,c) {
-              alert("ERROR: " + b);
-              }
-          });
-
-        },
-        focus: function(event, ui) {
-
-        },
-        select: function(event, ui) {
-          if (ui.item) {
-            $("#bctic_camipalbundle_encuesta_supervisor_facade" ).val(ui.item.label);
-            $("#bctic_camipalbundle_encuesta_supervisor" ).val(ui.item.value);
-          } else {
-
-          }
-          event.preventDefault();
-        }
-
-     });
-
-
+     
      //Autocomplete
      $("#bctic_camipalbundle_encuesta_inspector" ).autocomplete({
         delay: 500,

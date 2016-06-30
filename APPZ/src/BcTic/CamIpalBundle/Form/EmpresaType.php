@@ -21,7 +21,7 @@ class EmpresaType extends AbstractType
             ->add('visible')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

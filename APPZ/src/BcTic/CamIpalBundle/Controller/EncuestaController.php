@@ -389,6 +389,123 @@ class EncuestaController extends Controller
 
     /**
      *
+     * @Route("/encuesta_reporte_1_csv/data.csv", name="encuesta_reporte_1_csv")
+     * @Method("POST")
+     * @Template()
+     */
+    public function reporteEncuesta1CsvAction(Request $request)
+    {
+
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
+
+      $em = $this->getDoctrine()->getManager();
+
+      $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') ORDER BY e.fecha DESC LIMIT 1';
+
+      $stmt = $em->getConnection()->prepare($sql);
+      $stmt->execute();
+
+      $data = array();
+      foreach($stmt->fetchAll() as $entity) {
+        $data[] = array(
+                          'id' => $entity['id'],
+                          'fecha' => $entity['fecha'],
+                          'inspector' => $entity['inspector'],
+                          'prevencionista' => $entity['prevencionista'],
+                          'gerencia' => $entity['gerencia'],
+                          'subgerencia' => $entity['subgerencia'],
+                          'contrato' => $entity['contrato'],
+                          'area' => $entity['area'],
+                          'contratista' => $entity['contratista'],
+                          'ipal' =>  $entity['ipal'],
+                          'tiene_incumplimientos' => $entity['tiene_incumplimientos'],
+                          'cantidad_incumplimientos' => $entity['cantidad_incumplimientos'],
+                          'respuestas_0' => $entity['respuestas_0'],
+                          'respuestas_1' => $entity['respuestas_1'],
+                          'respuestas_2' => $entity['respuestas_2'],
+                          'auto_inspeccion' => $entity['auto_inspeccion'],
+                          'charla_operativa' => $entity['charla_operativa'],
+                          'supervisor' => $entity['supervisor'],
+                          'tipo' => $entity['tipo'],
+                          'incumplimientos_5' => $entity['incumplimientos_5'],
+                          'incumplimientos_10' => $entity['incumplimientos_10'],
+                          'incumplimientos_20' => $entity['incumplimientos_20'],
+                          'incumplimientos_50' => $entity['incumplimientos_50'],
+                          'incumplimientos_50_json' => json_decode($entity['incumplimientos_50_json'], true),
+                          'cierre' => $entity['cierre'],
+                          'cierre_texto' => $entity['cierre_texto'],
+                        );
+
+
+      }
+
+
+      $content = $this->renderView(
+        'BcTicCamIpalBundle:Encuesta:reporteEncuesta1Csv.html.twig',
+        array('data' => $data)
+      );
+
+      //Guardo el contenido y devuelvo el ID para descargar el link
+      $fs = new Filesystem();
+      $file = 'REPORTE-1-'.date_format(date_create(),'Y-m-d-his');
+      $fs->dumpFile("uploads/".$file.".csv", $content);
+
+      return new JsonResponse(array('file' => $file));
+    }
+
+    /**
+     *
+     * @Route("/encuesta_reporte_2_csv/data.csv", name="encuesta_reporte_2_csv")
+     * @Method("POST")
+     * @Template()
+     */
+    public function reporteEncuesta2CsvAction(Request $request)
+    {
+
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
+
+      $em = $this->getDoctrine()->getManager();
+
+      $sql = 'SELECT * FROM Encuesta e WHERE e.id IN ('.implode(",",$ids).') AND (respuesta_1_3 = 1 OR  respuesta_1_4 = 1 OR  respuesta_1_5 = 1 OR  respuesta_2_1 = 1 OR  respuesta_2_2 = 1 OR  respuesta_2_3 = 1 OR  respuesta_3_1 = 1 OR  respuesta_3_2 = 1 OR  respuesta_3_3 = 1 OR  respuesta_3_4 = 1 OR  respuesta_3_5 = 1 OR  respuesta_4_1 = 1 OR  respuesta_4_2 = 1 OR  respuesta_4_3 = 1 OR  respuesta_4_4 = 1 OR  respuesta_4_5 = 1 OR  respuesta_4_6 = 1 OR  respuesta_4_7 = 1 OR  respuesta_4_8 = 1 OR  respuesta_4_9 = 1 OR  respuesta_5_1 = 1 OR  respuesta_5_2 = 1 OR  respuesta_5_3 = 1 OR  respuesta_6_1 = 1 OR  respuesta_6_2 = 1 OR  respuesta_6_3 = 1 OR  respuesta_6_4 = 1 OR  respuesta_7_1 = 1 OR  respuesta_7_2 = 1 OR  respuesta_8_1 = 1 OR  respuesta_8_2 = 1 OR  respuesta_9_1 = 1 OR  respuesta_9_2 = 1 OR  respuesta_9_3 = 1 OR  respuesta_10_1 = 1 OR  respuesta_10_2 = 1 OR  respuesta_10_3 = 1 OR  respuesta_11_1 = 1 OR  respuesta_6_5 = 1 OR respuesta_2_4 = 1 OR  respuesta_2_5 = 1 OR  respuesta_11_2 = 1 OR  respuesta_12_1 = 1 OR  respuesta_1_6 = 1 OR  respuesta_2_6 = 1 OR  respuesta_3_6 = 1 OR  respuesta_3_7 = 1 OR  respuesta_3_8 = 1 OR  respuesta_3_9 = 1 OR  respuesta_3_10 = 1 OR  respuesta_3_11 = 1 OR  respuesta_3_12 = 1 OR  respuesta_3_13 = 1 OR  respuesta_3_14 = 1 OR  respuesta_5_4 = 1 OR  respuesta_7_3 = 1 OR  respuesta_7_4 = 1 OR  respuesta_8_3 = 1 OR  respuesta_9_4 = 1 OR  respuesta_9_5 = 1 OR  respuesta_9_6 = 1 OR  respuesta_9_7 = 1 OR  respuesta_9_8 = 1 OR  respuesta_9_9 = 1 OR  respuesta_9_10 = 1 OR  respuesta_9_11 = 1 OR  respuesta_10_4 = 1 OR  respuesta_12_2 = 1 OR  respuesta_12_3 = 1 OR  respuesta_12_4 = 1 OR  respuesta_12_5 = 1 OR  respuesta_12_6 = 1 OR  respuesta_13_1 = 1 OR  respuesta_13_2 = 1 OR  respuesta_13_3 = 1 OR  respuesta_13_4 = 1 OR  respuesta_13_5 = 1 OR  respuesta_13_6 = 1 OR  respuesta_13_7 = 1 OR  respuesta_13_8 = 1 OR  respuesta_13_9 = 1 OR  respuesta_13_10 = 1 OR  respuesta_11_3 = 1 OR  respuesta_4_10 = 1 OR  respuesta_4_11 = 1 OR  respuesta_4_12 = 1 OR  respuesta_4_13 = 1 OR  respuesta_4_14 = 1 OR  respuesta_4_15 = 1 OR  respuesta_4_16 = 1) ORDER BY e.fecha DESC LIMIT 100';
+
+      $stmt = $em->getConnection()->prepare($sql);
+      $stmt->execute();
+
+      $data = array();
+      foreach($stmt->fetchAll() as $entity) {
+        $item = array('id' => $entity['id'],'tipo' => $entity['tipo']);
+        $respuestas = array();
+        foreach ($entity as $key => $value) {
+          if (strpos($key,'respuesta_') === FALSE) {
+
+          } else {
+            if ($value == "1") {
+              $str = preg_replace('/(respuesta_)(\d{1,2})_/','respuesta$2.',$key.'_'.strtolower($entity['tipo']));
+              $str = str_replace(array('electrico'),array('electrica'), $str);
+              $respuestas[] = $str;
+            }
+          }
+        }
+        $item['respuestas'] = $respuestas;
+        $data[] = $item;
+      }
+
+      $content = $this->renderView(
+        'BcTicCamIpalBundle:Encuesta:reporteEncuesta2Csv.html.twig',
+        array('data' => $data)
+      );
+
+      //Guardo el contenido y devuelvo el ID para descargar el link
+      $fs = new Filesystem();
+      $file = 'REPORTE-2-'.date_format(date_create(),'Y-m-d-his');
+      $fs->dumpFile("uploads/".$file.".csv", $content);
+
+      return new JsonResponse(array('file' => $file));
+    }
+
+
+    /**
+     *
      * @Route("/encuesta_reporte_incumplimientos_50_csv/data.csv", name="encuesta_reporte_incumplimientos_50_csv")
      * @Method("POST")
      * @Template()
@@ -643,7 +760,7 @@ class EncuestaController extends Controller
     {
       $response = new Response(file_get_contents('uploads/'.$file.'.csv'));
       $response->headers->set('Content-Type', 'text/csv');
-      $response->headers->set('Charset','utf-8');
+      $response->headers->set('Charset','iso-8859-1');
       $response->headers->set('Content-Disposition', 'attachment; filename="'.$file.'.csv"');
 
       return $response;
@@ -728,57 +845,6 @@ class EncuestaController extends Controller
       }
 
       return new JsonResponse($data);
-
-    }
-
-     /**
-     * Lists all Supervisores by Query
-     *
-     * @Route("/data/supervisores.json", name="registros_supervisores_json")
-     * @Method("POST")
-     * @Template()
-     */
-    public function indexSupervisorJsonAction(Request $request)
-    {
-
-        $em = $this->getDoctrine()->getManager();
-
-        //LOS SUPERVISORES UNICOS DEL PAIS
-        $entities = $em->getRepository('BcTicCamIpalBundle:Encuesta')
-                           ->createQueryBuilder('e')
-                           ->select('DISTINCT e.supervisorFacade')
-                           ->join('e.contrato','c')
-                           ->join('e.pais','p')
-                           ->join('c.servicio','srv')
-                           ->join('e.empresa','em')
-                           ->join('c.subGerencia','sgr')
-                           ->join('sgr.gerencia','gr')
-                           ->join('c.area','a')
-                           ->join('c.mandante','ma')
-                           ->where('e.visible = 1 AND e.supervisorFacade LIKE ?1 AND LENGTH(e.supervisorFacade) > 3 AND p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId())
-                           ->setParameter(1, '%'.$request->request->get('query','').'%')
-                           ->orderBy('e.supervisorFacade', 'ASC');
-
-        $sql = $entities->getQuery()->getSql();
-
-        //TODOS, SOLO NECESITO LOS ID e IPAL y BORRO:
-        $supervisores = array();
-
-        //Raw SQL:
-        $stmt = $em->getConnection()->prepare($sql);
-        $stmt->bindValue(1, '%'.$request->request->get('query','').'%');
-        $stmt->execute();
-        $fetch = $stmt->fetchAll();
-        $supervisores = $this->array_column($fetch,'supervisor_facade0');
-
-       $data = array();
-        foreach ($supervisores as $supervisor) {
-          $data[] = array(
-             'nombre' => ucwords(strtolower($supervisor)), //ToString
-          );
-        }
-
-        return new JsonResponse($data);
 
     }
 
@@ -880,9 +946,6 @@ class EncuestaController extends Controller
 
         $whereAnd .= $inspector;
 
-        $supervisor = ($request->request->get('supervisor') != "") ? " AND e.supervisorFacade LIKE '%".$request->request->get('supervisor')."%'" : "";
-        $whereAnd .= $supervisor;
-
         $prevencionista = "";
         $eliminatePrevencionista = false;
         if ($request->request->get('prevencionista') != "") {
@@ -943,6 +1006,9 @@ class EncuestaController extends Controller
 
         if ($request->request->get('unidad_de_negocio_id') != "") {
 
+
+          if ($request->request->get('supervisor') != "") {
+
           $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
                            ->createQueryBuilder('e')
                            ->select('e.id,e.indice, e.inspector, e.prevencionista, e.createdBy')
@@ -958,12 +1024,35 @@ class EncuestaController extends Controller
                            ->where('e.visible = 1 '.$whereAnd)
                            ->orderBy('e.id', 'DESC');
 
+          } else {
+
+            $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
+                             ->createQueryBuilder('e')
+                             ->select('e.id,e.indice, e.inspector, e.prevencionista, e.createdBy')
+                             ->join('e.contrato','c')
+                             ->join('e.supervisor', 's')
+                             ->join('c.unidadDeNegocio','u')
+                             ->join('e.pais','p')
+                             ->join('c.servicio','srv')
+                             ->join('e.empresa','em')
+                             ->join('c.subGerencia','sgr')
+                             ->join('sgr.gerencia','gr')
+                             ->join('c.area','a')
+                             ->join('c.mandante','ma')
+                             ->where('e.visible = 1 '.$whereAnd)
+                             ->orderBy('e.id', 'DESC');
+
+          }
+
         } else {
 
-          $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
+          if ($request->request->get('supervisor') != "") {
+
+            $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
                            ->createQueryBuilder('e')
                            ->select('e.id,e.indice, e.inspector, e.prevencionista, e.createdBy')
                            ->join('e.contrato','c')
+                           ->join('e.supervisor', 's')
                            ->join('e.pais','p')
                            ->join('c.servicio','srv')
                            ->join('e.empresa','em')
@@ -973,6 +1062,21 @@ class EncuestaController extends Controller
                            ->join('c.mandante','ma')
                            ->where('e.visible = 1 '.$whereAnd)
                            ->orderBy('e.id', 'DESC');
+           } else {
+             $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
+                            ->createQueryBuilder('e')
+                            ->select('e.id,e.indice, e.inspector, e.prevencionista, e.createdBy')
+                            ->join('e.contrato','c')
+                            ->join('e.pais','p')
+                            ->join('c.servicio','srv')
+                            ->join('e.empresa','em')
+                            ->join('c.subGerencia','sgr')
+                            ->join('sgr.gerencia','gr')
+                            ->join('c.area','a')
+                            ->join('c.mandante','ma')
+                            ->where('e.visible = 1 '.$whereAnd)
+                            ->orderBy('e.id', 'DESC');
+           }
         }
 
         $role = false;
@@ -1900,6 +2004,66 @@ class EncuestaController extends Controller
 
         return new JsonResponse(array('status' => '0', 'message' => 'no idea!'));
 
+    }
+
+    /**
+     *
+     *
+     * @Route("/audit/{id}", name="encuestas_audit")
+     * @Method("GET")
+     * @Template()
+     */
+    public function auditAction(Request $request,$id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('BcTicCamIpalBundle:Encuesta')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Encuesta entity.');
+        }
+
+        $revisions = $this->container->get('simplethings_entityaudit.reader')->findRevisions(
+          get_class($entity),
+          $id);
+
+        return array(
+          'entity' => $entity,
+          'className' => get_class($entity),
+          'revisions' => $revisions
+        );
+    }
+
+    /**
+     *
+     *
+     * @Route("/auditoria/detalles/{className}/{id}/{rev}/{fecha}/{user}", name="encuestas_audit_detail")
+     * @Method("GET")
+     * @Template("BcTicCamIpalBundle:Encuesta:show.html.twig")
+     */
+    public function auditDetailAction(Request $request,$id, $className, $rev, $fecha, $user)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('BcTicCamIpalBundle:Encuesta')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Encuesta entity.');
+        }
+
+        $revision = $this->container->get('simplethings_entityaudit.reader')->find(
+          $className,
+          $id,
+          $rev);
+
+          $fecha = new \DateTime("@$fecha");
+
+        return array(
+          'entity' => $revision,
+          'revision' => 'Revisión: #'.$rev.' '.$fecha->format('d-m-Y').' por '.$user
+        );
     }
 
     /**

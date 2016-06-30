@@ -23,7 +23,8 @@
         "aws/aws-sdk-php-symfony": "~0.1",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/data-fixtures" : "dev-master",
-        "gregwar/image-bundle": "dev-master"
+        "gregwar/image-bundle": "dev-master",
+        "simplethings/entity-audit-bundle": "^0.9.1"
     },
     "scripts": {
         "post-install-cmd": [

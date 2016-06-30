@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li><a href="{{ path('welcome') }}">{{ 'Inicio' | trans }}</a></li>
+  <li><a href="{{ path('encuestas') }}">{{ 'Encuestas IPAL' | trans }}</a></li>
+  <li class="active">Encuesta #{{ entity.id }}</li>
+</ol>
+{% endblock %}
+
+{% block body -%}
+
+    <table class="records_list table table-striped">
+         <thead>
+             <tr>
+               <th>Revisión</th>
+             </tr>
+         </thead>
+         <tbody>
+             <tr>
+                <td>
+                  <ul>
+                      {% for element in revision %}
+                          <li>{{ element }}</li>
+                      {% endfor %}
+                  </ul>
+                </td>
+             </tr>
+         </tbody>
+     </table>
+
+
+   <br/>
+
+    <p class="text-left">
+    <a class="hidden-xs" href="{{ path('encuestas') }}">
+      <button type="button" class="btn btn-default btn-xs">
+        <span class="glyphicon glyphicon-th-list"></span> {{ 'Volver' | trans }}
+      </button>
+    </a>
+    </p>
+
+{% endblock %}

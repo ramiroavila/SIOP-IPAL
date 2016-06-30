@@ -166,7 +166,15 @@ class EncuestaColombiaGeneralEditType extends AbstractType
                 ))
             ->add('inspector','text',array('label' => 'Inspector','disabled' => true))
             ->add('prevencionista', 'hidden',array('disabled' => true))
-            ->add('supervisor_facade','text',array('label' => 'Supervisor','disabled' => true))
+            ->add('supervisor','entity', array(
+                  'class' => 'BcTicCamIpalBundle:Supervisor',
+                  'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('r')
+                           ->orderBy('r.nombre', 'ASC');
+                    },
+                   'empty_value' => '-- SELECCIONE SUPERVISOR --',
+                   'empty_data' => "-1",
+                ))
             ->add('servicio','entity', array(
                   'label' => 'Servicio',
                   'class' => 'BcTicCamIpalBundle:Servicio',
@@ -233,6 +241,9 @@ class EncuestaColombiaGeneralEditType extends AbstractType
                   'read_only' => true,
                   'disabled' => true,
                 ))
+                ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('N/A' => 'N/A: No aplica','A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
+                ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('N/A' => 'N/A: No aplica','B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
+                
         ;
     }
 

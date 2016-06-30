@@ -10,7 +10,7 @@ security:
 
     providers:
         main:
-            entity: { class: BcTic\CamIpalBundle\Entity\Usuario, property: username }  
+            entity: { class: BcTic\CamIpalBundle\Entity\Usuario, property: username }
 
     firewalls:
         dev:
@@ -31,3 +31,4 @@ security:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/, roles: ROLE_USER }
         - { path: ^/usuario, roles: ROLE_ADMIN }
+        - { path: ^/supervisores, roles: ROLE_ADMIN }

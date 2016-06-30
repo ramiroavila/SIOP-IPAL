@@ -23,9 +23,10 @@ class EncuestaLlvvType extends AbstractType
                     'label' => 'Fecha',
                     'input'  => 'datetime',
                     'widget' => 'choice',
-                    'format' => 'ddMMyyyy'
+                    'format' => 'ddMMyyyy',
+                    'disabled' => true
             ))
-            ->add('hora','time', array ('label' => 'Hora'))
+            ->add('hora','time', array ('label' => 'Hora', 'disabled' => true))
             ->add('actividad','text', array('label' => 'Actividad'))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo'))
             ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados'))
@@ -60,7 +61,7 @@ class EncuestaLlvvType extends AbstractType
             ->add('respuesta62', new SurveyType(), array('label' => 'respuesta6.2_llvv'))
             ->add('respuesta63', new SurveyType(), array('label' => 'respuesta6.3_llvv'))
             ->add('respuesta64', new SurveyType(), array('label' => 'respuesta6.4_llvv'))
-            ->add('respuesta65', new SurveyType(), array('label' => 'respuesta6.5_llvv'))            
+            ->add('respuesta65', new SurveyType(), array('label' => 'respuesta6.5_llvv'))
             ->add('respuesta71', new SurveyType(), array('label' => 'respuesta7.1_llvv'))
             ->add('respuesta72', new SurveyType(), array('label' => 'respuesta7.2_llvv'))
             ->add('respuesta81', new SurveyType(), array('label' => 'respuesta8.1_llvv'))
@@ -122,7 +123,15 @@ class EncuestaLlvvType extends AbstractType
                 ))
             ->add('inspector','text',array('label' => 'Inspector'))
             ->add('prevencionista', 'hidden')
-            ->add('supervisor_facade','text',array('label' => 'Supervisor'))
+            ->add('supervisor','entity', array(
+                  'class' => 'BcTicCamIpalBundle:Supervisor',
+                  'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('r')
+                           ->orderBy('r.nombre', 'ASC');
+                    },
+                   'empty_value' => '-- SELECCIONE SUPERVISOR --',
+                   'empty_data' => "-1",
+                ))
             ->add('servicio','entity', array(
                   'label' => 'Servicio',
                   'class' => 'BcTicCamIpalBundle:Servicio',
@@ -187,6 +196,9 @@ class EncuestaLlvvType extends AbstractType
                            ->orderBy('r.nombre', 'ASC');
                     }
                 ))
+            ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('N/A' => 'N/A: No aplica','A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
+            ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('N/A' => 'N/A: No aplica','B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
+
         ;
     }
 

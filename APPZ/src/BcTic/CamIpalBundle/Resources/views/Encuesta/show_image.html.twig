@@ -4,8 +4,8 @@
   {% if file_exists(web_path~asset( filePath )) %}
     <img src="{{ image(filePath).resize(320) }}" alt="{{ 'NO EXISTE ARCHIVO ' ~ fileNumber | trans }}"/>
   {% else %}
-    <a target="_blank" href="{{ "http://cdn.siop.cam-la.bctic.net/" ~ filePath }}">
-      <img src="{{ image('http://cdn.siop.cam-la.bctic.net/' ~ filePath).resize(320) }}" alt="{{ 'NO EXISTE ARCHIVO ' ~ fileNumber | trans }}"/>
+    <a target="_blank" href="{{ "http://siop-cam-la.bctic.net/" ~ filePath }}">
+      <img src="{{ image('http://siop-cam-la.bctic.net/' ~ filePath).resize(320) }}" alt="{{ 'NO EXISTE ARCHIVO ' ~ fileNumber | trans }}"/>
     </a>
   {% endif %}
 {% else %}

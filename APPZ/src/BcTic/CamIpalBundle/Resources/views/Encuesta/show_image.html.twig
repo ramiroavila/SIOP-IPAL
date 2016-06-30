@@ -1,13 +1,9 @@
 <!--1435325461-IMG_20150625_122106451_HDR.jpg -->
 
 {% if filePath |length > 5 %}
-  {% if file_exists(web_path~asset( filePath )) %}
-    <img src="{{ image(filePath).resize(320) }}" alt="{{ 'NO EXISTE ARCHIVO ' ~ fileNumber | trans }}"/>
-  {% else %}
-    <a target="_blank" href="{{ "http://siop-cam-la.bctic.net/" ~ filePath }}">
-      <img src="{{ image('http://siop-cam-la.bctic.net/' ~ filePath).resize(320) }}" alt="{{ 'NO EXISTE ARCHIVO ' ~ fileNumber | trans }}"/>
+    <a target="_blank" href="{{-filePath-}}">
+      <img src="{{-filePath-}}" alt="{{ 'NO EXISTE ARCHIVO ' ~ fileNumber | trans }}"/>
     </a>
-  {% endif %}
 {% else %}
    <i>{{ 'NO EXISTE ARCHIVO ' ~ fileNumber | trans }}</i>
 {% endif %}

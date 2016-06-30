@@ -466,30 +466,32 @@ class EncuestaController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') ORDER BY e.fecha DESC';
+      $sql = 'SELECT * FROM Encuesta e WHERE e.id IN ('.implode(",",$ids).') AND (respuesta_1_3 = 1 OR  respuesta_1_4 = 1 OR  respuesta_1_5 = 1 OR  respuesta_2_1 = 1 OR  respuesta_2_2 = 1 OR  respuesta_2_3 = 1 OR  respuesta_3_1 = 1 OR  respuesta_3_2 = 1 OR  respuesta_3_3 = 1 OR  respuesta_3_4 = 1 OR  respuesta_3_5 = 1 OR  respuesta_4_1 = 1 OR  respuesta_4_2 = 1 OR  respuesta_4_3 = 1 OR  respuesta_4_4 = 1 OR  respuesta_4_5 = 1 OR  respuesta_4_6 = 1 OR  respuesta_4_7 = 1 OR  respuesta_4_8 = 1 OR  respuesta_4_9 = 1 OR  respuesta_5_1 = 1 OR  respuesta_5_2 = 1 OR  respuesta_5_3 = 1 OR  respuesta_6_1 = 1 OR  respuesta_6_2 = 1 OR  respuesta_6_3 = 1 OR  respuesta_6_4 = 1 OR  respuesta_7_1 = 1 OR  respuesta_7_2 = 1 OR  respuesta_8_1 = 1 OR  respuesta_8_2 = 1 OR  respuesta_9_1 = 1 OR  respuesta_9_2 = 1 OR  respuesta_9_3 = 1 OR  respuesta_10_1 = 1 OR  respuesta_10_2 = 1 OR  respuesta_10_3 = 1 OR  respuesta_11_1 = 1 OR  respuesta_6_5 = 1 OR respuesta_2_4 = 1 OR  respuesta_2_5 = 1 OR  respuesta_11_2 = 1 OR  respuesta_12_1 = 1 OR  respuesta_1_6 = 1 OR  respuesta_2_6 = 1 OR  respuesta_3_6 = 1 OR  respuesta_3_7 = 1 OR  respuesta_3_8 = 1 OR  respuesta_3_9 = 1 OR  respuesta_3_10 = 1 OR  respuesta_3_11 = 1 OR  respuesta_3_12 = 1 OR  respuesta_3_13 = 1 OR  respuesta_3_14 = 1 OR  respuesta_5_4 = 1 OR  respuesta_7_3 = 1 OR  respuesta_7_4 = 1 OR  respuesta_8_3 = 1 OR  respuesta_9_4 = 1 OR  respuesta_9_5 = 1 OR  respuesta_9_6 = 1 OR  respuesta_9_7 = 1 OR  respuesta_9_8 = 1 OR  respuesta_9_9 = 1 OR  respuesta_9_10 = 1 OR  respuesta_9_11 = 1 OR  respuesta_10_4 = 1 OR  respuesta_12_2 = 1 OR  respuesta_12_3 = 1 OR  respuesta_12_4 = 1 OR  respuesta_12_5 = 1 OR  respuesta_12_6 = 1 OR  respuesta_13_1 = 1 OR  respuesta_13_2 = 1 OR  respuesta_13_3 = 1 OR  respuesta_13_4 = 1 OR  respuesta_13_5 = 1 OR  respuesta_13_6 = 1 OR  respuesta_13_7 = 1 OR  respuesta_13_8 = 1 OR  respuesta_13_9 = 1 OR  respuesta_13_10 = 1 OR  respuesta_11_3 = 1 OR  respuesta_4_10 = 1 OR  respuesta_4_11 = 1 OR  respuesta_4_12 = 1 OR  respuesta_4_13 = 1 OR  respuesta_4_14 = 1 OR  respuesta_4_15 = 1 OR  respuesta_4_16 = 1) ORDER BY e.fecha DESC LIMIT 100';
 
       $stmt = $em->getConnection()->prepare($sql);
       $stmt->execute();
 
       $data = array();
       foreach($stmt->fetchAll() as $entity) {
-        $data[] = array(
-                          'fecha' => $entity['fecha'],
-                          'gerencia' => $entity['gerencia'],
-                          'subgerencia' => $entity['subgerencia'],
-                          'area' => $entity['area'],
-                          'contratista' => $entity['contratista'],
-                          'ipal' =>  $entity['ipal'],
-                          'tiene_incumplimientos' => $entity['tiene_incumplimientos'],
-                          'cantidad_incumplimientos' => $entity['cantidad_incumplimientos'],
-                          'respuestas_0' => $entity['respuestas_0'],
-                          'respuestas_1' => $entity['respuestas_1'],
-                          'respuestas_2' => $entity['respuestas_2'],
-                        );
+        $item = array('id' => $entity['id'],'tipo' => $entity['tipo']);
+        $respuestas = array();
+        foreach ($entity as $key => $value) {
+          if (strpos($key,'respuesta_') === FALSE) {
+
+          } else {
+            if ($value == "1") {
+              $str = preg_replace('/(respuesta_)(\d{1,2})_/','respuesta$2.',$key.'_'.strtolower($entity['tipo']));
+              $str = str_replace(array('electrico'),array('electrica'), $str);
+              $respuestas[] = $str;
+            }
+          }
+        }
+        $item['respuestas'] = $respuestas;
+        $data[] = $item;
       }
 
       $content = $this->renderView(
-        'BcTicCamIpalBundle:Encuesta:reporteEncuestaTodosLosDatosCsv.html.twig',
+        'BcTicCamIpalBundle:Encuesta:reporteEncuesta2Csv.html.twig',
         array('data' => $data)
       );
 
@@ -758,7 +760,7 @@ class EncuestaController extends Controller
     {
       $response = new Response(file_get_contents('uploads/'.$file.'.csv'));
       $response->headers->set('Content-Type', 'text/csv');
-      $response->headers->set('Charset','utf-8');
+      $response->headers->set('Charset','iso-8859-1');
       $response->headers->set('Content-Disposition', 'attachment; filename="'.$file.'.csv"');
 
       return $response;

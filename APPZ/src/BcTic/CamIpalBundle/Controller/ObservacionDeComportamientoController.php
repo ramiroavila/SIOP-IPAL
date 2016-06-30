@@ -31,7 +31,7 @@ class ObservacionDeComportamientoController extends Controller
      *
      * @Route("/observacion_reporte_por_mes_csv/data.csv", name="observacion_reporte_por_mes_csv")
      * @Method("POST")
-     * @Template()     
+     * @Template()
      */
     public function reporteObservacionesMesCsvAction(Request $request)
     {
@@ -41,7 +41,7 @@ class ObservacionDeComportamientoController extends Controller
       $ids = implode(",", array_values($key));
 
       //Busco las encuestas que aplican:
-      $em = $this->getDoctrine()->getManager();  
+      $em = $this->getDoctrine()->getManager();
       $entities = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')
                            ->createQueryBuilder('o')
                            ->join('o.contrato','c')
@@ -57,13 +57,13 @@ class ObservacionDeComportamientoController extends Controller
                            ->getQuery();
 
       //Armo un array de fechas
-      $data = array();                     
+      $data = array();
       foreach($entities->getResult() as $entity) {
         $mes = date_format($entity->getFecha(),'Y-m-01');
         if (isset($data[$mes])) {
 
         } else {
-          $data[$mes] = array();    
+          $data[$mes] = array();
         }
 
         $data[$mes][] = array(
@@ -90,7 +90,7 @@ class ObservacionDeComportamientoController extends Controller
      *
      * @Route("/observacion_reporte_todos_los_datos_csv/data.csv", name="observacion_reporte_todos_los_datos_csv")
      * @Method("POST")
-     * @Template()     
+     * @Template()
      */
     public function reporteObservacionTodosLosDatosCsvAction(Request $request)
     {
@@ -100,7 +100,7 @@ class ObservacionDeComportamientoController extends Controller
       $ids = implode(",", array_values($key));
 
       //Busco las encuestas que aplican:
-      $em = $this->getDoctrine()->getManager();  
+      $em = $this->getDoctrine()->getManager();
       $entities = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')
                            ->createQueryBuilder('o')
                            ->join('o.contrato','c')
@@ -116,13 +116,13 @@ class ObservacionDeComportamientoController extends Controller
                            ->getQuery();
 
       //Armo un array de fechas
-      $data = array();                     
+      $data = array();
       foreach($entities->getResult() as $entity) {
         $data[] = array(
              'id' => $entity->getId(),
-             'fecha' => date_format($entity->getFecha(),'d-m-Y'), 
-             'empresa' => (is_object($entity->getEmpresa())) ? $entity->getEmpresa()->__toString() : "-- NO DEFINIDO --", 
-             'contrato' => (is_object($entity->getContrato())) ? $entity->getContrato()->__toString() : "-- NO DEFINIDO --", 
+             'fecha' => date_format($entity->getFecha(),'d-m-Y'),
+             'empresa' => (is_object($entity->getEmpresa())) ? $entity->getEmpresa()->__toString() : "-- NO DEFINIDO --",
+             'contrato' => (is_object($entity->getContrato())) ? $entity->getContrato()->__toString() : "-- NO DEFINIDO --",
              'pais' => (is_object($entity->getPais())) ? $entity->getPais()->getNombre() : "-- NO DEFINIDO --",
              'inspector' => ($entity->getInspector() == null) ? "-- No especificado --" : $entity->getInspector(),
              'indice' => $entity->getIndice(),
@@ -144,7 +144,7 @@ class ObservacionDeComportamientoController extends Controller
 
 
     /**
-     * 
+     *
      *
      * @Route("/reportes/{file}/download.html", name="download_observacion_file", defaults={ "file" = "data"})
      * @Method("GET")
@@ -152,12 +152,12 @@ class ObservacionDeComportamientoController extends Controller
      */
     public function downloadAction($file)
     {
-      $response = new Response(file_get_contents('uploads/'.$file.'.csv')); 
+      $response = new Response(file_get_contents('uploads/'.$file.'.csv'));
       $response->headers->set('Content-Type', 'text/csv');
       $response->headers->set('Content-Disposition', 'attachment; filename="'.$file.'.csv"');
 
       return $response;
-    }      
+    }
 
 
     /**
@@ -223,7 +223,7 @@ class ObservacionDeComportamientoController extends Controller
         $whereAnd .= $supervisor;
 
         $unidadDeNegocio = ($request->request->get('unidad_de_negocio_id') != "") ? " AND u.id = ".$request->request->get('unidad_de_negocio_id') : "";
-        $whereAnd .= $unidadDeNegocio;        
+        $whereAnd .= $unidadDeNegocio;
 
         $inspector = "";
         $eliminateInspector = false;
@@ -233,7 +233,7 @@ class ObservacionDeComportamientoController extends Controller
           } else {
             $inspector = " AND o.inspector LIKE '%".$request->request->get('inspector')."%'" ;
           }
-        } 
+        }
 
         //Busco todos los usuarios que tengan ROL INSPECTOR:
         $inspectoresResult = $em->getRepository('BcTicCamIpalBundle:Usuario')
@@ -241,10 +241,10 @@ class ObservacionDeComportamientoController extends Controller
                            ->join('u.roles','rol')
                            ->where('rol.nombre LIKE :rol')
                            ->setParameters(array('rol' => 'INSPECTOR'))
-                           ->getQuery()->getResult();  
+                           ->getQuery()->getResult();
 
         $inspectores = array();
-        foreach($inspectoresResult as $entity) {                           
+        foreach($inspectoresResult as $entity) {
           $inspectores[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
         }
 
@@ -257,9 +257,9 @@ class ObservacionDeComportamientoController extends Controller
                            ->orderBy('r.nombre', 'ASC')
                            ->getQuery()->getResult();
 
-        foreach($inspectoresResult as $entity) {                           
+        foreach($inspectoresResult as $entity) {
           $inspectores[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
-        }                           
+        }
 
         $whereAnd .= $inspector;
 
@@ -274,7 +274,7 @@ class ObservacionDeComportamientoController extends Controller
           } else {
             $prevencionista = " AND o.prevencionista LIKE '%".$request->request->get('prevencionista')."%'" ;
           }
-        } 
+        }
 
         //Busco todos los usuarios que tengan ROL PREVENCIONISTA:
         $prevencionistasResult = $em->getRepository('BcTicCamIpalBundle:Usuario')
@@ -282,10 +282,10 @@ class ObservacionDeComportamientoController extends Controller
                            ->join('u.roles','rol')
                            ->where('rol.nombre LIKE :rol')
                            ->setParameters(array('rol' => 'PREVENCIONISTA'))
-                           ->getQuery()->getResult();  
+                           ->getQuery()->getResult();
 
         $prevencionistas = array();
-        foreach($prevencionistasResult as $entity) {                           
+        foreach($prevencionistasResult as $entity) {
           $prevencionistas[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
         }
 
@@ -298,13 +298,13 @@ class ObservacionDeComportamientoController extends Controller
                            ->orderBy('r.nombre', 'ASC')
                            ->getQuery()->getResult();
 
-        foreach($prevencionistasResult as $entity) {                           
+        foreach($prevencionistasResult as $entity) {
           $prevencionistas[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
-        }           
+        }
 
-        $whereAnd .= $prevencionista;   
+        $whereAnd .= $prevencionista;
 
-        if ($request->request->get('grupo_id') != "") { 
+        if ($request->request->get('grupo_id') != "") {
           $gruposResult = $em->getRepository('BcTicCamIpalBundle:Usuario')
                            ->createQueryBuilder('r')
                            ->join('r.grupos','grupo')
@@ -313,21 +313,21 @@ class ObservacionDeComportamientoController extends Controller
                            ->orderBy('r.nombre', 'ASC')
                            ->getQuery()->getResult();
 
-          $grupos = array();                           
+          $grupos = array();
 
-          foreach($gruposResult as $entity) {                           
+          foreach($gruposResult as $entity) {
               $grupos[] = $entity->getUsername();
-          }    
+          }
 
-          unset($gruposResult);                
-        }      
+          unset($gruposResult);
+        }
 
-        if ($request->request->get('unidad_de_negocio_id') != "") {    
+        if ($request->request->get('unidad_de_negocio_id') != "") {
 
         $entities = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')
                            ->createQueryBuilder('o')
                            ->join('o.contrato','c')
-                           ->join('c.unidadDeNegocio','u')  
+                           ->join('c.unidadDeNegocio','u')
                            ->join('o.pais','p')
                            ->join('c.servicio','srv')
                            ->join('o.empresa','em')
@@ -338,7 +338,7 @@ class ObservacionDeComportamientoController extends Controller
                            ->where('o.id > 0 '.$whereAnd)
                            ->orderBy('o.id', 'DESC');
 
-        } else {                           
+        } else {
 
         $entities = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')
                            ->createQueryBuilder('o')
@@ -352,7 +352,7 @@ class ObservacionDeComportamientoController extends Controller
                            ->join('c.mandante','ma')
                            ->where('o.id > 0 '.$whereAnd)
                            ->orderBy('o.id', 'DESC');
-        }  
+        }
 
         $ids = array();
         $data = array();
@@ -365,37 +365,37 @@ class ObservacionDeComportamientoController extends Controller
           //Do Nothing
         } else {
           $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
-        }         
+        }
 
         foreach ($entities->getQuery()->getResult() as $entity) {
 
           $flagInspector = false;
           if ($eliminateInspector) {
-            foreach($inspectores as $inspector) {  
+            foreach($inspectores as $inspector) {
               if (md5(strtoupper(trim($entity->getInspector()))) == $inspector) $flagInspector = true;
-            }  
+            }
           }
 
           $flagPrevencionista = false;
           if ($eliminatePrevencionista) {
-            foreach($prevencionistas as $prevencionista) {  
+            foreach($prevencionistas as $prevencionista) {
               if (md5(strtoupper(trim($entity->getPrevencionista()))) == $prevencionista) $flagPrevencionista = true;
-            }  
+            }
           }
 
-          if (strlen($request->request->get('grupo_id')) > 0) { 
+          if (strlen($request->request->get('grupo_id')) > 0) {
             if (array_search($entity->getCreatedBy(),$grupos) === false) continue;
-          }          
+          }
 
-          if ($flagInspector == true) continue; 
-          if ($flagPrevencionista == true) continue; 
+          if ($flagInspector == true) continue;
+          if ($flagPrevencionista == true) continue;
 
           $ids[] = $entity->getId();
           $data[] = array(
              'id' => $entity->getId(),
-             'fecha' => date_format($entity->getFecha(),'d-m-Y'), 
-             'empresa' => (is_object($entity->getEmpresa())) ? $entity->getEmpresa()->__toString() : "-- NO DEFINIDO -- ".get_class($entity->getEmpresa()), 
-             'contrato' => (is_object($entity->getContrato())) ? $entity->getContrato()->__toString() : "-- NO DEFINIDO --", 
+             'fecha' => date_format($entity->getFecha(),'d-m-Y'),
+             'empresa' => (is_object($entity->getEmpresa())) ? $entity->getEmpresa()->__toString() : "-- NO DEFINIDO -- ".get_class($entity->getEmpresa()),
+             'contrato' => (is_object($entity->getContrato())) ? $entity->getContrato()->__toString() : "-- NO DEFINIDO --",
              'pais' => (is_object($entity->getPais())) ? $entity->getPais()->getNombre() : "-- NO DEFINIDO --",
              'inspector' => ($entity->getInspector() == null) ? "-- No especificado --" : $entity->getInspector(),
              'indice' => $entity->getIndice(),
@@ -405,7 +405,7 @@ class ObservacionDeComportamientoController extends Controller
           $observaciones = $observaciones + count($entity->getRegistrosDeObservacion());
 
         }
-      
+
         return new JsonResponse(array('entities' => $data,'ids' => $ids, 'indice' => $indice, 'items' => $observaciones,'hits' => count($data)));
 
     }
@@ -426,7 +426,7 @@ class ObservacionDeComportamientoController extends Controller
         foreach ($this->getDoctrine()->getManager()->getRepository('BcTicCamIpalBundle:Observacion')->findAll() as $observacion) {
           //Creo un objeto RegistroDeObservacion y lo agrego a la Colleción de Entity
           $obj = new RegistroDeObservacion();
-          $obj->setObservacion($observacion);  
+          $obj->setObservacion($observacion);
           $entity->addRegistrosDeObservacion($obj);
         }
 
@@ -445,8 +445,8 @@ class ObservacionDeComportamientoController extends Controller
                 $registroDeObservacion->setObservacionDeComportamiento($entity);
                 $em->persist($registroDeObservacion);
             }
-            
-            //Itero los registros 
+
+            //Itero los registros
             $em->flush();
 
             $this->get('session')->getFlashBag()->add(
@@ -483,7 +483,7 @@ class ObservacionDeComportamientoController extends Controller
         $form->add('button', 'button', array('label' => 'Buscar'));
 
         return $form;
-    }    
+    }
 
     /**
     * Creates a form to create a ObservacionDeComportamiento entity.
@@ -522,7 +522,7 @@ class ObservacionDeComportamientoController extends Controller
         foreach ($this->getDoctrine()->getManager()->getRepository('BcTicCamIpalBundle:Observacion')->findAll() as $observacion) {
           //Creo un objeto RegistroDeObservacion y lo agrego a la Colleción de Entity
           $obj = new RegistroDeObservacion();
-          $obj->setObservacion($observacion);  
+          $obj->setObservacion($observacion);
           $entity->addRegistrosDeObservacion($obj);
         }
 
@@ -542,7 +542,7 @@ class ObservacionDeComportamientoController extends Controller
      *
      * @Route("/{id}.html", name="observaciones_show")
      * @Method("GET")
-     * @Template("")
+     * @Template()
      */
     public function showAction(Request $request,$id)
     {
@@ -554,7 +554,7 @@ class ObservacionDeComportamientoController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Observacion entity.');
         }
-        
+
         return array(
             'entity'      => $entity
         );
@@ -566,7 +566,7 @@ class ObservacionDeComportamientoController extends Controller
      *
      * @Route("/chilectra/{id}.html", name="observaciones_show_chilectra")
      * @Method("GET")
-     * @Template("")
+     * @Template()
      */
     public function showChilectraAction(Request $request,$id)
     {
@@ -578,18 +578,18 @@ class ObservacionDeComportamientoController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Observacion entity.');
         }
-        
+
         return array(
             'entity'      => $entity
         );
-    }    
+    }
 
     /**
      * Displays a view empty
      *
      * @Route("/observaciones/form.html", name="observaciones_show_form")
      * @Method("GET")
-     * @Template("")
+     * @Template()
      */
     public function showFormAction()
     {
@@ -705,7 +705,7 @@ class ObservacionDeComportamientoController extends Controller
             'edit_form'   => $editForm->createView(),
         );
     }
- 
+
       /**
      * Deletes a  entity.
      *
@@ -714,7 +714,7 @@ class ObservacionDeComportamientoController extends Controller
      */
     public function deleteAction(Request $request, $id, $token)
     {
-      
+
         $csrf = $this->get('form.csrf_provider');
 
         $em = $this->getDoctrine()->getManager();
@@ -733,7 +733,7 @@ class ObservacionDeComportamientoController extends Controller
               return new JsonResponse(array('status' => '0', 'message' => 'Los datos no se pudieron borrar por que tiene otros datos relacionados.'));
             }
         } else {
-          return new JsonResponse(array('status' => '0', 'message' => 'no valid token!'));            
+          return new JsonResponse(array('status' => '0', 'message' => 'no valid token!'));
         }
 
         return new JsonResponse(array('status' => '0', 'message' => 'no idea!'));

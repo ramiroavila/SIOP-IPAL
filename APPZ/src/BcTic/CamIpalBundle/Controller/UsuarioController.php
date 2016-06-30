@@ -58,7 +58,7 @@ class UsuarioController extends Controller
                     ->orderBy('u.nombre','ASC')
                     ->setMaxResults(25)
                     ->setFirstResult(25 * ($page - 1))
-                    ->getQuery();               
+                    ->getQuery();
 
         $csrf = $this->get('form.csrf_provider');
 
@@ -67,8 +67,8 @@ class UsuarioController extends Controller
             'key' => $key,
             'entities' => $entities->getResult(),
             'csrf' => $csrf,
-        ); 
-        
+        );
+
     }
 
     /**
@@ -225,7 +225,7 @@ class UsuarioController extends Controller
             'method' => 'PUT',
         ));
 
-        $editForm->add('submit', 'submit', array('label' => 'Guardar')); 
+        $editForm->add('submit', 'submit', array('label' => 'Guardar'));
 
         $editForm->handleRequest($request);
 

@@ -1671,7 +1671,7 @@ class EncuestaController extends Controller
      *
      * @Route("/{id}.html", name="encuestas_show")
      * @Method("GET")
-     * @Template("")
+     * @Template()
      */
     public function showAction(Request $request,$id)
     {
@@ -1694,7 +1694,7 @@ class EncuestaController extends Controller
      *
      * @Route("/coasin/{id}.html", name="encuestas_coasin_show")
      * @Method("GET")
-     * @Template("")
+     * @Template()
      */
     public function showCoasinAction(Request $request,$id)
     {
@@ -1718,7 +1718,7 @@ class EncuestaController extends Controller
      *
      * @Route("/encuestas_ipal/{type}.html", name="encuestas_show_form")
      * @Method("GET")
-     * @Template("")
+     * @Template()
      */
     public function showFormAction($type)
     {

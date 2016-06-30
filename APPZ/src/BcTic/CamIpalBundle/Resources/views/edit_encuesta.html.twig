@@ -89,12 +89,19 @@
 
         <div class="row">
           <div class="col-sm-6">
-            {{ form_row(form.supervisor_facade) }}
+            {{ form_row(form.supervisor) }}
           </div>
           <div class="col-sm-6">
-            <div>
-              {{ form_row(form.prevencionista) }}
-            </div>
+                {{ form_row(form.autoInspeccion) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            {{ form_row(form.prevencionista) }}
+          </div>
+          <div class="col-sm-6">
+            {{ form_row(form.charlaOperativa) }}
           </div>
         </div>
 

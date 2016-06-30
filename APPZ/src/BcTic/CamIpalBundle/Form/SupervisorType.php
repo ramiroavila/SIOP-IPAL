@@ -3,10 +3,11 @@
 namespace BcTic\CamIpalBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class EmpresaType extends AbstractType
+class SupervisorType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -16,9 +17,17 @@ class EmpresaType extends AbstractType
     {
         $builder
             ->add('nombre')
-            ->add('pais')
-            ->add('nemo')
-            ->add('visible')
+            ->add('empresas','entity', array(
+                  'class' => 'BcTicCamIpalBundle:Empresa',
+                  'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('r')
+                           ->where('r.visible = :visible')
+                           ->setParameter('visible',1)
+                           ->orderBy('r.nombre', 'ASC');
+                    },
+                  'multiple' => true
+                  )
+            )
         ;
     }
 
@@ -28,7 +37,7 @@ class EmpresaType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BcTic\CamIpalBundle\Entity\Empresa'
+            'data_class' => 'BcTic\CamIpalBundle\Entity\Supervisor'
         ));
     }
 
@@ -37,6 +46,6 @@ class EmpresaType extends AbstractType
      */
     public function getName()
     {
-        return 'bctic_camipalbundle_empresa';
+        return 'bctic_camipalbundle_supervisor';
     }
 }

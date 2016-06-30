@@ -25,7 +25,7 @@ class EncuestaFilterType extends AbstractType
                 'choices' => array(
                     'N/A' => 'N/A: No aplica',
                     'POR_VALIDAR' => 'POR VALIDAR: Las justificaciones de cierre no han sido verificadas aún por el administrador',
-                    'ABIERTA' => 'ABIERTA: Tiene incumplimientos no correctamente justificados aún', 
+                    'ABIERTA' => 'ABIERTA: Tiene incumplimientos no correctamente justificados aún',
                     'CERRADA' => 'CERRADA: Tiene incumplimientos cuyo cierre ha sido aceptado por el administrador')
                   )
               )
@@ -76,7 +76,7 @@ class EncuestaFilterType extends AbstractType
                     },
                    'empty_value' => '- TODAS LAS SUB GERENCIAS -',
                    'empty_data' => "",
-                ))           
+                ))
              ->add('area','entity', array(
                   'label' => 'Área',
                   'class' => 'BcTicCamIpalBundle:Area',
@@ -88,7 +88,7 @@ class EncuestaFilterType extends AbstractType
                     },
                    'empty_value' => '- TODAS LAS AREAS -',
                    'empty_data' => "",
-                )) 
+                ))
              ->add('contrato','entity', array(
                   'label' => 'Contrato',
                   'class' => 'BcTicCamIpalBundle:Contrato',
@@ -100,25 +100,29 @@ class EncuestaFilterType extends AbstractType
                     },
                    'empty_value' => '- TODOS LOS CONTRATOS -',
                    'empty_data' => "",
-                ))             
+                ))
              ->add('inspector','choice', array(
                        'label' => 'Inspector',
                        'empty_value' => '- TODOS LOS INSPECTORES -',
                        'empty_data' => "",
                      )
-                   )   
+                   )
              ->add('prevencionista','choice', array(
                        'label' => 'Prevenc.',
                        'empty_value' => '- TODOS LOS PREVENCIONISTAS -',
-                       'empty_data' => "",                       
+                       'empty_data' => "",
                      )
                    )
-             ->add('supervisorFacade','choice',array(
-                       'label' => 'Supervisor',
-                       'empty_value' => '- TODOS LOS SUPERVISORES -',
-                       'empty_data' => "",                       
-                     )
-                  ) 
+             ->add('supervisor','entity', array(
+                   'label' => 'Supervisor',
+                   'class' => 'BcTicCamIpalBundle:Supervisor',
+                   'query_builder' => function(EntityRepository $er) {
+                     return $er->createQueryBuilder('r')
+                            ->orderBy('r.nombre', 'ASC');
+                     },
+                    'empty_value' => '- TODOS LOS SUPERVISORES -',
+                    'empty_data' => "",
+                 ))
              ->add('pais','entity', array(
                   'label' => 'País',
                   'class' => 'BcTicCamIpalBundle:Pais',
@@ -128,7 +132,7 @@ class EncuestaFilterType extends AbstractType
                     },
                    'empty_value' => '- TODOS LOS PAISES -',
                    'empty_data' => "",
-                ))  
+                ))
              ->add('unidadDeNegocio','entity', array(
                   'label' => 'Unidad de negocio',
                   'class' => 'BcTicCamIpalBundle:unidadDeNegocio',
@@ -139,9 +143,9 @@ class EncuestaFilterType extends AbstractType
 
                    'empty_value' => '- TODAS LAS UNIDADES DE NEGOCIO -',
                    'empty_data' => "",
-                ))               
+                ))
              ->add('fecha_desde','text', array('label' => 'Fecha desde'))
-             ->add('fecha_hasta','text', array('label' => 'Fecha hasta'))   
+             ->add('fecha_hasta','text', array('label' => 'Fecha hasta'))
              ->add('grupos','entity', array(
                   'label' => 'Creado por grupo',
                   'class' => 'BcTicCamIpalBundle:Grupo',
@@ -151,10 +155,10 @@ class EncuestaFilterType extends AbstractType
                     },
                    'empty_value' => '- TODOS LOS GRUPOS -',
                    'empty_data' => "",
-                ))              
+                ))
              ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

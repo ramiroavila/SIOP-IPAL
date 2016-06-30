@@ -731,57 +731,6 @@ class EncuestaController extends Controller
 
     }
 
-     /**
-     * Lists all Supervisores by Query
-     *
-     * @Route("/data/supervisores.json", name="registros_supervisores_json")
-     * @Method("POST")
-     * @Template()
-     */
-    public function indexSupervisorJsonAction(Request $request)
-    {
-
-        $em = $this->getDoctrine()->getManager();
-
-        //LOS SUPERVISORES UNICOS DEL PAIS
-        $entities = $em->getRepository('BcTicCamIpalBundle:Encuesta')
-                           ->createQueryBuilder('e')
-                           ->select('DISTINCT e.supervisorFacade')
-                           ->join('e.contrato','c')
-                           ->join('e.pais','p')
-                           ->join('c.servicio','srv')
-                           ->join('e.empresa','em')
-                           ->join('c.subGerencia','sgr')
-                           ->join('sgr.gerencia','gr')
-                           ->join('c.area','a')
-                           ->join('c.mandante','ma')
-                           ->where('e.visible = 1 AND e.supervisorFacade LIKE ?1 AND LENGTH(e.supervisorFacade) > 3 AND p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId())
-                           ->setParameter(1, '%'.$request->request->get('query','').'%')
-                           ->orderBy('e.supervisorFacade', 'ASC');
-
-        $sql = $entities->getQuery()->getSql();
-
-        //TODOS, SOLO NECESITO LOS ID e IPAL y BORRO:
-        $supervisores = array();
-
-        //Raw SQL:
-        $stmt = $em->getConnection()->prepare($sql);
-        $stmt->bindValue(1, '%'.$request->request->get('query','').'%');
-        $stmt->execute();
-        $fetch = $stmt->fetchAll();
-        $supervisores = $this->array_column($fetch,'supervisor_facade0');
-
-       $data = array();
-        foreach ($supervisores as $supervisor) {
-          $data[] = array(
-             'nombre' => ucwords(strtolower($supervisor)), //ToString
-          );
-        }
-
-        return new JsonResponse($data);
-
-    }
-
     /**
      * Lists all Encuesta entities
      *
@@ -880,9 +829,6 @@ class EncuestaController extends Controller
 
         $whereAnd .= $inspector;
 
-        $supervisor = ($request->request->get('supervisor') != "") ? " AND e.supervisorFacade LIKE '%".$request->request->get('supervisor')."%'" : "";
-        $whereAnd .= $supervisor;
-
         $prevencionista = "";
         $eliminatePrevencionista = false;
         if ($request->request->get('prevencionista') != "") {
@@ -943,6 +889,9 @@ class EncuestaController extends Controller
 
         if ($request->request->get('unidad_de_negocio_id') != "") {
 
+
+          if ($request->request->get('supervisor') != "") {
+
           $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
                            ->createQueryBuilder('e')
                            ->select('e.id,e.indice, e.inspector, e.prevencionista, e.createdBy')
@@ -958,12 +907,35 @@ class EncuestaController extends Controller
                            ->where('e.visible = 1 '.$whereAnd)
                            ->orderBy('e.id', 'DESC');
 
+          } else {
+
+            $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
+                             ->createQueryBuilder('e')
+                             ->select('e.id,e.indice, e.inspector, e.prevencionista, e.createdBy')
+                             ->join('e.contrato','c')
+                             ->join('e.supervisor', 's')
+                             ->join('c.unidadDeNegocio','u')
+                             ->join('e.pais','p')
+                             ->join('c.servicio','srv')
+                             ->join('e.empresa','em')
+                             ->join('c.subGerencia','sgr')
+                             ->join('sgr.gerencia','gr')
+                             ->join('c.area','a')
+                             ->join('c.mandante','ma')
+                             ->where('e.visible = 1 '.$whereAnd)
+                             ->orderBy('e.id', 'DESC');
+
+          }
+
         } else {
 
-          $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
+          if ($request->request->get('supervisor') != "") {
+
+            $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
                            ->createQueryBuilder('e')
                            ->select('e.id,e.indice, e.inspector, e.prevencionista, e.createdBy')
                            ->join('e.contrato','c')
+                           ->join('e.supervisor', 's')
                            ->join('e.pais','p')
                            ->join('c.servicio','srv')
                            ->join('e.empresa','em')
@@ -973,6 +945,21 @@ class EncuestaController extends Controller
                            ->join('c.mandante','ma')
                            ->where('e.visible = 1 '.$whereAnd)
                            ->orderBy('e.id', 'DESC');
+           } else {
+             $entities = $em->getRepository('BcTicCamIpalBundle:'.$tipo)
+                            ->createQueryBuilder('e')
+                            ->select('e.id,e.indice, e.inspector, e.prevencionista, e.createdBy')
+                            ->join('e.contrato','c')
+                            ->join('e.pais','p')
+                            ->join('c.servicio','srv')
+                            ->join('e.empresa','em')
+                            ->join('c.subGerencia','sgr')
+                            ->join('sgr.gerencia','gr')
+                            ->join('c.area','a')
+                            ->join('c.mandante','ma')
+                            ->where('e.visible = 1 '.$whereAnd)
+                            ->orderBy('e.id', 'DESC');
+           }
         }
 
         $role = false;

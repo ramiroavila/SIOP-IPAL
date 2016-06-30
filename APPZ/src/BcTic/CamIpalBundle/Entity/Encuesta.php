@@ -102,6 +102,20 @@ abstract class Encuesta
     private $indice = 0;
 
     /**
+     *
+     *
+     * @ORM\Column(name="auto_inspeccion", type="string", length=5)
+     */
+    private $autoInspeccion = 'N/A';
+
+    /**
+     *
+     *
+     * @ORM\Column(name="charla_operativa", type="string", length=5)
+     */
+    private $charlaOperativa = 'N/A';
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_1_1", type="smallint")
@@ -827,6 +841,13 @@ abstract class Encuesta
 
     /**
      *
+     * @ORM\ManyToOne(targetEntity="Supervisor")
+     * @ORM\JoinColumn(name="supervisor_id", referencedColumnName="id")
+     */
+    protected $supervisor;
+
+    /**
+     *
      * @var string
      *
      * @ORM\Column(name="prevencionista", type="string", length=255, nullable=true)
@@ -1237,6 +1258,52 @@ abstract class Encuesta
     }
 
     /**
+     * Set autoInspeccion
+     *
+     * @param boolean $autoInspeccion
+     * @return Encuesta
+     */
+    public function setAutoInspeccion($autoInspeccion)
+    {
+        $this->autoInspeccion = $autoInspeccion;
+
+        return $this;
+    }
+
+    /**
+     * Get autoInspeccion
+     *
+     * @return boolean
+     */
+    public function getAutoInspeccion()
+    {
+        return $this->autoInspeccion;
+    }
+
+    /**
+     * Set charlaOperativa
+     *
+     * @param boolean $charlaOperativa
+     * @return Encuesta
+     */
+    public function setCharlaOperativa($charlaOperativa)
+    {
+        $this->charlaOperativa = $charlaOperativa;
+
+        return $this;
+    }
+
+    /**
+     * Get charlaOperativa
+     *
+     * @return boolean
+     */
+    public function getCharlaOperativa()
+    {
+        return $this->charlaOperativa;
+    }
+
+    /**
      * Set empresa
      *
      * @param \BcTic\CamIpalBundle\Entity\Empresa $empresa
@@ -1331,9 +1398,9 @@ abstract class Encuesta
      * Set supervisor
      *
      */
-    public function setSupervisorFacade($supervisorFacade)
+    public function setSupervisor($supervisor)
     {
-        $this->supervisorFacade = $supervisorFacade;
+        $this->supervisor = $supervisor;
 
         return $this;
     }
@@ -1342,9 +1409,9 @@ abstract class Encuesta
      * Get supervisor
      *
      */
-    public function getSupervisorFacade()
+    public function getSupervisor()
     {
-        return $this->supervisorFacade;
+        return $this->supervisor;
     }
 
     /**

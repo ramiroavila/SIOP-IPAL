@@ -367,7 +367,7 @@
              dataType: "json",
              type: "POST",
              url: "{{ path('encuestas_json') }}",
-             data: { items_por_pagina: items_por_pagina, pagina: pagina, empresa_id : $('#bctic_camipalbundle_encuesta_empresa').val(), contrato_id : $('#bctic_camipalbundle_encuesta_contrato').val(), mandante_id : $('#bctic_camipalbundle_encuesta_mandante').val(), gerencia_id : $('#bctic_camipalbundle_encuesta_gerencia').val(), subgerencia_id : $('#bctic_camipalbundle_encuesta_subGerencia').val(), area_id : $('#bctic_camipalbundle_encuesta_area').val(), inspector : $('#bctic_camipalbundle_encuesta_inspector').val(), prevencionista : $('#bctic_camipalbundle_encuesta_prevencionista').val(), supervisor : $('#bctic_camipalbundle_encuesta_supervisorFacade').val(), servicio_id : "",pais_id : $('#bctic_camipalbundle_encuesta_pais').val(), fecha_desde : $('#bctic_camipalbundle_encuesta_fecha_desde').val(), fecha_hasta : $('#bctic_camipalbundle_encuesta_fecha_hasta').val(), tipo : "", status_cierre: $('#bctic_camipalbundle_encuesta_status_cierre').val(), grupo_id : $('#bctic_camipalbundle_encuesta_grupos').val(), 'id' :  $('#bctic_camipalbundle_encuesta_id').val(), 'unidad_de_negocio_id': $('#bctic_camipalbundle_encuesta_unidadDeNegocio').val() } ,
+             data: { items_por_pagina: items_por_pagina, pagina: pagina, empresa_id : $('#bctic_camipalbundle_encuesta_empresa').val(), contrato_id : $('#bctic_camipalbundle_encuesta_contrato').val(), mandante_id : $('#bctic_camipalbundle_encuesta_mandante').val(), gerencia_id : $('#bctic_camipalbundle_encuesta_gerencia').val(), subgerencia_id : $('#bctic_camipalbundle_encuesta_subGerencia').val(), area_id : $('#bctic_camipalbundle_encuesta_area').val(), inspector : $('#bctic_camipalbundle_encuesta_inspector').val(), prevencionista : $('#bctic_camipalbundle_encuesta_prevencionista').val(), supervisor : $('#bctic_camipalbundle_encuesta_supervisor').val(), servicio_id : "",pais_id : $('#bctic_camipalbundle_encuesta_pais').val(), fecha_desde : $('#bctic_camipalbundle_encuesta_fecha_desde').val(), fecha_hasta : $('#bctic_camipalbundle_encuesta_fecha_hasta').val(), tipo : "", status_cierre: $('#bctic_camipalbundle_encuesta_status_cierre').val(), grupo_id : $('#bctic_camipalbundle_encuesta_grupos').val(), 'id' :  $('#bctic_camipalbundle_encuesta_id').val(), 'unidad_de_negocio_id': $('#bctic_camipalbundle_encuesta_unidadDeNegocio').val() } ,
              beforeSend: function () {
                $('#resultados').html("<div class='spinner'></div>");
                $('#encuestas').html("<div class='spinner'></div>");
@@ -769,20 +769,6 @@
 
         }
 
-        function listarSupervisores() {
-
-          $.ajax({
-             dataType: "json",
-             type: "POST",
-             url: "{{ path('registros_supervisores_json') }}",
-             success: function (dataSuccess) {
-                 $.each(dataSuccess, function(i, item) {
-                   $('select#bctic_camipalbundle_encuesta_supervisorFacade').append('<option value="' + item.nombre + '">' + item.nombre + '</option>');
-                 });
-               },
-            });
-
-        }
 
       $(document).ready( function () {
 
@@ -911,8 +897,6 @@
         listarInspectores();
         //Actualizo la lista de prevencionista - OJO incluye a los Usuarios
         listarPrevencionistas();
-        //Actualizo la lista de supervisores - OJO incluye a los Usuarios
-        listarSupervisores();
 
         $('#bctic_camipalbundle_encuesta_button').bind('click', function () {
            updateDataEncuestas(1);

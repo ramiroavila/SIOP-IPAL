@@ -389,6 +389,121 @@ class EncuestaController extends Controller
 
     /**
      *
+     * @Route("/encuesta_reporte_1_csv/data.csv", name="encuesta_reporte_1_csv")
+     * @Method("POST")
+     * @Template()
+     */
+    public function reporteEncuesta1CsvAction(Request $request)
+    {
+
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
+
+      $em = $this->getDoctrine()->getManager();
+
+      $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') ORDER BY e.fecha DESC LIMIT 1';
+
+      $stmt = $em->getConnection()->prepare($sql);
+      $stmt->execute();
+
+      $data = array();
+      foreach($stmt->fetchAll() as $entity) {
+        $data[] = array(
+                          'id' => $entity['id'],
+                          'fecha' => $entity['fecha'],
+                          'inspector' => $entity['inspector'],
+                          'prevencionista' => $entity['prevencionista'],
+                          'gerencia' => $entity['gerencia'],
+                          'subgerencia' => $entity['subgerencia'],
+                          'contrato' => $entity['contrato'],
+                          'area' => $entity['area'],
+                          'contratista' => $entity['contratista'],
+                          'ipal' =>  $entity['ipal'],
+                          'tiene_incumplimientos' => $entity['tiene_incumplimientos'],
+                          'cantidad_incumplimientos' => $entity['cantidad_incumplimientos'],
+                          'respuestas_0' => $entity['respuestas_0'],
+                          'respuestas_1' => $entity['respuestas_1'],
+                          'respuestas_2' => $entity['respuestas_2'],
+                          'auto_inspeccion' => $entity['auto_inspeccion'],
+                          'charla_operativa' => $entity['charla_operativa'],
+                          'supervisor' => $entity['supervisor'],
+                          'tipo' => $entity['tipo'],
+                          'incumplimientos_5' => $entity['incumplimientos_5'],
+                          'incumplimientos_10' => $entity['incumplimientos_10'],
+                          'incumplimientos_20' => $entity['incumplimientos_20'],
+                          'incumplimientos_50' => $entity['incumplimientos_50'],
+                          'incumplimientos_50_json' => json_decode($entity['incumplimientos_50_json'], true),
+                          'cierre' => $entity['cierre'],
+                          'cierre_texto' => $entity['cierre_texto'],
+                        );
+
+
+      }
+
+
+      $content = $this->renderView(
+        'BcTicCamIpalBundle:Encuesta:reporteEncuesta1Csv.html.twig',
+        array('data' => $data)
+      );
+
+      //Guardo el contenido y devuelvo el ID para descargar el link
+      $fs = new Filesystem();
+      $file = 'REPORTE-1-'.date_format(date_create(),'Y-m-d-his');
+      $fs->dumpFile("uploads/".$file.".csv", $content);
+
+      return new JsonResponse(array('file' => $file));
+    }
+
+    /**
+     *
+     * @Route("/encuesta_reporte_2_csv/data.csv", name="encuesta_reporte_2_csv")
+     * @Method("POST")
+     * @Template()
+     */
+    public function reporteEncuesta2CsvAction(Request $request)
+    {
+
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
+
+      $em = $this->getDoctrine()->getManager();
+
+      $sql = 'SELECT * FROM EncuestaProxy e WHERE e.id IN ('.implode(",",$ids).') ORDER BY e.fecha DESC';
+
+      $stmt = $em->getConnection()->prepare($sql);
+      $stmt->execute();
+
+      $data = array();
+      foreach($stmt->fetchAll() as $entity) {
+        $data[] = array(
+                          'fecha' => $entity['fecha'],
+                          'gerencia' => $entity['gerencia'],
+                          'subgerencia' => $entity['subgerencia'],
+                          'area' => $entity['area'],
+                          'contratista' => $entity['contratista'],
+                          'ipal' =>  $entity['ipal'],
+                          'tiene_incumplimientos' => $entity['tiene_incumplimientos'],
+                          'cantidad_incumplimientos' => $entity['cantidad_incumplimientos'],
+                          'respuestas_0' => $entity['respuestas_0'],
+                          'respuestas_1' => $entity['respuestas_1'],
+                          'respuestas_2' => $entity['respuestas_2'],
+                        );
+      }
+
+      $content = $this->renderView(
+        'BcTicCamIpalBundle:Encuesta:reporteEncuestaTodosLosDatosCsv.html.twig',
+        array('data' => $data)
+      );
+
+      //Guardo el contenido y devuelvo el ID para descargar el link
+      $fs = new Filesystem();
+      $file = 'REPORTE-2-'.date_format(date_create(),'Y-m-d-his');
+      $fs->dumpFile("uploads/".$file.".csv", $content);
+
+      return new JsonResponse(array('file' => $file));
+    }
+
+
+    /**
+     *
      * @Route("/encuesta_reporte_incumplimientos_50_csv/data.csv", name="encuesta_reporte_incumplimientos_50_csv")
      * @Method("POST")
      * @Template()

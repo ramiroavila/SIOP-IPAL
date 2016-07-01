@@ -103,10 +103,9 @@
 
     {% block javascript %}
       {{ parent() }}
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7GU1J8Lp0N2rLVEA7hzbDFrxbC6f4S5Y&sensor=true">
-        </script>
-        <script type="text/javascript" src="/js/google_maps.js">
-        </script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7GU1J8Lp0N2rLVEA7hzbDFrxbC6f4S5Y&callback=initializeMap"
+    async defer></script>
+        <script type="text/javascript" src="/js/google_maps.js"></script>
         <script src="http://code.highcharts.com/highcharts.js"></script>
     {% endblock %}
 
@@ -808,14 +807,6 @@
 
 
       $(document).ready( function () {
-
-        map = initialize("map-canvas", false, "{{ 'Usted está aquí' | trans }}",13, 'bctic_camipalbundle_dummy');
-
-        $('#map-canvas').hide();
-        $("#map-tab").on('shown.bs.tab', function() {
-          $('#map-canvas').show();
-          google.maps.event.trigger(map, "resize");
-        });
 
         //Elimino todos los objetos:
         $('select#bctic_camipalbundle_encuesta_pais').empty();

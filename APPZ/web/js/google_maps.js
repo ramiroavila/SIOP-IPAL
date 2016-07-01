@@ -1,6 +1,8 @@
 
       var markers = [];
 
+      var geocoder = null;
+
       function updateMarkers(map, jQueryCollection) {
         //Borro los Marcadores que existen:
         for (var i = 0; i < markers.length; i++) {
@@ -12,7 +14,7 @@
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(item.latitud,item.longitud),
                 title: "MARKER #" + item.id,
-                icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
                });
                marker.setMap(map);
 
@@ -54,3 +56,40 @@
         return map;
 
       } //END Initialize
+
+      function initializeMiniMap() {
+
+        var browserSupportFlag =  new Boolean();
+        var cam_suecia = new google.maps.LatLng(-33.417754800, -70.604835400);
+
+        geocoder = new google.maps.Geocoder();
+
+        var mapProp = {
+          draggable: true,
+          scrollwheel: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          zoom: 12
+        };
+
+        map =  new google.maps.Map(document.getElementById("mini-hidden-canvas"), mapProp);
+
+        $('#mini-hidden-canvas').hide();
+        $("#map-tab").on('shown.bs.tab', function() {
+          $('#mini-hidden-canvas').show();
+          google.maps.event.trigger(map, "resize");
+          map.setCenter(cam_suecia);
+        });
+
+        return map;
+
+      } //END Initialize
+
+      function geocodeAddress(address, divTarget) {
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+             if ($.type(results) === "array") {
+               $('#' + divTarget).val(results[0].geometry.location);
+             }
+          }
+        });
+      }

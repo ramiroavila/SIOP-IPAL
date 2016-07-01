@@ -25,7 +25,7 @@ class EncuestaBrazilInternoType extends AbstractType
                     'format' => 'ddMMyyyy',
                     'disabled' => true
             ))
-            ->add('hora','time', array ('label' => 'Hora', 'disabled' => true))
+            ->add('hora','time', array ('label' => 'Hora'))
             ->add('actividad','text', array('label' => 'Actividad'))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo'))
             ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados'))
@@ -208,7 +208,7 @@ class EncuestaBrazilInternoType extends AbstractType
                 ))
               ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('N/A' => 'N/A: No aplica','A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
               ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('N/A' => 'N/A: No aplica','B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
-                
+
         ;
     }
 

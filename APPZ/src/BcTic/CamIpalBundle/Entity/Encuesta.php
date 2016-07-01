@@ -831,14 +831,6 @@ abstract class Encuesta
 
     protected $mandante;
 
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="supervisor_facade", type="string", length=255, nullable=true)
-     */
-    protected $supervisorFacade;
-
     /**
      *
      * @ORM\ManyToOne(targetEntity="Supervisor")

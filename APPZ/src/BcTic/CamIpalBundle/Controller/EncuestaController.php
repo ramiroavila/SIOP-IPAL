@@ -2029,7 +2029,7 @@ class EncuestaController extends Controller
 
         return array(
           'entity' => $entity,
-          'className' => get_class($entity),
+          'className' => urlencode(get_class($entity)),
           'revisions' => $revisions
         );
     }
@@ -2053,7 +2053,7 @@ class EncuestaController extends Controller
         }
 
         $revision = $this->container->get('simplethings_entityaudit.reader')->find(
-          $className,
+          urldecode($className),
           $id,
           $rev);
 

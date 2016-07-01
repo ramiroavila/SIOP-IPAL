@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} !siop.cam-la.com$ [NC]
+RewriteRule ^(.*)$ http://siop-cam-la.bctic.net/$1 [L,R=301]

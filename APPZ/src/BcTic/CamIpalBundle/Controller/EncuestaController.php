@@ -1191,7 +1191,6 @@ class EncuestaController extends Controller
             $longitud = $localizacion[1];
           }
 
-
             $fechaDeCreacion = '';
             if ($entity->getCreatedAt() > 0) {
               $createdAt = new \DateTime('@'.$entity->getCreatedAt());

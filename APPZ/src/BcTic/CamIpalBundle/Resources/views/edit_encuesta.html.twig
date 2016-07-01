@@ -83,16 +83,16 @@
             {{ form_row(form.inspector) }}
           </div>
           <div class="col-sm-6">
-            {{ form_row(form.pais) }}
+            {{ form_row(form.supervisor) }}
           </div>
         </div>
 
         <div class="row">
           <div class="col-sm-6">
-            {{ form_row(form.supervisor) }}
+            {{ form_row(form.autoInspeccion) }}
           </div>
           <div class="col-sm-6">
-                {{ form_row(form.autoInspeccion) }}
+            {{ form_row(form.charlaOperativa) }}
           </div>
         </div>
 
@@ -100,8 +100,8 @@
           <div class="col-sm-6">
             {{ form_row(form.prevencionista) }}
           </div>
-          <div class="col-sm-6">
-            {{ form_row(form.charlaOperativa) }}
+          <div class="col-sm-6 hidden">
+            {{ form_row(form.pais) }}
           </div>
         </div>
 

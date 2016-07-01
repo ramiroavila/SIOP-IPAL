@@ -22,12 +22,18 @@
          </thead>
          <tbody>
          {% for revision in revisions %}
+             {% if revision.username | length == 0 %}
+               {% set revision_username = 'mr_robot' %}
+             {% else %}
+               {% set revision_username = revision.username %}
+             {% endif %}
+
              <tr>
                 <td>#{{-revision.rev-}}</td>
                 <td>{{-revision.timestamp| date('d-m-Y H:i')-}}</td>
-                <td>{{-revision.username-}}</td>
+                <td>{{-revision_username-}}</td>
                 <td>
-                  <a target="{{-revision.rev-}}" href="{{ path('encuestas_audit_detail', { 'className': className , 'id': entity.id, 'rev': revision.rev, 'fecha': revision.timestamp | date('U'), 'user': revision.username  }) }}">
+                  <a target="{{-revision.rev-}}" href="{{ path('encuestas_audit_detail', { 'className': className , 'id': entity.id, 'rev': revision.rev, 'fecha': revision.timestamp | date('U'), 'user': revision_username  }) }}">
                     <button type="button" class="btn btn-default btn-xs">
                       <span class="glyphicon glyphicon-zoom-in"></span> {{ 'Cambios' | trans }}
                     </button>
@@ -37,6 +43,8 @@
          {% endfor %}
          </tbody>
      </table>
+
+
 
 
 

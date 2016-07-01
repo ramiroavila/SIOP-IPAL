@@ -473,3 +473,7 @@ observaciones_nemo_16: "5.2"
 observaciones_respuesta_1: "Seguro"
 observaciones_respuesta_2: "Peligroso"
 observaciones_respuesta_3: "No aplica"
+electrica: IPAL Eléctrica
+logistica: IPAL Logística
+obras_civiles: IPAL Obras Civiles
+telecomunicaciones: IPAL Telecomunicaciones

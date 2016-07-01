@@ -834,12 +834,12 @@ class EncuestaController extends Controller
         $implode = 1;
       }
 
-      $sql = "SELECT COUNT(*) as hits, ROUND(SUM(indice) / count(*),2) as ipal,DATE_FORMAT(fecha,'%m-%Y') as fecha FROM Encuesta WHERE ".$implode." GROUP BY DATE_FORMAT(fecha,'%m-%Y') ORDER BY DATE_FORMAT(fecha,'%Y%m') ASC;";
+      $sql = "SELECT COUNT(*) as hits, ROUND(SUM(indice) / count(*),2) as ipal,DATE_FORMAT(fecha,'%m-%Y') as fecha_por_mes FROM Encuesta WHERE ".$implode." GROUP BY fecha_por_mes ORDER BY fecha_por_mes ASC;";
 
       $stmt = $em->getConnection()->prepare($sql);
       $stmt->execute();
       foreach ($stmt->fetchAll() as $info) {
-        $data['categories'][] = $info['fecha'];
+        $data['categories'][] = $info['fecha_por_mes'];
         $data['series'][0]['data'][] = (integer) $info['hits'];
         $data['series'][1]['data'][] = (float) $info['ipal'];
       }

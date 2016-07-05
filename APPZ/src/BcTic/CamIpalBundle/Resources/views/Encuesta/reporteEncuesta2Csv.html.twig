@@ -1,6 +1,6 @@
 "Nº IPAL";"TIPO";"ITEM";"TOTAL"
 {% for item in data %}
 {% for key,value in item.respuestas %}
-"{{-item.id-}}";"{{-item.tipo-}}";"{{-value|trans-}}",1
+"{{-item.id-}}";"{{-item.tipo-}}";"{{-value|trans-}}";1
 {% endfor %}
 {% endfor %}

@@ -2,7 +2,7 @@
 
     <div id="errors"></div>
 
-  
+
     <ul class="nav nav-tabs">
       <li class="active hidden-xs"><a class="hidden-xs" href="#antecedentes" data-toggle="tab">{{ 'Antecedentes generales' | trans }}</a></li>
       <li class="hidden-xs"><a class="hidden-xs" href="#ingreso" data-toggle="tab">{{ 'Áreas/Observaciones' | trans }}</a></li>
@@ -42,7 +42,7 @@
             {{ form_row(form.area) }}
           </div>
         </div>
-        
+
         <div class="row">
           <div class="col-sm-6">
             {{ form_row(form.actividad) }}
@@ -89,8 +89,7 @@
 
         <div class="row">
           <div class="col-sm-6">
-            {{ form_row(form.supervisor_facade) }}
-            <div class="hidden-xs hidden-md hidden-lg">{{ form_row(form.supervisor) }}</div>
+            {{ form_row(form.supervisor) }}
           </div>
           <div class="col-sm-6">
             <div>
@@ -114,7 +113,7 @@
             {{ form_row(form.unidadOrganizativa) }}
           </div>
           <div class="col-sm-6">
-            {{ form_row(form.parteDeLaInstalacion) }}           
+            {{ form_row(form.parteDeLaInstalacion) }}
           </div>
         </div>
 
@@ -129,7 +128,7 @@
               </div>
             </div>
           </div>
-        </div>        
+        </div>
 
         <div class="row">
             <div class="col-sm-6">
@@ -152,16 +151,16 @@
             </div>
           </div>
 
-   
+
         </div> <!-- END TAB ANTECEDENTES -->
 
         <div class="tab-pane survey" id="ingreso">
 
           <br/>
-          
+
           {% include "BcTicCamIpalBundle::edit_observacion_de_comportamiento_format." ~ format ~ ".twig" with { form: form } %}
-          
-          
+
+
           <div class="row">
             <div class="col-sm-6">
               {{ form_row(form.submit) }}
@@ -170,18 +169,18 @@
           </div>
 
         </div> <!-- EN TAB SURVEY -->
-        
-        
+
+
       </div> <!-- END TAB CONTENT -->
     </div> <!-- END CONTAINER -->
 
     {{ form_end(form) }}
-    
+
     <hr/>
 
     {% block js %}
-      <script type="text/javascript"> 
-      
+      <script type="text/javascript">
+
         $('#bctic_camipalbundle_observacion_de_comportamiento_next_1').bind('click', function (e) {
           $('.nav-tabs a.hidden-xs[href="#ingreso"]').tab('show'); // Select tab by name
         });
@@ -193,7 +192,7 @@
         $("div.registro_de_observacion input[type='radio']").each(function( index ) {
           //Hago el bind:
           $(this).bind('change', function (event) {
-            
+
             if ($(this).is(':checked')) {
               if ($(this).val() == 1) {
                 $(this).parent().parent().parent().find("textarea").removeAttr("required");
@@ -212,4 +211,4 @@
 
 
       </script>
-    {% endblock %}    
+    {% endblock %}

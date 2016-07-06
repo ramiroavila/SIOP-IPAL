@@ -12,10 +12,10 @@
     <!-- FORM BEGIN -->
     {% include "BcTicCamIpalBundle:ObservacionDeComportamiento:filter_observacion.html.twig" with { form: filter } %}
     <!-- FORM END -->
-    
+
     <ul class="nav nav-tabs">
       <li class="active"><a href="#resultado" data-toggle="tab">Índice {{ 'Observaciones' | trans }}</a></li>
-      <li><a href="#listado" data-toggle="tab">{{ 'Listado' | trans }}</a></li>      
+      <li><a href="#listado" data-toggle="tab">{{ 'Listado' | trans }}</a></li>
     </ul>
 
     <div class="container" style="width: 98%;">
@@ -46,12 +46,12 @@
                       <span class="glyphicon glyphicon-plus"></span>{{ 'Agregar' | trans }}
                     </button>
     </a>
-    </p> 
+    </p>
 
 
     {% endblock %}
 
-    
+
     {% block js %}
       {{ parent() }}
       <script type="text/javascript">
@@ -178,7 +178,7 @@
              dataType: "json",
              type: "GET",
              url: "/observaciones/delete/" + id + "/" +  token + "",
-             success: function (dataSuccess) { 
+             success: function (dataSuccess) {
                  if (dataSuccess.status == "1") {
                    $('tr#row_' + id ).fadeOut();
                  }
@@ -186,7 +186,7 @@
             });
 
         }
-    
+
         function updateDataResultados() {
           //Obtengo un listado de Observaciones en formato json con los datos del Form
            $.ajax({
@@ -199,19 +199,19 @@
                $('#resultados').html("<div class='spinner'></div>");
                $('#observaciones').html("<div class='spinner'></div>");
              },
-             success: function (dataSuccess) { 
-               //Ahora que tengo los objetos debo parsear  
+             success: function (dataSuccess) {
+               //Ahora que tengo los objetos debo parsear
                //Primero la lista:
                if (dataSuccess.hits < 1) {
-                 $('#resultados').html('<div class="alert alert-info">No hay observaciones que mostrar.</div>'); 
-                 $('#observaciones').html('<div class="alert alert-info">No hay observaciones que mostrar.</div>'); 
-               } else { 
+                 $('#resultados').html('<div class="alert alert-info">No hay observaciones que mostrar.</div>');
+                 $('#observaciones').html('<div class="alert alert-info">No hay observaciones que mostrar.</div>');
+               } else {
                  $('#resultados').html(createResultado(dataSuccess.indice,dataSuccess.hits,dataSuccess.items));
                  $('#resultados').append(createReportes(dataSuccess.indice,dataSuccess.hits,dataSuccess.items));
 
                  var entities = dataSuccess.ids;
 
-                 $('#reporte_por_mes').bind('click', function (e) { 
+                 $('#reporte_por_mes').bind('click', function (e) {
                    $.ajax({
                      type: "POST",
                      dataType: "json",
@@ -225,7 +225,7 @@
                    });
                  });
 
-                 $('#reporte_todos_los_datos').bind('click', function (e) { 
+                 $('#reporte_todos_los_datos').bind('click', function (e) {
                    $.ajax({
                      type: "POST",
                      dataType: "json",
@@ -235,14 +235,14 @@
                         //Descargar el archivo:
                         window.open('reportes/' + data.file + '/download.html');
                         alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
-                     }, 
+                     },
                      error: function (a,b,c) {
                        alert(a);
                        alert(b);
                        alert(c);
                      }
                    });
-                 });   
+                 });
 
                  $('#observaciones').html(createListado(dataSuccess.entities));
                }
@@ -260,7 +260,7 @@
              dataType: "json",
              type: "POST",
              url: "{{ path('registros_inspectores_json') }}",
-             success: function (dataSuccess) { 
+             success: function (dataSuccess) {
                  $.each(dataSuccess, function(i, item) {
                    $('select#bctic_camipalbundle_observacion_de_comportamiento_inspector').append('<option value="' + item.nombre + '">' + item.nombre + '</option>');
                  });
@@ -271,12 +271,12 @@
 
         function listarPrevencionistas() {
 
-          $('select#bctic_camipalbundle_observacion_de_comportamiento_prevencionista').append('<option value="0">{{ '- NINGUN PREVENCIONISTA -' | trans }}</option>');                  
+          $('select#bctic_camipalbundle_observacion_de_comportamiento_prevencionista').append('<option value="0">{{ '- NINGUN PREVENCIONISTA -' | trans }}</option>');
           $.ajax({
              dataType: "json",
              type: "POST",
              url: "{{ path('registros_prevencionistas_json') }}",
-             success: function (dataSuccess) { 
+             success: function (dataSuccess) {
                  $.each(dataSuccess, function(i, item) {
                    $('select#bctic_camipalbundle_observacion_de_comportamiento_prevencionista').append('<option value="' + item.nombre + '">' + item.nombre + '</option>');
                  });
@@ -284,21 +284,6 @@
             });
 
         }
-
-        function listarSupervisores() {
-                 
-          $.ajax({
-             dataType: "json",
-             type: "POST",
-             url: "{{ path('registros_supervisores_json') }}",
-             success: function (dataSuccess) { 
-                 $.each(dataSuccess, function(i, item) {
-                   $('select#bctic_camipalbundle_observacion_de_comportamiento_supervisor').append('<option value="' + item.nombre + '">' + item.nombre + '</option>');
-                 });
-               },
-            });
-
-        }        
 
       $(document).ready( function () {
 
@@ -358,7 +343,7 @@
             error: function (a,b,c) {
               alert("ERROR: " + b);
             }
-           });           
+           });
 
            //Elimino todos los objetos:
            //Solo muestro las areas según el pais y rol - si aplica - esto lo hace el controlador:
@@ -376,7 +361,7 @@
             error: function (a,b,c) {
               alert("ERROR: " + b);
             }
-           });           
+           });
 
            //Elimino todos los objetos:
            //Solo muestro las gerencias según el pais y rol - si aplica - esto lo hace el controlador:
@@ -394,7 +379,7 @@
             error: function (a,b,c) {
               alert("ERROR: " + b);
             }
-           }); 
+           });
 
            //Elimino todos los objetos:
            //Solo muestro las subgerencias según el pais y rol - si aplica - esto lo hace el controlador:
@@ -412,7 +397,7 @@
             error: function (a,b,c) {
               alert("ERROR: " + b);
             }
-           }); 
+           });
 
            //Elimino todos los objetos:
            //Solo muestro las servicio según el pais y rol - si aplica - esto lo hace el controlador:
@@ -430,18 +415,16 @@
             error: function (a,b,c) {
               alert("ERROR: " + b);
             }
-           }); 
+           });
 
          //Actualizo la lista de inspectores
          listarInspectores();
          //Actualizo la lista de prevencionista - OJO incluye a los Usuarios
          listarPrevencionistas();
-         //Actualizo la lista de supervisores - OJO incluye a los Usuarios
-         listarSupervisores();
 
-         $('#bctic_camipalbundle_observacion_de_comportamiento_button').bind('click', function () { 
+         $('#bctic_camipalbundle_observacion_de_comportamiento_button').bind('click', function () {
            updateDataResultados();
-         }); 
+         });
 
        });
 

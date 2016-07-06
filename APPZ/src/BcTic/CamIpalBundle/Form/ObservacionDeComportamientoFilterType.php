@@ -60,7 +60,7 @@ class ObservacionDeComportamientoFilterType extends AbstractType
                     },
                    'empty_value' => '- TODAS LAS SUB GERENCIAS -',
                    'empty_data' => "",
-                ))           
+                ))
              ->add('area','entity', array(
                   'class' => 'BcTicCamIpalBundle:Area',
                   'query_builder' => function(EntityRepository $er) {
@@ -71,7 +71,7 @@ class ObservacionDeComportamientoFilterType extends AbstractType
                     },
                    'empty_value' => '- TODAS LAS AREAS -',
                    'empty_data' => "",
-                )) 
+                ))
              ->add('contrato','entity', array(
                   'class' => 'BcTicCamIpalBundle:Contrato',
                   'query_builder' => function(EntityRepository $er) {
@@ -82,7 +82,7 @@ class ObservacionDeComportamientoFilterType extends AbstractType
                     },
                    'empty_value' => '- TODOS LOS CONTRATOS -',
                    'empty_data' => "",
-                )) 
+                ))
              ->add('servicio','entity', array(
                   'class' => 'BcTicCamIpalBundle:Servicio',
                   'query_builder' => function(EntityRepository $er) {
@@ -93,25 +93,29 @@ class ObservacionDeComportamientoFilterType extends AbstractType
                     },
                    'empty_value' => '- TODOS LOS SERVICIOS -',
                    'empty_data' => "",
-                ))              
+                ))
              ->add('inspector','choice', array(
                        'label' => 'Inspector',
                        'empty_value' => '- TODOS LOS INSPECTORES -',
                        'empty_data' => "",
                      )
-                   )   
+                   )
              ->add('prevencionista','choice', array(
                        'label' => 'Prevenc.',
                        'empty_value' => '- TODOS LOS PREVENCIONISTAS -',
-                       'empty_data' => "",                       
+                       'empty_data' => "",
                      )
                    )
-             ->add('supervisor','choice',array(
-                       'label' => 'Supervisor',
-                       'empty_value' => '- TODOS LOS SUPERVISORES -',
-                       'empty_data' => "",                       
-                     )
-                  ) 
+             ->add('supervisor','entity', array(
+                   'label' => 'Supervisor',
+                   'class' => 'BcTicCamIpalBundle:Supervisor',
+                   'query_builder' => function(EntityRepository $er) {
+                     return $er->createQueryBuilder('r')
+                            ->orderBy('r.nombre', 'ASC');
+                     },
+                    'empty_value' => '- TODOS LOS SUPERVISORES -',
+                    'empty_data' => "",
+                 ))
              ->add('pais','entity', array(
                   'class' => 'BcTicCamIpalBundle:Pais',
                   'query_builder' => function(EntityRepository $er) {
@@ -120,7 +124,7 @@ class ObservacionDeComportamientoFilterType extends AbstractType
                     },
                    'empty_value' => '- TODAS LOS PAISES -',
                    'empty_data' => "",
-                )) 
+                ))
              ->add('unidadDeNegocio','entity', array(
                   'label' => 'Unidad de negocio',
                   'class' => 'BcTicCamIpalBundle:unidadDeNegocio',
@@ -131,9 +135,9 @@ class ObservacionDeComportamientoFilterType extends AbstractType
 
                    'empty_value' => '- TODAS LAS UNIDADES DE NEGOCIO -',
                    'empty_data' => "",
-                ))                                
+                ))
              ->add('fecha_desde','text', array())
-             ->add('fecha_hasta','text', array()) 
+             ->add('fecha_hasta','text', array())
              ->add('grupos','entity', array(
                   'label' => 'Creado por grupo',
                   'class' => 'BcTicCamIpalBundle:Grupo',
@@ -143,10 +147,10 @@ class ObservacionDeComportamientoFilterType extends AbstractType
                     },
                    'empty_value' => '- TODOS LOS GRUPOS -',
                    'empty_data' => "",
-                ))                 
+                ))
              ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

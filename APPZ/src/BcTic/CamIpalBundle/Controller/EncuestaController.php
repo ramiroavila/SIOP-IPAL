@@ -904,6 +904,9 @@ class EncuestaController extends Controller
         $fecha_hasta = ($request->request->get('fecha_hasta') != "") ? " AND e.fecha <= '".date_format(date_create_from_format('d/m/Y',$request->request->get('fecha_hasta')),'Y-m-d')."'": "";
         $whereAnd .= $fecha_hasta;
 
+        $supervisor = ($request->request->get('supervisor') != "") ? " AND s.id = ".$request->request->get('supervisor') : "";
+        $whereAnd .= $supervisor;
+
         $tipo = ($request->request->get('tipo') != "") ? $request->request->get('tipo') : "Encuesta";
 
         $inspector = "";
@@ -1499,7 +1502,7 @@ class EncuestaController extends Controller
                        'empresa' => $entity->getEmpresa(),
                        'contrato' => $entity->getContrato()->getNombre(),
                        'inspector' => $entity->getInspector(),
-                       'supervisor' => $entity->getSupervisorFacade(),
+                       'supervisor' => $entity->getSupervisor(),
                        'lugar' => $entity->getLugarDeTrabajo(),
                        'observaciones' => $entity->getObservaciones(),
                        'entity' => $entity,

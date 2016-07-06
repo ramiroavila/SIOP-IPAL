@@ -40,7 +40,7 @@ class ObservacionDeComportamientoType extends AbstractType
                     },
                    'empty_value' => '-- SELECCIONE CONTRATO --',
                    'empty_data' => "-1",
-                ))   
+                ))
             ->add('servicio','entity', array(
                   'class' => 'BcTicCamIpalBundle:Servicio',
                   'query_builder' => function(EntityRepository $er) {
@@ -53,7 +53,7 @@ class ObservacionDeComportamientoType extends AbstractType
                   'disabled' => true,
                   'empty_value' => '-- SERVICIO --',
                   'empty_data' => -1,
-                ))                         
+                ))
             ->add('fecha','date', array(
                     'input'  => 'datetime',
                     'widget' => 'choice',
@@ -86,7 +86,7 @@ class ObservacionDeComportamientoType extends AbstractType
                   'disabled' => true,
                   'empty_value' => '-- GERENCIA --',
                   'empty_data' => -1,
-                ))  
+                ))
             ->add('subGerencia','entity', array(
                   'class' => 'BcTicCamIpalBundle:SubGerencia',
                   'query_builder' => function(EntityRepository $er) {
@@ -99,8 +99,8 @@ class ObservacionDeComportamientoType extends AbstractType
                   'disabled' => true,
                    'empty_value' => '-- SUB GERENCIA --',
                    'empty_data' => -1,
-                ))    
-            ->add('cttaSubcont')  
+                ))
+            ->add('cttaSubcont')
             ->add('mandante','entity', array(
                   'class' => 'BcTicCamIpalBundle:Mandante',
                   'query_builder' => function(EntityRepository $er) {
@@ -114,7 +114,7 @@ class ObservacionDeComportamientoType extends AbstractType
                   'empty_value' => '-- SERVICIO --',
                   'empty_data' => -1,
                 ))
-            ->add('inspector','text',array('label' => 'Inspector'))      
+            ->add('inspector','text',array('label' => 'Inspector'))
             ->add('pais','entity', array(
                   'class' => 'BcTicCamIpalBundle:Pais',
                   'query_builder' => function(EntityRepository $er) {
@@ -122,9 +122,16 @@ class ObservacionDeComportamientoType extends AbstractType
                            ->orderBy('r.nombre', 'ASC');
                     }
                 ))
-            ->add('supervisor_facade','text',array('label' => 'Supervisor','required' => ''))   
-            ->add('supervisor')
-            ->add('prevencionista','hidden')                                                                                           
+            ->add('supervisor','entity', array(
+                  'class' => 'BcTicCamIpalBundle:Supervisor',
+                  'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('r')
+                           ->orderBy('r.nombre', 'ASC');
+                    },
+                   'empty_value' => '-- SELECCIONE SUPERVISOR --',
+                   'empty_data' => "-1",
+                ))
+            ->add('prevencionista','hidden')
             ->add('comentarios','textarea', array('required' => ''))
             ->add('parteDeLaPlanta','text',array('label' => 'Lugar de trabajo'))
             ->add('instalacion','text',array('label' => 'Instalación (Site)'))
@@ -142,7 +149,7 @@ class ObservacionDeComportamientoType extends AbstractType
             ->add('registrosDeObservacion', 'collection', array('type' => new RegistroDeObservacionType()))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

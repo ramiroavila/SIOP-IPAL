@@ -137,8 +137,6 @@ class EncuestaBrazilInternoType extends AbstractType
                   'class' => 'BcTicCamIpalBundle:Supervisor',
                   'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('r')
-                           ->where('r.visible = :visible')
-                           ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
                     },
                    'empty_value' => '-- SELECCIONE SUPERVISOR --',

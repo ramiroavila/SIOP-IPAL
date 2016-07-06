@@ -219,11 +219,11 @@ class ObservacionDeComportamientoController extends Controller
         $fecha_hasta = ($request->request->get('fecha_hasta') != "") ? " AND o.fecha <= '".date_format(date_create_from_format('d/m/Y',$request->request->get('fecha_hasta')),'Y-m-d')."'": "";
         $whereAnd .= $fecha_hasta;
 
-        $supervisor = ($request->request->get('supervisor') != "") ? " AND o.supervisorFacade LIKE '%".$request->request->get('supervisor')."%'" : "";
-        $whereAnd .= $supervisor;
-
         $unidadDeNegocio = ($request->request->get('unidad_de_negocio_id') != "") ? " AND u.id = ".$request->request->get('unidad_de_negocio_id') : "";
         $whereAnd .= $unidadDeNegocio;
+
+        $supervisor = ($request->request->get('supervisor') != "") ? " AND s.id = ".$request->request->get('supervisor') : "";
+        $whereAnd .= $supervisor;
 
         $inspector = "";
         $eliminateInspector = false;
@@ -262,9 +262,6 @@ class ObservacionDeComportamientoController extends Controller
         }
 
         $whereAnd .= $inspector;
-
-        $supervisor = ($request->request->get('supervisor') != "") ? " AND o.supervisorFacade LIKE '%".$request->request->get('supervisor')."%'" : "";
-        $whereAnd .= $supervisor;
 
         $prevencionista = "";
         $eliminatePrevencionista = false;
@@ -324,23 +321,56 @@ class ObservacionDeComportamientoController extends Controller
 
         if ($request->request->get('unidad_de_negocio_id') != "") {
 
-        $entities = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')
-                           ->createQueryBuilder('o')
-                           ->join('o.contrato','c')
-                           ->join('c.unidadDeNegocio','u')
-                           ->join('o.pais','p')
-                           ->join('c.servicio','srv')
-                           ->join('o.empresa','em')
-                           ->join('c.subGerencia','sgr')
-                           ->join('sgr.gerencia','gr')
-                           ->join('c.area','a')
-                           ->join('c.mandante','ma')
-                           ->where('o.id > 0 '.$whereAnd)
-                           ->orderBy('o.id', 'DESC');
+          if ($request->request->get('supervisor') != "") {
+
+            $entities = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')
+                               ->createQueryBuilder('o')
+                               ->join('o.contrato','c')
+                               ->join('o.supervisor','s')
+                               ->join('c.unidadDeNegocio','u')
+                               ->join('o.pais','p')
+                               ->join('c.servicio','srv')
+                               ->join('o.empresa','em')
+                               ->join('c.subGerencia','sgr')
+                               ->join('sgr.gerencia','gr')
+                               ->join('c.area','a')
+                               ->join('c.mandante','ma')
+                               ->where('o.id > 0 '.$whereAnd)
+                               ->orderBy('o.id', 'DESC');
+          } else {
+            $entities = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')
+                               ->createQueryBuilder('o')
+                               ->join('o.contrato','c')
+                               ->join('c.unidadDeNegocio','u')
+                               ->join('o.pais','p')
+                               ->join('c.servicio','srv')
+                               ->join('o.empresa','em')
+                               ->join('c.subGerencia','sgr')
+                               ->join('sgr.gerencia','gr')
+                               ->join('c.area','a')
+                               ->join('c.mandante','ma')
+                               ->where('o.id > 0 '.$whereAnd)
+                               ->orderBy('o.id', 'DESC');
+          }
 
         } else {
 
-        $entities = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')
+          if ($request->request->get('supervisor') != "") {
+            $entities = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')
+                           ->createQueryBuilder('o')
+                           ->join('o.contrato','c')
+                           ->join('o.supervisor','s')
+                           ->join('o.pais','p')
+                           ->join('c.servicio','srv')
+                           ->join('o.empresa','em')
+                           ->join('c.subGerencia','sgr')
+                           ->join('sgr.gerencia','gr')
+                           ->join('c.area','a')
+                           ->join('c.mandante','ma')
+                           ->where('o.id > 0 '.$whereAnd)
+                           ->orderBy('o.id', 'DESC');
+          } else {
+            $entities = $em->getRepository('BcTicCamIpalBundle:ObservacionDeComportamiento')
                            ->createQueryBuilder('o')
                            ->join('o.contrato','c')
                            ->join('o.pais','p')
@@ -352,6 +382,7 @@ class ObservacionDeComportamientoController extends Controller
                            ->join('c.mandante','ma')
                            ->where('o.id > 0 '.$whereAnd)
                            ->orderBy('o.id', 'DESC');
+          }
         }
 
         $ids = array();

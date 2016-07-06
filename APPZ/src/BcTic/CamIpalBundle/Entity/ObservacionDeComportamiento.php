@@ -74,13 +74,6 @@ class ObservacionDeComportamiento
     protected $pais;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="supervisor_facade", type="string", length=255, nullable=true)
-     */
-    protected $supervisorFacade;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Supervisor")
      * @ORM\JoinColumn(name="supervisor_id", referencedColumnName="id")
      */
@@ -773,27 +766,6 @@ class ObservacionDeComportamiento
     {
         return $this->pais;
     }
-
-     /**
-     * Set supervisor
-     *
-     */
-    public function setSupervisorFacade($supervisorFacade)
-    {
-        $this->supervisorFacade = $supervisorFacade;
-
-        return $this;
-    }
-
-    /**
-     * Get supervisor
-     *
-     */
-    public function getSupervisorFacade()
-    {
-        return $this->supervisorFacade;
-    }
-
 
     /**
      * Set supervisor

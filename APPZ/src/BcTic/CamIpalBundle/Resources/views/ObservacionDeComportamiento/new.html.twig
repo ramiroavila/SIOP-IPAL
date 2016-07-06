@@ -16,65 +16,25 @@
     <p class="text-left">
     <a class="hidden-xs" href="{{ path('observaciones') }}">
       <button type="button" class="btn btn-default btn-xs">
-        <span class="glyphicon glyphicon-th-list"></span> {{ 'Volver' | trans }}  
+        <span class="glyphicon glyphicon-th-list"></span> {{ 'Volver' | trans }}
       </button>
     </a>
     </p>
-    
+
 {% endblock %}
 
 
 {% block javascript %}
       {{ parent() }}
 {% endblock %}
-    
-{% block js %}     
+
+{% block js %}
 
   {{ parent() }}
   <script type="text/javascript">
 
-  $(document).ready( function () { 
+  $(document).ready( function () {
      
-     //Autocomplete
-     $("#bctic_camipalbundle_observaciondecomportamiento_supervisor_facade" ).autocomplete({
-        delay: 500,
-        minLength: 1,
-        source: function(request, response) {
-
-          $.ajax({
-            dataType: "json",
-            type: "POST",
-            url: "{{ path('registros_supervisores_json') }}",
-            data: { query: request.term } ,
-            success: function (dataSuccess) {
-                response( $.map( dataSuccess , function( item ) {
-                  return {
-                    label: item.nombre,
-                    value: item.id
-                  }
-                }));
-              },
-            error: function (a,b,c) {
-              alert("ERROR: " + b);
-              }
-          });
-
-        },
-        focus: function(event, ui) {
-          
-        },
-        select: function(event, ui) {
-          if (ui.item) {
-            $("#bctic_camipalbundle_observaciondecomportamiento_supervisor_facade" ).val(ui.item.label)
-            $("#bctic_camipalbundle_observaciondecomportamiento_supervisor" ).val(ui.item.id)
-          } else {
-            
-          }
-          event.preventDefault();
-        }
-
-     });
-
      //Autocomplete
      $("#bctic_camipalbundle_observaciondecomportamiento_inspector" ).autocomplete({
         delay: 500,
@@ -101,7 +61,7 @@
 
         },
         focus: function(event, ui) {
-          
+
         },
         select: function(event, ui) {
 
@@ -119,7 +79,7 @@
      $("#bctic_camipalbundle_observaciondecomportamiento_pais").val("{{ app.user.pais.id }}");
 
   });
-     
+
     if ($('form .has-error').length > 0) {
       $('#errors').addClass('alert')
       $('#errors').addClass('alert-danger');
@@ -166,11 +126,11 @@
             if (dataSuccess.subcontrato == true) {
               $('#bctic_camipalbundle_observaciondecomportamiento_cttaSubcont').attr('disabled',false);
             }
-          },   
+          },
           error: function (a,b,c) {
             alert("ERROR: " + b);
           }
-        });       
+        });
       }
     });
 
@@ -210,7 +170,7 @@
             error: function (a,b,c) {
               alert("ERROR: " + b);
             }
-           });    
+           });
 
 
     });

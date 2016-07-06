@@ -29,13 +29,13 @@ class ObservacionDeComportamiento
      *
      * @ORM\Column(name="created_by", type="string", length=50, nullable=true)
      */
-    private $createdBy;    
+    private $createdBy;
 
     /**
      * @ORM\ManyToOne(targetEntity="Empresa")
      * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
      */
-    protected $empresa;    
+    protected $empresa;
 
     /**
      * @ORM\ManyToOne(targetEntity="Contrato")
@@ -55,7 +55,7 @@ class ObservacionDeComportamiento
      * @ORM\ManyToOne(targetEntity="Empresa")
      * @ORM\JoinColumn(name="ctta_subcont_id", referencedColumnName="id")
      */
-    private $cttaSubcont;   
+    private $cttaSubcont;
 
     /**
      *
@@ -65,13 +65,13 @@ class ObservacionDeComportamiento
      * @BcTicAssert\ContainsInspector
      *
      */
-    protected $inspector;  
+    protected $inspector;
 
      /**
      * @ORM\ManyToOne(targetEntity="Pais")
      * @ORM\JoinColumn(name="pais_id", referencedColumnName="id")
      */
-    protected $pais;     
+    protected $pais;
 
     /**
      * @var string
@@ -81,7 +81,7 @@ class ObservacionDeComportamiento
     protected $supervisorFacade;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Registro")
+     * @ORM\ManyToOne(targetEntity="Supervisor")
      * @ORM\JoinColumn(name="supervisor_id", referencedColumnName="id")
      */
     protected $supervisor;
@@ -93,15 +93,15 @@ class ObservacionDeComportamiento
      * @ORM\Column(name="prevencionista", type="string", length=255, nullable=true)
      *
      */
-    protected $prevencionista;              
-    
+    protected $prevencionista;
+
     protected $area;
 
     /**
      * @var string
      *
      * @ORM\Column(name="parte_de_la_planta", type="string", length=100)
-     * @Assert\NotBlank(message = "Este valor no puede estar vacío.")     
+     * @Assert\NotBlank(message = "Este valor no puede estar vacío.")
      */
     private $parteDeLaPlanta;
 
@@ -110,21 +110,21 @@ class ObservacionDeComportamiento
      *
      * @ORM\Column(name="instalacion", type="string", length=100, nullable=true)
      */
-    private $instalacion;    
+    private $instalacion;
 
      /**
      * @var string
      *
      * @ORM\Column(name="unidad_organizativa", type="string", length=100, nullable=true)
      */
-    private $unidadOrganizativa;        
+    private $unidadOrganizativa;
 
      /**
      * @var string
      *
      * @ORM\Column(name="parte_de_la_instalacion", type="string", length=100, nullable=true)
      */
-    private $parteDeLaInstalacion;        
+    private $parteDeLaInstalacion;
 
     /**
      * @var string
@@ -160,7 +160,7 @@ class ObservacionDeComportamiento
      * @var integer
      *
      * @ORM\Column(name="numero_observados", type="integer")
-     * @Assert\NotBlank(message = "Este valor no puede estar vacío.")     
+     * @Assert\NotBlank(message = "Este valor no puede estar vacío.")
      */
     private $numeroObservados = 1;
 
@@ -175,22 +175,22 @@ class ObservacionDeComportamiento
 
     protected $condicionesClimaticas;
 
-    /** 
-    * @ORM\OneToMany(targetEntity="RegistroDeObservacion", mappedBy="observacionDeComportamiento", cascade={"all"}) 
+    /**
+    * @ORM\OneToMany(targetEntity="RegistroDeObservacion", mappedBy="observacionDeComportamiento", cascade={"all"})
     */
     protected $registrosDeObservacion;
 
     /**
      * @var \Date
      *
-     * 
+     *
      */
     private $fechaDesde;
-    
+
     /**
      * @var \Date
      *
-     * 
+     *
      */
     private $fechaHasta;
 
@@ -205,24 +205,24 @@ class ObservacionDeComportamiento
     *
     * @Assert\File(maxSize="20000000")
     */
-    private $uploadedFile1;    
+    private $uploadedFile1;
 
     /**
     * PARA USO DEL FILTRO
-    * 
+    *
     */
-    private $grupos;    
+    private $grupos;
 
     /**
     * PARA USO DEL FILTRO
-    * 
+    *
     */
-    private $unidadDeNegocio;    
+    private $unidadDeNegocio;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -245,7 +245,7 @@ class ObservacionDeComportamiento
     /**
      * Get categoria
      *
-     * @return string 
+     * @return string
      */
     public function getCategoria()
     {
@@ -268,7 +268,7 @@ class ObservacionDeComportamiento
     /**
      * Get fecha
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFecha()
     {
@@ -291,7 +291,7 @@ class ObservacionDeComportamiento
     /**
      * Get hora
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getHora()
     {
@@ -314,7 +314,7 @@ class ObservacionDeComportamiento
     /**
      * Get numeroObservados
      *
-     * @return integer 
+     * @return integer
      */
     public function getNumeroObservados()
     {
@@ -337,13 +337,13 @@ class ObservacionDeComportamiento
     /**
      * Get condicionClimatica
      *
-     * @return \BcTic\CamIpalBundle\Entity\CondicionClimatica 
+     * @return \BcTic\CamIpalBundle\Entity\CondicionClimatica
      */
     public function getCondicionClimatica()
     {
         return $this->condicionClimatica;
     }
-    
+
 
     /**
      * Add condicionesClimaticas
@@ -371,7 +371,7 @@ class ObservacionDeComportamiento
     /**
      * Get condicionesClimaticas
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCondicionesClimaticas()
     {
@@ -404,7 +404,7 @@ class ObservacionDeComportamiento
     /**
      * Get registrosDeObservacion
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRegistrosDeObservacion()
     {
@@ -436,7 +436,7 @@ class ObservacionDeComportamiento
     /**
      * Get area
      *
-     * @return \BcTic\CamIpalBundle\Entity\Area 
+     * @return \BcTic\CamIpalBundle\Entity\Area
      */
     public function getArea()
     {
@@ -460,7 +460,7 @@ class ObservacionDeComportamiento
     /**
      * Get tecnologia
      *
-     * @return string 
+     * @return string
      */
     public function getTecnologia()
     {
@@ -483,7 +483,7 @@ class ObservacionDeComportamiento
     /**
      * Get parteDeLaPlanta
      *
-     * @return string 
+     * @return string
      */
     public function getParteDeLaPlanta()
     {
@@ -506,7 +506,7 @@ class ObservacionDeComportamiento
     /**
      * Get actividad
      *
-     * @return string 
+     * @return string
      */
     public function getActividad()
     {
@@ -529,7 +529,7 @@ class ObservacionDeComportamiento
     /**
      * Get comentarios
      *
-     * @return string 
+     * @return string
      */
     public function getComentarios()
     {
@@ -555,14 +555,14 @@ class ObservacionDeComportamiento
 
     /**
     * Return the # of Registro de Observacion con Valor = 2 (PELIGROSO)
-    * 
+    *
     *
     */
     public function getIndice() {
       $indice = 0;
       foreach ($this->getRegistrosDeObservacion() as $registroDeObservacion) {
         if ($registroDeObservacion->getValor() == 2) $indice++;
-      }   
+      }
       return $indice;
     }
 
@@ -583,7 +583,7 @@ class ObservacionDeComportamiento
     /**
      * Get empresa
      *
-     * @return \BcTic\CamIpalBundle\Entity\Empresa 
+     * @return \BcTic\CamIpalBundle\Entity\Empresa
      */
     public function getEmpresa()
     {
@@ -606,7 +606,7 @@ class ObservacionDeComportamiento
     /**
      * Get contrato
      *
-     * @return \BcTic\CamIpalBundle\Entity\Contrato 
+     * @return \BcTic\CamIpalBundle\Entity\Contrato
      */
     public function getContrato()
     {
@@ -629,7 +629,7 @@ class ObservacionDeComportamiento
     /**
      * Get servicio
      *
-     * @return \BcTic\CamIpalBundle\Entity\Servicio 
+     * @return \BcTic\CamIpalBundle\Entity\Servicio
      */
     public function getServicio()
     {
@@ -652,7 +652,7 @@ class ObservacionDeComportamiento
     /**
      * Get gerencia
      *
-     * @return \BcTic\CamIpalBundle\Entity\Gerencia 
+     * @return \BcTic\CamIpalBundle\Entity\Gerencia
      */
     public function getGerencia()
     {
@@ -675,7 +675,7 @@ class ObservacionDeComportamiento
     /**
      * Get subGerencia
      *
-     * @return \BcTic\CamIpalBundle\Entity\SubGerencia 
+     * @return \BcTic\CamIpalBundle\Entity\SubGerencia
      */
     public function getSubGerencia()
     {
@@ -700,7 +700,7 @@ class ObservacionDeComportamiento
     /**
      * Get cttaSubcont
      *
-     * @return \BcTic\CamIpalBundle\Entity\Empresa 
+     * @return \BcTic\CamIpalBundle\Entity\Empresa
      */
     public function getCttaSubcont()
     {
@@ -723,7 +723,7 @@ class ObservacionDeComportamiento
     /**
      * Get mandante
      *
-     * @return \BcTic\CamIpalBundle\Entity\Mandante 
+     * @return \BcTic\CamIpalBundle\Entity\Mandante
      */
     public function getMandante()
     {
@@ -767,7 +767,7 @@ class ObservacionDeComportamiento
     /**
      * Get pais
      *
-     * @return \BcTic\CamIpalBundle\Entity\Pais 
+     * @return \BcTic\CamIpalBundle\Entity\Pais
      */
     public function getPais()
     {
@@ -798,10 +798,10 @@ class ObservacionDeComportamiento
     /**
      * Set supervisor
      *
-     * @param \BcTic\CamIpalBundle\Entity\Registro $supervisor
+     * @param \BcTic\CamIpalBundle\Entity\Supervisor $supervisor
      * @return ObservacionDeComportamiento
      */
-    public function setSupervisor(\BcTic\CamIpalBundle\Entity\Registro $supervisor = null)
+    public function setSupervisor(\BcTic\CamIpalBundle\Entity\Supervisor $supervisor = null)
     {
         $this->supervisor = $supervisor;
 
@@ -811,7 +811,7 @@ class ObservacionDeComportamiento
     /**
      * Get supervisor
      *
-     * @return \BcTic\CamIpalBundle\Entity\Registro 
+     * @return \BcTic\CamIpalBundle\Entity\Supervisor
      */
     public function getSupervisor()
     {
@@ -834,7 +834,7 @@ class ObservacionDeComportamiento
     /**
      * Get prevencionista
      *
-     * @return string 
+     * @return string
      */
     public function getPrevencionista()
     {
@@ -857,17 +857,17 @@ class ObservacionDeComportamiento
     {
       // the file property can be empty if the field is not required
       if (null === $this->getUploadedFile1()) {
-        
+
       } else {
         $this->getUploadedFile1()->move(
           $this->getUploadRootDir(),
           $this->getUploadedFile1()->getClientOriginalName()
         );
         $this->file1 = $this->getUploadDir().$this->getUploadedFile1()->getClientOriginalName();
-        $this->uploadedFile1 = null; 
+        $this->uploadedFile1 = null;
       }
 
-    }    
+    }
 
     /**
      * Set file1
@@ -885,7 +885,7 @@ class ObservacionDeComportamiento
     /**
      * Get file1
      *
-     * @return string 
+     * @return string
      */
     public function getFile1()
     {
@@ -900,7 +900,7 @@ class ObservacionDeComportamiento
     public function getUploadedFile1()
     {
         return $this->uploadedFile1;
-    }     
+    }
 
     /**
      * Set createdBy
@@ -918,7 +918,7 @@ class ObservacionDeComportamiento
     /**
      * Get createdBy
      *
-     * @return string 
+     * @return string
      */
     public function getCreatedBy()
     {
@@ -935,7 +935,7 @@ class ObservacionDeComportamiento
     public function getGrupos()
     {
         return $this->grupos;
-    }      
+    }
 
     /**
      * Set instalacion
@@ -953,7 +953,7 @@ class ObservacionDeComportamiento
     /**
      * Get instalacion
      *
-     * @return string 
+     * @return string
      */
     public function getInstalacion()
     {
@@ -976,7 +976,7 @@ class ObservacionDeComportamiento
     /**
      * Get unidadOrganizativa
      *
-     * @return string 
+     * @return string
      */
     public function getUnidadOrganizativa()
     {
@@ -999,7 +999,7 @@ class ObservacionDeComportamiento
     /**
      * Get parteDeLaInstalacion
      *
-     * @return string 
+     * @return string
      */
     public function getParteDeLaInstalacion()
     {
@@ -1016,5 +1016,5 @@ class ObservacionDeComportamiento
     public function getUnidadDeNegocio()
     {
         return $this->unidadDeNegocio;
-    }      
+    }
 }

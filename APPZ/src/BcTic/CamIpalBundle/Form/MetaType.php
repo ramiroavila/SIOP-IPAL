@@ -26,9 +26,15 @@ class MetaType extends AbstractType
     {
 
         $context = $this->securityContext;
+
+        $paises = array();
+        foreach ($context->getToken()->getUser()->getPais() as $pais) {
+          $paises[$pais->getId()] = $pais->getId();
+        }
+
         $builder
             ->add('anno','choice', array('label' => 'Año','choices' => array(2014 => 2014, 2015 => 2015,2016 => 2016)))
-            ->add('mes','choice', array('label' => 'Mes','choices' => array( 
+            ->add('mes','choice', array('label' => 'Mes','choices' => array(
                 1 => 'Enero',
                 2 => 'Febrero',
                 3 => 'Marzo',
@@ -47,12 +53,12 @@ class MetaType extends AbstractType
             ->add('subGerencia','entity', array(
                   'label' => 'Sub Gerencia',
                   'class' => 'BcTicCamIpalBundle:SubGerencia',
-                  'query_builder' => function(EntityRepository $er) use ($context) {
+                  'query_builder' => function(EntityRepository $er) use ($context,$paises) {
                     return $er->createQueryBuilder('s')
                            ->join('s.gerencia','gerencia')
                            ->join('gerencia.pais','pais')
-                           ->where('s.visible = :visible AND pais.id = :pais')
-                           ->setParameters(array('visible' => 1, 'pais' => $context->getToken()->getUser()->getPais()->getId()))
+                           ->where('s.visible = :visible AND pais.id IN (:pais)')
+                           ->setParameters(array('visible' => 1, 'pais' => $paises))
                            ->orderBy('s.nombre', 'ASC');
                     },
                   'read_only' => false,
@@ -65,10 +71,10 @@ class MetaType extends AbstractType
                     return $er->createQueryBuilder('r')
                            ->orderBy('r.nombre', 'ASC');
                     }
-                ))                
+                ))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

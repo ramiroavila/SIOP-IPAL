@@ -32,12 +32,16 @@ class SubGerenciaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $paises = array();
+        foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+          $paises[$pais->getId()] = $pais->getId();
+        }
 
         $entities = $em->getRepository('BcTicCamIpalBundle:SubGerencia')
                     ->createQueryBuilder('sg')
                     ->innerJoin('sg.gerencia','g')
-                    ->where('g.pais = :pais')
-                    ->setParameters(array('pais' => $this->get('security.context')->getToken()->getUser()->getPais()->getId()))
+                    ->where('g.pais IN (:pais)')
+                    ->setParameters(array('pais' => $paises))
                     ->setMaxResults(25)
                     ->setFirstResult(25 * ($page - 1))
                     ->getQuery()
@@ -46,7 +50,7 @@ class SubGerenciaController extends Controller
         $csrf = $this->get('form.csrf_provider');
 
         return array(
-            'page' => $page,       
+            'page' => $page,
             'entities' => $entities,
             'csrf' => $csrf,
         );
@@ -79,7 +83,12 @@ class SubGerenciaController extends Controller
         if ($role) {
           //Do Nothing
         } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
+          $entities->andWhere('p.id IN (:paises)');
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+          $entities->setParameter(':paises', $paises);
         }
 
         $data = array();
@@ -90,10 +99,10 @@ class SubGerenciaController extends Controller
              'nombre' => $entity->__toString()
           );
         }
-      
+
         return new JsonResponse($data);
 
-    }   
+    }
 
     /**
      * Creates a new SubGerencia entity.

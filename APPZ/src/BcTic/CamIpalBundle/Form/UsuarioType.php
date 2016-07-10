@@ -25,13 +25,13 @@ class UsuarioType extends AbstractType
                     'type'        => 'password'))
             ->add('pais' ,'entity', array(
                   'required' =>true,
-                  'multiple' => false,
+                  'multiple' => true,
                   'class' => 'BcTicCamIpalBundle:Pais',
                   'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('p')
                            ->orderBy('p.nombre', 'ASC');
                     })
-            )            
+            )
             ->add('roles' ,'entity', array(
                   'required' =>true,
                   'multiple' => true,
@@ -51,12 +51,12 @@ class UsuarioType extends AbstractType
                     return $er->createQueryBuilder('r')
                            ->orderBy('r.nombre', 'ASC');
                     })
-            )            
+            )
             ->add('salt','hidden')
             ->add('visible')
             ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

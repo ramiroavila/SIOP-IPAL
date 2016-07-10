@@ -40,7 +40,7 @@ class RegistroController extends Controller
         $csrf = $this->get('form.csrf_provider');
 
         return array(
-            'page' => $page,       
+            'page' => $page,
             'entities' => $entities,
             'csrf' => $csrf,
         );
@@ -92,7 +92,12 @@ class RegistroController extends Controller
         if ($role) {
           //Do Nothing
         } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
+          $entities->andWhere('p.id IN (:paises)');
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+          $entities->setParameter(':paises', $paises);
         }
 
         foreach ($entities->getQuery()->getResult() as $entity) {
@@ -102,7 +107,7 @@ class RegistroController extends Controller
           );
         }
 
-      
+
         return new JsonResponse($data);
 
     }
@@ -153,7 +158,12 @@ class RegistroController extends Controller
         if ($role) {
           //Do Nothing
         } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
+          $entities->andWhere('p.id IN (:paises)');
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+          $entities->setParameter(':paises', $paises);
         }
 
 
@@ -164,7 +174,7 @@ class RegistroController extends Controller
           );
         }
 
-      
+
         return new JsonResponse($data);
 
     }

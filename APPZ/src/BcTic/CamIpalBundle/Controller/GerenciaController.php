@@ -32,17 +32,22 @@ class GerenciaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $paises = array();
+        foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+          $paises[$pais->getId()] = $pais->getId();
+        }
+
         $entities = $em->getRepository('BcTicCamIpalBundle:Gerencia')->findBy(
-              array('pais' => $this->get('security.context')->getToken()->getUser()->getPais()->getId()),
+              array('pais' => $paises),
               array('nombre' => 'ASC'),
               25,
               25 * ($page - 1)
-            );                       
+            );
 
         $csrf = $this->get('form.csrf_provider');
 
         return array(
-            'page' => $page,       
+            'page' => $page,
             'entities' => $entities,
             'csrf' => $csrf,
         );
@@ -74,7 +79,12 @@ class GerenciaController extends Controller
         if ($role) {
           //Do Nothing
         } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
+          $entities->andWhere('p.id IN (:paises)');
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+          $entities->setParameter(':paises', $paises);
         }
 
         $data = array();
@@ -85,10 +95,10 @@ class GerenciaController extends Controller
              'nombre' => $entity->__toString()
           );
         }
-      
+
         return new JsonResponse($data);
 
-    }   
+    }
 
 
     /**
@@ -239,7 +249,7 @@ class GerenciaController extends Controller
             'edit_form'   => $editForm->createView()
         );
     }
-    
+
     /**
      * Deletes a Gerencia entity.
      *

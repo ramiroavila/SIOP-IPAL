@@ -31,13 +31,18 @@ class EmpresaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $paises = array();
+        foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+          $paises[$pais->getId()] = $pais->getId();
+        }
+
         $entities = $em->getRepository('BcTicCamIpalBundle:Empresa')->findBy(
-              array('pais' => $this->get('security.context')->getToken()->getUser()->getPais()->getId()),
+              array('pais' => $paises),
               array('nombre' => 'ASC'),
               25,
               25 * ($page - 1)
             );
-      
+
         $csrf = $this->get('form.csrf_provider');
 
         return array(
@@ -64,14 +69,20 @@ class EmpresaController extends Controller
                            ->join('e.contratos','c')
                            ->join('e.pais','p')
                            ->where('e.visible = 1')
-                           ->orderBy('e.nombre', 'ASC');
+                           ->orderBy('p.nombre', 'ASC')
+                           ->addOrderBy('e.nombre', 'ASC');
 
         $role = false;
 
         if ($role) {
           //Do Nothing
         } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
+          $entities->andWhere('p.id IN (:paises)');
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+          $entities->setParameter(':paises', $paises);
         }
 
         $data = array();
@@ -79,13 +90,13 @@ class EmpresaController extends Controller
         foreach ($entities->getQuery()->getResult() as $entity) {
           $data[] = array(
              'id' => $entity->getId(),
-             'nombre' => $entity->__toString()
+             'nombre' => strtoupper($entity->__toString())
           );
         }
-      
+
         return new JsonResponse($data);
 
-    }    
+    }
 
     /**
      * Creates a new Empresa entity.
@@ -244,7 +255,7 @@ class EmpresaController extends Controller
      */
     public function deleteAction(Request $request, $id, $token)
     {
-      
+
         $csrf = $this->get('form.csrf_provider');
 
         $em = $this->getDoctrine()->getManager();

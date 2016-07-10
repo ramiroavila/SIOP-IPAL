@@ -34,7 +34,7 @@
   <script type="text/javascript">
 
   $(document).ready( function () {
-     
+
      //Autocomplete
      $("#bctic_camipalbundle_observaciondecomportamiento_inspector" ).autocomplete({
         delay: 500,
@@ -74,9 +74,9 @@
 
            //Elimino todos los objetos:
            $('select#bctic_camipalbundle_observaciondecomportamiento_pais').empty();
-           $('select#bctic_camipalbundle_observaciondecomportamiento_pais').append('<option value="{{ app.user.pais.id }}">{{ app.user.pais.nombre }}</option>');
-
-     $("#bctic_camipalbundle_observaciondecomportamiento_pais").val("{{ app.user.pais.id }}");
+           {% for pais in app.user.pais %}
+             $('select#bctic_camipalbundle_observaciondecomportamiento_pais').append('<option value="{{ pais.id }}">{{ pais.nombre }}</option>');
+           {% endfor %}
 
   });
 
@@ -122,6 +122,7 @@
             $('#bctic_camipalbundle_observaciondecomportamiento_gerencia').val(dataSuccess.gerencia);
             $('#bctic_camipalbundle_observaciondecomportamiento_subGerencia').val(dataSuccess.subgerencia);
             $('#bctic_camipalbundle_observaciondecomportamiento_mandante').val(dataSuccess.mandante);
+            $('#bctic_camipalbundle_observaciondecomportamiento_pais').val(dataSuccess.pais);
             $('#bctic_camipalbundle_observaciondecomportamiento_cttaSubcont').attr('disabled',true);
             if (dataSuccess.subcontrato == true) {
               $('#bctic_camipalbundle_observaciondecomportamiento_cttaSubcont').attr('disabled',false);

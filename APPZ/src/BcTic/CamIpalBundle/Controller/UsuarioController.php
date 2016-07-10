@@ -45,15 +45,21 @@ class UsuarioController extends Controller
 
         $key = ($key == -1) ? " " : $key;
 
+
+        $paises = array();
+        foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+          $paises[$pais->getId()] = $pais->getId();
+        }
+
         $entities = $em->getRepository('BcTicCamIpalBundle:Usuario')
                     ->createQueryBuilder('u')
                     ->innerJoin('u.pais','p')
                     ->where('u.nombre LIKE :key0 OR u.username LIKE :key1 OR p.nombre LIKE :key2')
-                    ->andWhere('p.id = :pais')
+                    ->andWhere('p.id IN (:pais)')
                     ->setParameters(array('key0' => '%'.$key.'%'
                                          ,'key1' => '%'.$key.'%'
                                          ,'key2' => '%'.$key.'%'
-                                         ,'pais' => $this->get('security.context')->getToken()->getUser()->getPais()->getId()
+                                         ,'pais' => $paises
                                          ))
                     ->orderBy('u.nombre','ASC')
                     ->setMaxResults(25)

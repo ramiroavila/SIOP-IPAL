@@ -1082,14 +1082,6 @@ class EncuestaController extends Controller
            }
         }
 
-        $role = false;
-        //Pais
-        if ($role) {
-          //Do Nothing
-        } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
-        }
-
         $sql = $entities->getQuery()->getSql();
 
         //TODOS, SOLO NECESITO LOS ID e IPAL y BORRO:
@@ -1511,7 +1503,7 @@ class EncuestaController extends Controller
 
               //EN CASO DE PAIS = COASIN SE ENVIA A corsin@crm.cam-la.com
               $destinatario = "no-reply@bctic.net";
-              switch ($this->get('security.context')->getToken()->getUser()->getPais()->getId()) {
+              switch ($entity->getPais()->getId()) {
 
                 case 2: //COLOMBIA
                   $destinatario = 'siop-colombia@cam-la.com';

@@ -89,6 +89,7 @@
             $('#bctic_camipalbundle_encuesta_subGerencia').val(dataSuccess.subgerencia);
             //$('#bctic_camipalbundle_encuesta_empresa').val(dataSuccess.empresa);
             $('#bctic_camipalbundle_encuesta_mandante').val(dataSuccess.mandante);
+            $('#bctic_camipalbundle_encuesta_pais').val(dataSuccess.pais);
             $('#bctic_camipalbundle_encuesta_cttaSubcont').attr('disabled',true);
             if (dataSuccess.subcontrato == true) {
               $('#bctic_camipalbundle_encuesta_cttaSubcont').attr('disabled',false);
@@ -104,7 +105,7 @@
 
     $(document).ready(function (){
      $('#bctic_camipalbundle_encuesta_contrato').change();
-     
+
      //Autocomplete
      $("#bctic_camipalbundle_encuesta_inspector" ).autocomplete({
         delay: 500,

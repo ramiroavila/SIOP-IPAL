@@ -289,7 +289,9 @@
 
            //Elimino todos los objetos:
            $('select#bctic_camipalbundle_observacion_de_comportamiento_pais').empty();
-           $('select#bctic_camipalbundle_observacion_de_comportamiento_pais').append('<option value="{{ app.user.pais.id }}">{{ app.user.pais.nombre }}</option>');
+           {% for pais in app.user.pais %}
+             $('select#bctic_camipalbundle_observacion_de_comportamiento_pais').append('<option value="{{ pais.id }}">{{ pais.nombre }}</option>');
+           {% endfor %}
 
            //Elimino todos los objetos:
            //Solo muestro los contratos según el pais y rol - si aplica - esto lo hace el controlador:

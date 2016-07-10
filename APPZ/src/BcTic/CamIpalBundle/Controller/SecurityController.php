@@ -17,19 +17,7 @@ class SecurityController extends Controller
      * @Template()
      */
     public function indexAction(Request $request)
-    { 
-        //Tengo que ver si el usuario actual de que pais es, si es BRAZIL debo redireccionar el local a pt
-        $locale = $request->getLocale();
-        switch ($this->get('security.context')->getToken()->getUser()->getPais()->getNombre()){
-          case 'CHILE':
-            break;
-          case 'BRAZIL':
-            if ($locale <> 'pt') {
-              return $this->redirect($this->generateUrl('welcome', array ('_locale' => 'pt')));
-            }
-            break;  
-        }
-
+    {
         return array();
     }
 
@@ -42,7 +30,7 @@ class SecurityController extends Controller
     {
         $request = $this->getRequest();
         $session = $request->getSession();
- 
+
          // get the login error if there is one
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(
@@ -68,7 +56,7 @@ class SecurityController extends Controller
      * @Template()
      */
     public function logoutAction() {
-        //do whatever you want here 
+        //do whatever you want here
 
         $locale = $request->getLocale();
         //clear the token, cancel session and redirect

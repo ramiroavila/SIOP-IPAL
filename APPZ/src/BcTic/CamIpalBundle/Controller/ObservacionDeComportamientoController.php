@@ -395,7 +395,12 @@ class ObservacionDeComportamientoController extends Controller
         if ($role) {
           //Do Nothing
         } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+          $entities->andWhere('p.id IN (:paises)');
+          $entities->setParameter('paises',$paises);
         }
 
         foreach ($entities->getQuery()->getResult() as $entity) {

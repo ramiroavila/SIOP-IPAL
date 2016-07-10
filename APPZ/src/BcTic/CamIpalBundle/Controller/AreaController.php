@@ -31,9 +31,14 @@ class AreaController extends Controller
     public function indexAction($page)
     {
         $em = $this->getDoctrine()->getManager();
-        
+
+        $paises = array();
+        foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+          $paises[$pais->getId()] = $pais->getId();
+        }
+
         $entities = $em->getRepository('BcTicCamIpalBundle:Area')->findBy(
-              array('pais' => $this->get('security.context')->getToken()->getUser()->getPais()->getId()),
+              array('pais' => $paises),
               array('nombre' => 'ASC'),
               25,
               25 * ($page - 1)
@@ -47,7 +52,7 @@ class AreaController extends Controller
             'entities' => $entities,
             'csrf' => $csrf,
         );
-        
+
     }
 
     /**
@@ -75,7 +80,12 @@ class AreaController extends Controller
         if ($role) {
           //Do Nothing
         } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
+          $entities->andWhere('p.id IN (:paises)');
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+          $entities->setParameter(':paises', $paises);
         }
 
         $data = array();
@@ -86,10 +96,10 @@ class AreaController extends Controller
              'nombre' => $entity->__toString()
           );
         }
-      
+
         return new JsonResponse($data);
 
-    }   
+    }
 
     /**
      * Creates a new Area entity.
@@ -276,4 +286,3 @@ class AreaController extends Controller
     }
 
 }
- 

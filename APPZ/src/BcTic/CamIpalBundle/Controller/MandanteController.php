@@ -30,10 +30,15 @@ class MandanteController extends Controller
      */
     public function indexAction($page)
     {
+
+      $paises = array();
+      foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+        $paises[$pais->getId()] = $pais->getId();
+      }
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('BcTicCamIpalBundle:Mandante')->findBy(
-              array('pais' => $this->get('security.context')->getToken()->getUser()->getPais()->getId()),
+              array('pais' => $paises),
               array('name' => 'ASC'),
               25,
               25 * ($page - 1)
@@ -42,7 +47,7 @@ class MandanteController extends Controller
         $csrf = $this->get('form.csrf_provider');
 
         return array(
-            'page' => $page,       
+            'page' => $page,
             'entities' => $entities,
             'csrf' => $csrf,
         );
@@ -73,7 +78,12 @@ class MandanteController extends Controller
         if ($role) {
           //Do Nothing
         } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
+          $entities->andWhere('p.id IN (:paises)');
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+          $entities->setParameter(':paises', $paises);
         }
 
         $data = array();
@@ -84,10 +94,10 @@ class MandanteController extends Controller
              'nombre' => $entity->__toString()
           );
         }
-      
+
         return new JsonResponse($data);
 
-    }   
+    }
 
 
     /**

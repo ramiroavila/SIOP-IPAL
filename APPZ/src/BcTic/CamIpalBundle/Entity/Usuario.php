@@ -29,7 +29,7 @@ class Usuario implements UserInterface, \Serializable {
      *
      * @ORM\Column(name="username", type="string", length=50, unique=true)
      * @Assert\NotBlank()
-     * @Assert\Length(min = "3")    
+     * @Assert\Length(min = "3")
      */
     private $username;
 
@@ -53,14 +53,14 @@ class Usuario implements UserInterface, \Serializable {
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
-    private $email;    
+    private $email;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=100)
      * @Assert\NotBlank()
-     * @Assert\Length(min = "5")     
+     * @Assert\Length(min = "5")
      */
     private $nombre;
 
@@ -80,11 +80,14 @@ class Usuario implements UserInterface, \Serializable {
      *     inverseJoinColumns={@ORM\JoinColumn(name="grupo_id", referencedColumnName="id")}
      * )
      */
-    protected $grupos;    
+    protected $grupos;
 
      /**
-     * @ORM\ManyToOne(targetEntity="Pais")
-     * @ORM\JoinColumn(name="pais_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="Pais")
+     * @ORM\JoinTable(name="pais_de_usuario",
+     *     joinColumns={@ORM\JoinColumn(name="usuario_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="pais_id", referencedColumnName="id")}
+     * )
      */
     protected $pais;
 
@@ -93,12 +96,12 @@ class Usuario implements UserInterface, \Serializable {
      *
      * @ORM\Column(name="visible", type="boolean")
      */
-    private $visible = true;    
+    private $visible = true;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -121,7 +124,7 @@ class Usuario implements UserInterface, \Serializable {
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -144,7 +147,7 @@ class Usuario implements UserInterface, \Serializable {
     /**
      * Get salt
      *
-     * @return string 
+     * @return string
      */
     public function getSalt()
     {
@@ -184,7 +187,7 @@ class Usuario implements UserInterface, \Serializable {
     /**
      * Get roles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRoles()
     {
@@ -207,7 +210,7 @@ class Usuario implements UserInterface, \Serializable {
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
@@ -266,7 +269,7 @@ class Usuario implements UserInterface, \Serializable {
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -289,7 +292,7 @@ class Usuario implements UserInterface, \Serializable {
     /**
      * Get pais
      *
-     * @return \BcTic\CamIpalBundle\Entity\Pais 
+     * @return \BcTic\CamIpalBundle\Entity\Pais
      */
     public function getPais()
     {
@@ -316,7 +319,7 @@ class Usuario implements UserInterface, \Serializable {
     /**
      * Get visible
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getVisible()
     {
@@ -339,7 +342,7 @@ class Usuario implements UserInterface, \Serializable {
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -372,7 +375,7 @@ class Usuario implements UserInterface, \Serializable {
     /**
      * Get grupos
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGrupos()
     {

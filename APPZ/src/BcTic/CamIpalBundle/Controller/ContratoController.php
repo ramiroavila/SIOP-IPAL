@@ -44,13 +44,18 @@ class ContratoController extends Controller
         if ($role) {
           //Do Nothing
         } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
+          $entities->andWhere('p.id IN (:paises)');
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+          $entities->setParameter(':paises', $paises);
         }
 
         $csrf = $this->get('form.csrf_provider');
 
         return array(
-            'page' => $page,       
+            'page' => $page,
             'entities' => $entities->getQuery()->getResult(),
             'csrf' => $csrf,
         );
@@ -81,7 +86,12 @@ class ContratoController extends Controller
         if ($role) {
           //Do Nothing
         } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
+          $entities->andWhere('p.id IN (:paises)');
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+          $entities->setParameter(':paises', $paises);
         }
 
         $entities->andWhere('e.id IN ('.$request->request->get('empresa_id',0).')');
@@ -91,10 +101,11 @@ class ContratoController extends Controller
         foreach ($entities->getQuery()->getResult() as $entity) {
           $data[] = array(
              'id' => $entity->getId(),
-             'nombre' => $entity->__toString()
+             'nombre' => $entity->__toString(),
+             'pais' => $entity->getPais()->getId()
           );
         }
-      
+
         return new JsonResponse($data);
 
     }
@@ -122,7 +133,12 @@ class ContratoController extends Controller
         if ($role) {
           //Do Nothing
         } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
+          $entities->andWhere('p.id IN (:paises)');
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+          $entities->setParameter(':paises', $paises);
         }
 
         $data = array();
@@ -133,13 +149,13 @@ class ContratoController extends Controller
              'nombre' => $entity->__toString()
           );
         }
-      
+
         return new JsonResponse($data);
 
-    }    
+    }
 
      /**
-     * List a Contrato 
+     * List a Contrato
      *
      * @Route("/data/show.json", name="contrato_json", requirements={"id" = "\d+"} )
      * @Method("POST")
@@ -163,9 +179,10 @@ class ContratoController extends Controller
              'subgerencia' => $entity->getSubGerencia()->getId(),
              'gerencia' => $entity->getSubGerencia()->getGerencia()->getId(),
              'mandante' => $entity->getMandante()->getId(),
-             'subcontrato' => $entity->getSubcontrato()
-          );  
-      
+             'subcontrato' => $entity->getSubcontrato(),
+             'pais' => $entity->getPais()->getId()
+          );
+
         return new JsonResponse($data);
 
     }
@@ -355,5 +372,5 @@ class ContratoController extends Controller
         return $this->redirect($this->generateUrl('contratos'));
     }
 
-    
+
 }

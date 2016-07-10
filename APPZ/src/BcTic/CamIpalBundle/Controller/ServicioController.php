@@ -32,11 +32,16 @@ class ServicioController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $paises = array();
+        foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+          $paises[$pais->getId()] = $pais->getId();
+        }
+
         $entities = $em->getRepository('BcTicCamIpalBundle:Servicio')
                     ->createQueryBuilder('s')
                     ->innerJoin('s.area','a')
-                    ->where('a.pais = :pais')
-                    ->setParameters(array('pais' => $this->get('security.context')->getToken()->getUser()->getPais()->getId()))
+                    ->where('a.pais IN (:pais)')
+                    ->setParameters(array('pais' => $paises))
                     ->setMaxResults(25)
                     ->setFirstResult(25 * ($page - 1))
                     ->getQuery()
@@ -45,7 +50,7 @@ class ServicioController extends Controller
         $csrf = $this->get('form.csrf_provider');
 
         return array(
-            'page' => $page,       
+            'page' => $page,
             'entities' => $entities,
             'csrf' => $csrf,
         );
@@ -77,7 +82,12 @@ class ServicioController extends Controller
         if ($role) {
           //Do Nothing
         } else {
-          $entities->andWhere('p.id = '.$this->get('security.context')->getToken()->getUser()->getPais()->getId());
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+          $entities->andWhere('p.id IN (:paises)');
+          $entities->setParameter('paises',$paises);
         }
 
         $data = array();
@@ -88,10 +98,10 @@ class ServicioController extends Controller
              'nombre' => $entity->__toString()
           );
         }
-      
+
         return new JsonResponse($data);
 
-    }  
+    }
 
     /**
      * Creates a new Servicio entity.

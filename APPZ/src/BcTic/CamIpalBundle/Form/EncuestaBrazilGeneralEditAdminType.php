@@ -25,11 +25,11 @@ class EncuestaBrazilGeneralEditAdminType extends AbstractType
                     'format' => 'ddMMyyyy'
             ))
             ->add('hora','time', array ('label' => 'Hora'))
-            ->add('actividad','text', array('label' => 'Actividad', 'disabled' => true))
-            ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo', 'disabled' => true))
-            ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados', 'disabled' => true))
+            ->add('actividad','text', array('label' => 'Actividad'))
+            ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo'))
+            ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados'))
             ->add('cttaSubcont')
-            ->add('observaciones','textarea', array('label' => 'Observaciones', 'disabled' => true))
+            ->add('observaciones','textarea', array('label' => 'Observaciones'))
             ->add('respuesta11', new SurveyType(),array('label' => 'respuesta1.1_brazil_general','disabled' => true))
             ->add('respuesta12', new SurveyType(), array('label' => 'respuesta1.2_brazil_general','disabled' => true))
             ->add('respuesta13', new SurveyType(), array('label' => 'respuesta1.3_brazil_general','disabled' => true))
@@ -74,7 +74,7 @@ class EncuestaBrazilGeneralEditAdminType extends AbstractType
             ->add('respuesta103', new SurveyType(), array('label' => 'respuesta10.3_brazil_general','disabled' => true))
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_brazil_general','disabled' => true))
             ->add('status_cierre','hidden')
-            ->add('cierre','textarea', array('label' => 'Cierre', 'disabled' => true))
+            ->add('cierre','textarea', array('label' => 'Cierre'))
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
             ->add('uploadedFileCierre2','file', array('label' => 'Adjunto 2','required'  => false))
             ->add('uploadedFile1','file', array('label' => 'Adjunto 1','required'  => false,'disabled' => true))
@@ -121,7 +121,7 @@ class EncuestaBrazilGeneralEditAdminType extends AbstractType
                   'empty_value' => '-- SERVICIO --',
                   'empty_data' => -1,
                 ))
-            ->add('inspector','text',array('label' => 'Inspector', 'disabled' => true))
+            ->add('inspector','text',array('label' => 'Inspector'))
             ->add('prevencionista', 'hidden', array('disabled' => true))
             ->add('supervisor','entity', array(
                   'class' => 'BcTicCamIpalBundle:Supervisor',

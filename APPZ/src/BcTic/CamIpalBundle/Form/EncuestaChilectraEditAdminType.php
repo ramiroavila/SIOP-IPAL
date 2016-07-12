@@ -25,11 +25,11 @@ class EncuestaElectricaEditAdminType extends AbstractType
                     'format' => 'ddMMyyyy'
             ))
             ->add('hora','time', array ('label' => 'Hora'))
-            ->add('actividad','text', array('label' => 'Actividad', 'disabled' => true))
-            ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo', 'disabled' => true))
-            ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados', 'disabled' => true))
+            ->add('actividad','text', array('label' => 'Actividad'))
+            ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo'))
+            ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados'))
             ->add('cttaSubcont')
-            ->add('observaciones','textarea', array('label' => 'Observaciones', 'disabled' => true))
+            ->add('observaciones','textarea', array('label' => 'Observaciones'))
             ->add('respuesta11', new SurveyMultipleType(),array('label' => 'respuesta1.1_electrica','disabled' => true))
             ->add('respuesta12', new SurveyMultipleType(), array('label' => 'respuesta1.2_electrica','disabled' => true))
             ->add('respuesta13', new SurveyMultipleType(), array('label' => 'respuesta1.3_electrica','disabled' => true))
@@ -132,7 +132,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                   'empty_value' => '-- SERVICIO --',
                   'empty_data' => -1,
                 ))
-            ->add('inspector','text',array('label' => 'Inspector', 'disabled' => true))
+            ->add('inspector','text',array('label' => 'Inspector'))
             ->add('prevencionista', 'hidden', array('disabled' => true))
             ->add('supervisor','entity', array(
                   'class' => 'BcTicCamIpalBundle:Supervisor',

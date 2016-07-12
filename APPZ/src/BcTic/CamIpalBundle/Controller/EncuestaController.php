@@ -40,8 +40,7 @@ use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralEditType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralEditType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoEditType;
 
-
-use BcTic\CamIpalBundle\Form\EncuestaElectricaEditAminType;
+use BcTic\CamIpalBundle\Form\EncuestaElectricaEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaChilectraEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaLogisticaEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesEditAdminType;

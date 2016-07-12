@@ -25,18 +25,32 @@ use BcTic\CamIpalBundle\Form\EncuestaLogisticaType;
 use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesType;
 use BcTic\CamIpalBundle\Form\EncuestaTelecomunicacionesType;
 use BcTic\CamIpalBundle\Form\EncuestaLlvvType;
+use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralType;
+use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralType;
+use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoType;
+
+
 use BcTic\CamIpalBundle\Form\EncuestaElectricaEditType;
 use BcTic\CamIpalBundle\Form\EncuestaChilectraEditType;
 use BcTic\CamIpalBundle\Form\EncuestaLogisticaEditType;
 use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesEditType;
 use BcTic\CamIpalBundle\Form\EncuestaTelecomunicacionesEditType;
 use BcTic\CamIpalBundle\Form\EncuestallvvEditType;
-use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralType;
 use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralEditType;
-use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralEditType;
-use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoEditType;
+
+
+use BcTic\CamIpalBundle\Form\EncuestaElectricaEditAminType;
+use BcTic\CamIpalBundle\Form\EncuestaChilectraEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaLogisticaEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaTelecomunicacionesEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestallvvEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoEditAdminType;
+
 use BcTic\CamIpalBundle\Form\EncuestaFilterType;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
@@ -1774,31 +1788,31 @@ class EncuestaController extends Controller
 
        switch ($entity->getKey()) {
           case 'chilectra':
-            $formType = $role ? new EncuestaChilectraType() : new EncuestaChilectaEditType();
+            $formType = $role ? new EncuestaChilectraEditAdminType() : new EncuestaChilectaEditType();
             break;
           case 'electrica':
-            $formType = $role ? new EncuestaElectricaType() : new EncuestaElectricaEditType();
+            $formType = $role ? new EncuestaElectricaEditAdminType() : new EncuestaElectricaEditType();
             break;
           case 'logistica':
-            $formType = $role ? new EncuestaLogisticaType() : new EncuestaLogisticaEditType();
+            $formType = $role ? new EncuestaLogisticaEditAdminType() : new EncuestaLogisticaEditType();
             break;
           case 'obras_civiles':
-            $formType = $role ? new EncuestaObrasCivilesType() : new EncuestaObrasCivilesEditType();
+            $formType = $role ? new EncuestaObrasCivilesEditAdminType() : new EncuestaObrasCivilesEditType();
             break;
           case 'telecomunicaciones':
-            $formType = $role ? new EncuestaTelecomunicacionesType() : new EncuestaTelecomunicacionesEditType();
+            $formType = $role ? new EncuestaTelecomunicacionesEditAdminType() : new EncuestaTelecomunicacionesEditType();
             break;
           case 'llvv':
-              $formType = $role ? new EncuestaLlvvType() : new EncuestaLlvvEditType();
+              $formType = $role ? new EncuestaLlvvEditAdminType() : new EncuestaLlvvEditType();
               break;
           case 'colombia_general':
-            $formType = $role ? new EncuestaColombiaGeneralType : new EncuestaColombiaGeneralEditType();
+            $formType = $role ? new EncuestaColombiaGeneralEditAdminType : new EncuestaColombiaGeneralEditType();
             break;
           case 'brazil_general':
-            $formType = $role ? new EncuestaBrazilGeneralType : new EncuestaBrazilGeneralEditType();
+            $formType = $role ? new EncuestaBrazilGeneralEditAdminType : new EncuestaBrazilGeneralEditType();
             break;
           case 'brazil_interno':
-            $formType = $role ? new EncuestaBrazilInternoType : new EncuestaBrazilInternoEditType();
+            $formType = $role ? new EncuestaBrazilInternoEditAdminEditAdminType : new EncuestaBrazilInternoEditType();
             break;
         }
 
@@ -1855,28 +1869,28 @@ class EncuestaController extends Controller
 
        switch ($entity->getKey()) {
           case 'electrica':
-            $formType = $role ? new EncuestaElectricaType() : new EncuestaElectricaEditType();
+            $formType = $role ? new EncuestaElectricaEditAdminType() : new EncuestaElectricaEditType();
             break;
           case 'logistica':
-            $formType = $role ? new EncuestaLogisticaType() : new EncuestaLogisticaEditType();
+            $formType = $role ? new EncuestaLogisticaEditAdminType() : new EncuestaLogisticaEditType();
             break;
           case 'obras_civiles':
-            $formType = $role ? new EncuestaObrasCivilesType() : new EncuestaObrasCivilesEditType();
+            $formType = $role ? new EncuestaObrasCivilesEditAdminType() : new EncuestaObrasCivilesEditType();
             break;
           case 'telecomunicaciones':
-            $formType = $role ? new EncuestaTelecomunicacionesType() : new EncuestaTelecomunicacionesEditType();
+            $formType = $role ? new EncuestaTelecomunicacionesEditAdminType() : new EncuestaTelecomunicacionesEditType();
             break;
           case 'llvv':
-              $formType = $role ? new EncuestaLlvvType() : new EncuestaLlvvEditType();
+              $formType = $role ? new EncuestaLlvvEditAdminType() : new EncuestaLlvvEditType();
               break;
           case 'colombia_general':
-            $formType = $role ? new EncuestaColombiaGeneralType() : new EncuestaColombiaGeneralEditType();
+            $formType = $role ? new EncuestaColombiaGeneralEditAdminType() : new EncuestaColombiaGeneralEditType();
             break;
           case 'brazil_general':
-            $formType = $role ? new EncuestaBrazilGeneralType() : new EncuestaBrazilGeneralEditType();
+            $formType = $role ? new EncuestaBrazilGeneralEditAdminType() : new EncuestaBrazilGeneralEditType();
             break;
           case 'brazil_interno':
-            $formType = $role ? new EncuestaBrazilInternoType() : new EncuestaBrazilInternoEditType();
+            $formType = $role ? new EncuestaBrazilInternoEditAdminType() : new EncuestaBrazilInternoEditType();
             break;
         }
 

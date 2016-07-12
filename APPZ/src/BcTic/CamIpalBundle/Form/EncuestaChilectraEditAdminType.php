@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class EncuestaElectricaEditType extends AbstractType
+class EncuestaElectricaEditAdminType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -22,8 +22,7 @@ class EncuestaElectricaEditType extends AbstractType
                     'label' => 'Fecha',
                     'input'  => 'datetime',
                     'widget' => 'choice',
-                    'format' => 'ddMMyyyy',
-                    'disabled' => true
+                    'format' => 'ddMMyyyy'
             ))
             ->add('hora','time', array ('label' => 'Hora'))
             ->add('actividad','text', array('label' => 'Actividad', 'disabled' => true))

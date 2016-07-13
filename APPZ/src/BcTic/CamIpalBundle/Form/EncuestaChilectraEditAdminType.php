@@ -30,22 +30,22 @@ class EncuestaElectricaEditAdminType extends AbstractType
             ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados'))
             ->add('cttaSubcont')
             ->add('observaciones','textarea', array('label' => 'Observaciones'))
-            ->add('respuesta11', new SurveyMultipleType(),array('label' => 'respuesta1.1_electrica','disabled' => true))
-            ->add('respuesta12', new SurveyMultipleType(), array('label' => 'respuesta1.2_electrica','disabled' => true))
-            ->add('respuesta13', new SurveyMultipleType(), array('label' => 'respuesta1.3_electrica','disabled' => true))
+            ->add('respuesta11', new SurveyMultipleType(),array('label' => 'respuesta1.1_electrica'))
+            ->add('respuesta12', new SurveyMultipleType(), array('label' => 'respuesta1.2_electrica'))
+            ->add('respuesta13', new SurveyMultipleType(), array('label' => 'respuesta1.3_electrica'))
             ->add('respuesta14', 'hidden')
             ->add('respuesta15', 'hidden')
-            ->add('respuesta21', new SurveyMultipleType(), array('label' => 'respuesta2.1_electrica','disabled' => true))
-            ->add('respuesta22', new SurveyMultipleType(), array('label' => 'respuesta2.2_electrica','disabled' => true))
-            ->add('respuesta23', new SurveyMultipleType(), array('label' => 'respuesta2.3_electrica','disabled' => true))
-            ->add('respuesta31', new SurveyMultipleType(), array('label' => 'respuesta3.1_electrica','disabled' => true))
-            ->add('respuesta32', new SurveyMultipleType(), array('label' => 'respuesta3.2_electrica','disabled' => true))
-            ->add('respuesta33', new SurveyMultipleType(), array('label' => 'respuesta3.3_electrica','disabled' => true))
+            ->add('respuesta21', new SurveyMultipleType(), array('label' => 'respuesta2.1_electrica'))
+            ->add('respuesta22', new SurveyMultipleType(), array('label' => 'respuesta2.2_electrica'))
+            ->add('respuesta23', new SurveyMultipleType(), array('label' => 'respuesta2.3_electrica'))
+            ->add('respuesta31', new SurveyMultipleType(), array('label' => 'respuesta3.1_electrica'))
+            ->add('respuesta32', new SurveyMultipleType(), array('label' => 'respuesta3.2_electrica'))
+            ->add('respuesta33', new SurveyMultipleType(), array('label' => 'respuesta3.3_electrica'))
             ->add('respuesta34', 'hidden')
             ->add('respuesta35', 'hidden')
-            ->add('respuesta41', new SurveyMultipleType(), array('label' => 'respuesta4.1_electrica','disabled' => true))
-            ->add('respuesta42', new SurveyMultipleType(), array('label' => 'respuesta4.2_electrica','disabled' => true))
-            ->add('respuesta43', new SurveyMultipleType(), array('label' => 'respuesta4.3_electrica','disabled' => true))
+            ->add('respuesta41', new SurveyMultipleType(), array('label' => 'respuesta4.1_electrica'))
+            ->add('respuesta42', new SurveyMultipleType(), array('label' => 'respuesta4.2_electrica'))
+            ->add('respuesta43', new SurveyMultipleType(), array('label' => 'respuesta4.3_electrica'))
             ->add('respuesta44', 'hidden')
             ->add('respuesta45', 'hidden')
             ->add('respuesta46', 'hidden')
@@ -55,8 +55,8 @@ class EncuestaElectricaEditAdminType extends AbstractType
             ->add('respuesta410', 'hidden')
             ->add('respuesta411', 'hidden')
             ->add('respuesta412', 'hidden')
-            ->add('respuesta51', new SurveyMultipleType(), array('label' => 'respuesta5.1_electrica','disabled' => true))
-            ->add('respuesta52', new SurveyMultipleType(), array('label' => 'respuesta5.2_electrica','disabled' => true))
+            ->add('respuesta51', new SurveyMultipleType(), array('label' => 'respuesta5.1_electrica'))
+            ->add('respuesta52', new SurveyMultipleType(), array('label' => 'respuesta5.2_electrica'))
             ->add('respuesta53', 'hidden')
             ->add('respuesta61', 'hidden')
             ->add('respuesta62', 'hidden')
@@ -88,9 +88,9 @@ class EncuestaElectricaEditAdminType extends AbstractType
             ->add('status_cierre','hidden')
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
             ->add('uploadedFileCierre2','file', array('label' => 'Adjunto 2','required'  => false))
-            ->add('uploadedFile1','file', array('label' => 'Adjunto 1','required'  => false,'disabled' => true))
-            ->add('uploadedFile2','file', array('label' => 'Adjunto 2','required'  => false,'disabled' => true))
-            ->add('uploadedFile3','file', array('label' => 'Adjunto 3','required'  => false,'disabled' => true))
+            ->add('uploadedFile1','file', array('label' => 'Adjunto 1','required'  => false))
+            ->add('uploadedFile2','file', array('label' => 'Adjunto 2','required'  => false))
+            ->add('uploadedFile3','file', array('label' => 'Adjunto 3','required'  => false))
             ->add('visible', 'hidden', array())
             ->add('cierreLog', 'hidden', array())
             ->add('localizacion', 'hidden', array())
@@ -104,7 +104,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                     },
                    'empty_value' => '-- SELECCIONE EMPRESA --',
                    'empty_data' => "-1",
-                   'disabled' => true
+
                 ))
             ->add('contrato','entity', array(
                   'class' => 'BcTicCamIpalBundle:Contrato',
@@ -116,7 +116,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                     },
                    'empty_value' => '-- SELECCIONE CONTRATO --',
                    'empty_data' => "-1",
-                   'disabled' => true
+
                 ) )
             ->add('mandante','entity', array(
                   'label' => 'Mandante',
@@ -127,13 +127,11 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->setParameter('visible',1)
                            ->orderBy('r.name', 'ASC');
                     },
-                  'read_only' => true,
-                  'disabled' => true,
                   'empty_value' => '-- SERVICIO --',
                   'empty_data' => -1,
                 ))
             ->add('inspector','text',array('label' => 'Inspector'))
-            ->add('prevencionista', 'hidden', array('disabled' => true))
+            ->add('prevencionista', 'hidden', array())
             ->add('supervisor','entity', array(
                   'class' => 'BcTicCamIpalBundle:Supervisor',
                   'query_builder' => function(EntityRepository $er) {
@@ -152,8 +150,6 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
                     },
-                  'read_only' => true,
-                  'disabled' => true,
                   'empty_value' => '-- SERVICIO --',
                   'empty_data' => -1,
                 ))
@@ -166,8 +162,6 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
                     },
-                  'read_only' => true,
-                  'disabled' => true,
                   'empty_value' => '-- AREA --',
                   'empty_data' => -1,
                 ))
@@ -180,8 +174,6 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
                     },
-                  'read_only' => true,
-                  'disabled' => true,
                   'empty_value' => '-- GERENCIA --',
                   'empty_data' => -1,
                 ))
@@ -194,8 +186,6 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
                     },
-                  'read_only' => true,
-                  'disabled' => true,
                    'empty_value' => '-- SUB GERENCIA --',
                    'empty_data' => -1,
                 ))
@@ -206,8 +196,6 @@ class EncuestaElectricaEditAdminType extends AbstractType
                     return $er->createQueryBuilder('r')
                            ->orderBy('r.nombre', 'ASC');
                     },
-                  'read_only' => true,
-                  'disabled' => true,
                 ))
                 ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('N/A' => 'N/A: No aplica','A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
                 ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('N/A' => 'N/A: No aplica','B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))

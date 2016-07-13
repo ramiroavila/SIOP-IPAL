@@ -282,7 +282,7 @@ class Usuario implements UserInterface, \Serializable {
      * @param \BcTic\CamIpalBundle\Entity\Pais $pais
      * @return Usuario
      */
-    public function setPais(\BcTic\CamIpalBundle\Entity\Pais $pais = null)
+    public function setPais(\Doctrine\Common\Collections\ArrayCollection $pais = null)
     {
         $this->pais = $pais;
 

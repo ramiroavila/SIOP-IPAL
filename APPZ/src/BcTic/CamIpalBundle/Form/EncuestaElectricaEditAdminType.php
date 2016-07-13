@@ -147,7 +147,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->where('r.visible = :visible')
                            ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
-                    }
+                    },
                   'empty_value' => '-- SERVICIO --',
                   'empty_data' => -1,
                 ))
@@ -159,7 +159,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->where('r.visible = :visible')
                            ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
-                    }
+                    },
                   'empty_value' => '-- AREA --',
                   'empty_data' => -1,
                 ))
@@ -171,7 +171,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->where('r.visible = :visible')
                            ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
-                    }
+                    },
                   'empty_value' => '-- GERENCIA --',
                   'empty_data' => -1,
                 ))
@@ -183,7 +183,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->where('r.visible = :visible')
                            ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
-                    }
+                    },
                    'empty_value' => '-- SUB GERENCIA --',
                    'empty_data' => -1,
                 ))

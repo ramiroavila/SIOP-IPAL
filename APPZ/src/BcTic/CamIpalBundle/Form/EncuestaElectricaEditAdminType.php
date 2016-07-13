@@ -124,7 +124,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->where('r.visible = :visible')
                            ->setParameter('visible',1)
                            ->orderBy('r.name', 'ASC');
-                    }
+                    },
                   'empty_value' => '-- SERVICIO --',
                   'empty_data' => -1,
                 ))

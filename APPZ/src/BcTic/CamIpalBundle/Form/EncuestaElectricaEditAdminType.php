@@ -104,7 +104,6 @@ class EncuestaElectricaEditAdminType extends AbstractType
                     },
                    'empty_value' => '-- SELECCIONE EMPRESA --',
                    'empty_data' => "-1",
-                   'disabled' => true
                 ))
             ->add('contrato','entity', array(
                   'class' => 'BcTicCamIpalBundle:Contrato',
@@ -116,8 +115,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                     },
                    'empty_value' => '-- SELECCIONE CONTRATO --',
                    'empty_data' => "-1",
-                   'disabled' => true
-                ) )
+                ))
             ->add('mandante','entity', array(
                   'label' => 'Mandante',
                   'class' => 'BcTicCamIpalBundle:Mandante',
@@ -126,14 +124,12 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->where('r.visible = :visible')
                            ->setParameter('visible',1)
                            ->orderBy('r.name', 'ASC');
-                    },
-                  'read_only' => true,
-                  'disabled' => true,
+                    }
                   'empty_value' => '-- SERVICIO --',
                   'empty_data' => -1,
                 ))
             ->add('inspector','text',array('label' => 'Inspector'))
-            ->add('prevencionista', 'hidden', array('disabled' => true))
+            ->add('prevencionista', 'hidden', array())
             ->add('supervisor','entity', array(
                   'class' => 'BcTicCamIpalBundle:Supervisor',
                   'query_builder' => function(EntityRepository $er) {
@@ -151,9 +147,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->where('r.visible = :visible')
                            ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
-                    },
-                  'read_only' => true,
-                  'disabled' => true,
+                    }
                   'empty_value' => '-- SERVICIO --',
                   'empty_data' => -1,
                 ))
@@ -165,9 +159,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->where('r.visible = :visible')
                            ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
-                    },
-                  'read_only' => true,
-                  'disabled' => true,
+                    }
                   'empty_value' => '-- AREA --',
                   'empty_data' => -1,
                 ))
@@ -179,9 +171,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->where('r.visible = :visible')
                            ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
-                    },
-                  'read_only' => true,
-                  'disabled' => true,
+                    }
                   'empty_value' => '-- GERENCIA --',
                   'empty_data' => -1,
                 ))
@@ -193,9 +183,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                            ->where('r.visible = :visible')
                            ->setParameter('visible',1)
                            ->orderBy('r.nombre', 'ASC');
-                    },
-                  'read_only' => true,
-                  'disabled' => true,
+                    }
                    'empty_value' => '-- SUB GERENCIA --',
                    'empty_data' => -1,
                 ))
@@ -205,9 +193,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
                   'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('r')
                            ->orderBy('r.nombre', 'ASC');
-                    },
-                  'read_only' => true,
-                  'disabled' => true,
+                    }
                 ))
             ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('N/A' => 'N/A: No aplica','A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
             ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('N/A' => 'N/A: No aplica','B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))

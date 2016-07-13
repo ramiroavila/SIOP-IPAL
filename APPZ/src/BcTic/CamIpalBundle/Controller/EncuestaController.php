@@ -1824,7 +1824,8 @@ class EncuestaController extends Controller
             'format' => $format,
             'entity'      => $entity,
             'form'   => $editForm->createView(),
-            'type'  => $entity->getKey()
+            'type'  => $entity->getKey(),
+            'isAdmin' => $role
         );
     }
 
@@ -1947,7 +1948,8 @@ class EncuestaController extends Controller
             'format'      => $format,
             'entity'      => $entity,
             'form'   => $editForm->createView(),
-            'type'  => $entity->getKey()
+            'type'  => $entity->getKey(),
+            'isAdmin' => $role
         );
     }
 

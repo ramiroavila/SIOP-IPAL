@@ -86,7 +86,7 @@ class EncuestaElectricaEditType extends AbstractType
             ->add('respuesta139', 'hidden')
             ->add('respuesta1310', 'hidden')
             ->add('cierre','textarea', array('label' => 'Cierre'))
-            ->add('status_cierre','hidden')
+            ->add('statusCierre','hidden')
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
             ->add('uploadedFileCierre2','file', array('label' => 'Adjunto 2','required'  => false))
             ->add('uploadedFile1','file', array('label' => 'Adjunto 1','required'  => false,'disabled' => true))

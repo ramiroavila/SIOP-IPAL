@@ -117,7 +117,7 @@ class EncuestaColombiaGeneralEditType extends AbstractType
             ->add('respuesta139', new SurveyNoType(), array('label' => 'respuesta13.9_colombia_general','disabled' => true))
             ->add('respuesta1310', new SurveyNoType(), array('label' => 'respuesta13.10_colombia_general','disabled' => true))
             ->add('cierre','textarea', array('label' => 'Cierre'))
-            ->add('status_cierre','hidden')
+            ->add('statusCierre','hidden')
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
             ->add('uploadedFileCierre2','file', array('label' => 'Adjunto 2','required'  => false))
             ->add('uploadedFile1','file', array('label' => 'Adjunto 1','required'  => false,'disabled' => true))
@@ -243,7 +243,7 @@ class EncuestaColombiaGeneralEditType extends AbstractType
                 ))
                 ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('N/A' => 'N/A: No aplica','A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
                 ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('N/A' => 'N/A: No aplica','B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
-                
+
         ;
     }
 

@@ -75,7 +75,7 @@ class EncuestaLlvvEditType extends AbstractType
             ->add('respuesta112', new SurveyType(), array('label' => 'respuesta11.2_llvv','disabled' => true))
             ->add('respuesta113', new SurveyType(), array('label' => 'respuesta11.3_llvv','disabled' => true))
             ->add('cierre','textarea', array('label' => 'Cierre'))
-            ->add('status_cierre','hidden')
+            ->add('statusCierre','hidden')
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
             ->add('uploadedFileCierre2','file', array('label' => 'Adjunto 2','required'  => false))
             ->add('uploadedFile1','file', array('label' => 'Adjunto 1','required'  => false,'disabled' => true))

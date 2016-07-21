@@ -1531,7 +1531,7 @@ class EncuestaController extends Controller
                   break;
 
                 case 5: //COASIN
-                  $destinatario = 'siop-coasin@cam-la.com';
+                  $destinatario = 'siop-coasin-cam-la@bctic.net';
                   break;
 
                 case 6: //CONTRATISTAS

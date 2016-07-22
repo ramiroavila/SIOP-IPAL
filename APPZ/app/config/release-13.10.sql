@@ -1,0 +1,1 @@
+ALTER TABLE EncuestaProxy ADD COLUMN actividad VARCHAR(255) DEFAULT "N/A";

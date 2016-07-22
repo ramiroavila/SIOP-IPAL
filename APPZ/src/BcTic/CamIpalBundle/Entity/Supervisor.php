@@ -4,6 +4,7 @@ namespace BcTic\CamIpalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use BcTic\CamIpalBundle\Validator\Constraints as BcTicCamIpalBundleAssert;
 
 /**
  * Supervisor
@@ -21,6 +22,13 @@ class Supervisor
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @Assert\NotBlank()
+     * @ORM\Column(name="rut", type="string", length=10)
+     * @BcTicCamIpalBundleAssert\Rut()
+     */
+    private $rut;
 
     /**
      * @var string
@@ -110,7 +118,7 @@ class Supervisor
 
     public function __toString()
     {
-        $str =  $this->nombre;
+        $str =  strlen($this->getRut()) > 0 ? $this->rut.' '.$this->nombre : $this->nombre;
         if (!is_null($this->getEmpresas())) {
           foreach ($this->getEmpresas() as $empresa) {
             $str .= " - ".$empresa;
@@ -118,4 +126,36 @@ class Supervisor
         }
         return $str;
     }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->empresas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set rut
+     *
+     * @param string $rut
+     * @return Supervisor
+     */
+    public function setRut($rut)
+    {
+        $this->rut = $rut;
+
+        return $this;
+    }
+
+    /**
+     * Get rut
+     *
+     * @return string
+     */
+    public function getRut()
+    {
+        return $this->rut;
+    }
+
 }

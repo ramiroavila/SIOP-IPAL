@@ -1,0 +1,9 @@
+{% extends 'BcTicCamIpalBundle::index.html.twig' %}
+
+{% set title = 'Actividades' %}
+{% set data = {'nombre': 'Nombre', 'empresa': 'Empresa', 'visible': 'Visible'} %}
+{% set path_previous = path('actividades', { 'page' : page - 1 }) %}
+{% set path_next = path('actividades', { 'page' : page + 1 } ) %}
+{% set path_new = path('actividades_new') %}
+{% set path_key_edit = 'actividades_edit' %}
+{% set path_key_delete = 'actividades_delete' %}

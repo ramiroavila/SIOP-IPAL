@@ -26,7 +26,6 @@ class EncuestaElectricaEditType extends AbstractType
                     'disabled' => true
             ))
             ->add('hora','time', array ('label' => 'Hora'))
-            ->add('actividad','text', array('label' => 'Actividad', 'disabled' => true))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo', 'disabled' => true))
             ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados', 'disabled' => true))
             ->add('cttaSubcont')

@@ -72,6 +72,25 @@
           alert("ERROR: " + b);
         }
       });
+
+      //Actualizo la actividad
+      $.ajax({
+        dataType: "json",
+        type: "POST",
+        url: "{{ path('actividades_json') }}",
+        data: { empresa_id: $(this).val() } ,
+        success: function (dataSuccess) {
+          $('select#bctic_camipalbundle_encuesta_actividadDeEmpresa').empty().append('<option value="-1">{{ '-- SELECCIONE ACTIVIDAD --' | trans }}</option>');
+          $.each(dataSuccess, function() {
+            //En base a esto cargo las actividades:
+            $('select#bctic_camipalbundle_encuesta_actividadDeEmpresa').append('<option value="' + this.id + '">' + this.nombre + '</option>');
+          });
+        },
+        error: function (a,b,c) {
+          alert("ERROR: " + b);
+        }
+      });
+
     });
 
     $('#bctic_camipalbundle_encuesta_contrato').bind('change', function (){
@@ -87,7 +106,6 @@
             $('#bctic_camipalbundle_encuesta_servicio').val(dataSuccess.servicio);
             $('#bctic_camipalbundle_encuesta_gerencia').val(dataSuccess.gerencia);
             $('#bctic_camipalbundle_encuesta_subGerencia').val(dataSuccess.subgerencia);
-            //$('#bctic_camipalbundle_encuesta_empresa').val(dataSuccess.empresa);
             $('#bctic_camipalbundle_encuesta_mandante').val(dataSuccess.mandante);
             $('#bctic_camipalbundle_encuesta_pais').val(dataSuccess.pais);
             $('#bctic_camipalbundle_encuesta_cttaSubcont').attr('disabled',true);

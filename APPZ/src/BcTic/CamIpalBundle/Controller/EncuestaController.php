@@ -56,6 +56,8 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\HttpFoundation\Response as Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+use Doctrine\ORM\EntityRepository;
+
 /**
  * Encuesta controller.
  *
@@ -1604,6 +1606,34 @@ class EncuestaController extends Controller
             'method' => 'POST',
         ));
 
+        $role = false;
+
+        if ($role) {
+          //Do Nothing
+        } else {
+          $entities;
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+        }
+
+        $form->add('actividadDeEmpresa','entity', array(
+              'class' => 'BcTicCamIpalBundle:Actividad',
+              'label' => 'Actividad',
+              'query_builder' => function(EntityRepository $er) use ($paises) {
+                return $er->createQueryBuilder('a')
+                       ->join('a.empresa','e')
+                       ->join('e.pais','p')
+                       ->where('e.visible = :visible AND a.visible = :visible')
+                       ->andWhere('p.id IN (:paises)')
+                       ->setParameters(array('visible' => 1,'paises' => $paises))
+                       ->orderBy('a.nombre', 'ASC')
+                       ->addOrderBy('e.nombre', 'ASC');
+                }
+            ));
+
+
         $form->add('submit', 'submit', array('label' => 'Guardar'));
 
         return $form;
@@ -1843,6 +1873,33 @@ class EncuestaController extends Controller
             'action' => $this->generateUrl('encuestas_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
+
+        $role = false;
+
+        if ($role) {
+          //Do Nothing
+        } else {
+          $entities;
+          $paises = array();
+          foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+            $paises[$pais->getId()] = $pais->getId();
+          }
+        }        
+
+        $form->add('actividadDeEmpresa','entity', array(
+              'class' => 'BcTicCamIpalBundle:Actividad',
+              'label' => 'Actividad',
+              'query_builder' => function(EntityRepository $er) use ($paises) {
+                return $er->createQueryBuilder('a')
+                       ->join('a.empresa','e')
+                       ->join('e.pais','p')
+                       ->where('e.visible = :visible AND a.visible = :visible')
+                       ->andWhere('p.id IN (:paises)')
+                       ->setParameters(array('visible' => 1,'paises' => $paises))
+                       ->orderBy('a.nombre', 'ASC')
+                       ->addOrderBy('e.nombre', 'ASC');
+                }
+            ));
 
         $form->add('submit', 'submit', array('label' => 'Guardar'));
 

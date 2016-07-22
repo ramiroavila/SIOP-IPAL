@@ -27,7 +27,13 @@
           <tr>
             <td style="width: 25%;">{{ 'Fecha' | trans }}: {{ entity.fecha | date("d/m/Y") }}</td>
             <td style="width: 25%;">{{ 'Hora' | trans }}: {{ entity.hora | date("h:i") }}</td>
-            <td colspan="2">{{ 'Actividad' | trans }}: {{ entity.actividad | capitalize  }}</td>
+            <td colspan="2">{{ 'Actividad' | trans }}:
+              {% if entity.actividadDeEmpresa is defined %}
+                {{ entity.actividadDeEmpresa | capitalize  }}
+              {% else %}
+                {{ entity.actividad | capitalize  }}
+              {% endif %}
+            </td>
           </tr>
           <tr>
             <td colspan="3">{{ 'Lugar de Trabajo' | trans }}: {{ entity.lugarDeTrabajo | capitalize }}</th>

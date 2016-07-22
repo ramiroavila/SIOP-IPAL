@@ -26,7 +26,6 @@ class EncuestaColombiaGeneralType extends AbstractType
                     'disabled' => true
             ))
             ->add('hora','time', array ('label' => 'Hora'))
-            ->add('actividad','text', array('label' => 'Actividad'))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo'))
             ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados'))
             ->add('cttaSubcont')

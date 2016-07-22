@@ -152,6 +152,25 @@
           alert("ERROR: " + b);
         }
       });
+
+      //Actualizo la actividad
+      $.ajax({
+        dataType: "json",
+        type: "POST",
+        url: "{{ path('actividades_json') }}",
+        data: { empresa_id: $(this).val() } ,
+        success: function (dataSuccess) {
+          $('select#bctic_camipalbundle_encuesta_actividadDeEmpresa').empty().append('<option value="-1">{{ '-- SELECCIONE ACTIVIDAD --' | trans }}</option>');
+          $.each(dataSuccess, function() {
+            //En base a esto cargo las actividades:
+            $('select#bctic_camipalbundle_encuesta_actividadDeEmpresa').append('<option value="' + this.id + '">' + this.nombre + '</option>');
+          });
+        },
+        error: function (a,b,c) {
+          alert("ERROR: " + b);
+        }
+      });
+
       }
     });
 
@@ -204,22 +223,39 @@
 
 
        //Elimino todos los objetos:
-           //Solo muestro las empresas según el pais y rol - si aplica - esto lo hace el controlador:
-           $.ajax({
-             dataType: "json",
-             type: "POST",
-             url: "{{ path('empresas_index_json') }}",
-             success: function (dataSuccess) {
-               $('select#bctic_camipalbundle_encuesta_empresa').empty().append('<option value="-1">{{ '-- SELECCIONE EMPRESA --' | trans }}</option>');
-               $.each(dataSuccess, function() {
-               //En base a esto cargo las empresas:
-               $('select#bctic_camipalbundle_encuesta_empresa').append('<option value="' + this.id + '">' + this.nombre + '</option>');
-             });
-            },
-            error: function (a,b,c) {
-              alert("ERROR: " + b);
-            }
-           });
+       //Solo muestro las empresas según el pais y rol - si aplica - esto lo hace el controlador:
+       $.ajax({
+         dataType: "json",
+         type: "POST",
+         url: "{{ path('empresas_index_json') }}",
+         success: function (dataSuccess) {
+           $('select#bctic_camipalbundle_encuesta_empresa').empty().append('<option value="-1">{{ '-- SELECCIONE EMPRESA --' | trans }}</option>');
+           $.each(dataSuccess, function() {
+           //En base a esto cargo las empresas:
+           $('select#bctic_camipalbundle_encuesta_empresa').append('<option value="' + this.id + '">' + this.nombre + '</option>');
+         });
+        },
+        error: function (a,b,c) {
+          alert("ERROR: " + b);
+        }
+       });
+
+       //Solo muestro las actividades según el pais y rol - si aplica - esto lo hace el controlador:
+       $.ajax({
+         dataType: "json",
+         type: "POST",
+         url: "{{ path('actividades_index_json') }}",
+         success: function (dataSuccess) {
+           $('select#bctic_camipalbundle_encuesta_actividadDeEmpresa').empty().append('<option value="-1">{{ '-- SELECCIONE ACTIVIDAD --' | trans }}</option>');
+           $.each(dataSuccess, function() {
+           //En base a esto cargo las actividades:
+           $('select#bctic_camipalbundle_encuesta_actividadDeEmpresa').append('<option value="' + this.id + '">' + this.nombre + '</option>');
+         });
+        },
+        error: function (a,b,c) {
+          alert("ERROR: " + b);
+        }
+       });
 
       //COMO ES UN OBJETO NUEVO EL ESTADO DE CIERRE NO APLICA:
       $('.status_cierre').hide();

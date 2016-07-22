@@ -58,10 +58,16 @@ abstract class Encuesta
      * @var string
      *
      * @ORM\Column(name="actividad", type="string", length=255)
-     * @Assert\NotBlank(message = "Este valor no puede estar vacío.")
-     * @Assert\Length(min = "5", minMessage = "Este valor debe ser al menos de 5 letras.")
+     *
+     *
      */
-    private $actividad;
+    private $actividad = "";
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Actividad")
+     * @ORM\JoinColumn(name="actividad_id", referencedColumnName="id")
+     */
+    private $actividadDeEmpresa;
 
     /**
      * @var string
@@ -1033,6 +1039,29 @@ abstract class Encuesta
     public function getActividad()
     {
         return $this->actividad;
+    }
+
+    /**
+     * Set actividad
+     *
+     * @param string $actividad
+     * @return Encuesta
+     */
+    public function setActividadDeEmpresa($actividadDeEmpresa)
+    {
+        $this->actividadDeEmpresa = $actividadDeEmpresa;
+
+        return $this;
+    }
+
+    /**
+     * Get actividad
+     *
+     * @return string
+     */
+    public function getActividadDeEmpresa()
+    {
+        return $this->actividadDeEmpresa;
     }
 
     /**

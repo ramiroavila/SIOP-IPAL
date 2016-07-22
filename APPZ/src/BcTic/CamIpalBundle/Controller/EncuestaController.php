@@ -610,6 +610,8 @@ class EncuestaController extends Controller
                           'respuestas_0' => $entity['respuestas_0'],
                           'respuestas_1' => $entity['respuestas_1'],
                           'respuestas_2' => $entity['respuestas_2'],
+                          'actividad' => $entity['actividad'],
+                          'cierre_texto' => $entity['cierre_texto'],
                         );
       }
 

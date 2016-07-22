@@ -46,7 +46,7 @@
                       <span class="glyphicon glyphicon-pencil"></span> {{ 'Editar' | trans }}
                     </button>
                   </a>
-                  
+
                   <a href="{{ path(path_key_delete, { 'id': entity.id, 'token': csrf.generateCsrfToken('entity' ~ entity.id) }) }}" class="confirm">
                     <button type="button" class="btn btn-default btn-xs">
                       <span class="glyphicon glyphicon-trash"></span> {{ 'Borrar' | trans }}
@@ -77,10 +77,10 @@
                       <span class="glyphicon glyphicon-plus"></span> {{ 'Agregar' | trans }}
                     </button>
     </a>
-    </p>   
+    </p>
 
     {% endblock %}
-    
+
     {% block js %}
       {{ parent() }}
       <script type="text/javascript">

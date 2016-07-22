@@ -16,6 +16,7 @@ class SupervisorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('rut')
             ->add('nombre')
             ->add('empresas','entity', array(
                   'class' => 'BcTicCamIpalBundle:Empresa',

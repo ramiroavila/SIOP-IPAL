@@ -36,8 +36,9 @@
             </td>
           </tr>
           <tr>
-            <td colspan="3">{{ 'Lugar de Trabajo' | trans }}: {{ entity.lugarDeTrabajo | capitalize }}</th>
+            <td colspan="2">{{ 'Lugar de Trabajo' | trans }}: {{ entity.lugarDeTrabajo | capitalize }}</th>
             <td style="width: 25%;">{{ 'Nº de empleados' | trans }}: {{ entity.numDeEmpleados }}</th>
+            <td style="width: 25%;">{{ 'Empleados' | trans }}: {% for empleado in entity.empleados %}{{-empleado-}}&nbsp;{% endfor %}</th>
           </tr>
           <tr>
             <td colspan="2" style="width: 50%;">{{ 'Nombre Inspector' | trans }}: {{ entity.inspector }}</td>

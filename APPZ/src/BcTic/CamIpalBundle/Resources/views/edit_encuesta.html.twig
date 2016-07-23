@@ -63,12 +63,13 @@
 
         <div class="row">
           <div class="col-sm-6">
-            {{ form_row(form.numDeEmpleados) }}
+            {{ form_row(form.pais) }}
           </div>
           <div class="col-sm-6">
             {{ form_row(form.subGerencia) }}
           </div>
         </div>
+
         <div class="row">
           <div class="col-sm-6">
             {{ form_row(form.cttaSubcont) }}
@@ -101,9 +102,18 @@
             {{ form_row(form.prevencionista) }}
           </div>
           <div class="col-sm-6">
-            {{ form_row(form.pais) }}
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            {{ form_row(form.numDeEmpleados) }}
+          </div>
+          <div class="col-sm-6" id="empleados">
+               {{ form_widget(form.empleados) }}
+          </div>
+        </div>
+
 
           <div class="row">
             <div class="col-sm-6">
@@ -269,6 +279,22 @@
         $('#bctic_camipalbundle_encuesta_next_2_1').bind('click', function (e) {
           $('.nav-tabs a.hidden-xs[href="#adjunto"]').tab('show') // Select tab by name
         });
+
+        function refreshEmpleados() {
+           $.each($('#empleados input'), function(index){
+             if ( (index + 1) <= $('#bctic_camipalbundle_encuesta_numDeEmpleados').val())  {
+               $('#bctic_camipalbundle_encuesta_empleados_empleado_' + (index + 1) ).show();
+               $('label[for="bctic_camipalbundle_encuesta_empleados_empleado_' + (index + 1) + '"]').show();
+             } else {
+               $('#bctic_camipalbundle_encuesta_empleados_empleado_' + (index + 1) ).hide();
+               $('label[for="bctic_camipalbundle_encuesta_empleados_empleado_' + (index + 1) + '"]').hide();
+             }
+           });
+        }
+
+        refreshEmpleados();
+
+        $('#bctic_camipalbundle_encuesta_numDeEmpleados').bind('change', refreshEmpleados);
 
       </script>
     {% endblock %}

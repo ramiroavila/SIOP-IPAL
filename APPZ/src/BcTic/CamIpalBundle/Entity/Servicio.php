@@ -139,4 +139,37 @@ class Servicio
         $this->contratos = new \Doctrine\Common\Collections\ArrayCollection();
     } 
         
+
+    /**
+     * Add contratos
+     *
+     * @param \BcTic\CamIpalBundle\Entity\Contrato $contratos
+     * @return Servicio
+     */
+    public function addContrato(\BcTic\CamIpalBundle\Entity\Contrato $contratos)
+    {
+        $this->contratos[] = $contratos;
+
+        return $this;
+    }
+
+    /**
+     * Remove contratos
+     *
+     * @param \BcTic\CamIpalBundle\Entity\Contrato $contratos
+     */
+    public function removeContrato(\BcTic\CamIpalBundle\Entity\Contrato $contratos)
+    {
+        $this->contratos->removeElement($contratos);
+    }
+
+    /**
+     * Get contratos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getContratos()
+    {
+        return $this->contratos;
+    }
 }

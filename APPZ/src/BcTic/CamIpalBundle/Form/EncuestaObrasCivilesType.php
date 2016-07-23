@@ -33,6 +33,7 @@ class EncuestaObrasCivilesType extends AbstractType
                     'format' => 'ddMMyyyy',
                     'disabled' => true
             ))
+            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS')))
             ->add('hora','time', array ('label' => 'Hora'))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo'))
             ->add('numDeEmpleados', 'choice', array('label'  => 'Nº de empleados', 'choices' => $numTrabajadores))

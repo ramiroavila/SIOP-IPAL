@@ -58,6 +58,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Doctrine\ORM\EntityRepository;
 
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use BcTic\CamIpalBundle\Form\Type\RutType;
+
 /**
  * Encuesta controller.
  *
@@ -1614,6 +1617,13 @@ class EncuestaController extends Controller
         $entity->setFecha(new \DateTime());
         $entity->setHora(new \DateTime());
 
+        //El objeto empleados es siempre 10 - en la vista se muestra o esconde según numDeEmpleados
+        $empleados = array();
+        for($i = 1; $i <= 10; $i++) {
+          $empleados['empleado_'.$i] = "";
+        }
+        $entity->setEmpleados($empleados);
+
         $form = $this->createForm($formType, $entity, array(
             'action' => $this->generateUrl('encuestas_create_'.$entity->getKey()),
             'method' => 'POST',
@@ -1645,6 +1655,16 @@ class EncuestaController extends Controller
                        ->addOrderBy('e.nombre', 'ASC');
                 }
             ));
+
+        //Completo el número de trabajadores:
+        $form->add('empleados', CollectionType::class, array(
+            'entry_type'   => RutType::class,
+            'allow_add'    => true,
+            'label' => 'Rut empleados',
+            'entry_options'  => array(
+                'attr'      => array('label' => 'Rut')
+            ),
+        ));
 
 
         $form->add('submit', 'submit', array('label' => 'Guardar'));
@@ -1913,6 +1933,15 @@ class EncuestaController extends Controller
                        ->addOrderBy('e.nombre', 'ASC');
                 }
             ));
+
+        //Completo el número de trabajadores:
+        $form->add('empleados', CollectionType::class, array(
+            'entry_type'   => RutType::class,
+            'label' => 'Rut empleados',
+            'entry_options'  => array(
+                'attr'      => array('label' => 'Rut')
+            ),
+        ));
 
         $form->add('submit', 'submit', array('label' => 'Guardar'));
 

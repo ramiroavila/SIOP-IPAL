@@ -386,6 +386,17 @@ class EncuestaController extends Controller
                           'respuestas_0' => $entity['respuestas_0'],
                           'respuestas_1' => $entity['respuestas_1'],
                           'respuestas_2' => $entity['respuestas_2'],
+                          'inspector' => $entity['inspector'],
+                          'prevencionista' => $entity['prevencionista'],
+                          'cierre' => $entity['cierre'],
+                          'contrato' => $entity['contrato'],
+                          'supervisor' => $entity['supervisor'],
+                          'lugar' => $entity['lugar'],
+                          'charla_operativa' => $entity['charla_operativa'],
+                          'tipo' => $entity['tipo'],
+                          'auto_inspeccion' => $entity['auto_inspeccion'],
+                          'cierre_texto' => $entity['cierre_texto'],
+                          'actividad'  => $entity['actividad']
                         );
       }
 
@@ -1886,7 +1897,7 @@ class EncuestaController extends Controller
           foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
             $paises[$pais->getId()] = $pais->getId();
           }
-        }        
+        }
 
         $form->add('actividadDeEmpresa','entity', array(
               'class' => 'BcTicCamIpalBundle:Actividad',

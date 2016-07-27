@@ -12,6 +12,14 @@ class RutEmptyValidator extends ConstraintValidator
 
       if (strlen($value) == 0) return; //Si no hay datos, cuela.
 
+      //Si no es expresión regular de RUT, cuela si tiene al menos 2 letras
+      if (preg_match('/[0-9]{7,8}-[0-9Kk]/',$value) == 0) {
+        if (preg_match('/[a-zA-Z]{2,100}/',$value) <> 0) return;
+      }
+      if (preg_match('/[0-9]{7,8}[0-9Kk]/',$value) == 0) {
+        if (preg_match('/[a-zA-Z]{2,100}/',$value) <> 0) return;
+      }
+
       if (strpos($value,'-') == false) {
         $this->context->buildViolation($constraint->message)
               ->setParameter('%string%', $value)

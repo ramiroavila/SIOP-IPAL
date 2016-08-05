@@ -381,4 +381,27 @@ class Usuario implements UserInterface, \Serializable {
     {
         return $this->grupos;
     }
+
+    /**
+     * Add pais
+     *
+     * @param \BcTic\CamIpalBundle\Entity\Pais $pais
+     * @return Usuario
+     */
+    public function addPai(\BcTic\CamIpalBundle\Entity\Pais $pais)
+    {
+        $this->pais[] = $pais;
+
+        return $this;
+    }
+
+    /**
+     * Remove pais
+     *
+     * @param \BcTic\CamIpalBundle\Entity\Pais $pais
+     */
+    public function removePai(\BcTic\CamIpalBundle\Entity\Pais $pais)
+    {
+        $this->pais->removeElement($pais);
+    }
 }

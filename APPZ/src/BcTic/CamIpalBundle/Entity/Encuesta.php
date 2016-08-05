@@ -8,6 +8,7 @@ use BcTic\CamIpalBundle\Validator\Constraints as BcTicAssert;
 
 use Symfony\Component\Validator\ExecutionContextInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use BcTic\CamIpalBundle\Validator\Constraints as BcTicCamIpalBundleAssert;
 
 /**
  * Encuesta
@@ -85,7 +86,30 @@ abstract class Encuesta
      * @Assert\NotBlank(message = "Este valor no puede estar vacío.")
      * @Assert\Range(min = "1", minMessage = "Este valor debe ser al menos 1.")
      */
-    private $numDeEmpleados;
+    private $numDeEmpleados = 3;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="empleados", type="array")
+     * @Assert\Collection(
+     *     fields = {
+     *         "empleado_1" = @BcTicCamIpalBundleAssert\RutEmpty(),
+     *         "empleado_2" = @BcTicCamIpalBundleAssert\RutEmpty(),
+     *         "empleado_3" = @BcTicCamIpalBundleAssert\RutEmpty(),
+     *         "empleado_4" = @BcTicCamIpalBundleAssert\RutEmpty(),
+     *         "empleado_5" = @BcTicCamIpalBundleAssert\RutEmpty(),
+     *         "empleado_6" = @BcTicCamIpalBundleAssert\RutEmpty(),
+     *         "empleado_7" = @BcTicCamIpalBundleAssert\RutEmpty(),
+     *         "empleado_8" = @BcTicCamIpalBundleAssert\RutEmpty(),
+     *         "empleado_9" = @BcTicCamIpalBundleAssert\RutEmpty(),
+     *         "empleado_10" = @BcTicCamIpalBundleAssert\RutEmpty()
+     *     },
+     *     allowMissingFields = true
+     * )
+     *
+     */
+    private $empleados = array();
 
     /**
      * @ORM\ManyToOne(targetEntity="Empresa")
@@ -120,6 +144,13 @@ abstract class Encuesta
      * @ORM\Column(name="charla_operativa", type="string", length=5)
      */
     private $charlaOperativa = 'N/A';
+
+    /**
+     *
+     *
+     * @ORM\Column(name="tipo_de_hallazgo", type="string", length=20)
+     */
+    private $tipoDeHallazgo = 'CONDUCTUALES';
 
     /**
      * @var integer
@@ -4066,5 +4097,51 @@ abstract class Encuesta
     public function getUnidadDeNegocio()
     {
         return $this->unidadDeNegocio;
+    }
+
+    /**
+     * Set empleados
+     *
+     * @param array $empleados
+     * @return Encuesta
+     */
+    public function setEmpleados($empleados)
+    {
+        $this->empleados = $empleados;
+
+        return $this;
+    }
+
+    /**
+     * Get empleados
+     *
+     * @return array
+     */
+    public function getEmpleados()
+    {
+        return $this->empleados;
+    }
+
+    /**
+     * Set tipoDeHallazgo
+     *
+     * @param string $tipoDeHallazgo
+     * @return Encuesta
+     */
+    public function setTipoDeHallazgo($tipoDeHallazgo)
+    {
+        $this->tipoDeHallazgo = $tipoDeHallazgo;
+
+        return $this;
+    }
+
+    /**
+     * Get tipoDeHallazgo
+     *
+     * @return string
+     */
+    public function getTipoDeHallazgo()
+    {
+        return $this->tipoDeHallazgo;
     }
 }

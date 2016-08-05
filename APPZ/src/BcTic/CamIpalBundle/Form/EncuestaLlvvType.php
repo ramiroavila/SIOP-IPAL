@@ -18,6 +18,14 @@ class EncuestaLlvvType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        $numTrabajadores = array();
+        $i = 1;
+        while ($i <= 10) {
+          $numTrabajadores[$i] = $i;
+          $i++;
+        }
+
         $builder
             ->add('fecha','date', array(
                     'label' => 'Fecha',
@@ -26,9 +34,10 @@ class EncuestaLlvvType extends AbstractType
                     'format' => 'ddMMyyyy',
                     'disabled' => true
             ))
+            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS')))
             ->add('hora','time', array ('label' => 'Hora'))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo'))
-            ->add('numDeEmpleados', 'integer', array('label'  => 'Nº de empleados'))
+            ->add('numDeEmpleados', 'choice', array('label'  => 'Nº de empleados', 'choices' => $numTrabajadores))
             ->add('cttaSubcont')
             ->add('observaciones','textarea', array('label' => 'Observaciones'))
             ->add('respuesta11', new SurveyType(), array('label' => 'respuesta1.1_llvv'))

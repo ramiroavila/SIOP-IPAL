@@ -1564,7 +1564,7 @@ class EncuestaController extends Controller
 
               $message = \Swift_Message::newInstance()
                 ->setSubject('IPAL #'.$entity->getId().' CON INCUMPLIMIENTOS 50')
-                ->setFrom(array('siop@siop.cam-la.com' => 'SIOP CAM LA'))
+                ->setFrom(array('info@bctic.net' => 'SIOP CAM LA'))
                 ->setTo($destinatario)
                 ->setCharset('UTF-8')
                 ->setContentType('text/html')

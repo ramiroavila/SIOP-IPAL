@@ -153,6 +153,13 @@ abstract class Encuesta
     private $tipoDeHallazgo = 'CONDUCTUALES';
 
     /**
+     *
+     *
+     * @ORM\Column(name="charla_grabada", type="string", length=5, options={"default" = "N/A"})
+     */
+    private $charlaGrabada = 'N/A';
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="respuesta_1_1", type="smallint")
@@ -4143,5 +4150,28 @@ abstract class Encuesta
     public function getTipoDeHallazgo()
     {
         return $this->tipoDeHallazgo;
+    }
+
+    /**
+     * Set charlaGrabada
+     *
+     * @param string $charlaGrabada
+     * @return Encuesta
+     */
+    public function setCharlaGrabada($charlaGrabada)
+    {
+        $this->charlaGrabada = $charlaGrabada;
+
+        return $this;
+    }
+
+    /**
+     * Get charlaGrabada
+     *
+     * @return string
+     */
+    public function getCharlaGrabada()
+    {
+        return $this->charlaGrabada;
     }
 }

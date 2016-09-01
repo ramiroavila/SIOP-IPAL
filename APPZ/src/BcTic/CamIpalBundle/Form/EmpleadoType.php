@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class SupervisorType extends AbstractType
+class EmpleadoType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -26,7 +26,7 @@ class SupervisorType extends AbstractType
                     'EMPLEADO' => 'Empleado'
                     )
                   )
-              )            
+              )
             ->add('empresas','entity', array(
                   'class' => 'BcTicCamIpalBundle:Empresa',
                   'query_builder' => function(EntityRepository $er) {
@@ -48,7 +48,7 @@ class SupervisorType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BcTic\CamIpalBundle\Entity\Supervisor'
+            'data_class' => 'BcTic\CamIpalBundle\Entity\Empleado'
         ));
     }
 

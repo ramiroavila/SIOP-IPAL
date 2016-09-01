@@ -1,0 +1,9 @@
+{% extends 'BcTicCamIpalBundle::index.html.twig' %}
+
+{% set title = 'Empleados' %}
+{% set data = {'rut': 'Rut / DNI', 'nombre': 'Nombre', 'cargo': 'Cargo', 'empresas': 'Empresas', 'pais': 'País'} %}
+{% set path_previous = path('empleados', { 'page' : page - 1 }) %}
+{% set path_next = path('empleados', { 'page' : page + 1 } ) %}
+{% set path_new = path('empleados_new') %}
+{% set path_key_edit = 'empleados_edit' %}
+{% set path_key_delete = 'empleados_delete' %}

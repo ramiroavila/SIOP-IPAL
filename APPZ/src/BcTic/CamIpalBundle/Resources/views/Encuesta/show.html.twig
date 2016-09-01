@@ -8,7 +8,7 @@
      </div>
      <div class="col-md-9">
        <h3 class="text-center">{{ 'INSPECCIÓN DE SEGURIDAD' | trans }}</h3>
-       <h5 class="text-center">{{ 'PREVENCIÓN DE RIESGOS CAM' | trans }}</h5>
+       <h5 class="text-center">{{ 'PREVENCIÓN DE RIESGOS CAM' | trans }}&nbsp;-&nbsp;Encuesta&nbsp;{{ entity.key | trans }}</h5>
      </div>
   </div>
   <br/>
@@ -56,6 +56,11 @@
             <td colspan="2" style="width: 50%;">{{ 'Auto inspección' | trans }}: {{ entity.autoInspeccion }}</td>
             <td colspan="2" style="width: 50%;">{{ 'Charla operativa' | trans }}: {{ entity.charlaOperativa }}</td>
           </tr>
+          <tr>
+            <td colspan="2" style="width: 50%;"></td>
+            <td colspan="2" style="width: 50%;">{{ 'Charla grabada' | trans }}: {{ entity.charlaGrabada }}</td>
+          </tr>
+
         </tbody>
       </table>
     </div>

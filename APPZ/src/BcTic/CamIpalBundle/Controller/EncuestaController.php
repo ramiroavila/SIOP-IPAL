@@ -454,6 +454,7 @@ class EncuestaController extends Controller
                           'respuestas_2' => $entity['respuestas_2'],
                           'auto_inspeccion' => $entity['auto_inspeccion'],
                           'charla_operativa' => $entity['charla_operativa'],
+                          'charla_grabada' => $entity['charla_grabada'],
                           'supervisor' => $entity['supervisor'],
                           'tipo' => $entity['tipo'],
                           'incumplimientos_5' => $entity['incumplimientos_5'],

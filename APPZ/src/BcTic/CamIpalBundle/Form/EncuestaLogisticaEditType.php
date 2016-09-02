@@ -4,7 +4,6 @@ namespace BcTic\CamIpalBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use BcTic\CamIpalBundle\Form\Type\SurveyType;
-use BcTic\CamIpalBundle\Form\Type\SurveyNoType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -33,7 +32,7 @@ class EncuestaLogisticaEditType extends AbstractType
                     'format' => 'ddMMyyyy',
                     'disabled' => true,
             ))
-            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS')))
+            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS','N/A')))
             ->add('hora','time', array ('label' => 'Hora', 'disabled' => true))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo', 'disabled' => true))
             ->add('numDeEmpleados', 'choice', array('label'  => 'Nº de empleados', 'choices' => $numTrabajadores, 'disabled' => true))
@@ -79,7 +78,7 @@ class EncuestaLogisticaEditType extends AbstractType
             ->add('respuesta102', new SurveyType(), array('label' => 'respuesta10.2_logistica', 'disabled' => true))
             ->add('respuesta103', new SurveyType(), array('label' => 'respuesta10.3_logistica', 'disabled' => true))
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_logistica', 'disabled' => true))
-            ->add('respuesta121', new SurveyNoType(), array('label' => 'respuesta12.1_logistica', 'disabled' => true))
+            ->add('respuesta121', new SurveyType(), array('label' => 'respuesta12.1_logistica', 'disabled' => true))
             ->add('respuesta131', new SurveyType(), array('label' => 'respuesta13.1_logistica','disabled' => true))
             ->add('respuesta132', new SurveyType(), array('label' => 'respuesta13.2_logistica','disabled' => true))
             ->add('respuesta133', new SurveyType(), array('label' => 'respuesta13.3_logistica','disabled' => true))

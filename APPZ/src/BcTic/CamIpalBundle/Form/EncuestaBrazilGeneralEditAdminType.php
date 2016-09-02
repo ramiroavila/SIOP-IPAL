@@ -4,7 +4,6 @@ namespace BcTic\CamIpalBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use BcTic\CamIpalBundle\Form\Type\SurveyType;
-use BcTic\CamIpalBundle\Form\Type\SurveyNoType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -32,7 +31,7 @@ class EncuestaBrazilGeneralEditAdminType extends AbstractType
                     'widget' => 'choice',
                     'format' => 'ddMMyyyy'
             ))
-            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS')))
+            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS','N/A')))
             ->add('hora','time', array ('label' => 'Hora'))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo'))
             ->add('numDeEmpleados', 'choice', array('label'  => 'Nº de empleados', 'choices' => $numTrabajadores))

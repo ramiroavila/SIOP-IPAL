@@ -4,7 +4,6 @@ namespace BcTic\CamIpalBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use BcTic\CamIpalBundle\Form\Type\SurveyType;
-use BcTic\CamIpalBundle\Form\Type\SurveyNoType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -33,7 +32,7 @@ class EncuestaBrazilGeneralEditType extends AbstractType
                     'format' => 'ddMMyyyy',
                     'disabled' => true
             ))
-            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS')))
+            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS','N/A')))
             ->add('hora','time', array ('label' => 'Hora', 'disabled' => true))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo', 'disabled' => true))
             ->add('numDeEmpleados', 'choice', array('label'  => 'Nº de empleados', 'choices' => $numTrabajadores, 'disabled' => true))
@@ -209,7 +208,7 @@ class EncuestaBrazilGeneralEditType extends AbstractType
                 ))
               ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('N/A' => 'N/A: No aplica','A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
               ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('N/A' => 'N/A: No aplica','B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
-              ->add('charlaGrabada','hidden')              
+              ->add('charlaGrabada','hidden')
         ;
     }
 

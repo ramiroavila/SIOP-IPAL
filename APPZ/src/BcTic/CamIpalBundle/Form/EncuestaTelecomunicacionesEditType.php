@@ -4,7 +4,6 @@ namespace BcTic\CamIpalBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use BcTic\CamIpalBundle\Form\Type\SurveyType;
-use BcTic\CamIpalBundle\Form\Type\SurveyNoType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -33,7 +32,7 @@ class EncuestaTelecomunicacionesEditType extends AbstractType
                     'format' => 'ddMMyyyy',
                     'disabled' => true,
             ))
-            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS')))
+            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS','N/A')))
             ->add('hora','time', array ('label' => 'Hora', 'disabled' => true))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo','disabled' => true))
             ->add('numDeEmpleados', 'choice', array('label'  => 'Nº de empleados', 'choices' => $numTrabajadores, 'disabled' => true))
@@ -80,7 +79,7 @@ class EncuestaTelecomunicacionesEditType extends AbstractType
             ->add('respuesta103', new SurveyType(), array('label' => 'respuesta10.3_telecomunicaciones','disabled' => true))
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_telecomunicaciones','disabled' => true))
             ->add('respuesta112', new SurveyType(), array('label' => 'respuesta11.2_telecomunicaciones','disabled' => true))
-            ->add('respuesta121', new SurveyNoType(), array('label' => 'respuesta12.1_telecomunicaciones','disabled' => true))
+            ->add('respuesta121', new SurveyType(), array('label' => 'respuesta12.1_telecomunicaciones','disabled' => true))
             ->add('respuesta131', new SurveyType(), array('label' => 'respuesta13.1_telecomunicaciones','disabled' => true))
             ->add('respuesta132', new SurveyType(), array('label' => 'respuesta13.2_telecomunicaciones','disabled' => true))
             ->add('respuesta133', new SurveyType(), array('label' => 'respuesta13.3_telecomunicaciones','disabled' => true))
@@ -216,9 +215,9 @@ class EncuestaTelecomunicacionesEditType extends AbstractType
                     'read_only' => true,
                     'disabled' => true,
                 ))
-            ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('N/A' => 'N/A: No aplica','A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
-            ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('N/A' => 'N/A: No aplica','B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
-            ->add('charlaGrabada','choice', array('label' => 'Charla grabada', 'choices' => array('N/A' => 'N/A: No aplica','SI' => 'Sí', 'NO' => 'No' )))            
+            ->add('autoInspeccion','hidden')
+            ->add('charlaOperativa','hidden')
+            ->add('charlaGrabada','choice', array('label' => 'Charla grabada', 'choices' => array('N/A' => 'N/A: No aplica','SI' => 'Sí', 'NO' => 'No' )))
 
         ;
     }

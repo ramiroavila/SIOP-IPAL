@@ -253,7 +253,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="tipo_de_hallazgo">
             <div class="col-sm-6">
               {{ form_row(form.tipoDeHallazgo) }}
             </div>
@@ -318,6 +318,27 @@
 
         $('#bctic_camipalbundle_encuesta_numDeEmpleados').bind('change', refreshEmpleados);
 
+        function refreshHallazgo() {
+
+           var ocultar = true;
+
+           $.each($('#ingreso select'), function(index){
+              if ( $(this).val() == 1 ) ocultar = false;
+           });
+
+           if (ocultar) {
+             $("#tipo_de_hallazgo").hide();
+           } else {
+             $("#tipo_de_hallazgo").show();
+             $("#tipo_de_hallazgo select").val(2);
+           }
+
+        }
+
+        $('#ingreso select').bind('change', refreshHallazgo);
+
+        refreshHallazgo()
+
         //Bind:
         $.each($('#empleados input'), function(index){
 
@@ -356,6 +377,8 @@
           });
 
        });
+
+
 
 
       </script>

@@ -4,7 +4,6 @@ namespace BcTic\CamIpalBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use BcTic\CamIpalBundle\Form\Type\SurveyType;
-use BcTic\CamIpalBundle\Form\Type\SurveyNoType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -81,7 +80,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
             ->add('respuesta102', new SurveyType(), array('label' => 'respuesta10.2_electrica'))
             ->add('respuesta103', new SurveyType(), array('label' => 'respuesta10.3_electrica'))
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_electrica'))
-            ->add('respuesta121', new SurveyNoType(), array('label' => 'respuesta12.1_electrica'))
+            ->add('respuesta121', new SurveyType(), array('label' => 'respuesta12.1_electrica'))
             ->add('respuesta131', new SurveyType(), array('label' => 'respuesta13.1_electrica'))
             ->add('respuesta132', new SurveyType(), array('label' => 'respuesta13.2_electrica'))
             ->add('respuesta133', new SurveyType(), array('label' => 'respuesta13.3_electrica'))

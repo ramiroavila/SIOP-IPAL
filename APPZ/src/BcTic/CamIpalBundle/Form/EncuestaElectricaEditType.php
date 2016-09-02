@@ -4,7 +4,6 @@ namespace BcTic\CamIpalBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use BcTic\CamIpalBundle\Form\Type\SurveyType;
-use BcTic\CamIpalBundle\Form\Type\SurveyNoType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -82,7 +81,7 @@ class EncuestaElectricaEditType extends AbstractType
             ->add('respuesta102', new SurveyType(), array('label' => 'respuesta10.2_electrica','disabled' => true))
             ->add('respuesta103', new SurveyType(), array('label' => 'respuesta10.3_electrica','disabled' => true))
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_electrica','disabled' => true))
-            ->add('respuesta121', new SurveyNoType(), array('label' => 'respuesta12.1_electrica','disabled' => true))
+            ->add('respuesta121', new SurveyType(), array('label' => 'respuesta12.1_electrica','disabled' => true))
             ->add('respuesta131', new SurveyType(), array('label' => 'respuesta13.1_electrica','disabled' => true))
             ->add('respuesta132', new SurveyType(), array('label' => 'respuesta13.2_electrica','disabled' => true))
             ->add('respuesta133', new SurveyType(), array('label' => 'respuesta13.3_electrica','disabled' => true))
@@ -220,7 +219,7 @@ class EncuestaElectricaEditType extends AbstractType
                 ))
             ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('N/A' => 'N/A: No aplica','A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
             ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('N/A' => 'N/A: No aplica','B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
-            ->add('charlaGrabada','choice', array('label' => 'Charla grabada', 'choices' => array('N/A' => 'N/A: No aplica','SI' => 'Sí', 'NO' => 'No' )))            
+            ->add('charlaGrabada','choice', array('label' => 'Charla grabada', 'choices' => array('N/A' => 'N/A: No aplica','SI' => 'Sí', 'NO' => 'No' )))
 
         ;
     }

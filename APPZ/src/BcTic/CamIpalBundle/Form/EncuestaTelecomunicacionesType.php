@@ -4,7 +4,6 @@ namespace BcTic\CamIpalBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use BcTic\CamIpalBundle\Form\Type\SurveyType;
-use BcTic\CamIpalBundle\Form\Type\SurveyNoType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -81,7 +80,7 @@ class EncuestaTelecomunicacionesType extends AbstractType
             ->add('respuesta103', new SurveyType(), array('label' => 'respuesta10.3_telecomunicaciones'))
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_telecomunicaciones'))
             ->add('respuesta112', new SurveyType(), array('label' => 'respuesta11.2_telecomunicaciones'))
-            ->add('respuesta121', new SurveyNoType(), array('label' => 'respuesta12.1_telecomunicaciones'))
+            ->add('respuesta121', new SurveyType(), array('label' => 'respuesta12.1_telecomunicaciones'))
             ->add('respuesta131', new SurveyType(), array('label' => 'respuesta13.1_telecomunicaciones'))
             ->add('respuesta132', new SurveyType(), array('label' => 'respuesta13.2_telecomunicaciones'))
             ->add('respuesta133', new SurveyType(), array('label' => 'respuesta13.3_telecomunicaciones'))

@@ -360,13 +360,17 @@ class EncuestaController extends Controller
     /**
      *
      * @Route("/encuesta_reporte_todos_los_datos_csv/data.csv", name="encuesta_reporte_todos_los_datos_csv")
-     * @Method("POST")
      * @Template()
      */
     public function reporteEncuestaTodosLosDatosCsvAction(Request $request)
     {
 
-      $ids = json_decode(file_get_contents($request->get('ids')),true);
+      $ids = json_decode(
+        file_get_contents(
+         //$request->get('ids')
+         "../app/Resources/json/0bf252baa5e2d9e67bf8abc6fa5ef7b1-data.json"
+        )
+      ,true);
 
       $em = $this->getDoctrine()->getManager();
 
@@ -378,6 +382,7 @@ class EncuestaController extends Controller
       $data = array();
       foreach($stmt->fetchAll() as $entity) {
         $data[] = array(
+                          'id' => $entity['id'],
                           'fecha' => $entity['fecha'],
                           'gerencia' => $entity['gerencia'],
                           'subgerencia' => $entity['subgerencia'],
@@ -399,7 +404,11 @@ class EncuestaController extends Controller
                           'tipo' => $entity['tipo'],
                           'auto_inspeccion' => $entity['auto_inspeccion'],
                           'cierre_texto' => $entity['cierre_texto'],
-                          'actividad'  => $entity['actividad']
+                          'actividad'  => $entity['actividad'],
+                          'observaciones' => $entity['observaciones'],
+                          'tipo_de_hallazgo' => $entity['tipo_de_hallazgo'],
+                          'empleados' => $entity['empleados'],
+                          'incumplimientos' => json_decode($entity['incumplimientos_json'],true)
                         );
       }
 
@@ -413,7 +422,8 @@ class EncuestaController extends Controller
       $file = 'TODOS-LOS-DATOS-'.date_format(date_create(),'Y-m-d-his');
       $fs->dumpFile("uploads/".$file.".csv", $content);
 
-      return new JsonResponse(array('file' => $file));
+      //return new JsonResponse(array('file' => $file));
+      return new Response($content);
     }
 
     /**

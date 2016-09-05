@@ -360,6 +360,7 @@ class EncuestaController extends Controller
     /**
      *
      * @Route("/encuesta_reporte_todos_los_datos_csv/data.csv", name="encuesta_reporte_todos_los_datos_csv")
+     * @Method("POST")
      * @Template()
      */
     public function reporteEncuestaTodosLosDatosCsvAction(Request $request)
@@ -367,8 +368,7 @@ class EncuestaController extends Controller
 
       $ids = json_decode(
         file_get_contents(
-         //$request->get('ids')
-         "../app/Resources/json/0bf252baa5e2d9e67bf8abc6fa5ef7b1-data.json"
+         $request->get('ids')
         )
       ,true);
 
@@ -422,8 +422,8 @@ class EncuestaController extends Controller
       $file = 'TODOS-LOS-DATOS-'.date_format(date_create(),'Y-m-d-his');
       $fs->dumpFile("uploads/".$file.".csv", $content);
 
-      //return new JsonResponse(array('file' => $file));
-      return new Response($content);
+      return new JsonResponse(array('file' => $file));
+
     }
 
     /**

@@ -59,7 +59,7 @@ class Supervisor
     /**
      *
      *
-     * @ORM\Column(name="cargo", type="string", length=25, options={"default" = "SUPERVISOR"})
+     * @ORM\Column(name="cargo", type="string", length=100, options={"default" = "SUPERVISOR"})
      */
     private $cargo = 'SUPERVISOR';
 

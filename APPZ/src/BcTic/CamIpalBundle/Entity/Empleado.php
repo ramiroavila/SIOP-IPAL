@@ -59,7 +59,7 @@ class Empleado
     /**
      *
      *
-     * @ORM\Column(name="cargo", type="string", length=25, options={"default" = "EMPLEADO"})
+     * @ORM\Column(name="cargo", type="string", length=100, options={"default" = "EMPLEADO"})
      */
     private $cargo = 'EMPLEADO';
 

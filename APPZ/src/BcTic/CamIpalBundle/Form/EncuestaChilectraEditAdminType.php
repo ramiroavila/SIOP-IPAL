@@ -5,6 +5,7 @@ namespace BcTic\CamIpalBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use BcTic\CamIpalBundle\Form\Type\SurveyMultipleType;
 use BcTic\CamIpalBundle\Form\Type\SurveyType;
+use BcTic\CamIpalBundle\Form\Type\SurveyNoType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;

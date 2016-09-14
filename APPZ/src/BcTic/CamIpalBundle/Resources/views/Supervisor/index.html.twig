@@ -1,7 +1,7 @@
 {% extends 'BcTicCamIpalBundle::index.html.twig' %}
 
 {% set title = 'Supervisores' %}
-{% set data = {'rut': 'Rut', 'nombre': 'Nombre', 'empresas': 'Empresas'} %}
+{% set data = {'rut': 'Rut / DNI', 'nombre': 'Nombre', 'cargo': 'Cargo', 'empresas': 'Empresas', 'pais': 'País'} %}
 {% set path_previous = path('supervisores', { 'page' : page - 1 }) %}
 {% set path_next = path('supervisores', { 'page' : page + 1 } ) %}
 {% set path_new = path('supervisores_new') %}

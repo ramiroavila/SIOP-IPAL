@@ -34,7 +34,7 @@ class EncuestaBrazilInternoEditType extends AbstractType
                     'format' => 'ddMMyyyy',
                     'disabled' => true
             ))
-            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS')))
+            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS','N/A')))
             ->add('hora','time', array ('label' => 'Hora', 'disabled' => true))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo', 'disabled' => true))
             ->add('numDeEmpleados', 'choice', array('label'  => 'Nº de empleados', 'choices' => $numTrabajadores, 'disabled' => true))

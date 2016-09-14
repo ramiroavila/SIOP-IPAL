@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class SupervisorType extends AbstractType
+class EmpleadoType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -16,7 +16,7 @@ class SupervisorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('rut','text', array('label' => 'RUT/DNI/CUI'))
+            ->add('rut')
             ->add('nombre', 'text', array('label' => 'Nombre completo'))
             ->add('cargo','choice', array(
                 'label' => 'Cargo',
@@ -48,7 +48,7 @@ class SupervisorType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BcTic\CamIpalBundle\Entity\Supervisor'
+            'data_class' => 'BcTic\CamIpalBundle\Entity\Empleado'
         ));
     }
 

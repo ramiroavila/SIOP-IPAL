@@ -253,7 +253,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="tipo_de_hallazgo">
             <div class="col-sm-6">
               {{ form_row(form.tipoDeHallazgo) }}
             </div>
@@ -310,12 +310,76 @@
                $('#bctic_camipalbundle_encuesta_empleados_empleado_' + (index + 1) ).hide();
                $('label[for="bctic_camipalbundle_encuesta_empleados_empleado_' + (index + 1) + '"]').hide();
              }
+
            });
         }
 
         refreshEmpleados();
 
         $('#bctic_camipalbundle_encuesta_numDeEmpleados').bind('change', refreshEmpleados);
+
+        function refreshHallazgo() {
+
+           var ocultar = true;
+
+           $.each($('#ingreso select'), function(index){
+              if ( $(this).val() == 1 ) ocultar = false;
+           });
+
+           if (ocultar) {
+             $("#tipo_de_hallazgo").hide();
+           } else {
+             $("#tipo_de_hallazgo").show();
+             $("#tipo_de_hallazgo select").val(2);
+           }
+
+        }
+
+        $('#ingreso select').bind('change', refreshHallazgo);
+
+        refreshHallazgo()
+
+        //Bind:
+        $.each($('#empleados input'), function(index){
+
+          $('#bctic_camipalbundle_encuesta_empleados_empleado_' + (index + 1)).autocomplete({
+
+             delay: 500,
+             minLength: 1,
+             source: function(request, response) {
+
+               $.ajax({
+                 dataType: "json",
+                 type: "POST",
+                 url: "{{ path('registros_empleados_json') }}",
+                 data: { query: request.term } ,
+                 success: function (dataSuccess) {
+                     response( $.map( dataSuccess , function( item ) {
+                       return {
+                         label: item.nombre,
+                         value: item.nombre
+                       }
+                     }));
+                   },
+                 error: function (a,b,c) {
+                   alert("ERROR: " + b);
+                   }
+               });
+
+             },
+             focus: function(event, ui) {
+
+             },
+             select: function(event, ui) {
+
+             }
+
+          });
+
+       });
+
+
+
 
       </script>
     {% endblock %}

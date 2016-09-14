@@ -7,12 +7,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 use BcTic\CamIpalBundle\Validator\Constraints as BcTicCamIpalBundleAssert;
 
 /**
- * Supervisor
+ * Empleado
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Supervisor
+class Empleado
 {
     /**
      * @var integer
@@ -41,9 +41,9 @@ class Supervisor
 
     /**
      *
-     * @ORM\ManyToMany(targetEntity="Empresa", inversedBy="supervisores")
-     * @ORM\JoinTable(name="SupervisorDeEmpresa",
-     *      joinColumns={@ORM\JoinColumn(name="supervisor_id", referencedColumnName="id")},
+     * @ORM\ManyToMany(targetEntity="Empresa", inversedBy="empleados")
+     * @ORM\JoinTable(name="EmpleadoDeEmpresa",
+     *      joinColumns={@ORM\JoinColumn(name="empleado_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="empresa_id", referencedColumnName="id")}
      *      )
      **/
@@ -59,9 +59,10 @@ class Supervisor
     /**
      *
      *
-     * @ORM\Column(name="cargo", type="string", length=100, options={"default" = "SUPERVISOR"})
+     * @ORM\Column(name="cargo", type="string", length=100, options={"default" = "EMPLEADO"})
      */
-    private $cargo = 'SUPERVISOR';
+    private $cargo = 'EMPLEADO';
+
 
     /**
      * Get id
@@ -77,7 +78,7 @@ class Supervisor
      * Set nombre
      *
      * @param string $nombre
-     * @return Supervisor
+     * @return Empleado
      */
     public function setNombre($nombre)
     {
@@ -132,11 +133,6 @@ class Supervisor
     public function __toString()
     {
         $str =  strlen($this->getRut()) > 0 ? $this->rut.' '.$this->nombre : $this->nombre;
-        if (!is_null($this->getEmpresas())) {
-          foreach ($this->getEmpresas() as $empresa) {
-            $str .= " - ".$empresa;
-          }
-        }
         return $str;
     }
 
@@ -152,7 +148,7 @@ class Supervisor
      * Set rut
      *
      * @param string $rut
-     * @return Supervisor
+     * @return Empleado
      */
     public function setRut($rut)
     {
@@ -176,7 +172,7 @@ class Supervisor
      * Set pais
      *
      * @param \BcTic\CamIpalBundle\Entity\Pais $pais
-     * @return Supervisor
+     * @return Empleado
      */
     public function setPais(\BcTic\CamIpalBundle\Entity\Pais $pais = null)
     {
@@ -199,7 +195,7 @@ class Supervisor
      * Set cargo
      *
      * @param string $cargo
-     * @return Supervisor
+     * @return Empleado
      */
     public function setCargo($cargo)
     {

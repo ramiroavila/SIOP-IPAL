@@ -366,7 +366,11 @@ class EncuestaController extends Controller
     public function reporteEncuestaTodosLosDatosCsvAction(Request $request)
     {
 
-      $ids = json_decode(file_get_contents($request->get('ids')),true);
+      $ids = json_decode(
+        file_get_contents(
+         $request->get('ids')
+        )
+      ,true);
 
       $em = $this->getDoctrine()->getManager();
 
@@ -378,6 +382,7 @@ class EncuestaController extends Controller
       $data = array();
       foreach($stmt->fetchAll() as $entity) {
         $data[] = array(
+                          'id' => $entity['id'],
                           'fecha' => $entity['fecha'],
                           'gerencia' => $entity['gerencia'],
                           'subgerencia' => $entity['subgerencia'],
@@ -399,7 +404,11 @@ class EncuestaController extends Controller
                           'tipo' => $entity['tipo'],
                           'auto_inspeccion' => $entity['auto_inspeccion'],
                           'cierre_texto' => $entity['cierre_texto'],
-                          'actividad'  => $entity['actividad']
+                          'actividad'  => $entity['actividad'],
+                          'observaciones' => $entity['observaciones'],
+                          'tipo_de_hallazgo' => $entity['tipo_de_hallazgo'],
+                          'empleados' => $entity['empleados'],
+                          'incumplimientos' => json_decode($entity['incumplimientos_json'],true)
                         );
       }
 
@@ -414,6 +423,7 @@ class EncuestaController extends Controller
       $fs->dumpFile("uploads/".$file.".csv", $content);
 
       return new JsonResponse(array('file' => $file));
+
     }
 
     /**
@@ -583,6 +593,63 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'INCUMPLIMIENTOS-50-'.date_format(date_create(),'Y-m-d-his');
+      $fs->dumpFile("uploads/".$file.".csv", $content);
+
+      return new JsonResponse(array('file' => $file));
+    }
+
+    /**
+     *
+     * @Route("/encuesta_reporte_incumplimientos_medio_ambiente_csv/data.csv", name="encuesta_reporte_incumplimientos_medio_ambiente_csv")
+     * @Method("POST")
+     * @Template()
+     */
+    public function reporteEncuestaIncumplimientosMedioAmbienteCsvAction(Request $request)
+    {
+
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
+
+      $em = $this->getDoctrine()->getManager();
+
+      $sql = "SELECT e.id, e.tipo, e.fecha, e.hora, e.prevencionista, e.inspector, Supervisor.nombre as supervisor, Empresa.nombre as empresa, CONCAT(Contrato.numero,' ', Contrato.nombre) as contrato, UnidadDeNegocio.nombre as unidad_de_negocio , respuesta_13_1, respuesta_13_2,respuesta_13_3,respuesta_13_4,respuesta_13_5,respuesta_13_6,respuesta_13_7,respuesta_13_8,respuesta_13_9,respuesta_13_10 FROM Encuesta e INNER JOIN Empresa ON e.empresa_id = Empresa.id INNER JOIN Contrato ON Contrato.id = e.contrato_id INNER JOIN UnidadDeNegocio ON Contrato.unidad_de_negocio_id = UnidadDeNegocio.id INNER JOIN Supervisor ON Supervisor.id = e.supervisor_id WHERE e.id IN (".implode(",",$ids).") ORDER BY e.fecha DESC LIMIT 10";
+
+      $stmt = $em->getConnection()->prepare($sql);
+      $stmt->execute();
+
+      $data = array();
+      foreach ($stmt->fetchAll() as $item) {
+        $data[] = array(
+          'id' => $item['id'],
+          'tipo' => $item['tipo'],
+          'empresa' => $item['empresa'],
+          'contrato' => $item['contrato'],
+          'fecha' => $item['fecha'].' '.$item['hora'],
+          'unidad_de_negocio' => $item['unidad_de_negocio'],
+          'inspector' => $item['inspector'],
+          'supervisor' => $item['supervisor'],
+          'prevencionista' => $item['prevencionista'],
+          'respuesta_13_1' => $item['respuesta_13_1'],
+          'respuesta_13_2' => $item['respuesta_13_2'],
+          'respuesta_13_3' => $item['respuesta_13_3'],
+          'respuesta_13_4' => $item['respuesta_13_4'],
+          'respuesta_13_5' => $item['respuesta_13_5'],
+          'respuesta_13_6' => $item['respuesta_13_6'],
+          'respuesta_13_7' => $item['respuesta_13_7'],
+          'respuesta_13_8' => $item['respuesta_13_8'],
+          'respuesta_13_9' => $item['respuesta_13_9'],
+          'respuesta_13_10' => $item['respuesta_13_10'],
+
+        );
+      }
+
+      $content = $this->renderView(
+        'BcTicCamIpalBundle:Encuesta:reporteEncuestaIncumplimientosMedioAmbienteCsvAction.html.twig',
+        array('data' => $data)
+      );
+
+      //Guardo el contenido y devuelvo el ID para descargar el link
+      $fs = new Filesystem();
+      $file = 'INCUMPLIMIENTOS-MEDIO-AMBIENTE-'.date_format(date_create(),'Y-m-d-his');
       $fs->dumpFile("uploads/".$file.".csv", $content);
 
       return new JsonResponse(array('file' => $file));

@@ -33,7 +33,7 @@ class EncuestaColombiaGeneralEditAdminType extends AbstractType
                     'widget' => 'choice',
                     'format' => 'ddMMyyyy'
             ))
-            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS')))
+            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS','N/A')))
             ->add('hora','time', array ('label' => 'Hora'))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo'))
             ->add('numDeEmpleados', 'choice', array('label'  => 'Nº de empleados', 'choices' => $numTrabajadores))
@@ -110,20 +110,20 @@ class EncuestaColombiaGeneralEditAdminType extends AbstractType
 
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_colombia_general'))
 
-            ->add('respuesta121', new SurveyNoType(), array('label' => 'respuesta12.1_colombia_general'))
-            ->add('respuesta122', new SurveyNoType(), array('label' => 'respuesta12.2_colombia_general'))
-            ->add('respuesta123', new SurveyNoType(), array('label' => 'respuesta12.3_colombia_general'))
+            ->add('respuesta121', new SurveyType(), array('label' => 'respuesta12.1_colombia_general'))
+            ->add('respuesta122', new SurveyType(), array('label' => 'respuesta12.2_colombia_general'))
+            ->add('respuesta123', new SurveyType(), array('label' => 'respuesta12.3_colombia_general'))
 
-            ->add('respuesta131', new SurveyNoType(), array('label' => 'respuesta13.1_colombia_general'))
-            ->add('respuesta132', new SurveyNoType(), array('label' => 'respuesta13.2_colombia_general'))
-            ->add('respuesta133', new SurveyNoType(), array('label' => 'respuesta13.3_colombia_general'))
-            ->add('respuesta134', new SurveyNoType(), array('label' => 'respuesta13.4_colombia_general'))
-            ->add('respuesta135', new SurveyNoType(), array('label' => 'respuesta13.5_colombia_general'))
-            ->add('respuesta136', new SurveyNoType(), array('label' => 'respuesta13.6_colombia_general'))
-            ->add('respuesta137', new SurveyNoType(), array('label' => 'respuesta13.7_colombia_general'))
-            ->add('respuesta138', new SurveyNoType(), array('label' => 'respuesta13.8_colombia_general'))
-            ->add('respuesta139', new SurveyNoType(), array('label' => 'respuesta13.9_colombia_general'))
-            ->add('respuesta1310', new SurveyNoType(), array('label' => 'respuesta13.10_colombia_general'))
+            ->add('respuesta131', new SurveyType(), array('label' => 'respuesta13.1_colombia_general'))
+            ->add('respuesta132', new SurveyType(), array('label' => 'respuesta13.2_colombia_general'))
+            ->add('respuesta133', new SurveyType(), array('label' => 'respuesta13.3_colombia_general'))
+            ->add('respuesta134', new SurveyType(), array('label' => 'respuesta13.4_colombia_general'))
+            ->add('respuesta135', new SurveyType(), array('label' => 'respuesta13.5_colombia_general'))
+            ->add('respuesta136', new SurveyType(), array('label' => 'respuesta13.6_colombia_general'))
+            ->add('respuesta137', new SurveyType(), array('label' => 'respuesta13.7_colombia_general'))
+            ->add('respuesta138', new SurveyType(), array('label' => 'respuesta13.8_colombia_general'))
+            ->add('respuesta139', new SurveyType(), array('label' => 'respuesta13.9_colombia_general'))
+            ->add('respuesta1310', new SurveyType(), array('label' => 'respuesta13.10_colombia_general'))
             ->add('cierre','textarea', array('label' => 'Cierre'))
             ->add('statusCierre','choice', array('label' => 'Estado de cierre', 'choices' => array('N/A' => 'N/A: No aplica','POR_VALIDAR' => 'POR VALIDAR: Las justificaciones de cierre no han sido verificadas aún por el administrador','ABIERTA' => 'ABIERTA: Tiene incumplimientos no correctamente justificados aún', 'CERRADA' => 'CERRADA: Tiene incumplimientos cuyo cierre ha sido aceptado por el administrador.')))
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
@@ -235,9 +235,9 @@ class EncuestaColombiaGeneralEditAdminType extends AbstractType
                            ->orderBy('r.nombre', 'ASC');
                     },
                 ))
-                ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('N/A' => 'N/A: No aplica','A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
-                ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('N/A' => 'N/A: No aplica','B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
-                ->add('charlaGrabada','hidden')
+            ->add('autoInspeccion','hidden')
+            ->add('charlaOperativa','hidden')
+            ->add('charlaGrabada','hidden')
         ;
     }
 

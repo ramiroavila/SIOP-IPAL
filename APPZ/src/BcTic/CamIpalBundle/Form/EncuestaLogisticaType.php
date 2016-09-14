@@ -34,7 +34,7 @@ class EncuestaLogisticaType extends AbstractType
                     'format' => 'ddMMyyyy',
                     'disabled' => true
             ))
-            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS')))
+            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS','N/A')))
             ->add('hora','time', array ('label' => 'Hora'))
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo'))
             ->add('numDeEmpleados', 'choice', array('label'  => 'Nº de empleados', 'choices' => $numTrabajadores))
@@ -80,7 +80,7 @@ class EncuestaLogisticaType extends AbstractType
             ->add('respuesta102', new SurveyType(), array('label' => 'respuesta10.2_logistica'))
             ->add('respuesta103', new SurveyType(), array('label' => 'respuesta10.3_logistica'))
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_logistica'))
-            ->add('respuesta121', new SurveyNoType(), array('label' => 'respuesta12.1_logistica'))
+            ->add('respuesta121', new SurveyType(), array('label' => 'respuesta12.1_logistica'))
             ->add('respuesta131', new SurveyType(), array('label' => 'respuesta13.1_logistica'))
             ->add('respuesta132', new SurveyType(), array('label' => 'respuesta13.2_logistica'))
             ->add('respuesta133', new SurveyType(), array('label' => 'respuesta13.3_logistica'))

@@ -1,5 +1,4 @@
-,
-'disabled' => true<?php
+<?php
 
 namespace BcTic\CamIpalBundle\Form;
 

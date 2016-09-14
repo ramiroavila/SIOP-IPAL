@@ -16,7 +16,7 @@ class SupervisorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('rut')
+            ->add('rut','text', array('label' => 'RUT/DNI/CUI'))
             ->add('nombre', 'text', array('label' => 'Nombre completo'))
             ->add('cargo','choice', array(
                 'label' => 'Cargo',
@@ -26,7 +26,7 @@ class SupervisorType extends AbstractType
                     'EMPLEADO' => 'Empleado'
                     )
                   )
-              )            
+              )
             ->add('empresas','entity', array(
                   'class' => 'BcTicCamIpalBundle:Empresa',
                   'query_builder' => function(EntityRepository $er) {

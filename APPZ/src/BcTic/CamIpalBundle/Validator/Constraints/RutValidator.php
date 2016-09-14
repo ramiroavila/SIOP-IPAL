@@ -36,12 +36,48 @@ class RutValidator extends ConstraintValidator
       if($dvr == 10) $dvr = 'K';
 
       if($dvr == strtoupper($dv)) {
-        //DO NOTHING
-      } else {
-        $this->context->buildViolation($constraint->message)
-                ->setParameter('%string%', $value)
-              ->addViolation();
+        //DO NOTHING - Es un Rut Chileno
+        return;
       }
+
+
+      //Valido que es DNI PERÚ
+      $i = 0;
+      $suma = 0;
+			$multiplos = array(3,2,7,6,5,4,3,2);
+
+			$array_number = array(6, 7, 8, 9, 0, 1, 1, 2, 3, 4, 5);
+			$array_letters = array('K', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J');
+
+
+			$numdni = str_split($numero);
+			$dcontrol = $dv;
+
+			foreach($numdni as $digito) {
+				$suma+=$digito*$multiplos[$i];
+				$i++;
+			}
+
+			$key = 11 - ($suma%11);
+			$key = $key==11?0:$key;
+
+			if(is_numeric($dcontrol)) {
+				if($array_number[$key] == $dcontrol) {
+					//Valido
+          return;
+				}
+			} else {
+				$dcontrol = strtoupper($dcontrol);
+				if($array_letters[$key] == $dcontrol) {
+          //Valido
+					return;
+				}
+			}
+
+      //No es un rut válido, ni Chile ni Perú.
+      $this->context->buildViolation($constraint->message)
+              ->setParameter('%string%', $value)
+            ->addViolation();
 
     }
 }

@@ -1,4 +1,4 @@
-UN;GESTION;REAL_INSPECCION;META_INSPECCION;CUMPLIMIENTO_INSPECCION;INDICE_IPAL;INSPECCIONES_ABIERTAS
+"UN","GESTION","REAL_INSPECCION","META_INSPECCION","CUMPLIMIENTO_INSPECCION","INDICE_IPAL","INSPECCIONES_ABIERTAS"
 {% for item in data %}
 {% if item.meta_inspecciones == 0 %}
   {% set cumplimiento = 0 %}
@@ -10,5 +10,5 @@ UN;GESTION;REAL_INSPECCION;META_INSPECCION;CUMPLIMIENTO_INSPECCION;INDICE_IPAL;I
 {% else %}
   {% set ipal = item.encuesta_ipal / item.encuesta_cantidad  %}
 {% endif %}
-"{{ item.unidad_de_negocio_nombre }}";"{{ item.subgerencia_nombre }}";{{ item.encuesta_cantidad }};{{ item.meta_inspecciones }};"{{ cumplimiento | round }}%";{{ ipal | round(2,'floor') }}; {{ item.encuesta_abierta }}
+"{{ item.unidad_de_negocio_nombre }}","{{ item.subgerencia_nombre }}","{{ item.encuesta_cantidad }}","{{ item.meta_inspecciones }}","{{ cumplimiento | round }}%","{{ ipal | round(2,'floor') }}"," {{ item.encuesta_abierta }}"
 {% endfor %}

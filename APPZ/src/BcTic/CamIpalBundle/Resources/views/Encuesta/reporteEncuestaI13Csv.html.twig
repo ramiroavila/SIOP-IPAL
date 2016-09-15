@@ -1,1 +1,2 @@
-ITEM{% for key,label in valor %};"{{ label }}"{% endfor %};"{{ 'TIPO' }}"{{'\n'|raw}}{% for key, item in data %}"{{ key | trans }}"{% for valor_total, total_total in item %};{{total_total}}{% endfor %};"{{ tipo }}"{{'\n'|raw}}{% endfor %}
+"ITEM",{% for key,label in valor %}"{{ label }}",{% endfor %}"{{ 'TIPO' }}"
+{% for key, item in data %}"{{ key | trans }}"{% for valor_total, total_total in item %},"{{total_total}}"{% endfor %},"{{ tipo }}"{{'\n'}}{% endfor %}

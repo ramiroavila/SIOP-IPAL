@@ -100,7 +100,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'TOTAL-TASEG-MES-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -157,7 +157,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file_no_5020 = 'NO-50-20-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file_no_5020.".csv", $content);
+      $fs->dumpFile("uploads/".$file_no_5020.".csv", utf8_decode($content));
 
       $data = array();
 
@@ -184,7 +184,7 @@ class EncuestaController extends Controller
 
       //Guardo el contenido y devuelvo el ID para descargar el link
       $file_total = 'TOTAL-POR-VALOR-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file_total.".csv", $content);
+      $fs->dumpFile("uploads/".$file_total.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file_total' => $file_total, 'file_no_5020' => $file_no_5020));
     }
@@ -237,7 +237,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'TOTAL-PREVENCIONISTA-INSPECTOR-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -299,7 +299,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'IPAL-POR-PREVENCIONISTA-INSPECTOR-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -352,7 +352,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'NO-CONFORMIDADES-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -420,7 +420,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'TODOS-LOS-DATOS-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
 
@@ -488,7 +488,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'REPORTE-1-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -538,7 +538,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'REPORTE-2-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -593,7 +593,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'INCUMPLIMIENTOS-50-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -650,7 +650,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'INCUMPLIMIENTOS-MEDIO-AMBIENTE-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -705,7 +705,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'STATUS-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -756,7 +756,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'POR-MES-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -842,7 +842,7 @@ class EncuestaController extends Controller
        //Guardo el contenido y devuelvo el ID para descargar el link
        $fs = new Filesystem();
        $file = 'I-AGRUPADO-'.$tipo.'-'.date_format(date_create(),'Y-m-d');
-       $fs->dumpFile("uploads/".$file.".csv", $content);
+       $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
        return new JsonResponse(array('file' => $file));
      }

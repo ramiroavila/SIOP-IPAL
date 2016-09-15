@@ -1,5 +1,4 @@
-FECHA; EMPRESA; CONTRATO; INSPECTOR; SUPERVISOR; LUGAR; N IPAL; INCUMPLIMIENTO 1; INCUMPLIMIENTO 2;INCUMPLIMIENTO 3;INCUMPLIMIENTO 4;INCUMPLIMIENTO 5;
+"FECHA","EMPRESA","CONTRATO","INSPECTOR","SUPERVISOR","LUGAR","N IPAL","INCUMPLIMIENTO 1","INCUMPLIMIENTO 2","INCUMPLIMIENTO 3","INCUMPLIMIENTO 4","INCUMPLIMIENTO 5"
 {% for item in data %}
-{{ item.fecha | date("d-m-Y") }};"{{ item.contratista | raw }}";"{{ item.contrato | raw }}";"{{ item.inspector | raw }}";"{{ item.supervisor | raw }}";"{{ item.lugar | raw }}";{{ item.id }};{% for incumplimiento in item.incumplimientos_50 %}"{{ incumplimiento | trans }}";{% endfor %}
-
+ {{ item.fecha | date("d-m-Y") }},"{{ item.contratista }}","{{ item.contrato }}","{{ item.inspector  }}","{{ item.supervisor  }}","{{ item.lugar  }}","{{ item.id }}",{% for incumplimiento in item.incumplimientos_50 %}{% set flag = 1 %}"{{ incumplimiento | trans }}"{% if flag == item.incumplimientos_50 | length %}{% else %},{% endif %}{% set flag = flag + 1 %}{% endfor %}{{ '\n' | raw }}
 {% endfor %}

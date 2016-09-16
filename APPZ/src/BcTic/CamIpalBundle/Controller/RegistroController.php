@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use BcTic\CamIpalBundle\Entity\Registro;
 use BcTic\CamIpalBundle\Form\RegistroType;
-
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**

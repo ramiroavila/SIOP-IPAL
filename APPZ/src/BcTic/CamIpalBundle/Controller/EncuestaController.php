@@ -1734,6 +1734,8 @@ class EncuestaController extends Controller
             ),
         ));
 
+        //Agrego la façade para supervisor
+        $form->add('supervisorFacade', 'text', array('label' => 'Supervisor'));
 
         $form->add('submit', 'submit', array('label' => 'Guardar'));
 
@@ -1914,6 +1916,11 @@ class EncuestaController extends Controller
             throw $this->createNotFoundException('Unable to find Encuesta entity.');
         }
 
+        //Obtengo el Supervisor de esta entidad para cargar la fachada:
+        if (!is_null($entity->getSupervisor())) {
+          $entity->getSupervisorFacade($entity->getSupervisor());
+        }
+
         $role = in_array('ROLE_ADMIN',$this->get('security.context')->getToken()->getUser()->getRoles());
 
        switch ($entity->getKey()) {
@@ -2011,6 +2018,9 @@ class EncuestaController extends Controller
             ),
         ));
 
+        //Agrego la façade para supervisor
+        $form->add('supervisorFacade', 'text', array('label' => 'Supervisor'));
+
         $form->add('submit', 'submit', array('label' => 'Guardar'));
 
         return $form;
@@ -2090,8 +2100,6 @@ class EncuestaController extends Controller
                     break;
                }
             }
-
-
 
             $em->flush();
 

@@ -9,6 +9,7 @@ use BcTic\CamIpalBundle\Form\Type\SurveyNoType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use BcTic\CamIpalBundle\Form\Type\EntityHiddenType;
 
 class EncuestaColombiaGeneralType extends AbstractType
 {
@@ -173,15 +174,9 @@ class EncuestaColombiaGeneralType extends AbstractType
                 ))
             ->add('inspector','text',array('label' => 'Inspector'))
             ->add('prevencionista', 'hidden')
-            ->add('supervisor','entity', array(
-                  'class' => 'BcTicCamIpalBundle:Supervisor',
-                  'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('r')
-                           ->orderBy('r.nombre', 'ASC');
-                    },
-                   'empty_value' => '-- SELECCIONE SUPERVISOR --',
-                   'empty_data' => "-1",
-                ))
+            ->add('supervisor','entity_hidden', array(
+                'class' => 'BcTic\CamIpalBundle\Entity\Supervisor',
+              ))
             ->add('servicio','entity', array(
                   'label' => 'Servicio',
                   'class' => 'BcTicCamIpalBundle:Servicio',

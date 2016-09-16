@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use BcTic\CamIpalBundle\Entity\Supervisor;
 use BcTic\CamIpalBundle\Form\SupervisorType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Supervisor controller.
@@ -231,6 +232,38 @@ class SupervisorController extends Controller
         }
 
         return $this->redirect($this->generateUrl('supervisores'));
+    }
+
+    /**
+     * Lists all Supervisores by Query
+     *
+     * @Route("/data/supervisores.json", name="registros_supervisores_json")
+     * @Method("POST")
+     * @Template()
+     */
+    public function indexSupervisoresJsonAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('BcTicCamIpalBundle:Supervisor')
+                           ->createQueryBuilder('r')
+                           ->join('r.pais','p')
+                           ->where('r.nombre LIKE :query AND p.id = :pais')
+                           ->setParameters(array('query' => '%'.$request->request->get('query','').'%', 'pais' => $request->request->get('pais')))
+                           ->orderBy('r.nombre', 'ASC')
+                           ->getQuery();
+
+        $data = array();
+
+        foreach ($entities->getResult() as $entity) {
+          $data[] = array(
+             'id' => $entity->getId(),
+             'nombre' => ucwords(strtolower($entity->__toString())), //ToString
+          );
+        }
+
+        return new JsonResponse($data);
+
     }
 
 }

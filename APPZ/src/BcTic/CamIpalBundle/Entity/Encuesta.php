@@ -5,7 +5,6 @@ namespace BcTic\CamIpalBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use BcTic\CamIpalBundle\Validator\Constraints as BcTicAssert;
-
 use Symfony\Component\Validator\ExecutionContextInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use BcTic\CamIpalBundle\Validator\Constraints as BcTicCamIpalBundleAssert;
@@ -882,6 +881,13 @@ abstract class Encuesta
      */
     protected $supervisor;
 
+   /**
+    * @BcTicAssert\ContainsSupervisor
+    * @Assert\NotBlank()
+    * @Assert\Length(min = "5")
+    */
+    protected $supervisorFacade;
+
     /**
      *
      * @var string
@@ -1472,6 +1478,26 @@ abstract class Encuesta
     {
         return $this->supervisor;
     }
+
+    /**
+    * Set supervisor Facade
+    *
+    */
+   public function setSupervisorFacade($supervisor)
+   {
+       $this->supervisorFacade = $supervisor;
+
+       return $this;
+   }
+
+   /**
+    * Get supervisor facade
+    *
+    */
+   public function getSupervisorFacade()
+   {
+       return $this->supervisorFacade;
+   }
 
     /**
      * Set servicio

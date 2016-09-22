@@ -25,7 +25,7 @@ class Empleado
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(name="rut", type="string", length=10)
+     * @ORM\Column(name="rut", type="string", length=50)
      * @BcTicCamIpalBundleAssert\Rut()
      */
     private $rut;

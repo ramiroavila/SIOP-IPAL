@@ -142,7 +142,7 @@ class EncuestaObrasCivilesEditAdminType extends AbstractType
             ->add('inspector','text',array('label' => 'Inspector'))
             ->add('prevencionista', 'hidden',array())
             ->add('supervisor','entity_hidden', array(
-                'class' => 'BcTic\CamIpalBundle\Entity\Supervisor',
+                'class' => 'BcTic\CamIpalBundle\Entity\Empleado',
               ))
             ->add('servicio','entity', array(
                   'label' => 'Servicio',

@@ -876,7 +876,7 @@ abstract class Encuesta
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Supervisor")
+     * @ORM\ManyToOne(targetEntity="Empleado")
      * @ORM\JoinColumn(name="supervisor_id", referencedColumnName="id")
      */
     protected $supervisor;

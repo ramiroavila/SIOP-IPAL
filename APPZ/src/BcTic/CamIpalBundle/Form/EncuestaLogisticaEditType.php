@@ -143,7 +143,7 @@ class EncuestaLogisticaEditType extends AbstractType
             ->add('inspector','text',array('label' => 'Inspector', 'disabled' => true))
             ->add('prevencionista', 'hidden', array('disabled' => true))
             ->add('supervisor','entity_hidden', array(
-                'class' => 'BcTic\CamIpalBundle\Entity\Supervisor',
+                'class' => 'BcTic\CamIpalBundle\Entity\Empleado',
               ))
             ->add('servicio','entity', array(
                   'label' => 'Servicio',

@@ -115,7 +115,7 @@ class EncuestaColombiaGeneralEditType extends AbstractType
             ->add('respuesta121', new SurveyType(), array('label' => 'respuesta12.1_colombia_general','disabled' => true))
             ->add('respuesta122', new SurveyType(), array('label' => 'respuesta12.2_colombia_general','disabled' => true))
             ->add('respuesta123', new SurveyType(), array('label' => 'respuesta12.3_colombia_general','disabled' => true))
-            
+
             ->add('cierre','textarea', array('label' => 'Cierre'))
             ->add('statusCierre','hidden')
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
@@ -167,7 +167,7 @@ class EncuestaColombiaGeneralEditType extends AbstractType
             ->add('inspector','text',array('label' => 'Inspector','disabled' => true))
             ->add('prevencionista', 'hidden',array('disabled' => true))
             ->add('supervisor','entity_hidden', array(
-                'class' => 'BcTic\CamIpalBundle\Entity\Supervisor',
+                'class' => 'BcTic\CamIpalBundle\Entity\Empleado',
               ))
             ->add('servicio','entity', array(
                   'label' => 'Servicio',

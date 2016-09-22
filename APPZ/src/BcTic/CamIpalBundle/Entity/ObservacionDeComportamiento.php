@@ -74,7 +74,7 @@ class ObservacionDeComportamiento
     protected $pais;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Supervisor")
+     * @ORM\ManyToOne(targetEntity="Empleado")
      * @ORM\JoinColumn(name="supervisor_id", referencedColumnName="id")
      */
     protected $supervisor;
@@ -770,10 +770,10 @@ class ObservacionDeComportamiento
     /**
      * Set supervisor
      *
-     * @param \BcTic\CamIpalBundle\Entity\Supervisor $supervisor
+     * @param \BcTic\CamIpalBundle\Entity\Empleado $supervisor
      * @return ObservacionDeComportamiento
      */
-    public function setSupervisor(\BcTic\CamIpalBundle\Entity\Supervisor $supervisor = null)
+    public function setSupervisor(\BcTic\CamIpalBundle\Entity\Empleado $supervisor = null)
     {
         $this->supervisor = $supervisor;
 
@@ -783,7 +783,7 @@ class ObservacionDeComportamiento
     /**
      * Get supervisor
      *
-     * @return \BcTic\CamIpalBundle\Entity\Supervisor
+     * @return \BcTic\CamIpalBundle\Entity\Empleado
      */
     public function getSupervisor()
     {

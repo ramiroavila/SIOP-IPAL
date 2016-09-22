@@ -249,7 +249,47 @@ class EmpleadoController extends Controller
 
         $entities = $em->getRepository('BcTicCamIpalBundle:Empleado')
                            ->createQueryBuilder('r')
+                           ->where('p.id = :pais AND (  (r.rut LIKE :query) OR (r.nombre LIKE :query) ) ')
                            ->orderBy('r.nombre', 'ASC')
+                           ->join('r.pais','p')
+                           ->setParameters(
+                             array(
+                              'pais' => $request->get('pais'),
+                              'query' => '%'.$request->get('query').'%'
+                             )
+                          )
+                           ->getQuery();
+
+        $data = array();
+
+        foreach ($entities->getResult() as $entity) {
+          $data[] = array(
+             'id' => $entity->getId(),
+             'nombre' => ucwords(strtolower($entity->__toString())), //ToString
+          );
+        }
+
+        return new JsonResponse($data);
+
+    }
+
+    /**
+     * Lists all Empleados by Query
+     *
+     * @Route("/data/supervisores.json", name="registros_supervisores_json")
+     * @Method("POST")
+     * @Template()
+     */
+    public function indexSupervisoresJsonAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('BcTicCamIpalBundle:Empleado')
+                           ->createQueryBuilder('r')
+                           ->where('r.cargo = :supervisores AND p.id = :pais AND (  (r.rut LIKE :query) OR (r.nombre LIKE :query) ) ')
+                           ->orderBy('r.nombre', 'ASC')
+                           ->join('r.pais','p')
+                           ->setParameters(array('supervisores' => 'SUPERVISOR', 'pais' => $request->get('pais'), 'query' => '%'.$request->get('query').'%'))
                            ->getQuery();
 
         $data = array();

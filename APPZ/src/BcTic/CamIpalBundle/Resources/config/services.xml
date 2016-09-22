@@ -7,7 +7,7 @@
     <parameters>
         <parameter key="bc_tic_cam_ipal.bundle.class">BcTic\CamIpalBundle\Form\Type\EntityHiddenType</parameter>
         <parameter key="bc_tic_cam_ipal.bundle.inspector_validator.class">BcTic\CamIpalBundle\Validator\Constraints\ContainsInspectorValidator</parameter>
-          <parameter key="bc_tic_cam_ipal.bundle.supervisor_validator.class">BcTic\CamIpalBundle\Validator\Constraints\ContainsSupervisorValidator</parameter>
+        <parameter key="bc_tic_cam_ipal.bundle.supervisor_validator.class">BcTic\CamIpalBundle\Validator\Constraints\ContainsSupervisorValidator</parameter>
         <parameter key="bc_tic_cam_ipal.bundle.uploaded_file_validator.class">BcTic\CamIpalBundle\Validator\Constraints\ContainsUploadedFileValidator</parameter>
         <parameter key="bc_tic_cam_ipal.bundle.meta.class">BcTic\CamIpalBundle\Form\MetaType</parameter>
         <parameter key="bc_tic_cam_ipal.extension.twig_extension.class">BcTic\CamIpalBundle\Extension\TwigExtension</parameter>

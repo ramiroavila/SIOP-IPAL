@@ -353,7 +353,7 @@
                  dataType: "json",
                  type: "POST",
                  url: "{{ path('registros_empleados_json') }}",
-                 data: { query: request.term } ,
+                 data: { query: request.term, pais: $('#bctic_camipalbundle_encuesta_pais').val()  } ,
                  success: function (dataSuccess) {
                      response( $.map( dataSuccess , function( item ) {
                        return {

@@ -28,8 +28,6 @@ use BcTic\CamIpalBundle\Form\EncuestaLlvvType;
 use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoType;
-
-
 use BcTic\CamIpalBundle\Form\EncuestaElectricaEditType;
 use BcTic\CamIpalBundle\Form\EncuestaChilectraEditType;
 use BcTic\CamIpalBundle\Form\EncuestaLogisticaEditType;
@@ -39,7 +37,6 @@ use BcTic\CamIpalBundle\Form\EncuestaLlvvEditType;
 use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralEditType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralEditType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoEditType;
-
 use BcTic\CamIpalBundle\Form\EncuestaElectricaEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaChilectraEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaLogisticaEditAdminType;
@@ -49,7 +46,6 @@ use BcTic\CamIpalBundle\Form\EncuestaLlvvEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoEditAdminType;
-
 use BcTic\CamIpalBundle\Form\EncuestaFilterType;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
@@ -611,7 +607,7 @@ class EncuestaController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $sql = "SELECT e.id, e.tipo, e.fecha, e.hora, e.prevencionista, e.inspector, Supervisor.nombre as supervisor, Empresa.nombre as empresa, CONCAT(Contrato.numero,' ', Contrato.nombre) as contrato, UnidadDeNegocio.nombre as unidad_de_negocio , respuesta_13_1, respuesta_13_2,respuesta_13_3,respuesta_13_4,respuesta_13_5,respuesta_13_6,respuesta_13_7,respuesta_13_8,respuesta_13_9,respuesta_13_10 FROM Encuesta e INNER JOIN Empresa ON e.empresa_id = Empresa.id INNER JOIN Contrato ON Contrato.id = e.contrato_id INNER JOIN UnidadDeNegocio ON Contrato.unidad_de_negocio_id = UnidadDeNegocio.id INNER JOIN Supervisor ON Supervisor.id = e.supervisor_id WHERE e.id IN (".implode(",",$ids).") ORDER BY e.fecha DESC LIMIT 10";
+      $sql = "SELECT e.id, e.tipo, e.fecha, e.hora, e.prevencionista, e.inspector, Supervisor.nombre as supervisor, Empresa.nombre as empresa, CONCAT(Contrato.numero,' ', Contrato.nombre) as contrato, UnidadDeNegocio.nombre as unidad_de_negocio , respuesta_13_1, respuesta_13_2,respuesta_13_3,respuesta_13_4,respuesta_13_5,respuesta_13_6,respuesta_13_7,respuesta_13_8,respuesta_13_9,respuesta_13_10 FROM Encuesta e INNER JOIN Empresa ON e.empresa_id = Empresa.id INNER JOIN Contrato ON Contrato.id = e.contrato_id INNER JOIN UnidadDeNegocio ON Contrato.unidad_de_negocio_id = UnidadDeNegocio.id INNER JOIN Empleado Supervisor ON Supervisor.id = e.supervisor_id WHERE e.id IN (".implode(",",$ids).") ORDER BY e.fecha DESC LIMIT 10";
 
       $stmt = $em->getConnection()->prepare($sql);
       $stmt->execute();
@@ -1728,7 +1724,7 @@ class EncuestaController extends Controller
         $form->add('empleados', CollectionType::class, array(
             'entry_type'   => RutType::class,
             'allow_add'    => true,
-            'label' => 'Rut empleados',
+            'label' => 'empleado',
             'entry_options'  => array(
                 'attr'      => array('label' => 'Rut')
             ),

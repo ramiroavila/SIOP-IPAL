@@ -33,10 +33,11 @@ class ContainsSupervisorValidator extends ConstraintValidator
 
 
       foreach($supervisoresResult as $entity) {
-        $supervisores[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
+        $supervisores[md5(strtoupper($entity->__toString()))] = $entity->__toString();
       }
 
-      if (!array_key_exists(md5(strtoupper(trim($value))),$supervisores))   {
+
+      if (!array_key_exists(md5(strtoupper($value)),$supervisores))   {
             $this->context->addViolation(
                 $constraint->message,
                 array('%string%' => $value)

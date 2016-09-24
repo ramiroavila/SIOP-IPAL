@@ -9,8 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use BcTic\CamIpalBundle\Entity\Encuesta;
 use BcTic\CamIpalBundle\Entity\Empresa as Empresa;
-use BcTic\CamIpalBundle\Entity\EncuestaElectrica as EncuestaElectrica;
 use BcTic\CamIpalBundle\Entity\EncuestaChilectra as EncuestaChilectra;
+use BcTic\CamIpalBundle\Entity\EncuestaElectrica as EncuestaElectrica;
 use BcTic\CamIpalBundle\Entity\EncuestaLogistica;
 use BcTic\CamIpalBundle\Entity\EncuestaObrasCiviles;
 use BcTic\CamIpalBundle\Entity\EncuestaTelecomunicaciones;
@@ -18,9 +18,13 @@ use BcTic\CamIpalBundle\Entity\EncuestaLlvv;
 use BcTic\CamIpalBundle\Entity\EncuestaColombiaGeneral;
 use BcTic\CamIpalBundle\Entity\EncuestaBrazilGeneral;
 use BcTic\CamIpalBundle\Entity\EncuestaBrazilInterno;
+use BcTic\CamIpalBundle\Entity\EncuestaPeruElectrica as EncuestaPeruElectrica;
+use BcTic\CamIpalBundle\Entity\EncuestaPeruLogistica;
+use BcTic\CamIpalBundle\Entity\EncuestaPeruObrasCiviles;
+use BcTic\CamIpalBundle\Entity\EncuestaPeruTelecomunicaciones;
 use BcTic\CamIpalBundle\Form\EncuestaType;
-use BcTic\CamIpalBundle\Form\EncuestaElectricaType;
 use BcTic\CamIpalBundle\Form\EncuestaChilectraType;
+use BcTic\CamIpalBundle\Form\EncuestaElectricaType;
 use BcTic\CamIpalBundle\Form\EncuestaLogisticaType;
 use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesType;
 use BcTic\CamIpalBundle\Form\EncuestaTelecomunicacionesType;
@@ -28,8 +32,12 @@ use BcTic\CamIpalBundle\Form\EncuestaLlvvType;
 use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoType;
-use BcTic\CamIpalBundle\Form\EncuestaElectricaEditType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruElectricaType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruLogisticaType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruObrasCivilesType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruTelecomunicacionesType;
 use BcTic\CamIpalBundle\Form\EncuestaChilectraEditType;
+use BcTic\CamIpalBundle\Form\EncuestaElectricaEditType;
 use BcTic\CamIpalBundle\Form\EncuestaLogisticaEditType;
 use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesEditType;
 use BcTic\CamIpalBundle\Form\EncuestaTelecomunicacionesEditType;
@@ -37,8 +45,12 @@ use BcTic\CamIpalBundle\Form\EncuestaLlvvEditType;
 use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralEditType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralEditType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoEditType;
-use BcTic\CamIpalBundle\Form\EncuestaElectricaEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruElectricaEditType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruLogisticaEditType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruObrasCivilesEditType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruTelecomunicacionesEditType;
 use BcTic\CamIpalBundle\Form\EncuestaChilectraEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaElectricaEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaLogisticaEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaTelecomunicacionesEditAdminType;
@@ -46,6 +58,10 @@ use BcTic\CamIpalBundle\Form\EncuestaLlvvEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruElectricaEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruLogisticaEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruObrasCivilesEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruTelecomunicacionesEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaFilterType;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
@@ -1326,7 +1342,7 @@ class EncuestaController extends Controller
 
     }
 
-  /**
+   /**
      * Creates a new Encuesta entity.
      *
      * @Route("/add/electrica", name="encuestas_create_electrica")
@@ -1352,6 +1368,32 @@ class EncuestaController extends Controller
         );
     }
 
+
+    /**
+      * Creates a new Peru Encuesta entity.
+      *
+      * @Route("/add/peru_electrica", name="encuestas_create_peru_electrica")
+      * @Method("POST")
+      * @Template("BcTicCamIpalBundle:Encuesta:new.html.twig")
+      */
+     public function createPeruElectricaAction(Request $request)
+     {
+         $entity = new EncuestaPeruElectrica();
+         $form = $this->createCreateForm($entity, new EncuestaPeruElectricaType());
+         $form->handleRequest($request);
+
+         $response = $this->createAction($request, $form, $entity);
+         if (is_object($response)) return $response;
+
+         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
+
+         return array(
+             'format' => $format,
+             'entity' => $entity,
+             'form'   => $form->createView(),
+             'type'  => $entity->getKey(),
+         );
+     }
 
   /**
      * Creates a new Encuesta entity.
@@ -1379,7 +1421,7 @@ class EncuestaController extends Controller
         );
     }
 
-  /**
+   /**
      * Creates a new Encuesta entity.
      *
      * @Route("/add/telecomunicaciones", name="encuestas_create_telecomunicaciones")
@@ -1404,6 +1446,32 @@ class EncuestaController extends Controller
             'type'  => $entity->getKey(),
         );
     }
+
+    /**
+      * Creates a new Encuesta entity.
+      *
+      * @Route("/add/peru_telecomunicaciones", name="encuestas_create_peru_telecomunicaciones")
+      * @Method("POST")
+      * @Template("BcTicCamIpalBundle:Encuesta:new.html.twig")
+      */
+     public function createPeruTelecomunicacionesAction(Request $request)
+     {
+         $entity = new EncuestaPeruTelecomunicaciones();
+         $form = $this->createCreateForm($entity, new EncuestaPeruTelecomunicacionesType());
+         $form->handleRequest($request);
+
+         $response = $this->createAction($request, $form, $entity);
+         if (is_object($response)) return $response;
+
+         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
+
+         return array(
+             'format' => $format,
+             'entity' => $entity,
+             'form'   => $form->createView(),
+             'type'  => $entity->getKey(),
+         );
+     }
 
     /**
        * Creates a new Encuesta entity.
@@ -1431,7 +1499,7 @@ class EncuestaController extends Controller
           );
       }
 
-  /**
+   /**
      * Creates a new Encuesta entity.
      *
      * @Route("/add/logistica", name="encuestas_create_logistica")
@@ -1457,7 +1525,34 @@ class EncuestaController extends Controller
         );
     }
 
-  /**
+
+     /**
+       * Creates a new Encuesta entity.
+       *
+       * @Route("/add/peru_logistica", name="encuestas_create_peru_logistica")
+       * @Method("POST")
+       * @Template("BcTicCamIpalBundle:Encuesta:new.html.twig")
+       */
+      public function createPeruLogisticaAction(Request $request)
+      {
+          $entity = new EncuestaPeruLogistica();
+          $form = $this->createCreateForm($entity, new EncuestaPeruLogisticaType());
+          $form->handleRequest($request);
+
+          $response = $this->createAction($request, $form, $entity);
+          if (is_object($response)) return $response;
+
+          $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
+
+          return array(
+              'format' => $format,
+              'entity' => $entity,
+              'form'   => $form->createView(),
+              'type'  => $entity->getKey(),
+          );
+      }
+
+   /**
      * Creates a new Encuesta entity.
      *
      * @Route("/add/obras_civiles", name="encuestas_create_obras_civiles")
@@ -1482,6 +1577,33 @@ class EncuestaController extends Controller
             'type'  => $entity->getKey(),
         );
     }
+
+    /**
+      * Creates a new Encuesta entity.
+      *
+      * @Route("/add/peru_obras_civiles", name="encuestas_create_peru_obras_civiles")
+      * @Method("POST")
+      * @Template("BcTicCamIpalBundle:Encuesta:new.html.twig")
+      */
+     public function createPeruObrasCivilesAction(Request $request)
+     {
+         $entity = new EncuestaPeruObrasCiviles();
+         $form = $this->createCreateForm($entity, new EncuestaPeruObrasCivilesType());
+         $form->handleRequest($request);
+
+         $response = $this->createAction($request, $form, $entity);
+         if (is_object($response)) return $response;
+
+         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
+
+         return array(
+             'format' => $format,
+             'entity' => $entity,
+             'form'   => $form->createView(),
+             'type'  => $entity->getKey(),
+         );
+     }
+
 
     /**
      * Creates a new Encuesta entity.
@@ -1784,11 +1906,28 @@ class EncuestaController extends Controller
             $entity = new EncuestaBrazilInterno();
             $formType = new EncuestaBrazilInternoType();
             break;
+          case 'peru_electrica':
+            $entity = new EncuestaPeruElectrica();
+            $formType = new EncuestaPeruElectricaType();
+            break;
+          case 'peru_logistica':
+            $entity = new EncuestaPeruLogistica();
+            $formType = new EncuestaPeruLogisticaType();
+            break;
+          case 'peru_obras_civiles':
+            $entity = new EncuestaPeruObrasCiviles();
+            $formType = new EncuestaPeruObrasCivilesType();
+            break;
+          case 'peru_telecomunicaciones':
+            $entity = new EncuestaPeruTelecomunicaciones();
+            $formType = new EncuestaPeruTelecomunicacionesType();
+            break;
+
         }
         $entity->setNumDeEmpleados(3);
         $entity->setVisible(true);
 
-        $form   = $this->createCreateForm($entity, $formType);
+        $form  = $this->createCreateForm($entity, $formType);
 
 
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html";
@@ -1874,9 +2013,9 @@ class EncuestaController extends Controller
           case 'telecomunicaciones':
             $entity = new EncuestaTelecomunicaciones();
             break;
-            case 'llvv':
-              $entity = new EncuestaLlvv();
-              break;
+        case 'llvv':
+          $entity = new EncuestaLlvv();
+          break;
           case 'colombia_general':
             $entity = new EncuestaColombiaGeneral();
             break;
@@ -1885,6 +2024,18 @@ class EncuestaController extends Controller
             break;
           case 'brazil_interno':
             $entity = new EncuestaBrazilInterno();
+            break;
+          case 'peru_electrica':
+            $entity = new EncuestaPeruElectrica();
+            break;
+          case 'peru_logistica':
+            $entity = new EncuestaPeruLogistica();
+            break;
+          case 'peru_obras_civiles':
+            $entity = new EncuestaPeruObrasCiviles();
+            break;
+          case 'peru_telecomunicaciones':
+            $entity = new EncuestaPeruTelecomunicaciones();
             break;
         }
 
@@ -1947,6 +2098,19 @@ class EncuestaController extends Controller
           case 'brazil_interno':
             $formType = $role ? new EncuestaBrazilInternoEditAdminEditAdminType : new EncuestaBrazilInternoEditType();
             break;
+          case 'peru_electrica':
+            $formType = $role ? new EncuestaPeruElectricaEditAdminType() : new EncuestaPeruElectricaEditType();
+            break;
+          case 'peru_logistica':
+            $formType = $role ? new EncuestaPeruLogisticaEditAdminType() : new EncuestaPeruLogisticaEditType();
+            break;
+          case 'peru_obras_civiles':
+            $formType = $role ? new EncuestaPeruObrasCivilesEditAdminType() : new EncuestaPeruObrasCivilesEditType();
+            break;
+          case 'peru_telecomunicaciones':
+            $formType = $role ? new EncuestaPeruTelecomunicacionesEditAdminType() : new EncuestaPeruTelecomunicacionesEditType();
+            break;
+
         }
 
 
@@ -2064,6 +2228,18 @@ class EncuestaController extends Controller
             break;
           case 'brazil_interno':
             $formType = $role ? new EncuestaBrazilInternoEditAdminType() : new EncuestaBrazilInternoEditType();
+            break;
+          case 'peru_electrica':
+            $formType = $role ? new EncuestaPeruElectricaEditAdminType() : new EncuestaPeruElectricaEditType();
+            break;
+          case 'peru_logistica':
+            $formType = $role ? new EncuestaPeruLogisticaEditAdminType() : new EncuestaPeruLogisticaEditType();
+            break;
+          case 'peru_obras_civiles':
+            $formType = $role ? new EncuestaPeruObrasCivilesEditAdminType() : new EncuestaPeruObrasCivilesEditType();
+            break;
+          case 'peru_telecomunicaciones':
+            $formType = $role ? new EncuestaPeruTelecomunicacionesEditAdminType() : new EncuestaPeruTelecomunicacionesEditType();
             break;
         }
 

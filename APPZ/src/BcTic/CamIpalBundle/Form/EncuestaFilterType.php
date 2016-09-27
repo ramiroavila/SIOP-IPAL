@@ -122,7 +122,7 @@ class EncuestaFilterType extends AbstractType
                               ->setParameters(array('supervisores' => 'SUPERVISOR'))
                               ->orderBy('r.nombre', 'ASC');
                      },
-                    'empty_value' => '- TODOS LOS SUPERVISORES -',
+                    'empty_value' => '- TODOS LOS RESPONSABLES EN TERRENO -',
                     'empty_data' => "",
                  ))
              ->add('pais','entity', array(

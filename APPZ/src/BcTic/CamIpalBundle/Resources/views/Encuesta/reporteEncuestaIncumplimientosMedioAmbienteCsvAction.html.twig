@@ -1,4 +1,4 @@
-"N IPAL","PREGUNTA","EMPRESA","UN","CONTRATO","FECHA INSPECCION","PREVENCIONISTA","INSPECTOR","SUPERVISOR","SI","NO","N/A"
+"N IPAL","PREGUNTA","EMPRESA","UN","CONTRATO","FECHA INSPECCION","PREVENCIONISTA","INSPECTOR","RESPONSABLE EN TERRENO","SI","NO","N/A"
 {% for item in data %}
 {% set pregunta = "respuesta13.1_" ~ item.tipo %}{% set respuesta = "respuesta_" ~ item.respuesta_13_1 %}
 "{{-item.id-}}","{{ pregunta  | lower | trans }}","{{-item.empresa-}}","{{-item.unidad_de_negocio-}}","{{-item.contrato-}}","{{-item.fecha-}}","{{-item.prevencionista-}}","{{-item.inspector-}}","{{-item.supervisor-}}",{% if respuesta == "respuesta_0" %}1{% else %}0{% endif %},{% if respuesta == "respuesta_1" %}1{% else %}0{% endif %},{% if respuesta == "respuesta_2" %}1{% else %}0{% endif %}{{ "\n"  }}

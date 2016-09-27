@@ -9,8 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use BcTic\CamIpalBundle\Entity\Encuesta;
 use BcTic\CamIpalBundle\Entity\Empresa as Empresa;
-use BcTic\CamIpalBundle\Entity\EncuestaElectrica as EncuestaElectrica;
 use BcTic\CamIpalBundle\Entity\EncuestaChilectra as EncuestaChilectra;
+use BcTic\CamIpalBundle\Entity\EncuestaElectrica as EncuestaElectrica;
 use BcTic\CamIpalBundle\Entity\EncuestaLogistica;
 use BcTic\CamIpalBundle\Entity\EncuestaObrasCiviles;
 use BcTic\CamIpalBundle\Entity\EncuestaTelecomunicaciones;
@@ -18,9 +18,13 @@ use BcTic\CamIpalBundle\Entity\EncuestaLlvv;
 use BcTic\CamIpalBundle\Entity\EncuestaColombiaGeneral;
 use BcTic\CamIpalBundle\Entity\EncuestaBrazilGeneral;
 use BcTic\CamIpalBundle\Entity\EncuestaBrazilInterno;
+use BcTic\CamIpalBundle\Entity\EncuestaPeruElectrica as EncuestaPeruElectrica;
+use BcTic\CamIpalBundle\Entity\EncuestaPeruLogistica;
+use BcTic\CamIpalBundle\Entity\EncuestaPeruObrasCiviles;
+use BcTic\CamIpalBundle\Entity\EncuestaPeruTelecomunicaciones;
 use BcTic\CamIpalBundle\Form\EncuestaType;
-use BcTic\CamIpalBundle\Form\EncuestaElectricaType;
 use BcTic\CamIpalBundle\Form\EncuestaChilectraType;
+use BcTic\CamIpalBundle\Form\EncuestaElectricaType;
 use BcTic\CamIpalBundle\Form\EncuestaLogisticaType;
 use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesType;
 use BcTic\CamIpalBundle\Form\EncuestaTelecomunicacionesType;
@@ -28,10 +32,12 @@ use BcTic\CamIpalBundle\Form\EncuestaLlvvType;
 use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoType;
-
-
-use BcTic\CamIpalBundle\Form\EncuestaElectricaEditType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruElectricaType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruLogisticaType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruObrasCivilesType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruTelecomunicacionesType;
 use BcTic\CamIpalBundle\Form\EncuestaChilectraEditType;
+use BcTic\CamIpalBundle\Form\EncuestaElectricaEditType;
 use BcTic\CamIpalBundle\Form\EncuestaLogisticaEditType;
 use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesEditType;
 use BcTic\CamIpalBundle\Form\EncuestaTelecomunicacionesEditType;
@@ -39,9 +45,12 @@ use BcTic\CamIpalBundle\Form\EncuestaLlvvEditType;
 use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralEditType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralEditType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoEditType;
-
-use BcTic\CamIpalBundle\Form\EncuestaElectricaEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruElectricaEditType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruLogisticaEditType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruObrasCivilesEditType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruTelecomunicacionesEditType;
 use BcTic\CamIpalBundle\Form\EncuestaChilectraEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaElectricaEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaLogisticaEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaTelecomunicacionesEditAdminType;
@@ -49,7 +58,10 @@ use BcTic\CamIpalBundle\Form\EncuestaLlvvEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoEditAdminType;
-
+use BcTic\CamIpalBundle\Form\EncuestaPeruElectricaEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruLogisticaEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruObrasCivilesEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaPeruTelecomunicacionesEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaFilterType;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
@@ -100,7 +112,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'TOTAL-TASEG-MES-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -157,7 +169,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file_no_5020 = 'NO-50-20-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file_no_5020.".csv", $content);
+      $fs->dumpFile("uploads/".$file_no_5020.".csv", utf8_decode($content));
 
       $data = array();
 
@@ -184,7 +196,7 @@ class EncuestaController extends Controller
 
       //Guardo el contenido y devuelvo el ID para descargar el link
       $file_total = 'TOTAL-POR-VALOR-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file_total.".csv", $content);
+      $fs->dumpFile("uploads/".$file_total.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file_total' => $file_total, 'file_no_5020' => $file_no_5020));
     }
@@ -237,7 +249,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'TOTAL-PREVENCIONISTA-INSPECTOR-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -299,7 +311,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'IPAL-POR-PREVENCIONISTA-INSPECTOR-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -352,7 +364,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'NO-CONFORMIDADES-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -420,7 +432,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'TODOS-LOS-DATOS-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
 
@@ -488,7 +500,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'REPORTE-1-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -538,7 +550,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'REPORTE-2-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -593,7 +605,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'INCUMPLIMIENTOS-50-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -611,7 +623,7 @@ class EncuestaController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $sql = "SELECT e.id, e.tipo, e.fecha, e.hora, e.prevencionista, e.inspector, Supervisor.nombre as supervisor, Empresa.nombre as empresa, CONCAT(Contrato.numero,' ', Contrato.nombre) as contrato, UnidadDeNegocio.nombre as unidad_de_negocio , respuesta_13_1, respuesta_13_2,respuesta_13_3,respuesta_13_4,respuesta_13_5,respuesta_13_6,respuesta_13_7,respuesta_13_8,respuesta_13_9,respuesta_13_10 FROM Encuesta e INNER JOIN Empresa ON e.empresa_id = Empresa.id INNER JOIN Contrato ON Contrato.id = e.contrato_id INNER JOIN UnidadDeNegocio ON Contrato.unidad_de_negocio_id = UnidadDeNegocio.id INNER JOIN Supervisor ON Supervisor.id = e.supervisor_id WHERE e.id IN (".implode(",",$ids).") ORDER BY e.fecha DESC LIMIT 10";
+      $sql = "SELECT e.id, e.tipo, e.fecha, e.hora, e.prevencionista, e.inspector, Supervisor.nombre as supervisor, Empresa.nombre as empresa, CONCAT(Contrato.numero,' ', Contrato.nombre) as contrato, UnidadDeNegocio.nombre as unidad_de_negocio , respuesta_13_1, respuesta_13_2,respuesta_13_3,respuesta_13_4,respuesta_13_5,respuesta_13_6,respuesta_13_7,respuesta_13_8,respuesta_13_9,respuesta_13_10 FROM Encuesta e INNER JOIN Empresa ON e.empresa_id = Empresa.id INNER JOIN Contrato ON Contrato.id = e.contrato_id INNER JOIN UnidadDeNegocio ON Contrato.unidad_de_negocio_id = UnidadDeNegocio.id INNER JOIN Empleado Supervisor ON Supervisor.id = e.supervisor_id WHERE e.id IN (".implode(",",$ids).") ORDER BY e.fecha DESC LIMIT 10";
 
       $stmt = $em->getConnection()->prepare($sql);
       $stmt->execute();
@@ -650,7 +662,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'INCUMPLIMIENTOS-MEDIO-AMBIENTE-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -705,7 +717,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'STATUS-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -756,7 +768,7 @@ class EncuestaController extends Controller
       //Guardo el contenido y devuelvo el ID para descargar el link
       $fs = new Filesystem();
       $file = 'POR-MES-'.date_format(date_create(),'Y-m-d-his');
-      $fs->dumpFile("uploads/".$file.".csv", $content);
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
       return new JsonResponse(array('file' => $file));
     }
@@ -842,7 +854,7 @@ class EncuestaController extends Controller
        //Guardo el contenido y devuelvo el ID para descargar el link
        $fs = new Filesystem();
        $file = 'I-AGRUPADO-'.$tipo.'-'.date_format(date_create(),'Y-m-d');
-       $fs->dumpFile("uploads/".$file.".csv", $content);
+       $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
 
        return new JsonResponse(array('file' => $file));
      }
@@ -1330,7 +1342,7 @@ class EncuestaController extends Controller
 
     }
 
-  /**
+   /**
      * Creates a new Encuesta entity.
      *
      * @Route("/add/electrica", name="encuestas_create_electrica")
@@ -1356,6 +1368,32 @@ class EncuestaController extends Controller
         );
     }
 
+
+    /**
+      * Creates a new Peru Encuesta entity.
+      *
+      * @Route("/add/peru_electrica", name="encuestas_create_peru_electrica")
+      * @Method("POST")
+      * @Template("BcTicCamIpalBundle:Encuesta:new.html.twig")
+      */
+     public function createPeruElectricaAction(Request $request)
+     {
+         $entity = new EncuestaPeruElectrica();
+         $form = $this->createCreateForm($entity, new EncuestaPeruElectricaType());
+         $form->handleRequest($request);
+
+         $response = $this->createAction($request, $form, $entity);
+         if (is_object($response)) return $response;
+
+         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
+
+         return array(
+             'format' => $format,
+             'entity' => $entity,
+             'form'   => $form->createView(),
+             'type'  => $entity->getKey(),
+         );
+     }
 
   /**
      * Creates a new Encuesta entity.
@@ -1383,7 +1421,7 @@ class EncuestaController extends Controller
         );
     }
 
-  /**
+   /**
      * Creates a new Encuesta entity.
      *
      * @Route("/add/telecomunicaciones", name="encuestas_create_telecomunicaciones")
@@ -1408,6 +1446,32 @@ class EncuestaController extends Controller
             'type'  => $entity->getKey(),
         );
     }
+
+    /**
+      * Creates a new Encuesta entity.
+      *
+      * @Route("/add/peru_telecomunicaciones", name="encuestas_create_peru_telecomunicaciones")
+      * @Method("POST")
+      * @Template("BcTicCamIpalBundle:Encuesta:new.html.twig")
+      */
+     public function createPeruTelecomunicacionesAction(Request $request)
+     {
+         $entity = new EncuestaPeruTelecomunicaciones();
+         $form = $this->createCreateForm($entity, new EncuestaPeruTelecomunicacionesType());
+         $form->handleRequest($request);
+
+         $response = $this->createAction($request, $form, $entity);
+         if (is_object($response)) return $response;
+
+         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
+
+         return array(
+             'format' => $format,
+             'entity' => $entity,
+             'form'   => $form->createView(),
+             'type'  => $entity->getKey(),
+         );
+     }
 
     /**
        * Creates a new Encuesta entity.
@@ -1435,7 +1499,7 @@ class EncuestaController extends Controller
           );
       }
 
-  /**
+   /**
      * Creates a new Encuesta entity.
      *
      * @Route("/add/logistica", name="encuestas_create_logistica")
@@ -1461,7 +1525,34 @@ class EncuestaController extends Controller
         );
     }
 
-  /**
+
+     /**
+       * Creates a new Encuesta entity.
+       *
+       * @Route("/add/peru_logistica", name="encuestas_create_peru_logistica")
+       * @Method("POST")
+       * @Template("BcTicCamIpalBundle:Encuesta:new.html.twig")
+       */
+      public function createPeruLogisticaAction(Request $request)
+      {
+          $entity = new EncuestaPeruLogistica();
+          $form = $this->createCreateForm($entity, new EncuestaPeruLogisticaType());
+          $form->handleRequest($request);
+
+          $response = $this->createAction($request, $form, $entity);
+          if (is_object($response)) return $response;
+
+          $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
+
+          return array(
+              'format' => $format,
+              'entity' => $entity,
+              'form'   => $form->createView(),
+              'type'  => $entity->getKey(),
+          );
+      }
+
+   /**
      * Creates a new Encuesta entity.
      *
      * @Route("/add/obras_civiles", name="encuestas_create_obras_civiles")
@@ -1486,6 +1577,33 @@ class EncuestaController extends Controller
             'type'  => $entity->getKey(),
         );
     }
+
+    /**
+      * Creates a new Encuesta entity.
+      *
+      * @Route("/add/peru_obras_civiles", name="encuestas_create_peru_obras_civiles")
+      * @Method("POST")
+      * @Template("BcTicCamIpalBundle:Encuesta:new.html.twig")
+      */
+     public function createPeruObrasCivilesAction(Request $request)
+     {
+         $entity = new EncuestaPeruObrasCiviles();
+         $form = $this->createCreateForm($entity, new EncuestaPeruObrasCivilesType());
+         $form->handleRequest($request);
+
+         $response = $this->createAction($request, $form, $entity);
+         if (is_object($response)) return $response;
+
+         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
+
+         return array(
+             'format' => $format,
+             'entity' => $entity,
+             'form'   => $form->createView(),
+             'type'  => $entity->getKey(),
+         );
+     }
+
 
     /**
      * Creates a new Encuesta entity.
@@ -1728,12 +1846,14 @@ class EncuestaController extends Controller
         $form->add('empleados', CollectionType::class, array(
             'entry_type'   => RutType::class,
             'allow_add'    => true,
-            'label' => 'Rut empleados',
+            'label' => 'empleado',
             'entry_options'  => array(
                 'attr'      => array('label' => 'Rut')
             ),
         ));
 
+        //Agrego la façade para supervisor
+        $form->add('supervisorFacade', 'text', array('label' => 'Supervisor'));
 
         $form->add('submit', 'submit', array('label' => 'Guardar'));
 
@@ -1786,11 +1906,28 @@ class EncuestaController extends Controller
             $entity = new EncuestaBrazilInterno();
             $formType = new EncuestaBrazilInternoType();
             break;
+          case 'peru_electrica':
+            $entity = new EncuestaPeruElectrica();
+            $formType = new EncuestaPeruElectricaType();
+            break;
+          case 'peru_logistica':
+            $entity = new EncuestaPeruLogistica();
+            $formType = new EncuestaPeruLogisticaType();
+            break;
+          case 'peru_obras_civiles':
+            $entity = new EncuestaPeruObrasCiviles();
+            $formType = new EncuestaPeruObrasCivilesType();
+            break;
+          case 'peru_telecomunicaciones':
+            $entity = new EncuestaPeruTelecomunicaciones();
+            $formType = new EncuestaPeruTelecomunicacionesType();
+            break;
+
         }
         $entity->setNumDeEmpleados(3);
         $entity->setVisible(true);
 
-        $form   = $this->createCreateForm($entity, $formType);
+        $form  = $this->createCreateForm($entity, $formType);
 
 
         $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html";
@@ -1876,9 +2013,9 @@ class EncuestaController extends Controller
           case 'telecomunicaciones':
             $entity = new EncuestaTelecomunicaciones();
             break;
-            case 'llvv':
-              $entity = new EncuestaLlvv();
-              break;
+        case 'llvv':
+          $entity = new EncuestaLlvv();
+          break;
           case 'colombia_general':
             $entity = new EncuestaColombiaGeneral();
             break;
@@ -1887,6 +2024,18 @@ class EncuestaController extends Controller
             break;
           case 'brazil_interno':
             $entity = new EncuestaBrazilInterno();
+            break;
+          case 'peru_electrica':
+            $entity = new EncuestaPeruElectrica();
+            break;
+          case 'peru_logistica':
+            $entity = new EncuestaPeruLogistica();
+            break;
+          case 'peru_obras_civiles':
+            $entity = new EncuestaPeruObrasCiviles();
+            break;
+          case 'peru_telecomunicaciones':
+            $entity = new EncuestaPeruTelecomunicaciones();
             break;
         }
 
@@ -1912,6 +2061,11 @@ class EncuestaController extends Controller
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Encuesta entity.');
+        }
+
+        //Obtengo el Supervisor de esta entidad para cargar la fachada:
+        if (!is_null($entity->getSupervisor())) {
+          $entity->getSupervisorFacade($entity->getSupervisor());
         }
 
         $role = in_array('ROLE_ADMIN',$this->get('security.context')->getToken()->getUser()->getRoles());
@@ -1944,6 +2098,19 @@ class EncuestaController extends Controller
           case 'brazil_interno':
             $formType = $role ? new EncuestaBrazilInternoEditAdminEditAdminType : new EncuestaBrazilInternoEditType();
             break;
+          case 'peru_electrica':
+            $formType = $role ? new EncuestaPeruElectricaEditAdminType() : new EncuestaPeruElectricaEditType();
+            break;
+          case 'peru_logistica':
+            $formType = $role ? new EncuestaPeruLogisticaEditAdminType() : new EncuestaPeruLogisticaEditType();
+            break;
+          case 'peru_obras_civiles':
+            $formType = $role ? new EncuestaPeruObrasCivilesEditAdminType() : new EncuestaPeruObrasCivilesEditType();
+            break;
+          case 'peru_telecomunicaciones':
+            $formType = $role ? new EncuestaPeruTelecomunicacionesEditAdminType() : new EncuestaPeruTelecomunicacionesEditType();
+            break;
+
         }
 
 
@@ -2011,6 +2178,9 @@ class EncuestaController extends Controller
             ),
         ));
 
+        //Agrego la façade para supervisor
+        $form->add('supervisorFacade', 'text', array('label' => 'Supervisor'));
+
         $form->add('submit', 'submit', array('label' => 'Guardar'));
 
         return $form;
@@ -2059,6 +2229,18 @@ class EncuestaController extends Controller
           case 'brazil_interno':
             $formType = $role ? new EncuestaBrazilInternoEditAdminType() : new EncuestaBrazilInternoEditType();
             break;
+          case 'peru_electrica':
+            $formType = $role ? new EncuestaPeruElectricaEditAdminType() : new EncuestaPeruElectricaEditType();
+            break;
+          case 'peru_logistica':
+            $formType = $role ? new EncuestaPeruLogisticaEditAdminType() : new EncuestaPeruLogisticaEditType();
+            break;
+          case 'peru_obras_civiles':
+            $formType = $role ? new EncuestaPeruObrasCivilesEditAdminType() : new EncuestaPeruObrasCivilesEditType();
+            break;
+          case 'peru_telecomunicaciones':
+            $formType = $role ? new EncuestaPeruTelecomunicacionesEditAdminType() : new EncuestaPeruTelecomunicacionesEditType();
+            break;
         }
 
         $estadoGuardado = $entity->getStatusCierre();
@@ -2090,8 +2272,6 @@ class EncuestaController extends Controller
                     break;
                }
             }
-
-
 
             $em->flush();
 

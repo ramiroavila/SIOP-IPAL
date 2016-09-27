@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="bc_tic_cam_ipal.bundle.class">BcTic\CamIpalBundle\Form\Type\EntityHiddenType</parameter>
         <parameter key="bc_tic_cam_ipal.bundle.inspector_validator.class">BcTic\CamIpalBundle\Validator\Constraints\ContainsInspectorValidator</parameter>
+        <parameter key="bc_tic_cam_ipal.bundle.supervisor_validator.class">BcTic\CamIpalBundle\Validator\Constraints\ContainsSupervisorValidator</parameter>
         <parameter key="bc_tic_cam_ipal.bundle.uploaded_file_validator.class">BcTic\CamIpalBundle\Validator\Constraints\ContainsUploadedFileValidator</parameter>
         <parameter key="bc_tic_cam_ipal.bundle.meta.class">BcTic\CamIpalBundle\Form\MetaType</parameter>
         <parameter key="bc_tic_cam_ipal.extension.twig_extension.class">BcTic\CamIpalBundle\Extension\TwigExtension</parameter>
@@ -27,6 +28,11 @@
         <service id="validator.unique.inspector_validator" class="%bc_tic_cam_ipal.bundle.inspector_validator.class%">
           <argument type="service" id="doctrine.orm.default_entity_manager" />
           <tag name="validator.constraint_validator" alias="inspector_validator" />
+        </service>
+
+        <service id="validator.unique.supervisor_validator" class="%bc_tic_cam_ipal.bundle.supervisor_validator.class%">
+          <argument type="service" id="doctrine.orm.default_entity_manager" />
+          <tag name="validator.constraint_validator" alias="supervisor_validator" />
         </service>
 
         <service id="validator.unique.uploaded_file_validator" class="%bc_tic_cam_ipal.bundle.uploaded_file_validator.class%">

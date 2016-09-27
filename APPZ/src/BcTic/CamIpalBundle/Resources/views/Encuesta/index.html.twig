@@ -76,10 +76,10 @@
         {% if pais.id == 3 %}
         <li class="divider"></li>
         <li class="dropdown-header">{{ pais.nombre | trans  }}</li>
-        <li><a href="{{ path('encuestas_new', { 'type': 'electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
-        <li><a href="{{ path('encuestas_new', { 'type': 'logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
-        <li><a href="{{ path('encuestas_new', { 'type': 'obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
-        <li><a href="{{ path('encuestas_new', { 'type': 'telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
+        <li><a href="{{ path('encuestas_new', { 'type': 'peru_electrica'} ) }}">{{ 'Agregar IPAL Eléctrica' | trans }}</a></li>
+        <li><a href="{{ path('encuestas_new', { 'type': 'peru_logistica'} ) }}">{{ 'Agregar IPAL Logística' | trans }}</a></li>
+        <li><a href="{{ path('encuestas_new', { 'type': 'peru_obras_civiles'} ) }}">{{ 'Agregar IPAL Obras Civiles' | trans }}</a></li>
+        <li><a href="{{ path('encuestas_new', { 'type': 'peru_telecomunicaciones'} ) }}">{{ 'Agregar IPAL Telecomunicaciones' | trans }}</a></li>
         {% endif %}
 
         {% if pais.id == 4 %}
@@ -202,10 +202,10 @@
                           {% if pais.id == 3 %}
                           <li class='divider'></li>\
                           <li class='dropdown-header'>{{ pais.nombre | trans  }}</li>\
-                          <li><a href='#' id='reporte_agrupado_electrica'>{{ 'IPAL Eléctrica' | trans }}</a></li>\
-                          <li><a href='#' id='reporte_agrupado_logistica'>{{ 'IPAL Logística' | trans }}</a></li>\
-                          <li><a href='#' id='reporte_agrupado_obras_civiles'>{{ 'IPAL Obras Civiles' | trans }}</a></li>\
-                          <li><a href='#' id='reporte_agrupado_telecomunicaciones'>{{ 'IPAL Telecomunicaciones' | trans }}</a></li>\
+                          <li><a href='#' id='reporte_agrupado_peru_electrica'>{{ 'IPAL Eléctrica' | trans }}</a></li>\
+                          <li><a href='#' id='reporte_agrupado_peru_logistica'>{{ 'IPAL Logística' | trans }}</a></li>\
+                          <li><a href='#' id='reporte_agrupado_peru_obras_civiles'>{{ 'IPAL Obras Civiles' | trans }}</a></li>\
+                          <li><a href='#' id='reporte_agrupado_peru_telecomunicaciones'>{{ 'IPAL Telecomunicaciones' | trans }}</a></li>\
                           {% endif %}
                           {% if pais.id == 4 %}
                           <li class='divider'></li>\
@@ -728,11 +728,39 @@
                    });
                  });
 
+                 $('#reporte_agrupado_peru_telecomunicaciones').bind('click', function (e) {
+                   $.ajax({
+                     type: "POST",
+                     dataType: "json",
+                     url: "{{ path('reporte_agrupado', { 'type' : 'peru_telecomunicaciones'}) }}",
+                     data: { ids: dataSuccess.ids },
+                     success: function (data) {
+                        //Descargar el archivo:
+                        window.open('reportes/' + data.file + '/download.html');
+                        alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
+                     }
+                   });
+                 });
+
                  $('#reporte_agrupado_obras_civiles').bind('click', function (e) {
                    $.ajax({
                      type: "POST",
                      dataType: "json",
                      url: "{{ path('reporte_agrupado', { 'type' : 'obras_civiles'}) }}",
+                     data: { ids: dataSuccess.ids },
+                     success: function (data) {
+                        //Descargar el archivo:
+                        window.open('reportes/' + data.file + '/download.html');
+                        alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
+                     }
+                   });
+                 });
+
+                 $('#reporte_agrupado_peru_obras_civiles').bind('click', function (e) {
+                   $.ajax({
+                     type: "POST",
+                     dataType: "json",
+                     url: "{{ path('reporte_agrupado', { 'type' : 'peru_obras_civiles'}) }}",
                      data: { ids: dataSuccess.ids },
                      success: function (data) {
                         //Descargar el archivo:
@@ -756,11 +784,40 @@
                    });
                  });
 
+                 $('#reporte_agrupado_peru_logistica').bind('click', function (e) {
+                   $.ajax({
+                     type: "POST",
+                     dataType: "json",
+                     url: "{{ path('reporte_agrupado', { 'type' : 'peru_logistica'}) }}",
+                     data: { ids: dataSuccess.ids },
+                     success: function (data) {
+                        //Descargar el archivo:
+                        window.open('reportes/' + data.file + '/download.html');
+                        alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
+                     }
+                   });
+                 });
+
                  $('#reporte_agrupado_electrica').bind('click', function (e) {
                    $.ajax({
                      type: "POST",
                      dataType: "json",
                      url: "{{ path('reporte_agrupado', { 'type' : 'electrica'}) }}",
+                     data: { ids: dataSuccess.ids },
+                     success: function (data) {
+                        //Descargar el archivo:
+                        window.open('reportes/' + data.file + '/download.html');
+                        alert("{{ 'Se ha descargado el archivo' | trans }} " + data.file + ".csv");
+                     }
+                   });
+                 });
+
+
+                 $('#reporte_agrupado_peru_electrica').bind('click', function (e) {
+                   $.ajax({
+                     type: "POST",
+                     dataType: "json",
+                     url: "{{ path('reporte_agrupado', { 'type' : 'peru_electrica'}) }}",
                      data: { ids: dataSuccess.ids },
                      success: function (data) {
                         //Descargar el archivo:

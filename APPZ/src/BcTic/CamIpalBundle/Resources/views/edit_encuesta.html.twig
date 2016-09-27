@@ -84,6 +84,7 @@
             {{ form_row(form.inspector) }}
           </div>
           <div class="col-sm-6">
+            {{ form_row(form.supervisorFacade) }}
             {{ form_row(form.supervisor) }}
           </div>
         </div>
@@ -285,6 +286,20 @@
     {% block js %}
       <script type="text/javascript">
 
+        $('#bctic_camipalbundle_encuesta_supervisorFacade').bind('keypress', function (e) {
+           var key = e.charCode || e.keyCode || 0;
+           var prevent = (
+             (key >= 48 && key <= 57)
+             ||
+             (key == 75)
+             ||
+             (key == 107)
+             ||
+             (key == 45)
+           );
+           if (prevent == false ) e.preventDefault();
+        });
+
         $('#bctic_camipalbundle_encuesta_next_1').bind('click', function (e) {
           $('.nav-tabs a.hidden-xs[href="#ingreso"]').tab('show') // Select tab by name
         });
@@ -352,7 +367,7 @@
                  dataType: "json",
                  type: "POST",
                  url: "{{ path('registros_empleados_json') }}",
-                 data: { query: request.term } ,
+                 data: { query: request.term, pais: $('#bctic_camipalbundle_encuesta_pais').val()  } ,
                  success: function (dataSuccess) {
                      response( $.map( dataSuccess , function( item ) {
                        return {

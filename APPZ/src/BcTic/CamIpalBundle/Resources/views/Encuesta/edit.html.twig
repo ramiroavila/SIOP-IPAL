@@ -158,6 +158,42 @@
 
      });
 
+     //Autocomplete
+     $("#bctic_camipalbundle_encuesta_supervisorFacade" ).autocomplete({
+        delay: 500,
+        minLength: 1,
+        source: function(request, response) {
+
+          $.ajax({
+            dataType: "json",
+            type: "POST",
+            url: "{{ path('registros_supervisores_json') }}",
+            data: { query: request.term, pais: $('#bctic_camipalbundle_encuesta_pais').val() } ,
+            success: function (dataSuccess) {
+                response( $.map( dataSuccess , function( item ) {
+                  return {
+                    label: item.nombre,
+                    value: item.nombre,
+                    id: item.id
+                  }
+                }));
+              },
+            error: function (a,b,c) {
+              alert("ERROR: " + b);
+              }
+          });
+
+        },
+        focus: function(event, ui) {
+
+        },
+        select: function(event, ui) {
+          $("#bctic_camipalbundle_encuesta_supervisor").val(ui.item.id);
+          console.log(ui.item.id);
+        }
+
+     });
+
     });
 
 

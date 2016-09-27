@@ -5,7 +5,6 @@ namespace BcTic\CamIpalBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use BcTic\CamIpalBundle\Validator\Constraints as BcTicAssert;
-
 use Symfony\Component\Validator\ExecutionContextInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use BcTic\CamIpalBundle\Validator\Constraints as BcTicCamIpalBundleAssert;
@@ -17,7 +16,7 @@ use BcTic\CamIpalBundle\Validator\Constraints as BcTicCamIpalBundleAssert;
  * @ORM\Entity
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="tipo", type="string")
- * @ORM\DiscriminatorMap({"CHILECTRA" = "EncuestaChilectra" ,"ELECTRICO" = "EncuestaElectrica", "COLOMBIA_GENERAL" = "EncuestaColombiaGeneral", "BRAZIL_GENERAL" = "EncuestaBrazilGeneral", "BRAZIL_INTERNO" = "EncuestaBrazilInterno", "LOGISTICA" = "EncuestaLogistica", "OBRAS_CIVILES" = "EncuestaObrasCiviles", "TELECOMUNICACIONES" = "EncuestaTelecomunicaciones", "LLVV" = "EncuestaLlvv" })
+ * @ORM\DiscriminatorMap({"CHILECTRA" = "EncuestaChilectra" ,"ELECTRICO" = "EncuestaElectrica", "COLOMBIA_GENERAL" = "EncuestaColombiaGeneral", "BRAZIL_GENERAL" = "EncuestaBrazilGeneral", "BRAZIL_INTERNO" = "EncuestaBrazilInterno", "LOGISTICA" = "EncuestaLogistica", "OBRAS_CIVILES" = "EncuestaObrasCiviles", "TELECOMUNICACIONES" = "EncuestaTelecomunicaciones", "LLVV" = "EncuestaLlvv", "PERU_ELECTRICO" = "EncuestaPeruElectrica", "PERU_LOGISTICA" = "EncuestaPeruLogistica", "PERU_OBRAS_CIVILES" = "EncuestaPeruObrasCiviles", "PERU_TELECOMUNICACIONES" = "EncuestaPeruTelecomunicaciones" })
  * @BcTicAssert\ContainsUploadedFile
  */
 abstract class Encuesta
@@ -877,10 +876,17 @@ abstract class Encuesta
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Supervisor")
+     * @ORM\ManyToOne(targetEntity="Empleado")
      * @ORM\JoinColumn(name="supervisor_id", referencedColumnName="id")
      */
     protected $supervisor;
+
+   /**
+    * @BcTicAssert\ContainsSupervisor
+    * @Assert\NotBlank()
+    * @Assert\Length(min = "5")
+    */
+    protected $supervisorFacade;
 
     /**
      *
@@ -1472,6 +1478,26 @@ abstract class Encuesta
     {
         return $this->supervisor;
     }
+
+    /**
+    * Set supervisor Facade
+    *
+    */
+   public function setSupervisorFacade($supervisor)
+   {
+       $this->supervisorFacade = $supervisor;
+
+       return $this;
+   }
+
+   /**
+    * Get supervisor facade
+    *
+    */
+   public function getSupervisorFacade()
+   {
+       return $this->supervisorFacade;
+   }
 
     /**
      * Set servicio

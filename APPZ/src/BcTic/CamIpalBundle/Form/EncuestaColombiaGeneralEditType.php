@@ -9,6 +9,7 @@ use BcTic\CamIpalBundle\Form\Type\SurveyNoType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use BcTic\CamIpalBundle\Form\Type\EntityHiddenType;
 
 class EncuestaColombiaGeneralEditType extends AbstractType
 {
@@ -114,7 +115,7 @@ class EncuestaColombiaGeneralEditType extends AbstractType
             ->add('respuesta121', new SurveyType(), array('label' => 'respuesta12.1_colombia_general','disabled' => true))
             ->add('respuesta122', new SurveyType(), array('label' => 'respuesta12.2_colombia_general','disabled' => true))
             ->add('respuesta123', new SurveyType(), array('label' => 'respuesta12.3_colombia_general','disabled' => true))
-            
+
             ->add('cierre','textarea', array('label' => 'Cierre'))
             ->add('statusCierre','hidden')
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))
@@ -165,15 +166,9 @@ class EncuestaColombiaGeneralEditType extends AbstractType
                 ))
             ->add('inspector','text',array('label' => 'Inspector','disabled' => true))
             ->add('prevencionista', 'hidden',array('disabled' => true))
-            ->add('supervisor','entity', array(
-                  'class' => 'BcTicCamIpalBundle:Supervisor',
-                  'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('r')
-                           ->orderBy('r.nombre', 'ASC');
-                    },
-                   'empty_value' => '-- SELECCIONE SUPERVISOR --',
-                   'empty_data' => "-1",
-                ))
+            ->add('supervisor','entity_hidden', array(
+                'class' => 'BcTic\CamIpalBundle\Entity\Empleado',
+              ))
             ->add('servicio','entity', array(
                   'label' => 'Servicio',
                   'class' => 'BcTicCamIpalBundle:Servicio',

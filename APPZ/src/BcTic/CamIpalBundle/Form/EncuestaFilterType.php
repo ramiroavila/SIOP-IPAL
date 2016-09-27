@@ -115,12 +115,14 @@ class EncuestaFilterType extends AbstractType
                    )
              ->add('supervisor','entity', array(
                    'label' => 'Supervisor',
-                   'class' => 'BcTicCamIpalBundle:Supervisor',
+                   'class' => 'BcTicCamIpalBundle:Empleado',
                    'query_builder' => function(EntityRepository $er) {
                      return $er->createQueryBuilder('r')
-                            ->orderBy('r.nombre', 'ASC');
+                              ->where('r.cargo = :supervisores')
+                              ->setParameters(array('supervisores' => 'SUPERVISOR'))
+                              ->orderBy('r.nombre', 'ASC');
                      },
-                    'empty_value' => '- TODOS LOS SUPERVISORES -',
+                    'empty_value' => '- TODOS LOS RESPONSABLES EN TERRENO -',
                     'empty_data' => "",
                  ))
              ->add('pais','entity', array(

@@ -28,10 +28,10 @@ class ContainsInspectorValidator extends ConstraintValidator
                          ->join('u.roles','rol')
                          ->where('rol.nombre LIKE :rol')
                          ->setParameters(array('rol' => 'INSPECTOR'))
-                         ->getQuery()->getResult();  
+                         ->getQuery()->getResult();
 
 
-      foreach($inspectoresResult as $entity) {                           
+      foreach($inspectoresResult as $entity) {
         $inspectores[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
       }
 
@@ -44,9 +44,9 @@ class ContainsInspectorValidator extends ConstraintValidator
                          ->orderBy('r.nombre', 'ASC')
                          ->getQuery()->getResult();
 
-      foreach($inspectoresResult as $entity) {                           
+      foreach($inspectoresResult as $entity) {
         $inspectores[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
-      }  
+      }
 
 
       //Busco todos los usuarios que tengan ROL PREVENCIONISTA:
@@ -55,10 +55,10 @@ class ContainsInspectorValidator extends ConstraintValidator
                          ->join('u.roles','rol')
                          ->where('rol.nombre LIKE :rol')
                          ->setParameters(array('rol' => 'PREVENCIONISTA'))
-                         ->getQuery()->getResult();  
+                         ->getQuery()->getResult();
 
 
-      foreach($inspectoresResult as $entity) {                           
+      foreach($inspectoresResult as $entity) {
         $inspectores[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
       }
 
@@ -71,9 +71,9 @@ class ContainsInspectorValidator extends ConstraintValidator
                          ->orderBy('r.nombre', 'ASC')
                          ->getQuery()->getResult();
 
-      foreach($inspectoresResult as $entity) {                           
+      foreach($inspectoresResult as $entity) {
         $inspectores[md5(strtoupper(trim($entity->getNombre())))] = md5(strtoupper(trim($entity->getNombre())));
-      }  
+      }
 
 
       if (!array_key_exists(md5(strtoupper(trim($value))),$inspectores))   {
@@ -81,7 +81,7 @@ class ContainsInspectorValidator extends ConstraintValidator
                 $constraint->message,
                 array('%string%' => $value)
             );
-      }      
-            
+      }
+
     }
 }

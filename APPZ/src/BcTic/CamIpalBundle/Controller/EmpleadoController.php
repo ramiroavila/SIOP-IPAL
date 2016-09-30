@@ -286,10 +286,10 @@ class EmpleadoController extends Controller
 
         $entities = $em->getRepository('BcTicCamIpalBundle:Empleado')
                            ->createQueryBuilder('r')
-                           ->where(' (r.cargo = :supervisores AND p.id = :pais) AND (  (r.rut LIKE :query) OR (r.nombre LIKE :query) ) ')
+                           ->where(' (p.id = :pais) AND (  (r.rut LIKE :query) OR (r.nombre LIKE :query) ) ')
                            ->orderBy('r.nombre', 'ASC')
                            ->join('r.pais','p')
-                           ->setParameters(array('supervisores' => 'SUPERVISOR', 'pais' => $request->get('pais'), 'query' => '%'.$request->get('query').'%'))
+                           ->setParameters(array('pais' => $request->get('pais'), 'query' => '%'.$request->get('query').'%'))
                            ->getQuery();
 
         $data = array();

@@ -22,12 +22,10 @@ class ContainsSupervisorValidator extends ConstraintValidator
       //Veo si está en el registro:
       $supervisores = array();
 
-      //Busco todos los usuarios que tengan ROL PREVENCIONISTA:
+      //Busco todos los usuarios que tengan un cargo - no importa cual.
       $supervisoresResult = $this->em->getRepository('BcTicCamIpalBundle:Empleado')
                          ->createQueryBuilder('s')
-												 ->where('s.cargo = :supervisores')
 												 ->orderBy('s.nombre', 'ASC')
-												 ->setParameters(array('supervisores' => 'SUPERVISOR'))
                          ->join('s.pais','p')
                          ->getQuery()->getResult();
 

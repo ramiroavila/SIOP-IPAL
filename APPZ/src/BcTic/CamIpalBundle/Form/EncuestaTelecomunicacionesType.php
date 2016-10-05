@@ -199,7 +199,7 @@ class EncuestaTelecomunicacionesType extends AbstractType
                            ->orderBy('r.nombre', 'ASC');
                     }
                 ))
-            ->add('autoInspeccion','hidden')
+            ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('N/A' => 'N/A: No aplica','A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
             ->add('charlaOperativa','hidden')
             ->add('charlaGrabada','choice', array('label' => 'Charla grabada', 'choices' => array('N/A' => 'N/A: No aplica','SI' => 'Sí', 'NO' => 'No' )))
 

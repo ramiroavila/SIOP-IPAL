@@ -1,4 +1,4 @@
-"FECHA","Nº ENC","Nº de NC"," RESPUESTAS SI"," RESPUESTAS NO"," RESPUESTAS N/A"
+"FECHA";"Nº ENC";"Nº de NC";" RESPUESTAS SI";" RESPUESTAS NO";" RESPUESTAS N/A"
 {% for fecha,item in data %}
 {% set ipal = 0 %}
 {% set tiene_incumplimientos = 0 %}
@@ -7,5 +7,5 @@
 {% set respuestas_1 = 0 %}
 {% set respuestas_2 = 0 %}
 {% for encuesta_index,encuesta in item %}{% set ipal = ipal + encuesta.ipal %}{% set tiene_incumplimientos = tiene_incumplimientos + encuesta.tiene_incumplimientos %}{% set cantidad_incumplimientos = cantidad_incumplimientos + encuesta.cantidad_incumplimientos %}{% set respuestas_0 = respuestas_0 + encuesta.respuestas_0 %}{% set respuestas_1 = respuestas_1 + encuesta.respuestas_1 %}{% set respuestas_2 = respuestas_2 + encuesta.respuestas_2 %}{% endfor %}
-"{{ fecha | date("m-Y") }}","{{ item | length }}","{{ cantidad_incumplimientos }}"," {{ respuestas_0 }}"," {{ respuestas_1 }}"," {{ respuestas_2 }}"
+"{{ fecha | date("m-Y") }}";"{{ item | length }}";"{{ cantidad_incumplimientos }}";" {{ respuestas_0 }}";" {{ respuestas_1 }}";" {{ respuestas_2 }}"
 {% endfor %}

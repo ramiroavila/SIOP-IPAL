@@ -1744,7 +1744,7 @@ class EncuestaController extends Controller
                   break;
 
                 default: //CHILE - DEFECTO
-                  $destinatario = 'siop@cam-la.com';
+                  $destinatario = 'siop-cam-la@bctic.net';
                   break;
 
               }

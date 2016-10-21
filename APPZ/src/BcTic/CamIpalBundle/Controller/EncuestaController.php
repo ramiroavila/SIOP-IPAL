@@ -624,7 +624,7 @@ class EncuestaController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $sql = "SELECT e.id, e.tipo, e.fecha, e.hora, e.prevencionista, e.inspector, Supervisor.nombre as supervisor, Empresa.nombre as empresa, CONCAT(Contrato.numero,' ', Contrato.nombre) as contrato, UnidadDeNegocio.nombre as unidad_de_negocio , respuesta_13_1, respuesta_13_2,respuesta_13_3,respuesta_13_4,respuesta_13_5,respuesta_13_6,respuesta_13_7,respuesta_13_8,respuesta_13_9,respuesta_13_10 FROM Encuesta e INNER JOIN Empresa ON e.empresa_id = Empresa.id INNER JOIN Contrato ON Contrato.id = e.contrato_id INNER JOIN UnidadDeNegocio ON Contrato.unidad_de_negocio_id = UnidadDeNegocio.id INNER JOIN Empleado Supervisor ON Supervisor.id = e.supervisor_id WHERE e.id IN (".implode(",",$ids).") ORDER BY e.fecha DESC LIMIT 10";
+      $sql = "SELECT (SELECT ipal_medioambiente FROM EncuestaProxy WHERE EncuestaProxy.id = e.id) as ipal_medioambiente, e.id, e.tipo, e.fecha, e.hora, e.prevencionista, e.inspector, Supervisor.nombre as supervisor, Empresa.nombre as empresa, CONCAT(Contrato.numero,' ', Contrato.nombre) as contrato, UnidadDeNegocio.nombre as unidad_de_negocio , respuesta_13_1, respuesta_13_2,respuesta_13_3,respuesta_13_4,respuesta_13_5,respuesta_13_6,respuesta_13_7,respuesta_13_8,respuesta_13_9,respuesta_13_10 FROM Encuesta e INNER JOIN Empresa ON e.empresa_id = Empresa.id INNER JOIN Contrato ON Contrato.id = e.contrato_id INNER JOIN UnidadDeNegocio ON Contrato.unidad_de_negocio_id = UnidadDeNegocio.id INNER JOIN Empleado Supervisor ON Supervisor.id = e.supervisor_id WHERE e.id IN (".implode(",",$ids).") ORDER BY e.fecha DESC";
 
       $stmt = $em->getConnection()->prepare($sql);
       $stmt->execute();
@@ -651,7 +651,7 @@ class EncuestaController extends Controller
           'respuesta_13_8' => $item['respuesta_13_8'],
           'respuesta_13_9' => $item['respuesta_13_9'],
           'respuesta_13_10' => $item['respuesta_13_10'],
-
+          'ipal_medioambiente' => $item['ipal_medioambiente']
         );
       }
 
@@ -946,7 +946,8 @@ class EncuestaController extends Controller
         $implode = 1;
       }
 
-      $sql = "SELECT COUNT(*) as hits, ROUND(SUM(indice) / count(*),2) as ipal,DATE_FORMAT(fecha,'%m-%Y') as fecha_por_mes FROM Encuesta WHERE ".$implode." GROUP BY fecha_por_mes ORDER BY fecha_por_mes ASC;";
+      $sql = "SELECT COUNT(*) as hits, ROUND(SUM(ipal) / count(*),2) as ipal, DATE_FORMAT(fecha,'%m-%Y') as fecha_por_mes FROM EncuestaProxy WHERE ".$implode." GROUP BY fecha_por_mes ORDER BY fecha_por_mes ASC;";
+
 
       $stmt = $em->getConnection()->prepare($sql);
       $stmt->execute();
@@ -1339,7 +1340,9 @@ class EncuestaController extends Controller
 
         file_put_contents($ids_json, json_encode($ids));
 
-        return new JsonResponse(array('ultima_pagina' => $ultima_pagina + 1,'pagina' => (int) $pagina,'entities' => $data,'ids' => $ids_json ,'indiceIPAL' => $indiceIPAL,'hits' => $num_de_inspecciones));
+        $indiceIPALMedioAmbiente = 0;
+
+        return new JsonResponse(array('ultima_pagina' => $ultima_pagina + 1,'pagina' => (int) $pagina,'entities' => $data,'ids' => $ids_json ,'indiceIPAL' => $indiceIPAL,'indiceIPALMedioAmbiente' => $indiceIPALMedioAmbiente, 'hits' => $num_de_inspecciones));
 
     }
 

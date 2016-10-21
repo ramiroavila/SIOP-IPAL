@@ -1,0 +1,4 @@
+ALTER TABLE EncuestaProxy ADD COLUMN ipal_medioambiente float NULL AFTER ipal;
+
+UPDATE Encuesta SET indice = -1 WHERE tipo IN ('ELECTRICO','ELECTRICA','OBRAS_CIVILES','LOGISTICA','LLVV') AND fecha > '2016-08-01';
+DELETE FROM EncuestaProxy WHERE tipo IN ('ELECTRICO','ELECTRICA','OBRAS_CIVILES','LOGISTICA','LLVV') AND fecha > '2016-08-01';

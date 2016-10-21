@@ -252,7 +252,7 @@ class EncuestaLlvv extends Encuesta
       $data[] = "respuesta_13_7";
       $data[] = "respuesta_13_8";
       $data[] = "respuesta_13_9";
-      $data[] = "respuesta_13_10";      
+      $data[] = "respuesta_13_10";
 
       return $data;
 
@@ -337,7 +337,7 @@ class EncuestaLlvv extends Encuesta
       return $data;
     }
 
-    public function getIndiceIPAL()
+    public function getIndiceIpal()
     {
         $ipal = 0;
 
@@ -431,5 +431,61 @@ class EncuestaLlvv extends Encuesta
                 }
 
         return $ipal;
+    }
+
+    public function getIndiceIpalMedioAmbiente(){
+      $ipal = 0;
+      //Calcula el índice IPAL según Fórmula:
+      $data = array(
+              50 => array (
+                  'items' => 3,
+                  'indice' => (($this->getRespuesta134() == 1) ? 1 : 0) +
+                              (($this->getRespuesta135() == 1) ? 1 : 0) +
+                              (($this->getRespuesta137() == 1) ? 1 : 0)
+                  ),
+              20 => array (
+                  'items' => 1,
+                  'indice' => (($this->getRespuesta139() == 1) ? 1 : 0 )
+                  ),
+              10 => array (
+                  'items' => 2,
+                  'indice' => (($this->getRespuesta136() == 1) ? 1 : 0 ) +
+                              (($this->getRespuesta1310() == 1) ? 1 : 0 )
+                  ),
+              5 => array (
+                  'items' => 4,
+                  'indice' => (($this->getRespuesta131() == 1) ? 1 : 0 ) +
+                              (($this->getRespuesta132() == 1) ? 1 : 0 ) +
+                              (($this->getRespuesta133() == 1) ? 1 : 0 ) +
+                              (($this->getRespuesta138() == 1) ? 1 : 0 )
+                  ),
+              );
+
+              //Ahora los valores
+              foreach ($data as $index => $value) {
+                //Value = items & indice
+                $valor = 0;
+                if ($value["items"] > 0) {
+                  $rango = round(100 * ( $value['indice']/$value['items'] ),0);
+                  if ($rango >= 90) $valor = 8;
+                  if ( ($rango >= 77 ) and ($rango < 90) )  $valor = 7;
+                  if ( ($rango >= 64 ) and ($rango < 77) )  $valor = 6;
+                  if ( ($rango >= 51 ) and ($rango < 64) )  $valor = 5;
+                  if ( ($rango >= 38 ) and ($rango < 51) )  $valor = 4;
+                  if ( ($rango >= 25 ) and ($rango < 38) )  $valor = 3;
+                  if ( ($rango >= 13 ) and ($rango < 25) )  $valor = 2;
+                  if ( ($rango > 0 ) and ($rango < 13) )  $valor = 1;
+                  if ( $rango == 0 )  $valor = 0;
+                }
+
+                $data[$index]['valor'] = $valor;
+              }
+
+              foreach ($data as $index => $value) {
+                 $ipal = $ipal + ($index * $value['valor']);
+              }
+
+      return $ipal;
+
     }
 }

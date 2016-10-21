@@ -149,14 +149,14 @@
 
       var map;
 
-      function createResultado(indice,cantidad) {
+      function createResultado(indice = 0,indice_medioambiente = 0 ,cantidad = 0) {
 
         var data = "<div class='alert alert-";
 
         if (indice >= 80) data = data + 'info';
         if (indice < 80) data = data + 'warning';
 
-        return data + "'><h4 class='text-center'>IPAL: " + indice + ", {{ "Nº de inspecciones" | trans }}: " + cantidad + "</h4>" + "<p class='text-center'>* IPAL = {{ "Riesgo Detectado" | trans }} (RD) / {{ "Nº Inspecciones" | trans }}</p></div>";
+        return data + "'><h4 class='text-center'>IPAL: " + indice + ", IPAL MEDIOAMBIENTE: " + indice_medioambiente + "<br/><br/> {{ "Nº de inspecciones" | trans }}: " + cantidad + "</h4>" + "<p class='text-center'>* IPAL = {{ "Riesgo Detectado" | trans }} (RD) / {{ "Nº Inspecciones" | trans }}</p></div>";
 
       }
 
@@ -414,7 +414,7 @@
                  $('#resultados').html('<div class="alert alert-info">{{ 'No hay encuestas IPAL que mostrar.' | trans }}</div>');
                  $('#encuestas').html('<div class="alert alert-info">{{ 'No hay encuestas IPAL que mostrar.' | trans }}</div>');
                } else {
-                 $('#resultados').html(createResultado(dataSuccess.indiceIPAL,dataSuccess.hits));
+                 $('#resultados').html(createResultado(dataSuccess.indiceIPAL,dataSuccess.indiceIPALMedioAmbiente, dataSuccess.hits));
                  $('#resultados').append(createDashboard(dataSuccess.ids));
 
                  $("#dashboard").html(" CARGANDO ... ");

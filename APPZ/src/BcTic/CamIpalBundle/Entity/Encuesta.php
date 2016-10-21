@@ -2627,7 +2627,8 @@ abstract class Encuesta
         return $this->pais;
     }
 
-    public abstract function getIndiceIPAL();
+    public abstract function getIndiceIpal();
+    public abstract function getIndiceIpalMedioAmbiente();
 
 
     /**

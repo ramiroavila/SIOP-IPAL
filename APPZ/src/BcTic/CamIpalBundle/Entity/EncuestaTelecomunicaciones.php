@@ -149,7 +149,7 @@ class EncuestaTelecomunicaciones extends Encuesta
       $enum = $this->getRespuesta48(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta49(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta410(); $data[$enum] = $data[$enum] + 1;
-    
+
       $enum = $this->getRespuesta51(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta52(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta53(); $data[$enum] = $data[$enum] + 1;
@@ -332,7 +332,7 @@ class EncuestaTelecomunicaciones extends Encuesta
       return $data;
     }
 
-    public function getIndiceIPAL()
+    public function getIndiceIpal()
     {
         $ipal = 0;
         //Calcula el índice IPAL según Fórmula:
@@ -417,4 +417,9 @@ class EncuestaTelecomunicaciones extends Encuesta
 
         return $ipal;
     }
+
+    public function getIndiceIpalMedioAmbiente(){
+      return 0;
+    }
+        
 }

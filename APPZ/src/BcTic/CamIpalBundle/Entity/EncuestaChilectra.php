@@ -153,7 +153,7 @@ class EncuestaChilectra extends Encuesta
       return $data;
     }
 
-    public function getIndiceIPAL()
+    public function getIndiceIpal()
     {
         $ipal = 0;
         //Calcula el índice IPAL según Fórmula:
@@ -213,4 +213,9 @@ class EncuestaChilectra extends Encuesta
 
         return $ipal;
     }
+
+    public function getIndiceIpalMedioAmbiente(){
+      return 0;
+    }
+        
 }

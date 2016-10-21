@@ -5,6 +5,105 @@ parameters:
         region: "%aws_region%"
         credentials: { key: "%aws_credentials_key%", secret: "%aws_credentials_secret%" }
 
+    medioambiente_electrico_respuesta_13_1: 5
+    medioambiente_electrico_respuesta_13_2: 5
+    medioambiente_electrico_respuesta_13_3: 5
+    medioambiente_electrico_respuesta_13_4: 50
+    medioambiente_electrico_respuesta_13_5: 50
+    medioambiente_electrico_respuesta_13_6: 10
+    medioambiente_electrico_respuesta_13_7: 50
+    medioambiente_electrico_respuesta_13_8: 50
+    medioambiente_electrico_respuesta_13_9: 20
+    medioambiente_electrico_respuesta_13_10: 10
+
+    medioambiente_obras_civiles_respuesta_13_1: 5
+    medioambiente_obras_civiles_respuesta_13_2: 5
+    medioambiente_obras_civiles_respuesta_13_3: 5
+    medioambiente_obras_civiles_respuesta_13_4: 50
+    medioambiente_obras_civiles_respuesta_13_5: 10
+    medioambiente_obras_civiles_respuesta_13_6: 5
+    medioambiente_obras_civiles_respuesta_13_7: 10
+    medioambiente_obras_civiles_respuesta_13_8: 50
+    medioambiente_obras_civiles_respuesta_13_9: 5
+    medioambiente_obras_civiles_respuesta_13_10: 20
+
+    medioambiente_logistica_respuesta_13_1: 5
+    medioambiente_logistica_respuesta_13_2: 5
+    medioambiente_logistica_respuesta_13_3: 50
+    medioambiente_logistica_respuesta_13_4: 10
+    medioambiente_logistica_respuesta_13_5: 50
+    medioambiente_logistica_respuesta_13_6: 5
+    medioambiente_logistica_respuesta_13_7: 5
+    medioambiente_logistica_respuesta_13_8: 10
+    medioambiente_logistica_respuesta_13_9: 50
+    medioambiente_logistica_respuesta_13_10: 20
+
+    medioambiente_llvv_respuesta_13_1: 5
+    medioambiente_llvv_respuesta_13_2: 5
+    medioambiente_llvv_respuesta_13_3: 5
+    medioambiente_llvv_respuesta_13_4: 50
+    medioambiente_llvv_respuesta_13_5: 50
+    medioambiente_llvv_respuesta_13_6: 10
+    medioambiente_llvv_respuesta_13_7: 50
+    medioambiente_llvv_respuesta_13_8: 5
+    medioambiente_llvv_respuesta_13_9: 20
+    medioambiente_llvv_respuesta_13_10: 10
+
+    medioambiente_telecomunicaciones_respuesta_13_1: 0
+    medioambiente_telecomunicaciones_respuesta_13_2: 0
+    medioambiente_telecomunicaciones_respuesta_13_3: 0
+    medioambiente_telecomunicaciones_respuesta_13_4: 0
+    medioambiente_telecomunicaciones_respuesta_13_5: 0
+    medioambiente_telecomunicaciones_respuesta_13_6: 0
+    medioambiente_telecomunicaciones_respuesta_13_7: 0
+    medioambiente_telecomunicaciones_respuesta_13_8: 0
+    medioambiente_telecomunicaciones_respuesta_13_9: 0
+    medioambiente_telecomunicaciones_respuesta_13_10: 0
+
+    medioambiente_colombia_general_respuesta_13_1: 0
+    medioambiente_colombia_general_respuesta_13_2: 0
+    medioambiente_colombia_general_respuesta_13_3: 0
+    medioambiente_colombia_general_respuesta_13_4: 0
+    medioambiente_colombia_general_respuesta_13_5: 0
+    medioambiente_colombia_general_respuesta_13_6: 0
+    medioambiente_colombia_general_respuesta_13_7: 0
+    medioambiente_colombia_general_respuesta_13_8: 0
+    medioambiente_colombia_general_respuesta_13_9: 0
+    medioambiente_colombia_general_respuesta_13_10: 0
+
+    medioambiente_brazil_general_respuesta_13_1: 0
+    medioambiente_brazil_general_respuesta_13_2: 0
+    medioambiente_brazil_general_respuesta_13_3: 0
+    medioambiente_brazil_general_respuesta_13_4: 0
+    medioambiente_brazil_general_respuesta_13_5: 0
+    medioambiente_brazil_general_respuesta_13_6: 0
+    medioambiente_brazil_general_respuesta_13_7: 0
+    medioambiente_brazil_general_respuesta_13_8: 0
+    medioambiente_brazil_general_respuesta_13_9: 0
+    medioambiente_brazil_general_respuesta_13_10: 0
+
+    medioambiente_chilectra_respuesta_13_1: 0
+    medioambiente_chilectra_respuesta_13_2: 0
+    medioambiente_chilectra_respuesta_13_3: 0
+    medioambiente_chilectra_respuesta_13_4: 0
+    medioambiente_chilectra_respuesta_13_5: 0
+    medioambiente_chilectra_respuesta_13_6: 0
+    medioambiente_chilectra_respuesta_13_7: 0
+    medioambiente_chilectra_respuesta_13_8: 0
+    medioambiente_chilectra_respuesta_13_9: 0
+    medioambiente_chilectra_respuesta_13_10: 0
+
+    medioambiente_peru_obras_civiles_respuesta_13_1: 0
+    medioambiente_peru_obras_civiles_respuesta_13_2: 0
+    medioambiente_peru_obras_civiles_respuesta_13_3: 0
+    medioambiente_peru_obras_civiles_respuesta_13_4: 0
+    medioambiente_peru_obras_civiles_respuesta_13_5: 0
+    medioambiente_peru_obras_civiles_respuesta_13_6: 0
+    medioambiente_peru_obras_civiles_respuesta_13_7: 0
+    medioambiente_peru_obras_civiles_respuesta_13_8: 0
+    medioambiente_peru_obras_civiles_respuesta_13_9: 0
+    medioambiente_peru_obras_civiles_respuesta_13_10: 0
+
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }

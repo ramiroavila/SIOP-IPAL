@@ -624,7 +624,7 @@ class EncuestaController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $sql = "SELECT (SELECT ipal_medioambiente FROM EncuestaProxy WHERE EncuestaProxy.id = e.id) as ipal_medioambiente, e.id, e.tipo, e.fecha, e.hora, e.prevencionista, e.inspector, Supervisor.nombre as supervisor, Empresa.nombre as empresa, CONCAT(Contrato.numero,' ', Contrato.nombre) as contrato, UnidadDeNegocio.nombre as unidad_de_negocio , respuesta_13_1, respuesta_13_2,respuesta_13_3,respuesta_13_4,respuesta_13_5,respuesta_13_6,respuesta_13_7,respuesta_13_8,respuesta_13_9,respuesta_13_10 FROM Encuesta e INNER JOIN Empresa ON e.empresa_id = Empresa.id INNER JOIN Contrato ON Contrato.id = e.contrato_id INNER JOIN UnidadDeNegocio ON Contrato.unidad_de_negocio_id = UnidadDeNegocio.id INNER JOIN Empleado Supervisor ON Supervisor.id = e.supervisor_id WHERE e.id IN (".implode(",",$ids).") ORDER BY e.fecha DESC";
+      $sql = "SELECT (SELECT ipal_medioambiente FROM EncuestaProxy WHERE EncuestaProxy.id = e.id) as ipal_medioambiente, e.id, LOWER(e.tipo) as tipo, e.fecha, e.hora, e.prevencionista, e.inspector, Supervisor.nombre as supervisor, Empresa.nombre as empresa, CONCAT(Contrato.numero,' ', Contrato.nombre) as contrato, UnidadDeNegocio.nombre as unidad_de_negocio , respuesta_13_1, respuesta_13_2,respuesta_13_3,respuesta_13_4,respuesta_13_5,respuesta_13_6,respuesta_13_7,respuesta_13_8,respuesta_13_9,respuesta_13_10 FROM Encuesta e INNER JOIN Empresa ON e.empresa_id = Empresa.id INNER JOIN Contrato ON Contrato.id = e.contrato_id INNER JOIN UnidadDeNegocio ON Contrato.unidad_de_negocio_id = UnidadDeNegocio.id INNER JOIN Empleado Supervisor ON Supervisor.id = e.supervisor_id WHERE e.id IN (".implode(",",$ids).") ORDER BY e.fecha DESC";
 
       $stmt = $em->getConnection()->prepare($sql);
       $stmt->execute();
@@ -642,15 +642,25 @@ class EncuestaController extends Controller
           'supervisor' => $item['supervisor'],
           'prevencionista' => $item['prevencionista'],
           'respuesta_13_1' => $item['respuesta_13_1'],
+          'respuesta_13_1_valor' => ( (int) $item['respuesta_13_1'] === 1 ) ? $this->getParameter('medioambiente_'.$item['tipo'].'_respuesta_13_1') : 0,
           'respuesta_13_2' => $item['respuesta_13_2'],
+          'respuesta_13_2_valor' => ( (int) $item['respuesta_13_2'] === 1 ) ? $this->getParameter('medioambiente_'.$item['tipo'].'_respuesta_13_2') : 0,
           'respuesta_13_3' => $item['respuesta_13_3'],
+          'respuesta_13_3_valor' => ( (int) $item['respuesta_13_3'] === 1 ) ? $this->getParameter('medioambiente_'.$item['tipo'].'_respuesta_13_3') : 0,
           'respuesta_13_4' => $item['respuesta_13_4'],
+          'respuesta_13_4_valor' => ( (int) $item['respuesta_13_4'] === 1 ) ? $this->getParameter('medioambiente_'.$item['tipo'].'_respuesta_13_4') : 0,
           'respuesta_13_5' => $item['respuesta_13_5'],
+          'respuesta_13_5_valor' => ( (int) $item['respuesta_13_5'] === 1 ) ? $this->getParameter('medioambiente_'.$item['tipo'].'_respuesta_13_5') : 0,
           'respuesta_13_6' => $item['respuesta_13_6'],
+          'respuesta_13_6_valor' => ( (int) $item['respuesta_13_6'] === 1 ) ? $this->getParameter('medioambiente_'.$item['tipo'].'_respuesta_13_6') : 0,
           'respuesta_13_7' => $item['respuesta_13_7'],
+          'respuesta_13_7_valor' => ( (int) $item['respuesta_13_7'] === 1 ) ? $this->getParameter('medioambiente_'.$item['tipo'].'_respuesta_13_7') : 0,
           'respuesta_13_8' => $item['respuesta_13_8'],
+          'respuesta_13_8_valor' => ( (int) $item['respuesta_13_8'] === 1 ) ? $this->getParameter('medioambiente_'.$item['tipo'].'_respuesta_13_8') : 0,
           'respuesta_13_9' => $item['respuesta_13_9'],
+          'respuesta_13_9_valor' => ( (int) $item['respuesta_13_9'] === 1 ) ? $this->getParameter('medioambiente_'.$item['tipo'].'_respuesta_13_9') : 0,
           'respuesta_13_10' => $item['respuesta_13_10'],
+          'respuesta_13_10_valor' => ( (int) $item['respuesta_13_10'] === 1 ) ? $this->getParameter('medioambiente_'.$item['tipo'].'_respuesta_13_10') : 0,
           'ipal_medioambiente' => $item['ipal_medioambiente']
         );
       }

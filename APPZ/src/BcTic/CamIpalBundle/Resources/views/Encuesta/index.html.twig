@@ -117,7 +117,7 @@
       {{ parent() }}
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7GU1J8Lp0N2rLVEA7hzbDFrxbC6f4S5Y&callback=initializeMap" async defer></script>
         <script type="text/javascript" src="/js/google_maps.js"></script>
-        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
     {% endblock %}
 
     {% block js %}
@@ -311,13 +311,13 @@
 
             var files = '';
             $.each(this.files, function(i, item) {
-              files = files + '<a target="blank" href="http://siop-cam-la.bctic.net/'+ item + '">{{ 'Archivo' | trans }} #'  + ( i + 1 )+ '</a><br/>' ;
+              files = files + '<a target="blank" href="https://siop.cam-la.com/'+ item + '">{{ 'Archivo' | trans }} #'  + ( i + 1 )+ '</a><br/>' ;
             });
             files = files + '';
 
             var filesCierre = '';
             $.each(this.filesCierre, function(i, item) {
-              filesCierre = filesCierre + '<a target="blank" href="http://siop-cam-la.bctic.net/'+ item + '">{{ 'Archivo' | trans }} #'  + ( i + 1 )+ '</a><br/>' ;
+              filesCierre = filesCierre + '<a target="blank" href="https://siop.cam-la.com/'+ item + '">{{ 'Archivo' | trans }} #'  + ( i + 1 )+ '</a><br/>' ;
             });
 
             filesCierre = filesCierre + '';

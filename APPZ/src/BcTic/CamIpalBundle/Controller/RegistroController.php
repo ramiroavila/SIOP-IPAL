@@ -107,7 +107,9 @@ class RegistroController extends Controller
         }
 
 
-        return new JsonResponse($data);
+        $response = new JsonResponse($data);
+        $response->setSharedMaxAge(600); //Cache 10 minutes
+        return $response;
 
     }
 
@@ -174,7 +176,9 @@ class RegistroController extends Controller
         }
 
 
-        return new JsonResponse($data);
+        $response = new JsonResponse($data);
+        $response->setSharedMaxAge(600); //Cache 10 minutes
+        return $response;
 
     }
 

@@ -57,7 +57,7 @@ class GerenciaController extends Controller
      * Lists all Entities
      *
      * @Route("/data/index_all.json", name="gerencias_index_json" )
-     * @Method("POST")
+     * @Method("GET")
      * @Template()
      */
     public function indexAllJsonAction(Request $request)

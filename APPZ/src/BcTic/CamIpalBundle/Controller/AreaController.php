@@ -59,7 +59,7 @@ class AreaController extends Controller
      * Lists all Entities
      *
      * @Route("/data/index_all.json", name="areas_index_json" )
-     * @Method("POST")
+     * @Method("GET")
      * @Template()
      */
     public function indexAllJsonAction(Request $request)

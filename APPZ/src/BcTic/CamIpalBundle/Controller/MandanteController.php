@@ -57,7 +57,7 @@ class MandanteController extends Controller
      * Lists all Entities
      *
      * @Route("/data/index_all.json", name="mandantes_index_json" )
-     * @Method("POST")
+     * @Method("GET")
      * @Template()
      */
     public function indexAllJsonAction(Request $request)

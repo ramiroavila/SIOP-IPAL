@@ -365,7 +365,7 @@
 
                $.ajax({
                  dataType: "json",
-                 type: "POST",
+                 type: "GET",
                  url: "{{ path('registros_empleados_json') }}",
                  data: { query: request.term, pais: $('#bctic_camipalbundle_encuesta_pais').val()  } ,
                  success: function (dataSuccess) {

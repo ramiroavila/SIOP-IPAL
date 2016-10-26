@@ -69,7 +69,7 @@ class ActividadController extends Controller
          * Lists all Actividad entities
          *
          * @Route("/data/index_actividades_all.json", name="actividades_index_json") )
-         * @Method("POST")
+         * @Method("GET")
          * @Template()
          */
         public function indexActividadesAllJsonAction(Request $request)
@@ -116,7 +116,7 @@ class ActividadController extends Controller
      * Lists all Actividad entities By Empresa
      *
      * @Route("/data/index.json", name="actividades_json", requirements={"empresa_id" = "\d+"} ) )
-     * @Method("POST")
+     * @Method("GET")
      * @Template()
      */
     public function indexActividadesJsonAction(Request $request)
@@ -258,7 +258,7 @@ class ActividadController extends Controller
      * Displays a form to edit an existing Actividad entity.
      *
      * @Route("/edit/{id}", name="actividades_edit")
-     * @Method("GET")
+     * @Method("GET")     
      * @Template()
      */
     public function editAction($id)

@@ -60,7 +60,7 @@ class ServicioController extends Controller
      * Lists all Entities
      *
      * @Route("/data/index_all.json", name="servicios_index_json" )
-     * @Method("POST")
+     * @Method("GET")
      * @Template()
      */
     public function indexAllJsonAction(Request $request)

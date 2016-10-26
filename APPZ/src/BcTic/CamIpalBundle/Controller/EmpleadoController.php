@@ -240,7 +240,7 @@ class EmpleadoController extends Controller
      * Lists all Empleados by Query
      *
      * @Route("/data/empleados.json", name="registros_empleados_json")
-     * @Method("POST")
+     * @Method("GET")
      * @Template()
      */
     public function indexEmpleadosJsonAction(Request $request)
@@ -279,7 +279,7 @@ class EmpleadoController extends Controller
      * Lists all Empleados by Query
      *
      * @Route("/data/supervisores.json", name="registros_supervisores_json")
-     * @Method("POST")
+     * @Method("GET")
      * @Template()
      */
     public function indexSupervisoresJsonAction(Request $request)

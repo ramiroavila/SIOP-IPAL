@@ -56,7 +56,7 @@ class EmpresaController extends Controller
      * Lists all Empresa entities By Contrato
      *
      * @Route("/data/index_empresas_all.json", name="empresas_index_json" )
-     * @Method("POST")
+     * @Method("GET")
      * @Template()
      */
     public function indexEmpresasAllJsonAction(Request $request)

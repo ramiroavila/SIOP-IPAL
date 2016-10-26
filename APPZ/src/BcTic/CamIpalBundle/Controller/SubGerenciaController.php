@@ -61,7 +61,7 @@ class SubGerenciaController extends Controller
      * Lists all Entities
      *
      * @Route("/data/index_all.json", name="subgerencias_index_json" )
-     * @Method("POST")
+     * @Method("GET")
      * @Template()
      */
     public function indexAllJsonAction(Request $request)

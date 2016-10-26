@@ -100,7 +100,9 @@ class SubGerenciaController extends Controller
           );
         }
 
-        return new JsonResponse($data);
+        $response = new JsonResponse($data);
+        $response->setSharedMaxAge(3600); //Cache 10 minutes
+        return $response;
 
     }
 

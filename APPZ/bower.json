@@ -1,0 +1,21 @@
+{
+  "name": "siop-cam-la",
+  "homepage": "https://github.com/ramiroavila/SIOP-IPAL",
+  "authors": [
+    "leonardobarrientosc <lbarrientos@bctic.net>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

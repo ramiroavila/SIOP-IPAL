@@ -73,6 +73,8 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use BcTic\CamIpalBundle\Form\Type\RutType;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
 /**
  * Encuesta controller.
  *
@@ -893,6 +895,7 @@ class EncuestaController extends Controller
      *
      * @Route("/index/{page}", name="encuestas", defaults={ "page" = 1 })
      * @Method("GET")
+     * @Cache(expires="tomorrow", public="true")     
      * @Template()
      */
     public function indexAction($page)
@@ -1879,6 +1882,7 @@ class EncuestaController extends Controller
      *
      * @Route("/new/{type}", name="encuestas_new")
      * @Method("GET")
+     * @Cache(expires="tomorrow", public="true")
      * @Template()
      */
     public function newAction(Request $request,$type)
@@ -1960,6 +1964,7 @@ class EncuestaController extends Controller
      *
      * @Route("/{id}.html", name="encuestas_show")
      * @Method("GET")
+     * @Cache(expires="tomorrow", public="true")
      * @Template()
      */
     public function showAction(Request $request,$id)
@@ -1983,6 +1988,7 @@ class EncuestaController extends Controller
      *
      * @Route("/coasin/{id}.html", name="encuestas_coasin_show")
      * @Method("GET")
+     * @Cache(expires="tomorrow", public="true")
      * @Template()
      */
     public function showCoasinAction(Request $request,$id)
@@ -2007,6 +2013,7 @@ class EncuestaController extends Controller
      *
      * @Route("/encuestas_ipal/{type}.html", name="encuestas_show_form")
      * @Method("GET")
+     * @Cache(expires="tomorrow", public="true")
      * @Template()
      */
     public function showFormAction($type)

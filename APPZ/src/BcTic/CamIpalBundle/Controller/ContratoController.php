@@ -66,7 +66,7 @@ class ContratoController extends Controller
      * Lists all Contrato entities By Empresa
      *
      * @Route("/data/index.json", name="contratos_json", requirements={"empresa_id" = "\d+"} )
-     * @Method("GET")
+     * @Method("POST")
      * @Template()
      */
     public function indexJsonAction(Request $request)
@@ -161,8 +161,8 @@ class ContratoController extends Controller
      /**
      * List a Contrato
      *
-     * @Route("/data/show.json", name="contrato_json", requirements={"id" = "\d+"} )
-     * @Method("GET")
+     * @Route("/data/show.json", name="contrato_json" )
+     * @Method("POST")
      * @Template()
      */
     public function showJsonAction(Request $request)

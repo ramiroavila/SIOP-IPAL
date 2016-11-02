@@ -895,7 +895,7 @@ class EncuestaController extends Controller
      *
      * @Route("/index/{page}", name="encuestas", defaults={ "page" = 1 })
      * @Method("GET")
-     * @Cache(expires="tomorrow", public="true")     
+     * @Cache(expires="tomorrow", public="true")
      * @Template()
      */
     public function indexAction($page)
@@ -2085,8 +2085,9 @@ class EncuestaController extends Controller
         }
 
         //Obtengo el Supervisor de esta entidad para cargar la fachada:
+
         if (!is_null($entity->getSupervisor())) {
-          $entity->getSupervisorFacade($entity->getSupervisor());
+          $entity->setSupervisorFacade($entity->getSupervisor());
         }
 
         $role = in_array('ROLE_ADMIN',$this->get('security.context')->getToken()->getUser()->getRoles());

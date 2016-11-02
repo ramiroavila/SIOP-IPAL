@@ -1,0 +1,9 @@
+{% extends 'BcTicCamIpalBundle::results.html.twig' %}
+
+{% set title = 'Empleados' | trans %}
+{% set data = {'rut': 'Rut / DNI', 'nombre': 'Nombre', 'cargo': 'Cargo', 'empresas': 'Empresas', 'pais': 'País'} %}
+{% set path_action_previous = path('empleados_search', { 'page' : page - 1, 'page': page - 1  }) %}
+{% set path_action_next = path('empleados_search', { 'page' : page + 1, 'page': page + 1 } ) %}
+{% set path_new = path('empleados_new') %}
+{% set path_key_edit = 'empleados_edit' %}
+{% set path_key_delete = 'empleados_delete' %}

@@ -22,31 +22,64 @@ class EmpleadoController extends Controller
 {
 
     /**
-     * Lists all Empleado entities.
-     *
-     * @Route("/index/{page}", name="empleados", defaults = { "page" = 1})
-     * @Method("GET")
-     * @Template()
-     */
-    public function indexAction($page)
-    {
-        $em = $this->getDoctrine()->getManager();
+    * Lists all Usuario entities.
+    *
+    * @Route("/index/{page}", name="empleados", defaults={ "page" = 1 })
+    * @Method("GET")
+    * @Template()
+    */
+   public function indexAction($page)
+   {
+       return array('page' => $page);
+   }
 
-        $entities = $em->getRepository('BcTicCamIpalBundle:Empleado')->findBy(
-              array(),
-              array('nombre' => 'ASC'),
-              25,
-              25 * ($page - 1)
-            );
+    /**
+    * Search Empleado entities.
+    *
+    * @Route("/search/{page}/key/{key}/index.html", name="empleados_search", defaults={"page" = 1, "key" = "-1"})
+    * @Method("GET")
+    * @Template("BcTicCamIpalBundle:Empleado:results.html.twig")
+    */
+   public function searchAction($page,$key)
+   {
 
-        $csrf = $this->get('form.csrf_provider');
+       $em = $this->getDoctrine()->getManager();
 
-        return array(
-            'page' => $page,
-            'entities' => $entities,
-            'csrf' => $csrf,
-        );
-    }
+       $key = ($key == -1) ? " " : $key;
+
+
+       $paises = array();
+       foreach ($this->get('security.context')->getToken()->getUser()->getPais() as $pais) {
+         $paises[$pais->getId()] = $pais->getId();
+       }
+
+       $entities = $em->getRepository('BcTicCamIpalBundle:Empleado')
+                   ->createQueryBuilder('e')
+                   ->innerJoin('e.pais','p')
+                   ->where('e.rut LIKE :key0 OR e.nombre LIKE :key1 OR e.cargo LIKE :key2 OR p.nombre LIKE :key3')
+                   ->andWhere('p.id IN (:pais)')
+                   ->setParameters(array('key0' => '%'.$key.'%'
+                                        ,'key1' => '%'.$key.'%'
+                                        ,'key2' => '%'.$key.'%'
+                                        ,'key3' => '%'.$key.'%'
+                                        ,'pais' => $paises
+                                        ))
+                   ->orderBy('e.nombre','ASC')
+                   ->setMaxResults(25)
+                   ->setFirstResult(25 * ($page - 1))
+                   ->getQuery();
+
+       $csrf = $this->get('form.csrf_provider');
+
+       return array(
+           'page' => $page,
+           'key' => $key,
+           'entities' => $entities->getResult(),
+           'csrf' => $csrf,
+       );
+
+   }
+
 
     /**
      * Creates a new Empleado entity.
@@ -250,12 +283,15 @@ class EmpleadoController extends Controller
         $entities = $em->getRepository('BcTicCamIpalBundle:Empleado')
                            ->createQueryBuilder('r')
                            ->where('p.id = :pais AND (  (r.rut LIKE :query) OR (r.nombre LIKE :query) ) ')
+                           ->andWhere('r.rut IS NOT NULL')
+                           ->andWhere('r.rut != :vacio ')
                            ->orderBy('r.nombre', 'ASC')
                            ->join('r.pais','p')
                            ->setParameters(
                              array(
                               'pais' => $request->get('pais'),
-                              'query' => '%'.$request->get('query').'%'
+                              'query' => '%'.$request->get('query').'%',
+                              'vacio' => ''
                              )
                           )
                            ->getQuery();

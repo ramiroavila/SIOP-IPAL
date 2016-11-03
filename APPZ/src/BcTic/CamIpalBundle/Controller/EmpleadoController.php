@@ -58,11 +58,14 @@ class EmpleadoController extends Controller
                    ->innerJoin('e.pais','p')
                    ->where('e.rut LIKE :key0 OR e.nombre LIKE :key1 OR e.cargo LIKE :key2 OR p.nombre LIKE :key3')
                    ->andWhere('p.id IN (:pais)')
+                   ->andWhere('e.rut IS NOT NULL')
+                   ->andWhere('e.rut != :empty')
                    ->setParameters(array('key0' => '%'.$key.'%'
                                         ,'key1' => '%'.$key.'%'
                                         ,'key2' => '%'.$key.'%'
                                         ,'key3' => '%'.$key.'%'
                                         ,'pais' => $paises
+                                        ,'empty' => ''
                                         ))
                    ->orderBy('e.nombre','ASC')
                    ->setMaxResults(25)

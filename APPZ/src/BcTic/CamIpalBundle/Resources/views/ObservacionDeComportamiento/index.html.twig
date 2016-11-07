@@ -258,7 +258,7 @@
           $('select#bctic_camipalbundle_observacion_de_comportamiento_inspector').append('<option value="0">- NINGUN INSPECTOR -</option>');
           $.ajax({
              dataType: "json",
-             type: "POST",
+             type: "GET",
              url: "{{ path('registros_inspectores_json') }}",
              success: function (dataSuccess) {
                  $.each(dataSuccess, function(i, item) {
@@ -274,7 +274,7 @@
           $('select#bctic_camipalbundle_observacion_de_comportamiento_prevencionista').append('<option value="0">{{ '- NINGUN PREVENCIONISTA -' | trans }}</option>');
           $.ajax({
              dataType: "json",
-             type: "POST",
+             type: "GET",
              url: "{{ path('registros_prevencionistas_json') }}",
              success: function (dataSuccess) {
                  $.each(dataSuccess, function(i, item) {
@@ -297,7 +297,7 @@
            //Solo muestro los contratos según el pais y rol - si aplica - esto lo hace el controlador:
            $.ajax({
              dataType: "json",
-             type: "POST",
+             type: "GET",
              url: "{{ path('contratos_index_json') }}",
              success: function (dataSuccess) {
                $('select#bctic_camipalbundle_observacion_de_comportamiento_contrato').empty().append('<option value="">{{ '-- SELECCIONE CONTRATO --' | trans }}</option>');
@@ -315,7 +315,7 @@
            //Solo muestro las empresas según el pais y rol - si aplica - esto lo hace el controlador:
            $.ajax({
              dataType: "json",
-             type: "POST",
+             type: "GET",
              url: "{{ path('empresas_index_json') }}",
              success: function (dataSuccess) {
                $('select#bctic_camipalbundle_observacion_de_comportamiento_empresa').empty().append('<option value="">{{ '-- SELECCIONE EMPRESA --' | trans }}</option>');
@@ -333,7 +333,7 @@
            //Solo muestro los mandantes según el pais y rol - si aplica - esto lo hace el controlador:
            $.ajax({
              dataType: "json",
-             type: "POST",
+             type: "GET",
              url: "{{ path('mandantes_index_json') }}",
              success: function (dataSuccess) {
                $('select#bctic_camipalbundle_observacion_de_comportamiento_mandante').empty().append('<option value="">{{ '-- SELECCIONE MANDANTE --' | trans }}</option>');
@@ -351,7 +351,7 @@
            //Solo muestro las areas según el pais y rol - si aplica - esto lo hace el controlador:
            $.ajax({
              dataType: "json",
-             type: "POST",
+             type: "GET",
              url: "{{ path('areas_index_json') }}",
              success: function (dataSuccess) {
                $('select#bctic_camipalbundle_observacion_de_comportamiento_area').empty().append('<option value="">{{ '-- SELECCIONE ÁREA --' | trans }}</option>');
@@ -369,7 +369,7 @@
            //Solo muestro las gerencias según el pais y rol - si aplica - esto lo hace el controlador:
            $.ajax({
              dataType: "json",
-             type: "POST",
+             type: "GET",
              url: "{{ path('gerencias_index_json') }}",
              success: function (dataSuccess) {
                $('select#bctic_camipalbundle_observacion_de_comportamiento_gerencia').empty().append('<option value="">{{ '-- SELECCIONE GERENCIA --' | trans }}</option>');
@@ -387,7 +387,7 @@
            //Solo muestro las subgerencias según el pais y rol - si aplica - esto lo hace el controlador:
            $.ajax({
              dataType: "json",
-             type: "POST",
+             type: "GET",
              url: "{{ path('subgerencias_index_json') }}",
              success: function (dataSuccess) {
                $('select#bctic_camipalbundle_observacion_de_comportamiento_subGerencia').empty().append('<option value="">{{ '-- SELECCIONE SUB GERENCIA --' | trans }}</option>');
@@ -405,7 +405,7 @@
            //Solo muestro las servicio según el pais y rol - si aplica - esto lo hace el controlador:
            $.ajax({
              dataType: "json",
-             type: "POST",
+             type: "GET",
              url: "{{ path('servicios_index_json') }}",
              success: function (dataSuccess) {
                $('select#bctic_camipalbundle_observacion_de_comportamiento_servicio').empty().append('<option value="">{{ '-- SELECCIONE SERVICIO --' | trans }}</option>');

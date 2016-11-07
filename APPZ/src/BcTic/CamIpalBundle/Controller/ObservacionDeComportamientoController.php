@@ -180,7 +180,7 @@ class ObservacionDeComportamientoController extends Controller
      * Lists all ObservacionDeComportamiento entities
      *
      * @Route("/data/index.json", name="observaciones_json")
-     * @Method("GET")
+     * @Method("POST")
      * @Template()
      */
     public function indexJsonAction(Request $request)

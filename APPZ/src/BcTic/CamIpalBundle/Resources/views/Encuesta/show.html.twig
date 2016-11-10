@@ -58,7 +58,8 @@
           </tr>
           <tr>
             <td colspan="2" style="width: 50%;"></td>
-            <td colspan="2" style="width: 50%;">{{ 'Charla grabada' | trans }}: {{ entity.charlaGrabada }}</td>
+            {% set charla_grabada = 'charla_grabada_' ~ entity.key %}
+            <td colspan="2" style="width: 50%;">{{ charla_grabada | trans }}: {{ entity.charlaGrabada }}</td>
           </tr>
 
         </tbody>

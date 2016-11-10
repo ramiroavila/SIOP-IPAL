@@ -416,6 +416,7 @@ class EncuestaController extends Controller
                           'dni_supervisor' => $entity['dni_supervisor'],
                           'lugar' => $entity['lugar'],
                           'charla_operativa' => $entity['charla_operativa'],
+                          'charla_grabada' => $entity['charla_grabada'],
                           'tipo' => $entity['tipo'],
                           'auto_inspeccion' => $entity['auto_inspeccion'],
                           'cierre_texto' => $entity['cierre_texto'],

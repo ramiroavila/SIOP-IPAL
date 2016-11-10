@@ -189,7 +189,7 @@ class EncuestaPeruTelecomunicacionesEditAdminType extends AbstractType
                 ))
             ->add('autoInspeccion','hidden')
             ->add('charlaOperativa','hidden')
-            ->add('charlaGrabada','choice', array('label' => 'Charla grabada', 'choices' => array('N/A' => 'N/A: No aplica','SI' => 'Sí', 'NO' => 'No' )))
+            ->add('charlaGrabada','choice', array('label' => 'Charla grabada', 'choices' => array('SI' => 'Sí', 'NO' => 'No' )))
 
         ;
     }

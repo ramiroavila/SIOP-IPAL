@@ -199,8 +199,8 @@ class EncuestaPeruTelecomunicacionesType extends AbstractType
                            ->orderBy('r.nombre', 'ASC');
                     }
                 ))
-            ->add('autoInspeccion','hidden')
-            ->add('charlaOperativa','hidden')
+            ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
+            ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
             ->add('charlaGrabada','choice', array('label' => 'Charla grabada', 'choices' => array('SI' => 'Sí', 'NO' => 'No' )))
 
         ;

@@ -116,6 +116,17 @@ class EncuestaColombiaGeneralType extends AbstractType
             ->add('respuesta122', new SurveyType(), array('label' => 'respuesta12.2_colombia_general'))
             ->add('respuesta123', new SurveyType(), array('label' => 'respuesta12.3_colombia_general'))
 
+            ->add('respuesta131', new SurveyType(), array('label' => 'respuesta13.1_colombia_general'))
+            ->add('respuesta132', new SurveyType(), array('label' => 'respuesta13.2_colombia_general'))
+            ->add('respuesta133', new SurveyType(), array('label' => 'respuesta13.3_colombia_general'))
+            ->add('respuesta134', new SurveyType(), array('label' => 'respuesta13.4_colombia_general'))
+            ->add('respuesta135', new SurveyType(), array('label' => 'respuesta13.5_colombia_general'))
+            ->add('respuesta136', new SurveyType(), array('label' => 'respuesta13.6_colombia_general'))
+            ->add('respuesta137', new SurveyType(), array('label' => 'respuesta13.7_colombia_general'))
+            ->add('respuesta138', new SurveyType(), array('label' => 'respuesta13.8_colombia_general'))
+            ->add('respuesta139', new SurveyType(), array('label' => 'respuesta13.9_colombia_general'))
+            ->add('respuesta1310', new SurveyType(), array('label' => 'respuesta13.10_colombia_general'))            
+
             ->add('cierre','textarea', array('label' => 'Cierre'))
             ->add('statusCierre','choice', array('label' => 'Estado de cierre', 'choices' => array('N/A' => 'N/A: No aplica','POR_VALIDAR' => 'POR VALIDAR: Las justificaciones de cierre no han sido verificadas aún por el administrador','ABIERTA' => 'ABIERTA: Tiene incumplimientos no correctamente justificados aún')))
             ->add('uploadedFileCierre1','file', array('label' => 'Adjunto 1','required'  => false))

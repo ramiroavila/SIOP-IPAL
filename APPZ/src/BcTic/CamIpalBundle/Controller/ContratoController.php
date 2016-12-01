@@ -116,7 +116,7 @@ class ContratoController extends Controller
      * Lists all Contrato entities By Empresa
      *
      * @Route("/data/index_all.json", name="contratos_index_json" )
-     * @Method("GET")
+     * @Method("POST")
      * @Template()
      */
     public function indexAllJsonAction(Request $request)

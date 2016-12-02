@@ -88,7 +88,7 @@
            //Solo muestro las empresas según el pais y rol - si aplica - esto lo hace el controlador:
            $.ajax({
              dataType: "json",
-             type: "GET",
+             type: "POST",
              url: "{{ path('empresas_index_json') }}",
              success: function (dataSuccess) {
                $('select#bctic_camipalbundle_encuesta_empresa').empty().append('<option value="-1">{{ '-- SELECCIONE EMPRESA --' | trans }}</option>');
@@ -207,7 +207,7 @@
       //Solo muestro los contratos según el pais y rol - si aplica - esto lo hace el controlador:
       $.ajax({
         dataType: "json",
-        type: "GET",
+        type: "POST",
         url: "{{ path('contratos_index_json') }}",
         success: function (dataSuccess) {
           $('select#bctic_camipalbundle_encuesta_contrato').empty().append('<option value="-1">{{ '-- SELECCIONE CONTRATO --' | trans }}</option>');
@@ -226,7 +226,7 @@
        //Solo muestro las empresas según el pais y rol - si aplica - esto lo hace el controlador:
        $.ajax({
          dataType: "json",
-         type: "GET",
+         type: "POST",
          url: "{{ path('empresas_index_json') }}",
          success: function (dataSuccess) {
            $('select#bctic_camipalbundle_encuesta_empresa').empty().append('<option value="-1">{{ '-- SELECCIONE EMPRESA --' | trans }}</option>');

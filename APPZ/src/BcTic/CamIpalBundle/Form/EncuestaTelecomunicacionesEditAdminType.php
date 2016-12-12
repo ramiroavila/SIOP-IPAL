@@ -187,7 +187,7 @@ class EncuestaTelecomunicacionesEditAdminType extends AbstractType
                            ->orderBy('r.nombre', 'ASC');
                     }
                 ))
-            ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
+            ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('A1' => 'A1 - Revisado Base / Revisado Inspector / Coincide','A2' => 'A2 - Revisado Base / Revisado Inspector / NO Coincide','A3' => 'A3 - No revisado en base / Revisado Inspector / Aceptable','A4' => 'A3 - No revisado en base / Revisado Inspector / No Aceptable')))
             ->add('charlaOperativa','hidden')
             ->add('charlaGrabada','choice', array('label' => 'ART Grabada', 'choices' => array('SI' => 'Sí', 'NO' => 'No' )))
 

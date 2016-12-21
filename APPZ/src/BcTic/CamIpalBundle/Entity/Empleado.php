@@ -258,8 +258,16 @@ class Empleado
            }
 
           break;
+        case 2:
+          if (strlen($this->getRut()) != 10) {
+           $context->buildViolation('DNI COLOMBIA debe tener 10 caracteres')
+                ->atPath('rut')
+                ->addViolation();
+            return;
+          }
+          break;
         default:
-          if (count($this->getRut()) == 0) {
+          if (strlen($this->getRut()) == 0) {
            $context->buildViolation('DNI no puede estar vacío')
                 ->atPath('rut')
                 ->addViolation();

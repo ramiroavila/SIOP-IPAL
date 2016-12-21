@@ -49,7 +49,7 @@ class RegistroController extends Controller
      * Lists all Inspectores by Query
      *
      * @Route("/data/inspectores.json", name="registros_inspectores_json")
-     * @Method("GET")
+     * @Method("POST")
      * @Template()
      */
     public function indexInspectorJsonAction(Request $request)

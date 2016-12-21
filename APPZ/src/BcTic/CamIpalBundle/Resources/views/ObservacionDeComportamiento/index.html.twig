@@ -258,7 +258,7 @@
           $('select#bctic_camipalbundle_observacion_de_comportamiento_inspector').append('<option value="0">- NINGUN INSPECTOR -</option>');
           $.ajax({
              dataType: "json",
-             type: "GET",
+             type: "POST",
              url: "{{ path('registros_inspectores_json') }}",
              success: function (dataSuccess) {
                  $.each(dataSuccess, function(i, item) {

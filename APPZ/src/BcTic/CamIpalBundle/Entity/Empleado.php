@@ -4,6 +4,7 @@ namespace BcTic\CamIpalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use BcTic\CamIpalBundle\Validator\Constraints as BcTicCamIpalBundleAssert;
 
 /**
@@ -26,7 +27,7 @@ class Empleado
     /**
      * @Assert\NotBlank()
      * @ORM\Column(name="rut", type="string", length=50)
-     * @BcTicCamIpalBundleAssert\Rut()
+     *
      */
     private $rut;
 
@@ -212,5 +213,61 @@ class Empleado
     public function getCargo()
     {
         return $this->cargo;
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+      //Validación del DNI - Dependiendo del Pais - en el caso de Chile:
+      switch($this->getPais()->getId()) {
+
+        case 1: //Validar RUT Chile:
+           if (strpos($this->getRut(),'-') == false) {
+             $context->buildViolation('RUT Chile no válido')
+                ->atPath('rut')
+                ->addViolation();
+            return;
+           }
+
+           $rut = preg_replace('/[^k0-9]/i', '', $this->getRut());
+           $dv  = substr($rut, -1);
+           $numero = substr($rut, 0, strlen($rut)-1);
+           $i = 2;
+           $suma = 0;
+           foreach(array_reverse(str_split($numero)) as $v)
+           {
+             if($i==8)
+                 $i = 2;
+             $suma += $v * $i;
+             ++$i;
+           }
+
+           $dvr = 11 - ($suma % 11);
+
+           if($dvr == 11) $dvr = 0;
+           if($dvr == 10) $dvr = 'K';
+
+           if($dvr == strtoupper($dv)) {
+             //DO NOTHING
+           } else {
+             $context->buildViolation('RUT incorrecto')
+                  ->atPath('rut')
+                  ->addViolation();
+           }
+
+          break;
+        default:
+          if (count($this->getRut()) == 0) {
+           $context->buildViolation('DNI no puede estar vacío')
+                ->atPath('rut')
+                ->addViolation();
+            return;
+          }
+          break;
+
+        }
+
     }
 }

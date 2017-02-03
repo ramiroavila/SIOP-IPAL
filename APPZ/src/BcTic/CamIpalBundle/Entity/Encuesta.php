@@ -456,6 +456,21 @@ abstract class Encuesta
     /**
      * @var integer
      *
+     * @ORM\Column(name="respuesta_4_17", type="smallint")
+     */
+    private $respuesta417 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_4_18", type="smallint")
+     */
+    private $respuesta418 = 0;
+
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="respuesta_5_1", type="smallint")
      */
     private $respuesta51 = 0;
@@ -519,6 +534,13 @@ abstract class Encuesta
     /**
      * @var integer
      *
+     * @ORM\Column(name="respuesta_6_6", type="smallint")
+     */
+    private $respuesta66 = 0;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="respuesta_7_1", type="smallint")
      */
     private $respuesta71 = 0;
@@ -564,6 +586,20 @@ abstract class Encuesta
      * @ORM\Column(name="respuesta_8_3", type="smallint")
      */
     private $respuesta83 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_8_4", type="smallint")
+     */
+    private $respuesta84 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_8_5", type="smallint")
+     */
+    private $respuesta85 = 0;
 
     /**
      * @var integer
@@ -669,6 +705,48 @@ abstract class Encuesta
      * @ORM\Column(name="respuesta_10_4", type="smallint")
      */
     private $respuesta104 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_10_5", type="smallint")
+     */
+    private $respuesta105 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_10_6", type="smallint")
+     */
+    private $respuesta106 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_10_7", type="smallint")
+     */
+    private $respuesta107 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_10_8", type="smallint")
+     */
+    private $respuesta108 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_10_9", type="smallint")
+     */
+    private $respuesta109 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_10_10", type="smallint")
+     */
+    private $respuesta1010 = 0;
 
     /**
      * @var integer
@@ -802,6 +880,146 @@ abstract class Encuesta
      * @ORM\Column(name="respuesta_13_10", type="smallint")
      */
     private $respuesta1310 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_14_1", type="smallint")
+     */
+    private $respuesta141 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_14_2", type="smallint")
+     */
+    private $respuesta142 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_14_3", type="smallint")
+     */
+    private $respuesta143 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_14_4", type="smallint")
+     */
+    private $respuesta144 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_14_5", type="smallint")
+     */
+    private $respuesta145 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_14_6", type="smallint")
+     */
+    private $respuesta146 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_14_7", type="smallint")
+     */
+    private $respuesta147 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_15_1", type="smallint")
+     */
+    private $respuesta151 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_15_2", type="smallint")
+     */
+    private $respuesta152 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_15_3", type="smallint")
+     */
+    private $respuesta153 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_15_4", type="smallint")
+     */
+    private $respuesta154 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_15_5", type="smallint")
+     */
+    private $respuesta155 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_16_1", type="smallint")
+     */
+    private $respuesta161 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_16_2", type="smallint")
+     */
+    private $respuesta162 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_16_3", type="smallint")
+     */
+    private $respuesta163 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_16_4", type="smallint")
+     */
+    private $respuesta164 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_16_5", type="smallint")
+     */
+    private $respuesta165 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_17_1", type="smallint")
+     */
+    private $respuesta171 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_17_2", type="smallint")
+     */
+    private $respuesta172 = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuesta_17_3", type="smallint")
+     */
+    private $respuesta173 = 0;            
 
     /**
      * @var string
@@ -4200,5 +4418,718 @@ abstract class Encuesta
     public function getCharlaGrabada()
     {
         return $this->charlaGrabada;
+    }
+
+    /**
+     * Set respuesta417
+     *
+     * @param integer $respuesta417
+     * @return Encuesta
+     */
+    public function setRespuesta417($respuesta417)
+    {
+        $this->respuesta417 = $respuesta417;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta417
+     *
+     * @return integer 
+     */
+    public function getRespuesta417()
+    {
+        return $this->respuesta417;
+    }
+
+    /**
+     * Set respuesta418
+     *
+     * @param integer $respuesta418
+     * @return Encuesta
+     */
+    public function setRespuesta418($respuesta418)
+    {
+        $this->respuesta418 = $respuesta418;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta418
+     *
+     * @return integer 
+     */
+    public function getRespuesta418()
+    {
+        return $this->respuesta418;
+    }
+
+    /**
+     * Set respuesta66
+     *
+     * @param integer $respuesta66
+     * @return Encuesta
+     */
+    public function setRespuesta66($respuesta66)
+    {
+        $this->respuesta66 = $respuesta66;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta66
+     *
+     * @return integer 
+     */
+    public function getRespuesta66()
+    {
+        return $this->respuesta66;
+    }
+
+    /**
+     * Set respuesta84
+     *
+     * @param integer $respuesta84
+     * @return Encuesta
+     */
+    public function setRespuesta84($respuesta84)
+    {
+        $this->respuesta84 = $respuesta84;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta84
+     *
+     * @return integer 
+     */
+    public function getRespuesta84()
+    {
+        return $this->respuesta84;
+    }
+
+    /**
+     * Set respuesta85
+     *
+     * @param integer $respuesta85
+     * @return Encuesta
+     */
+    public function setRespuesta85($respuesta85)
+    {
+        $this->respuesta85 = $respuesta85;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta85
+     *
+     * @return integer 
+     */
+    public function getRespuesta85()
+    {
+        return $this->respuesta85;
+    }
+
+    /**
+     * Set respuesta105
+     *
+     * @param integer $respuesta105
+     * @return Encuesta
+     */
+    public function setRespuesta105($respuesta105)
+    {
+        $this->respuesta105 = $respuesta105;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta105
+     *
+     * @return integer 
+     */
+    public function getRespuesta105()
+    {
+        return $this->respuesta105;
+    }
+
+    /**
+     * Set respuesta106
+     *
+     * @param integer $respuesta106
+     * @return Encuesta
+     */
+    public function setRespuesta106($respuesta106)
+    {
+        $this->respuesta106 = $respuesta106;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta106
+     *
+     * @return integer 
+     */
+    public function getRespuesta106()
+    {
+        return $this->respuesta106;
+    }
+
+    /**
+     * Set respuesta107
+     *
+     * @param integer $respuesta107
+     * @return Encuesta
+     */
+    public function setRespuesta107($respuesta107)
+    {
+        $this->respuesta107 = $respuesta107;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta107
+     *
+     * @return integer 
+     */
+    public function getRespuesta107()
+    {
+        return $this->respuesta107;
+    }
+
+    /**
+     * Set respuesta108
+     *
+     * @param integer $respuesta108
+     * @return Encuesta
+     */
+    public function setRespuesta108($respuesta108)
+    {
+        $this->respuesta108 = $respuesta108;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta108
+     *
+     * @return integer 
+     */
+    public function getRespuesta108()
+    {
+        return $this->respuesta108;
+    }
+
+    /**
+     * Set respuesta109
+     *
+     * @param integer $respuesta109
+     * @return Encuesta
+     */
+    public function setRespuesta109($respuesta109)
+    {
+        $this->respuesta109 = $respuesta109;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta109
+     *
+     * @return integer 
+     */
+    public function getRespuesta109()
+    {
+        return $this->respuesta109;
+    }
+
+    /**
+     * Set respuesta1010
+     *
+     * @param integer $respuesta1010
+     * @return Encuesta
+     */
+    public function setRespuesta1010($respuesta1010)
+    {
+        $this->respuesta1010 = $respuesta1010;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta1010
+     *
+     * @return integer 
+     */
+    public function getRespuesta1010()
+    {
+        return $this->respuesta1010;
+    }
+
+    /**
+     * Set respuesta141
+     *
+     * @param integer $respuesta141
+     * @return Encuesta
+     */
+    public function setRespuesta141($respuesta141)
+    {
+        $this->respuesta141 = $respuesta141;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta141
+     *
+     * @return integer 
+     */
+    public function getRespuesta141()
+    {
+        return $this->respuesta141;
+    }
+
+    /**
+     * Set respuesta142
+     *
+     * @param integer $respuesta142
+     * @return Encuesta
+     */
+    public function setRespuesta142($respuesta142)
+    {
+        $this->respuesta142 = $respuesta142;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta142
+     *
+     * @return integer 
+     */
+    public function getRespuesta142()
+    {
+        return $this->respuesta142;
+    }
+
+    /**
+     * Set respuesta143
+     *
+     * @param integer $respuesta143
+     * @return Encuesta
+     */
+    public function setRespuesta143($respuesta143)
+    {
+        $this->respuesta143 = $respuesta143;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta143
+     *
+     * @return integer 
+     */
+    public function getRespuesta143()
+    {
+        return $this->respuesta143;
+    }
+
+    /**
+     * Set respuesta144
+     *
+     * @param integer $respuesta144
+     * @return Encuesta
+     */
+    public function setRespuesta144($respuesta144)
+    {
+        $this->respuesta144 = $respuesta144;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta144
+     *
+     * @return integer 
+     */
+    public function getRespuesta144()
+    {
+        return $this->respuesta144;
+    }
+
+    /**
+     * Set respuesta145
+     *
+     * @param integer $respuesta145
+     * @return Encuesta
+     */
+    public function setRespuesta145($respuesta145)
+    {
+        $this->respuesta145 = $respuesta145;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta145
+     *
+     * @return integer 
+     */
+    public function getRespuesta145()
+    {
+        return $this->respuesta145;
+    }
+
+    /**
+     * Set respuesta146
+     *
+     * @param integer $respuesta146
+     * @return Encuesta
+     */
+    public function setRespuesta146($respuesta146)
+    {
+        $this->respuesta146 = $respuesta146;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta146
+     *
+     * @return integer 
+     */
+    public function getRespuesta146()
+    {
+        return $this->respuesta146;
+    }
+
+    /**
+     * Set respuesta147
+     *
+     * @param integer $respuesta147
+     * @return Encuesta
+     */
+    public function setRespuesta147($respuesta147)
+    {
+        $this->respuesta147 = $respuesta147;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta147
+     *
+     * @return integer 
+     */
+    public function getRespuesta147()
+    {
+        return $this->respuesta147;
+    }
+
+    /**
+     * Set respuesta151
+     *
+     * @param integer $respuesta151
+     * @return Encuesta
+     */
+    public function setRespuesta151($respuesta151)
+    {
+        $this->respuesta151 = $respuesta151;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta151
+     *
+     * @return integer 
+     */
+    public function getRespuesta151()
+    {
+        return $this->respuesta151;
+    }
+
+    /**
+     * Set respuesta152
+     *
+     * @param integer $respuesta152
+     * @return Encuesta
+     */
+    public function setRespuesta152($respuesta152)
+    {
+        $this->respuesta152 = $respuesta152;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta152
+     *
+     * @return integer 
+     */
+    public function getRespuesta152()
+    {
+        return $this->respuesta152;
+    }
+
+    /**
+     * Set respuesta153
+     *
+     * @param integer $respuesta153
+     * @return Encuesta
+     */
+    public function setRespuesta153($respuesta153)
+    {
+        $this->respuesta153 = $respuesta153;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta153
+     *
+     * @return integer 
+     */
+    public function getRespuesta153()
+    {
+        return $this->respuesta153;
+    }
+
+    /**
+     * Set respuesta154
+     *
+     * @param integer $respuesta154
+     * @return Encuesta
+     */
+    public function setRespuesta154($respuesta154)
+    {
+        $this->respuesta154 = $respuesta154;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta154
+     *
+     * @return integer 
+     */
+    public function getRespuesta154()
+    {
+        return $this->respuesta154;
+    }
+
+    /**
+     * Set respuesta155
+     *
+     * @param integer $respuesta155
+     * @return Encuesta
+     */
+    public function setRespuesta155($respuesta155)
+    {
+        $this->respuesta155 = $respuesta155;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta155
+     *
+     * @return integer 
+     */
+    public function getRespuesta155()
+    {
+        return $this->respuesta155;
+    }
+
+    /**
+     * Set respuesta161
+     *
+     * @param integer $respuesta161
+     * @return Encuesta
+     */
+    public function setRespuesta161($respuesta161)
+    {
+        $this->respuesta161 = $respuesta161;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta161
+     *
+     * @return integer 
+     */
+    public function getRespuesta161()
+    {
+        return $this->respuesta161;
+    }
+
+    /**
+     * Set respuesta162
+     *
+     * @param integer $respuesta162
+     * @return Encuesta
+     */
+    public function setRespuesta162($respuesta162)
+    {
+        $this->respuesta162 = $respuesta162;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta162
+     *
+     * @return integer 
+     */
+    public function getRespuesta162()
+    {
+        return $this->respuesta162;
+    }
+
+    /**
+     * Set respuesta163
+     *
+     * @param integer $respuesta163
+     * @return Encuesta
+     */
+    public function setRespuesta163($respuesta163)
+    {
+        $this->respuesta163 = $respuesta163;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta163
+     *
+     * @return integer 
+     */
+    public function getRespuesta163()
+    {
+        return $this->respuesta163;
+    }
+
+    /**
+     * Set respuesta164
+     *
+     * @param integer $respuesta164
+     * @return Encuesta
+     */
+    public function setRespuesta164($respuesta164)
+    {
+        $this->respuesta164 = $respuesta164;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta164
+     *
+     * @return integer 
+     */
+    public function getRespuesta164()
+    {
+        return $this->respuesta164;
+    }
+
+    /**
+     * Set respuesta165
+     *
+     * @param integer $respuesta165
+     * @return Encuesta
+     */
+    public function setRespuesta165($respuesta165)
+    {
+        $this->respuesta165 = $respuesta165;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta165
+     *
+     * @return integer 
+     */
+    public function getRespuesta165()
+    {
+        return $this->respuesta165;
+    }
+
+    /**
+     * Set respuesta171
+     *
+     * @param integer $respuesta171
+     * @return Encuesta
+     */
+    public function setRespuesta171($respuesta171)
+    {
+        $this->respuesta171 = $respuesta171;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta171
+     *
+     * @return integer 
+     */
+    public function getRespuesta171()
+    {
+        return $this->respuesta171;
+    }
+
+    /**
+     * Set respuesta172
+     *
+     * @param integer $respuesta172
+     * @return Encuesta
+     */
+    public function setRespuesta172($respuesta172)
+    {
+        $this->respuesta172 = $respuesta172;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta172
+     *
+     * @return integer 
+     */
+    public function getRespuesta172()
+    {
+        return $this->respuesta172;
+    }
+
+    /**
+     * Set respuesta173
+     *
+     * @param integer $respuesta173
+     * @return Encuesta
+     */
+    public function setRespuesta173($respuesta173)
+    {
+        $this->respuesta173 = $respuesta173;
+
+        return $this;
+    }
+
+    /**
+     * Get respuesta173
+     *
+     * @return integer 
+     */
+    public function getRespuesta173()
+    {
+        return $this->respuesta173;
     }
 }

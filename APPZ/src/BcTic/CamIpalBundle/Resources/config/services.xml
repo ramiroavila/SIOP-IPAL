@@ -45,6 +45,11 @@
           <tag name="form.type" alias="meta" />
         </service>
 
+        <service id="form.type.centro_de_costo" class="BcTic\CamIpalBundle\Form\Type\CentroDeCostoType">
+          <argument>%model_centro_de_costo%</argument>
+          <tag name="form.type" />
+        </service>
+
         <service id="bc_tic_cam_ipal.extension.twig_extension" class="%bc_tic_cam_ipal.extension.twig_extension.class%">
           <tag name="twig.extension"/>
         </service>

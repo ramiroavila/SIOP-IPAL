@@ -5,6 +5,8 @@ parameters:
         region: "%aws_region%"
         credentials: { key: "%aws_credentials_key%", secret: "%aws_credentials_secret%" }
 
+    model_centro_de_costo: "%centro_de_costo_items%"    
+
     medioambiente_electrico_respuesta_13_1: 5
     medioambiente_electrico_respuesta_13_2: 5
     medioambiente_electrico_respuesta_13_3: 5

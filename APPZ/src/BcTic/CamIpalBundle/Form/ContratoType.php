@@ -3,6 +3,7 @@
 namespace BcTic\CamIpalBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use BcTic\CamIpalBundle\Form\Type\CentroDeCostoType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -33,7 +34,7 @@ class ContratoType extends AbstractType
                     return $er->createQueryBuilder('r')
                            ->orderBy('r.nombre', 'ASC');
                     }
-                ))            
+                ))
             ->add('empresas','entity', array(
                   'class' => 'BcTicCamIpalBundle:Empresa',
                   'query_builder' => function(EntityRepository $er) {
@@ -83,12 +84,15 @@ class ContratoType extends AbstractType
                            ->orderBy('r.name', 'ASC');
                     }
                 ))
+            ->add('centroDeCosto', CentroDeCostoType::class, array(
+                        'label' => 'Centro de costo'
+                      ))
             ->add('descripcion')
             ->add('subcontrato','checkbox', array('label' => '¿Posée subcontratos?'))
             ->add('visible')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

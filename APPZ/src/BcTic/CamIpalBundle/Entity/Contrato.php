@@ -37,7 +37,7 @@ class Contrato
      *
      * @ORM\Column(name="nombre", type="string", length=100)
      * @Assert\NotBlank()
-     * @Assert\Length(min = "5")     
+     * @Assert\Length(min = "5")
      */
     private $nombre;
 
@@ -47,7 +47,7 @@ class Contrato
      * @ORM\Column(name="descripcion", type="text", nullable=true)
      */
     private $descripcion;
-  
+
      /**
      * @var boolean
      *
@@ -61,7 +61,7 @@ class Contrato
      * @ORM\Column(name="subcontrato", type="boolean")
      */
     private $subcontrato;
-  
+
     /**
      *
      * @ORM\ManyToMany(targetEntity="Empresa", inversedBy="contratos")
@@ -105,14 +105,23 @@ class Contrato
     /**
      * @ORM\ManyToOne(targetEntity="UnidadDeNegocio")
      * @ORM\JoinColumn(name="unidad_de_negocio_id", referencedColumnName="id")
-     * @Assert\NotBlank()     
+     * @Assert\NotBlank()
      */
-    protected $unidadDeNegocio;    
+    protected $unidadDeNegocio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="centro_de_costo", type="string", length=100)
+     * @Assert\NotBlank()
+     *
+     */
+    protected $centroDeCosto = "NINGUNO";
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -135,7 +144,7 @@ class Contrato
     /**
      * Get numero
      *
-     * @return string 
+     * @return string
      */
     public function getNumero()
     {
@@ -158,7 +167,7 @@ class Contrato
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -181,7 +190,7 @@ class Contrato
     /**
      * Get descripcion
      *
-     * @return string 
+     * @return string
      */
     public function getDescripcion()
     {
@@ -205,16 +214,16 @@ class Contrato
     /**
      * Get visible
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getVisible()
     {
         return $this->visible;
     }
-  
+
     public function __toString()
     {
-        return '#'.$this->numero.' '.$this->nombre.' - '.$this->getPais();
+        return '#'.$this->numero.' '.$this->nombre.' - '.$this->centroDeCosto.' '.$this->getPais();
     }
 
     /**
@@ -233,7 +242,7 @@ class Contrato
     /**
      * Get area
      *
-     * @return \BcTic\CamIpalBundle\Entity\Area 
+     * @return \BcTic\CamIpalBundle\Entity\Area
      */
     public function getArea()
     {
@@ -256,7 +265,7 @@ class Contrato
     /**
      * Get servicio
      *
-     * @return \BcTic\CamIpalBundle\Entity\Servicio 
+     * @return \BcTic\CamIpalBundle\Entity\Servicio
      */
     public function getServicio()
     {
@@ -279,7 +288,7 @@ class Contrato
     /**
      * Get subGerencia
      *
-     * @return \BcTic\CamIpalBundle\Entity\SubGerencia 
+     * @return \BcTic\CamIpalBundle\Entity\SubGerencia
      */
     public function getSubGerencia()
     {
@@ -302,7 +311,7 @@ class Contrato
     /**
      * Get mandante
      *
-     * @return \BcTic\CamIpalBundle\Entity\Mandante 
+     * @return \BcTic\CamIpalBundle\Entity\Mandante
      */
     public function getMandante()
     {
@@ -325,7 +334,7 @@ class Contrato
     /**
      * Get subcontrato
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getSubcontrato()
     {
@@ -365,7 +374,7 @@ class Contrato
     /**
      * Get empresas
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEmpresas()
     {
@@ -388,7 +397,7 @@ class Contrato
     /**
      * Get pais
      *
-     * @return \BcTic\CamIpalBundle\Entity\Pais 
+     * @return \BcTic\CamIpalBundle\Entity\Pais
      */
     public function getPais()
     {
@@ -411,10 +420,33 @@ class Contrato
     /**
      * Get unidadDeNegocio
      *
-     * @return \BcTic\CamIpalBundle\Entity\UnidadDeNegocio 
+     * @return \BcTic\CamIpalBundle\Entity\UnidadDeNegocio
      */
     public function getUnidadDeNegocio()
     {
         return $this->unidadDeNegocio;
+    }
+
+    /**
+     * Set centroDeCosto
+     *
+     * @param string $centroDeCosto
+     * @return Contrato
+     */
+    public function setCentroDeCosto($centroDeCosto)
+    {
+        $this->centroDeCosto = $centroDeCosto;
+
+        return $this;
+    }
+
+    /**
+     * Get centroDeCosto
+     *
+     * @return string
+     */
+    public function getCentroDeCosto()
+    {
+        return $this->centroDeCosto;
     }
 }

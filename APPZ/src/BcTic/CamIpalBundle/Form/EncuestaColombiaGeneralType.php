@@ -35,9 +35,9 @@ class EncuestaColombiaGeneralType extends AbstractType
                     'format' => 'ddMMyyyy',
                     'disabled' => true
             ))
-            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES','ADMINISTRATIVOS','N/A')))
+            ->add('tipoDeHallazgo', 'choice', array('choices' => array('CONDUCTUALES/ADMINISTRATIVOS','CONDUCTUALES','ADMINISTRATIVOS','N/A')))
             ->add('hora','time', array ('label' => 'Hora'))
-            ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo'))
+            ->add('lugarDeTrabajo','text', array('label' => 'Ciudad/Sede'))
             ->add('numDeEmpleados', 'choice', array('label'  => 'Nº de empleados', 'choices' => $numTrabajadores))
             ->add('cttaSubcont')
             ->add('observaciones','textarea', array('label' => 'Observaciones'))
@@ -209,6 +209,7 @@ class EncuestaColombiaGeneralType extends AbstractType
             ->add('prevencionista', 'hidden')
             ->add('supervisor','entity_hidden', array(
                 'class' => 'BcTic\CamIpalBundle\Entity\Empleado',
+                'label' => 'Líder de Cuadrilla'
               ))
             ->add('servicio','entity', array(
                   'label' => 'Servicio',
@@ -274,8 +275,8 @@ class EncuestaColombiaGeneralType extends AbstractType
                            ->orderBy('r.nombre', 'ASC');
                     }
                 ))
-              ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
-              ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
+              ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('NO_APLICA' => "N/A",'A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
+              ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('NO_APLICA' => "N/A",'B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
               ->add('charlaGrabada','choice', array('label' => 'Charla grabada', 'choices' => array('SI' => 'Sí', 'NO' => 'No' )))
 
 

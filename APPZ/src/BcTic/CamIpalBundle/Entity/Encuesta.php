@@ -133,14 +133,14 @@ abstract class Encuesta
     /**
      *
      *
-     * @ORM\Column(name="auto_inspeccion", type="string", length=5)
+     * @ORM\Column(name="auto_inspeccion", type="string", length=10)
      */
     private $autoInspeccion = 'N/A';
 
     /**
      *
      *
-     * @ORM\Column(name="charla_operativa", type="string", length=5)
+     * @ORM\Column(name="charla_operativa", type="string", length=10)
      */
     private $charlaOperativa = 'N/A';
 
@@ -5267,7 +5267,7 @@ abstract class Encuesta
     /**
      * Get respuesta117
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta117()
     {
@@ -5290,7 +5290,7 @@ abstract class Encuesta
     /**
      * Get respuesta118
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta118()
     {
@@ -5313,7 +5313,7 @@ abstract class Encuesta
     /**
      * Get respuesta119
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta119()
     {
@@ -5336,7 +5336,7 @@ abstract class Encuesta
     /**
      * Get respuesta1110
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta1110()
     {

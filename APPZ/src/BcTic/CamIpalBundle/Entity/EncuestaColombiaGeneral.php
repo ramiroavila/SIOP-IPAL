@@ -16,7 +16,8 @@ class EncuestaColombiaGeneral extends Encuesta
     public function __construct() {
 
         $this->setCreatedAt(date('U'));
-        //Respuestas NA por defecto
+
+        //Todas las respuestas son NA por defecto
         $this->setRespuesta11(2);
         $this->setRespuesta12(2);
         $this->setRespuesta13(2);
@@ -28,22 +29,60 @@ class EncuestaColombiaGeneral extends Encuesta
         $this->setRespuesta23(2);
 
         $this->setRespuesta31(2);
+        $this->setRespuesta32(2);
+        $this->setRespuesta33(2);
+        $this->setRespuesta34(2);
+        $this->setRespuesta35(2);
         $this->setRespuesta36(2);
 
+        $this->setRespuesta41(2);
+        $this->setRespuesta42(2);
+        $this->setRespuesta43(2);
         $this->setRespuesta44(2);
         $this->setRespuesta45(2);
         $this->setRespuesta46(2);
+        $this->setRespuesta47(2);
+        $this->setRespuesta48(2);
+        $this->setRespuesta49(2);
+        $this->setRespuesta410(2);
         $this->setRespuesta411(2);
+        $this->setRespuesta412(2);
         $this->setRespuesta413(2);
         $this->setRespuesta414(2);
+        $this->setRespuesta415(2);
         $this->setRespuesta416(2);
         $this->setRespuesta417(2);
         $this->setRespuesta418(2);
 
+        $this->setRespuesta51(2);
+        $this->setRespuesta52(2);
+        $this->setRespuesta53(2);
         $this->setRespuesta54(2);
 
-        $this->setRespuesta82(2);
+        $this->setRespuesta61(2);
+        $this->setRespuesta62(2);
+        $this->setRespuesta63(2);
+        $this->setRespuesta64(2);
+        $this->setRespuesta65(2);
+        $this->setRespuesta66(2);
 
+        $this->setRespuesta71(2);
+        $this->setRespuesta72(2);
+        $this->setRespuesta73(2);
+
+        $this->setRespuesta81(2);
+        $this->setRespuesta82(2);
+        $this->setRespuesta83(2);
+        $this->setRespuesta84(2);
+        $this->setRespuesta85(2);
+
+        $this->setRespuesta91(2);
+        $this->setRespuesta92(2);
+        $this->setRespuesta93(2);
+
+        $this->setRespuesta101(2);
+        $this->setRespuesta102(2);
+        $this->setRespuesta103(2);
         $this->setRespuesta104(2);
         $this->setRespuesta105(2);
         $this->setRespuesta106(2);
@@ -52,6 +91,8 @@ class EncuestaColombiaGeneral extends Encuesta
         $this->setRespuesta109(2);
         $this->setRespuesta1010(2);
 
+        $this->setRespuesta111(2);
+        $this->setRespuesta112(2);
         $this->setRespuesta113(2);
 
         $this->setRespuesta121(2);
@@ -64,20 +105,37 @@ class EncuestaColombiaGeneral extends Encuesta
         $this->setRespuesta132(2);
         $this->setRespuesta133(2);
         $this->setRespuesta134(2);
+        $this->setRespuesta135(2);
         $this->setRespuesta136(2);
+        $this->setRespuesta137(2);
         $this->setRespuesta138(2);
         $this->setRespuesta139(2);
+        $this->setRespuesta1310(2);
 
         $this->setRespuesta141(2);
+        $this->setRespuesta142(2);
+        $this->setRespuesta143(2);
+        $this->setRespuesta144(2);
+        $this->setRespuesta145(2);
+        $this->setRespuesta146(2);
+        $this->setRespuesta147(2);
 
         $this->setRespuesta151(2);
         $this->setRespuesta152(2);
+        $this->setRespuesta153(2);
+        $this->setRespuesta154(2);
+        $this->setRespuesta155(2);
 
         $this->setRespuesta161(2);
         $this->setRespuesta162(2);
         $this->setRespuesta163(2);
         $this->setRespuesta164(2);
         $this->setRespuesta165(2);
+
+        $this->setRespuesta171(2);
+        $this->setRespuesta172(2);
+        $this->setRespuesta173(2);
+
 
     }
 

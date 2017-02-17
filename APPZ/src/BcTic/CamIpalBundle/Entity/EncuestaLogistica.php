@@ -29,7 +29,7 @@ class EncuestaLogistica extends Encuesta
         $this->setRespuesta44(2);
         $this->setRespuesta45(2);
         $this->setRespuesta46(2);
-        $this->setRespuesta411(2);
+        $this->setRespuesta104(2);
         $this->setRespuesta121(2);
         $this->setRespuesta131(2);
         $this->setRespuesta132(2);
@@ -99,6 +99,7 @@ class EncuestaLogistica extends Encuesta
       $enum = $this->getRespuesta101(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta102(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta103(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta104(); $data[$enum] = $data[$enum] + 1;
 
       $enum = $this->getRespuesta111(); $data[$enum] = $data[$enum] + 1;
 
@@ -149,6 +150,7 @@ class EncuestaLogistica extends Encuesta
       $data[] = "respuesta_10_1";
       $data[] = "respuesta_10_2";
       $data[] = "respuesta_10_3";
+      $data[] = "respuesta_10_4";
       $data[] = "respuesta_11_1";
       $data[] = "respuesta_12_1";
       $data[] = "respuesta_13_1";
@@ -207,6 +209,7 @@ class EncuestaLogistica extends Encuesta
       if ($this->getRespuesta101() == 1) $data[] = "respuesta10.1_logistica";
       if ($this->getRespuesta102() == 1) $data[] = "respuesta10.2_logistica";
       if ($this->getRespuesta103() == 1) $data[] = "respuesta10.3_logistica";
+      if ($this->getRespuesta104() == 1) $data[] = "respuesta10.4_logistica";
       if ($this->getRespuesta111() == 1) $data[] = "respuesta11.1_logistica";
       if ($this->getRespuesta121() == 0) $data[] = "respuesta12.1_logistica";
       /*
@@ -237,7 +240,7 @@ class EncuestaLogistica extends Encuesta
       if ($this->getRespuesta44() == 1) $data[] = "respuesta4.4_logistica";
       if ($this->getRespuesta45() == 1) $data[] = "respuesta4.5_logistica";
       if ($this->getRespuesta46() == 1) $data[] = "respuesta4.6_logistica";
-      if ($this->getRespuesta411() == 1) $data[] = "respuesta4.11_logistica";
+      if ($this->getRespuesta104() == 1) $data[] = "respuesta10.4_logistica";
       if ($this->getRespuesta121() == 0) $data[] = "respuesta12.1_logistica";
       return $data;
     }
@@ -246,7 +249,7 @@ class EncuestaLogistica extends Encuesta
 
         $data = array(
                 50 => array (
-                    'items' => 13,
+                    'items' => 12,
                     'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) +
                                 (($this->getRespuesta12() == 1) ? 1 : 0)+
                                 (($this->getRespuesta13() == 1) ? 1 : 0) +
@@ -257,7 +260,8 @@ class EncuestaLogistica extends Encuesta
                                 (($this->getRespuesta44() == 1) ? 1 : 0) +
                                 (($this->getRespuesta45() == 1) ? 1 : 0) +
                                 (($this->getRespuesta46() == 1) ? 1 : 0) +
-                                (($this->getRespuesta411() == 1) ? 1 : 0)
+                                (($this->getRespuesta104() == 1) ? 1 : 0) +
+                                (($this->getRespuesta121() == 1) ? 1 : 0)
                     ),
                 40 => array(
                     'items' => 0,
@@ -316,19 +320,18 @@ class EncuestaLogistica extends Encuesta
         //Calcula el índice IPAL según Fórmula:
         $data = array(
                  50 => array (
-                    'items' => 13,
+                    'items' => 12,
                     'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) +
                                 (($this->getRespuesta12() == 1) ? 1 : 0)+
                                 (($this->getRespuesta13() == 1) ? 1 : 0) +
                                 (($this->getRespuesta14() == 1) ? 1 : 0) +
                                 (($this->getRespuesta15() == 1) ? 1 : 0) +
                                 (($this->getRespuesta21() == 1) ? 1 : 0) +
-                                (($this->getRespuesta22() == 1) ? 1 : 0) +
-                                (($this->getRespuesta23() == 1) ? 1 : 0) +
                                 (($this->getRespuesta31() == 1) ? 1 : 0)+
                                 (($this->getRespuesta44() == 1) ? 1 : 0) +
                                 (($this->getRespuesta45() == 1) ? 1 : 0) +
                                 (($this->getRespuesta46() == 1) ? 1 : 0) +
+                                (($this->getRespuesta104() == 1) ? 1 : 0) +
                                 (($this->getRespuesta411() == 1) ? 1 : 0)
                     ),
                 20 => array (

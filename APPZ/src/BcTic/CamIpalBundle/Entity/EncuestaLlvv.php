@@ -37,6 +37,8 @@ class EncuestaLlvv extends Encuesta
 
         $this->setRespuesta61(2);
         $this->setRespuesta62(2);
+
+        $this->setRespuesta104(2);
     }
 
 
@@ -48,7 +50,7 @@ class EncuestaLlvv extends Encuesta
 
         $data = array(
                 50 => array (
-                    'items' => 15,
+                    'items' => 16,
                     'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) +
                                 (($this->getRespuesta12() == 1) ? 1 : 0)+
                                 (($this->getRespuesta13() == 1) ? 1 : 0) +
@@ -63,7 +65,8 @@ class EncuestaLlvv extends Encuesta
                                 (($this->getRespuesta411() == 1) ? 1 : 0) +
                                 (($this->getRespuesta61() == 1) ? 1 : 0) +
                                 (($this->getRespuesta62() == 1) ? 1 : 0) +
-                                (($this->getRespuesta63() == 1) ? 1 : 0)
+                                (($this->getRespuesta63() == 1) ? 1 : 0) +
+                                (($this->getRespuesta104() == 1) ? 1 : 0)
                     ),
                 40 => array(
                     'items' => 0,
@@ -168,6 +171,7 @@ class EncuestaLlvv extends Encuesta
       $enum = $this->getRespuesta101(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta102(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta103(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta104(); $data[$enum] = $data[$enum] + 1;
 
       $enum = $this->getRespuesta111(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta112(); $data[$enum] = $data[$enum] + 1;
@@ -238,6 +242,7 @@ class EncuestaLlvv extends Encuesta
       $data[] = "respuesta_10_1";
       $data[] = "respuesta_10_2";
       $data[] = "respuesta_10_3";
+      $data[] = "respuesta_10_4";
 
       $data[] = "respuesta_11_1";
       $data[] = "respuesta_11_2";
@@ -308,6 +313,7 @@ class EncuestaLlvv extends Encuesta
       if ($this->getRespuesta101() == 1) $data[] = "respuesta10.1_llvv";
       if ($this->getRespuesta102() == 1) $data[] = "respuesta10.2_llvv";
       if ($this->getRespuesta103() == 1) $data[] = "respuesta10.3_llvv";
+      if ($this->getRespuesta104() == 1) $data[] = "respuesta10.4_llvv";
 
       if ($this->getRespuesta111() == 1) $data[] = "respuesta11.1_llvv";
       if ($this->getRespuesta112() == 1) $data[] = "respuesta11.2_llvv";
@@ -334,6 +340,7 @@ class EncuestaLlvv extends Encuesta
       if ($this->getRespuesta61() == 1) $data[] = "respuesta6.1_llvv";
       if ($this->getRespuesta62() == 1) $data[] = "respuesta6.2_llvv";
       if ($this->getRespuesta63() == 1) $data[] = "respuesta6.3_llvv";
+      if ($this->getRespuesta10() == 1) $data[] = "respuesta10.4_llvv";
       return $data;
     }
 
@@ -343,7 +350,7 @@ class EncuestaLlvv extends Encuesta
 
         $data = array(
                 50 => array (
-                    'items' => 15,
+                    'items' => 16,
                     'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) +
                                 (($this->getRespuesta12() == 1) ? 1 : 0)+
                                 (($this->getRespuesta13() == 1) ? 1 : 0) +
@@ -358,7 +365,8 @@ class EncuestaLlvv extends Encuesta
                                 (($this->getRespuesta411() == 1) ? 1 : 0) +
                                 (($this->getRespuesta61() == 1) ? 1 : 0) +
                                 (($this->getRespuesta62() == 1) ? 1 : 0) +
-                                (($this->getRespuesta63() == 1) ? 1 : 0)
+                                (($this->getRespuesta63() == 1) ? 1 : 0) +
+                                (($this->getRespuesta104() == 1) ? 1 : 0)
                     ),
                 40 => array(
                     'items' => 0,

@@ -96,6 +96,10 @@
         </div>
         <div class="row">
           {% include 'BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig' with { 'respuesta': form.respuesta411, alert: '' } %}
+          {% include 'BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig' with { 'respuesta': form.respuesta104, alert: '' } %}
+        </div>
+        <div class="row">
+          {% include 'BcTicCamIpalBundle::edit_encuesta_row_format.html.twig' with {'content': ''} %}
           {% include 'BcTicCamIpalBundle::edit_encuesta_row_format.html.twig' with {'content': 'I-11 ' ~ 'Primeros Auxilios y Emergencias' | trans } %}
         </div>
         <div class="row">

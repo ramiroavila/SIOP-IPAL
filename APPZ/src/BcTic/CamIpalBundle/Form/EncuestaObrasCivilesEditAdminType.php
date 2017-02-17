@@ -84,6 +84,7 @@ class EncuestaObrasCivilesEditAdminType extends AbstractType
             ->add('respuesta101', new SurveyType(), array('label' => 'respuesta10.1_obras_civiles'))
             ->add('respuesta102', new SurveyType(), array('label' => 'respuesta10.2_obras_civiles'))
             ->add('respuesta103', new SurveyType(), array('label' => 'respuesta10.3_obras_civiles'))
+            ->add('respuesta104', new SurveyType(), array('label' => 'respuesta10.4_obras_civiles'))
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_obras_civiles'))
             ->add('respuesta121', new SurveyType(), array('label' => 'respuesta12.1_obras_civiles'))
             ->add('respuesta131', new SurveyType(), array('label' => 'respuesta13.1_obras_civiles'))

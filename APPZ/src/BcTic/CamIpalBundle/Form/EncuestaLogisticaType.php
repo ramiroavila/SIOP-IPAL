@@ -81,6 +81,7 @@ class EncuestaLogisticaType extends AbstractType
             ->add('respuesta101', new SurveyType(), array('label' => 'respuesta10.1_logistica'))
             ->add('respuesta102', new SurveyType(), array('label' => 'respuesta10.2_logistica'))
             ->add('respuesta103', new SurveyType(), array('label' => 'respuesta10.3_logistica'))
+            ->add('respuesta104', new SurveyType(), array('label' => 'respuesta10.4_logistica'))
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_logistica'))
             ->add('respuesta121', new SurveyType(), array('label' => 'respuesta12.1_logistica'))
             ->add('respuesta131', new SurveyType(), array('label' => 'respuesta13.1_logistica'))

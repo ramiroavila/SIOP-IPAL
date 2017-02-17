@@ -1231,6 +1231,13 @@ abstract class Encuesta
     */
     private $unidadDeNegocio;
 
+    /**
+    * @var string
+    *
+    * @ORM\Column(name="patente", type="string", length=25, nullable=true)
+    */
+    private $patente;
+
 
      /**
      * @var string
@@ -5341,5 +5348,28 @@ abstract class Encuesta
     public function getRespuesta1110()
     {
         return $this->respuesta1110;
+    }
+
+    /**
+     * Set patente
+     *
+     * @param string $patente
+     * @return Encuesta
+     */
+    public function setPatente($patente)
+    {
+        $this->patente = $patente;
+
+        return $this;
+    }
+
+    /**
+     * Get patente
+     *
+     * @return string 
+     */
+    public function getPatente()
+    {
+        return $this->patente;
     }
 }

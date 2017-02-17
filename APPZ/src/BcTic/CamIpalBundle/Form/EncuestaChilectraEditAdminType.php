@@ -39,6 +39,7 @@ class EncuestaElectricaEditAdminType extends AbstractType
             ->add('lugarDeTrabajo','text', array('label' => 'Lugar de trabajo'))
             ->add('numDeEmpleados', 'choice', array('label'  => 'Nº de empleados', 'choices' => $numTrabajadores))
             ->add('cttaSubcont')
+            ->add('patente','text', array('label' => 'Patente del vehículo (Si aplica)'))
             ->add('observaciones','textarea', array('label' => 'Observaciones'))
             ->add('respuesta11', new SurveyMultipleType(),array('label' => 'respuesta1.1_electrica'))
             ->add('respuesta12', new SurveyMultipleType(), array('label' => 'respuesta1.2_electrica'))

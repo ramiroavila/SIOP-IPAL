@@ -40,6 +40,7 @@ class EncuestaColombiaGeneralType extends AbstractType
             ->add('lugarDeTrabajo','text', array('label' => 'Ciudad/Sede'))
             ->add('numDeEmpleados', 'choice', array('label'  => 'Nº de empleados', 'choices' => $numTrabajadores))
             ->add('cttaSubcont')
+            ->add('patente','text', array('label' => 'Patente del vehículo (Si aplica)'))
             ->add('observaciones','textarea', array('label' => 'Observaciones'))
 
             ->add('respuesta11', new SurveyType(),array('label' => 'respuesta1.1_colombia_general'))

@@ -777,6 +777,7 @@ respuesta7.2_brazil_interno: "7.2 Os resíduos orgânicos ou de qualquer outra n
 respuesta7.3_brazil_interno: "7.3 Existe sinalização de advertencia para fumantes?"
 respuesta7.4_brazil_interno: "7.4 Os sanitários estão em condições adequadas de uso e conservação?"
 respuesta8.1_brazil_interno: "8.1 O local possui estojo de primeiros socorros completo?"
+respuesta10.4_exceso_de_velocidad: "10.1 Exceso de velocidad (sobre 110 km/h en un lapso mayor a 2 minutos)"
 respuesta_0: "Sí"
 respuesta_1: "No"
 respuesta_2: "N/A"
@@ -824,6 +825,7 @@ electrica: Eléctrica
 logistica: Logística
 obras_civiles: Obras Civiles
 telecomunicaciones: Telecomunicaciones
+exceso_de_velocidad: Exceso de velocidad
 peru_electrica: Eléctrica
 peru_logistica: Logística
 peru_obras_civiles: Obras Civiles

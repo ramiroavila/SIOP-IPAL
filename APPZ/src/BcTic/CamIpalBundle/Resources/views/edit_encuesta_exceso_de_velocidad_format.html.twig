@@ -1,0 +1,8 @@
+        <div class="row">
+          {% include 'BcTicCamIpalBundle::edit_encuesta_row_format.html.twig' with {'content': 'I-10 ' ~ 'Vehículo (Pesado, liviano y motocicletas)' | trans } %}
+          {% include 'BcTicCamIpalBundle::edit_encuesta_row_format.html.twig' with {'content': '' | trans } %}
+        </div>
+        <div class="row">
+          {% include 'BcTicCamIpalBundle::edit_encuesta_row_data_format.html.twig' with { 'respuesta': form.respuesta104, alert: 'alert-warning' } %}
+          {% include 'BcTicCamIpalBundle::edit_encuesta_row_format.html.twig' with {'content': '' | trans } %}
+        </div>

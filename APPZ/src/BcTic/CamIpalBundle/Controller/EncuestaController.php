@@ -16,6 +16,7 @@ use BcTic\CamIpalBundle\Entity\EncuestaObrasCiviles;
 use BcTic\CamIpalBundle\Entity\EncuestaTelecomunicaciones;
 use BcTic\CamIpalBundle\Entity\EncuestaLlvv;
 use BcTic\CamIpalBundle\Entity\EncuestaFAM;
+use BcTic\CamIpalBundle\Entity\EncuestaExcesoDeVelocidad;
 use BcTic\CamIpalBundle\Entity\EncuestaColombiaGeneral;
 use BcTic\CamIpalBundle\Entity\EncuestaBrazilGeneral;
 use BcTic\CamIpalBundle\Entity\EncuestaBrazilInterno;
@@ -64,6 +65,11 @@ use BcTic\CamIpalBundle\Form\EncuestaPeruElectricaEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaPeruLogisticaEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaPeruObrasCivilesEditAdminType;
 use BcTic\CamIpalBundle\Form\EncuestaPeruTelecomunicacionesEditAdminType;
+
+use BcTic\CamIpalBundle\Form\EncuestaExcesoDeVelocidadType;
+use BcTic\CamIpalBundle\Form\EncuestaExcesoDeVelocidadEditType;
+use BcTic\CamIpalBundle\Form\EncuestaExcesoDeVelocidadEditAdminType;
+
 use BcTic\CamIpalBundle\Form\EncuestaFilterType;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
@@ -829,6 +835,14 @@ class EncuestaController extends Controller
              $entity = new EncuestaLlvv();
              $tipo = "LLVV";
              break;
+         case 'fam':
+             $entity = new EncuestaFAM();
+             $tipo = "FAM";
+             break;
+         case 'exceso_de_velocidad':
+             $entity = new EncuestaExcesoDeVelocidad();
+             $tipo = "EXCESO_DE_VELOCIDAD";
+             break;
          case 'colombia_general':
            $entity = new EncuestaColombiaGeneral();
            $tipo = "COLOMBIA_GENERAL";
@@ -1415,7 +1429,7 @@ class EncuestaController extends Controller
          );
      }
 
-  /**
+   /**
      * Creates a new Encuesta entity.
      *
      * @Route("/add/chilectra", name="encuestas_create_chilectra")
@@ -1544,6 +1558,32 @@ class EncuestaController extends Controller
                'type'  => $entity->getKey(),
            );
        }
+
+       /**
+         * Creates a new Encuesta entity.
+         *
+         * @Route("/add/exceso_de_velocidad", name="encuestas_create_exceso_de_velocidad")
+         * @Method("POST")
+         * @Template("BcTicCamIpalBundle:Encuesta:new.html.twig")
+         */
+        public function createExcesoDeVelocidadAction(Request $request)
+        {
+            $entity = new EncuestaExcesoDeVelocidad();
+            $form = $this->createCreateForm($entity, new EncuestaExcesoDeVelocidadType());
+            $form->handleRequest($request);
+
+            $response = $this->createAction($request, $form, $entity);
+            if (is_object($response)) return $response;
+
+            $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
+
+            return array(
+                'format' => $format,
+                'entity' => $entity,
+                'form'   => $form->createView(),
+                'type'  => $entity->getKey(),
+            );
+        }
 
    /**
      * Creates a new Encuesta entity.
@@ -1945,6 +1985,10 @@ class EncuestaController extends Controller
             $entity = new EncuestaFAM();
             $formType = new EncuestaFAMType();
             break;
+          case 'exceso_de_velocidad':
+            $entity = new EncuestaExcesoDeVelocidad();
+            $formType = new EncuestaExcesoDeVelocidadType();
+            break;
           case 'colombia_general':
             $entity = new EncuestaColombiaGeneral();
             $formType = new EncuestaColombiaGeneralType();
@@ -2067,9 +2111,15 @@ class EncuestaController extends Controller
           case 'telecomunicaciones':
             $entity = new EncuestaTelecomunicaciones();
             break;
-        case 'llvv':
-          $entity = new EncuestaLlvv();
-          break;
+          case 'llvv':
+            $entity = new EncuestaLlvv();
+            break;
+          case 'fam':
+            $entity = new EncuestaFAM();
+            break;
+          case 'exceso_de_velocidad':
+            $entity = new EncuestaExcesoDeVelocidad();
+            break;
           case 'colombia_general':
             $entity = new EncuestaColombiaGeneral();
             break;
@@ -2143,6 +2193,12 @@ class EncuestaController extends Controller
             break;
           case 'llvv':
               $formType = $role ? new EncuestaLlvvEditAdminType() : new EncuestaLlvvEditType();
+              break;
+          case 'fam':
+              $formType = $role ? new EncuestaFAMEditAdminType() : new EncuestaFAMEditType();
+              break;
+          case 'exceso_de_velocidad':
+              $formType = $role ? new EncuestaExcesoDeVelocidadEditType() : new EncuestaExcesoDeVelocidadEditType();
               break;
           case 'colombia_general':
             $formType = $role ? new EncuestaColombiaGeneralEditAdminType : new EncuestaColombiaGeneralEditType();
@@ -2274,6 +2330,9 @@ class EncuestaController extends Controller
             break;
           case 'llvv':
               $formType = $role ? new EncuestaLlvvEditAdminType() : new EncuestaLlvvEditType();
+              break;
+          case 'exceso_de_velocidad':
+              $formType = $role ? new EncuestaExcesoDeVelocidadEditAdminType() : new EncuestaExcesoDeVelocidadEditType();
               break;
           case 'colombia_general':
             $formType = $role ? new EncuestaColombiaGeneralEditAdminType() : new EncuestaColombiaGeneralEditType();

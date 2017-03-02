@@ -94,21 +94,22 @@
             {{ form_row(form.autoInspeccion) }}
           </div>
           <div class="col-sm-6">
-            {{ form_row(form.charlaOperativa) }}
+            {{ form_row(form.patente) }}
           </div>
         </div>
 
         <div class="row">
           <div class="col-sm-6">
             {{ form_row(form.prevencionista) }}
+            {{ form_row(form.numDeEmpleados) }}
           </div>
           <div class="col-sm-6">
+            {{ form_row(form.charlaOperativa) }}
           </div>
         </div>
 
         <div class="row">
           <div class="col-sm-6">
-            {{ form_row(form.patente) }}
           </div>
           <div class="col-sm-6">
             {{ form_row(form.charlaGrabada) }}
@@ -117,7 +118,6 @@
 
         <div class="row">
           <div class="col-sm-6">
-            {{ form_row(form.numDeEmpleados) }}
           </div>
           <div class="col-sm-6" id="empleados">
                {{ form_widget(form.empleados) }}

@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th colspan="2" class="text-center">ÁREAS / ACTUACIONES</th>
+          </tr>
+          <tr>
+            <td><b>I-10 {{ 'Vehículo (Pesado, Liviano y Motocicletas)' | trans }}</b></td>
+            <td><b>{{ 'Cumple' | trans }}</b></td>
+          </tr>
+          <tr>
+            <td class="alert alert-warning">{% set name = 'respuesta10.4_' ~ entity.key %} {{ name | trans }}</td>
+            <td class="alert alert-warning">{% set name = 'respuesta_' ~ entity.respuesta104 %} {{ name | trans }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

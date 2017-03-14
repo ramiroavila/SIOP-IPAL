@@ -223,7 +223,9 @@ class Contrato
 
     public function __toString()
     {
-        return '#'.$this->numero.' '.$this->nombre.' - '.$this->centroDeCosto.' '.$this->getPais();
+        if ($this->centroDeCosto === 'NINGUNO') return '#'.$this->numero.' '.$this->nombre.' - '.$this->getPais();
+        if (strlen($this->centroDeCosto) === 0) return '#'.$this->numero.' '.$this->nombre.' - '.$this->getPais();
+        return $this->centroDeCosto .' - #'.$this->numero.' '.$this->nombre.' - '.$this->getPais();
     }
 
     /**

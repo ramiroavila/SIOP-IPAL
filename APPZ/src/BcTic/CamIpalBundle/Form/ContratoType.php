@@ -85,7 +85,11 @@ class ContratoType extends AbstractType
                     }
                 ))
             ->add('centroDeCosto', CentroDeCostoType::class, array(
-                        'label' => 'Centro de costo'
+                        'label' => 'Centro de costo',
+                        'choices_as_values' => true,
+                        'choice_label' => function($centroDeCosto, $key, $index) {
+                            return $centroDeCosto;
+                        }
                       ))
             ->add('descripcion')
             ->add('subcontrato','checkbox', array('label' => '¿Posée subcontratos?'))

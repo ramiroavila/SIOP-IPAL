@@ -34,7 +34,7 @@
                     {% if obj is iterable %}
                       <!-- DO NOTHING - EMPTY COLLECTION -->
                      {% else %}
-                       {{ obj }}
+                       {{ obj | trans }}
                      {% endif %}
                   {% endif %}
                 </td>

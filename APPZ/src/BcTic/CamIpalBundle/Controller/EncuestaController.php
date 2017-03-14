@@ -15,6 +15,7 @@ use BcTic\CamIpalBundle\Entity\EncuestaLogistica;
 use BcTic\CamIpalBundle\Entity\EncuestaObrasCiviles;
 use BcTic\CamIpalBundle\Entity\EncuestaTelecomunicaciones;
 use BcTic\CamIpalBundle\Entity\EncuestaLlvv;
+use BcTic\CamIpalBundle\Entity\EncuestaFAM;
 use BcTic\CamIpalBundle\Entity\EncuestaColombiaGeneral;
 use BcTic\CamIpalBundle\Entity\EncuestaBrazilGeneral;
 use BcTic\CamIpalBundle\Entity\EncuestaBrazilInterno;
@@ -29,6 +30,7 @@ use BcTic\CamIpalBundle\Form\EncuestaLogisticaType;
 use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesType;
 use BcTic\CamIpalBundle\Form\EncuestaTelecomunicacionesType;
 use BcTic\CamIpalBundle\Form\EncuestaLlvvType;
+use BcTic\CamIpalBundle\Form\EncuestaFAMType;
 use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoType;
@@ -1517,6 +1519,32 @@ class EncuestaController extends Controller
           );
       }
 
+      /**
+        * Creates a new Encuesta entity.
+        *
+        * @Route("/add/fam", name="encuestas_create_fam")
+        * @Method("POST")
+        * @Template("BcTicCamIpalBundle:Encuesta:new.html.twig")
+        */
+       public function createFamAction(Request $request)
+       {
+           $entity = new EncuestaFAM();
+           $form = $this->createCreateForm($entity, new EncuestaFAMType());
+           $form->handleRequest($request);
+
+           $response = $this->createAction($request, $form, $entity);
+           if (is_object($response)) return $response;
+
+           $format = (preg_match('/(android|blackberry|iphone|phone|playbook|mobile)/i', $request->headers->get('user-agent'))) ? "mobile" : "html"; //AL REVES
+
+           return array(
+               'format' => $format,
+               'entity' => $entity,
+               'form'   => $form->createView(),
+               'type'  => $entity->getKey(),
+           );
+       }
+
    /**
      * Creates a new Encuesta entity.
      *
@@ -1913,6 +1941,10 @@ class EncuestaController extends Controller
               $entity = new EncuestaLlvv();
               $formType = new EncuestaLlvvType();
               break;
+          case 'fam':
+            $entity = new EncuestaFAM();
+            $formType = new EncuestaFAMType();
+            break;
           case 'colombia_general':
             $entity = new EncuestaColombiaGeneral();
             $formType = new EncuestaColombiaGeneralType();

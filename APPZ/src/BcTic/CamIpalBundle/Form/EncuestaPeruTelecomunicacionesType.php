@@ -202,7 +202,7 @@ class EncuestaPeruTelecomunicacionesType extends AbstractType
             ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('A1' => 'A1 - Revisado Base / Revisado Inspector / Coincide','A2' => 'A2 - Revisado Base / Revisado Inspector / NO Coincide','A3' => 'A3 - No revisado en base / Revisado Inspector / Aceptable','A4' => 'A3 - No revisado en base / Revisado Inspector / No Aceptable')))
             ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
             ->add('charlaGrabada','choice', array('label' => 'Charla grabada', 'choices' => array('SI' => 'Sí', 'NO' => 'No' )))
-
+            ->add('charlaCorrecta','choice', array('label' => 'ART Correcta', 'choices' => array('SI' => 'Sí', 'NO' => 'No' )))
         ;
     }
 

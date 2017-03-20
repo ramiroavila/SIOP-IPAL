@@ -61,6 +61,11 @@
             {% set charla_grabada = 'charla_grabada_' ~ entity.key %}
             <td colspan="2" style="width: 50%;">{{ charla_grabada | trans }}: {{ entity.charlaGrabada }}</td>
           </tr>
+          <tr>
+            <td colspan="2" style="width: 50%;"></td>
+            {% set charla_correcta = 'charla_correcta_' ~ entity.key %}
+            <td colspan="2" style="width: 50%;">{{ charla_correcta | trans }}: {{ entity.charlaCorrecta }}</td>
+          </tr>
 
         </tbody>
       </table>

@@ -205,7 +205,7 @@ class EncuestaTelecomunicacionesEditType extends AbstractType
             ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('A1' => 'A1 - Revisado Base / Revisado Inspector / Coincide','A2' => 'A2 - Revisado Base / Revisado Inspector / NO Coincide','A3' => 'A3 - No revisado en base / Revisado Inspector / Aceptable','A4' => 'A3 - No revisado en base / Revisado Inspector / No Aceptable')))
             ->add('charlaOperativa','hidden')
             ->add('charlaGrabada','choice', array('label' => 'ART Grabada', 'choices' => array('SI' => 'Sí', 'NO' => 'No' )))
-
+            ->add('charlaCorrecta','choice', array('label' => 'ART Correcta', 'choices' => array('SI' => 'Sí', 'NO' => 'No' )))
         ;
     }
 

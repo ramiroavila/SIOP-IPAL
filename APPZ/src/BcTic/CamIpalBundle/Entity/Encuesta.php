@@ -133,16 +133,23 @@ abstract class Encuesta
     /**
      *
      *
-     * @ORM\Column(name="auto_inspeccion", type="string", length=5)
+     * @ORM\Column(name="auto_inspeccion", type="string", length=20)
      */
     private $autoInspeccion = 'N/A';
 
     /**
      *
      *
-     * @ORM\Column(name="charla_operativa", type="string", length=5)
+     * @ORM\Column(name="charla_operativa", type="string", length=20)
      */
-    private $charlaOperativa = 'N/A';
+    private $charlaOperativa = 'SI';
+
+    /**
+     *
+     *
+     * @ORM\Column(name="charla_correcta", type="string", length=20)
+     */
+    private $charlaCorrecta = 'SI';
 
     /**
      *
@@ -5267,7 +5274,7 @@ abstract class Encuesta
     /**
      * Get respuesta117
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta117()
     {
@@ -5290,7 +5297,7 @@ abstract class Encuesta
     /**
      * Get respuesta118
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta118()
     {
@@ -5313,7 +5320,7 @@ abstract class Encuesta
     /**
      * Get respuesta119
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta119()
     {
@@ -5336,10 +5343,33 @@ abstract class Encuesta
     /**
      * Get respuesta1110
      *
-     * @return integer 
+     * @return integer
      */
     public function getRespuesta1110()
     {
         return $this->respuesta1110;
+    }
+
+    /**
+     * Set charlaCorrecta
+     *
+     * @param string $charlaCorrecta
+     * @return Encuesta
+     */
+    public function setCharlaCorrecta($charlaCorrecta)
+    {
+        $this->charlaCorrecta = $charlaCorrecta;
+
+        return $this;
+    }
+
+    /**
+     * Get charlaCorrecta
+     *
+     * @return string
+     */
+    public function getCharlaCorrecta()
+    {
+        return $this->charlaCorrecta;
     }
 }

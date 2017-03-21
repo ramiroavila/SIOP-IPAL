@@ -16,7 +16,7 @@ use BcTic\CamIpalBundle\Validator\Constraints as BcTicCamIpalBundleAssert;
  * @ORM\Entity
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="tipo", type="string")
- * @ORM\DiscriminatorMap({"CHILECTRA" = "EncuestaChilectra" ,"ELECTRICO" = "EncuestaElectrica", "COLOMBIA_GENERAL" = "EncuestaColombiaGeneral", "BRAZIL_GENERAL" = "EncuestaBrazilGeneral", "BRAZIL_INTERNO" = "EncuestaBrazilInterno", "LOGISTICA" = "EncuestaLogistica", "OBRAS_CIVILES" = "EncuestaObrasCiviles", "TELECOMUNICACIONES" = "EncuestaTelecomunicaciones", "LLVV" = "EncuestaLlvv", "PERU_ELECTRICO" = "EncuestaPeruElectrica", "PERU_LOGISTICA" = "EncuestaPeruLogistica", "PERU_OBRAS_CIVILES" = "EncuestaPeruObrasCiviles", "PERU_TELECOMUNICACIONES" = "EncuestaPeruTelecomunicaciones","FAM" = "EncuestaFAM", "EXCESO_DE_VELOCIDAD" = "EncuestaExcesoDeVelocidad" })
+ * @ORM\DiscriminatorMap({"CHILECTRA" = "EncuestaChilectra" ,"ELECTRICO" = "EncuestaElectrica", "COLOMBIA_GENERAL" = "EncuestaColombiaGeneral", "BRAZIL_GENERAL" = "EncuestaBrazilGeneral", "BRAZIL_INTERNO" = "EncuestaBrazilInterno", "LOGISTICA" = "EncuestaLogistica", "OBRAS_CIVILES" = "EncuestaObrasCiviles", "TELECOMUNICACIONES" = "EncuestaTelecomunicaciones", "LLVV" = "EncuestaLlvv", "PERU_ELECTRICO" = "EncuestaPeruElectrica", "PERU_LOGISTICA" = "EncuestaPeruLogistica", "PERU_OBRAS_CIVILES" = "EncuestaPeruObrasCiviles", "PERU_TELECOMUNICACIONES" = "EncuestaPeruTelecomunicaciones","FAM" = "EncuestaFAM" })
  * @BcTicAssert\ContainsUploadedFile
  */
 abstract class Encuesta
@@ -133,16 +133,23 @@ abstract class Encuesta
     /**
      *
      *
-     * @ORM\Column(name="auto_inspeccion", type="string", length=10)
+     * @ORM\Column(name="auto_inspeccion", type="string", length=20)
      */
     private $autoInspeccion = 'N/A';
 
     /**
      *
      *
-     * @ORM\Column(name="charla_operativa", type="string", length=10)
+     * @ORM\Column(name="charla_operativa", type="string", length=20)
      */
-    private $charlaOperativa = 'N/A';
+    private $charlaOperativa = 'SI';
+
+    /**
+     *
+     *
+     * @ORM\Column(name="charla_correcta", type="string", length=20)
+     */
+    private $charlaCorrecta = 'SI';
 
     /**
      *
@@ -1230,13 +1237,6 @@ abstract class Encuesta
     *
     */
     private $unidadDeNegocio;
-
-    /**
-    * @var string
-    *
-    * @ORM\Column(name="patente", type="string", length=25, nullable=true)
-    */
-    private $patente;
 
 
      /**
@@ -5351,25 +5351,25 @@ abstract class Encuesta
     }
 
     /**
-     * Set patente
+     * Set charlaCorrecta
      *
-     * @param string $patente
+     * @param string $charlaCorrecta
      * @return Encuesta
      */
-    public function setPatente($patente)
+    public function setCharlaCorrecta($charlaCorrecta)
     {
-        $this->patente = $patente;
+        $this->charlaCorrecta = $charlaCorrecta;
 
         return $this;
     }
 
     /**
-     * Get patente
+     * Get charlaCorrecta
      *
      * @return string
      */
-    public function getPatente()
+    public function getCharlaCorrecta()
     {
-        return $this->patente;
+        return $this->charlaCorrecta;
     }
 }

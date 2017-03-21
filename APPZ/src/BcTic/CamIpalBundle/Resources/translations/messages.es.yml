@@ -56,7 +56,6 @@ respuesta9.3_electrica: "9.3 Sabe cómo actuar en caso de emergencia o accidente
 respuesta10.1_electrica: "10.1 El vehículo y el equipamiento cumple con las especificaciones técnicas"
 respuesta10.2_electrica: "10.2 Posée la documentación legal del vehículo y del conductor"
 respuesta10.3_electrica: "10.3 Traslado de personal en vehículos autorizados y en norma"
-respuesta10.4_electrica: "10.4 Exceso de velocidad (sobre 110 km/h en un lapso mayor a 2 minutos)"
 respuesta11.1_electrica: "11.1 Primeros auxilios y emergencias"
 respuesta12.1_electrica: "12.1 Se amonesta algún trabajador de la cuadrilla por Actos, omisiones o imprudencia"
 respuesta13.1_electrica: "13.1 Cuenta con la matriz de Aspectos e Impactos ambientales."
@@ -118,7 +117,6 @@ respuesta9.3_logistica: "9.3 Sabe o conoce como actuar en caso de emergencias o 
 respuesta10.1_logistica: "10.1 El vehículo utilizado para la tarea y sus equipamientos y accesorios cumple con las especificaciones técnicas requeridas"
 respuesta10.2_logistica: "10.2 Posee la documentación del vehículo o del conductor exigidos por Ley  de Tránsito"
 respuesta10.3_logistica: "10.3 Traslado de personal en vehículos en sitios autorizados y cumpliendo con las Normas de Tránsito"
-respuesta10.4_logistica: "10.4 Exceso de velocidad (sobre 110 km/h en un lapso mayor a 2 minutos)"
 respuesta11.1_logistica: "11.1 Botiquín de primeros auxilios completos"
 respuesta12.1_logistica: "12.1 Se amonesta algún trabajador de la cuadrilla por Actos, omisiones o imprudencias temerarias que afecten a la seguridad o al funcionamiento del establecimiento, a la seguridad o a la actividad de los trabajadores, o a la salud de éstos."
 respuesta13.1_logistica: "13.1 Identificó los aspectos ambientales antes de iniciar la actividad."
@@ -173,7 +171,6 @@ respuesta9.3_obras_civiles: "9.3 Sabe o conoce cómo actuar en caso de emergenci
 respuesta10.1_obras_civiles: "10.1 El vehículo utilizado para la tarea y sus equipamientos y accesorios cumple con las especificaciones técnicas requeridas"
 respuesta10.2_obras_civiles: "10.2 Posee la documentación del vehículo o del conductor exigidos por Cód. Tránsito local."
 respuesta10.3_obras_civiles: "10.3 Traslado de personal en vehículos en sitios autorizados y cumpliendo con las normas de tránsito local"
-respuesta10.4_obras_civiles: "10.4 Exceso de velocidad (sobre 110 km/h en un lapso mayor a 2 minutos)"
 respuesta11.1_obras_civiles: "11.1 Botiquín de Primeros Auxilios completos."
 respuesta12.1_obras_civiles: "12.1 Se amonesta algún trabajador de la cuadrilla por Actos, omisiones o imprudencias temerarias que afecten a la seguridad o al funcionamiento del establecimiento, a la seguridad o a la actividad de los trabajadores, o a la salud de éstos."
 respuesta13.1_obras_civiles: "13.1 Cuenta con la matriz de Aspectos e Impactos ambientales."
@@ -226,7 +223,6 @@ respuesta9.3_telecomunicaciones: "9.3 Sabe o conoce como actuar en caso de emerg
 respuesta10.1_telecomunicaciones: "10.1 El vehículo cuenta con equipamiento y accesorios adecuados para la tarea"
 respuesta10.2_telecomunicaciones: "10.2 Posee la documentación del vehículo"
 respuesta10.3_telecomunicaciones: "10.3 Posee licencia de conducir segun la ley de transito vigente"
-respuesta10.4_telecomunicaciones: "10.4 Exceso de velocidad (sobre 110 km/h en un lapso mayor a 2 minutos)"
 respuesta11.1_telecomunicaciones: "11.1 Botiquín de Primeros Auxilios completo"
 respuesta11.2_telecomunicaciones: "11.2 Extintor del Vehículo"
 respuesta12.1_telecomunicaciones: "12.1 Se amonesta algún trabajador de la cuadrilla por actos, omisiones o imprudencias temerarias que afecten a la seguridad o al funcionamiento del establecimiento, a la seguridad o a la actividad de los trabajadores, o a la salud de éstos."
@@ -501,7 +497,6 @@ respuesta9.3_llvv: "9.3 Sabe o conoce cómo actuar en caso de emergencias o acci
 respuesta10.1_llvv: "10.1 El vehículo utilizado para la tarea y sus equipamientos y accesorios cumple con las especificaciones técnicas requeridas"
 respuesta10.2_llvv: "10.2 Posee la documentación del vehículo o del conductor exigidos por Cód. Tránsito local."
 respuesta10.3_llvv: "10.3 Traslado de personal en vehículos en sitios autorizados y cumpliendo con las normas de tránsito local"
-respuesta10.4_llvv: "10.4 Exceso de velocidad (sobre 110 km/h en un lapso mayor a 2 minutos)"
 respuesta11.1_llvv: "11.1 Botiquín de Primeros Auxilios completos."
 respuesta11.2_llvv: "11.2 Camión posee kit de auto rescate desde cesta"
 respuesta11.3_llvv: "11.3 Cuenta con extintor de incendio en la zona de trabajo. (Min 6 kg)."
@@ -602,9 +597,9 @@ respuesta3.5_colombia_general: "3.5 Dispone de los planos o guías de las instal
 respuesta3.6_colombia_general: "3.6 Cuenta con los protocolos de pruebas de rigidez dieléctrica vigentes de los equipos asignados para la labor (pértiga-tapete-guantes dieléctricos clase 2 y/o clase 4)"
 #respuesta3.7_colombia_general: "3.7 Dispone de los planos o guías de las instalaciones vigentes"
 #respuesta3.8_colombia_general: "3.8 Se realizó la charla inicial de cinco minutos. / implemento las acciones de control para los impactos identificados"
-respuesta4.1_colombia_general: "4.1 Utiliza casco de seguridad con sistema de fijación en buen estado y normalizado"
+respuesta4.1_colombia_general: "4.1 Utiliza casco de seguridad con barbiquejo, en buen estado y normalizado"
 respuesta4.2_colombia_general: "4.2 Usa calzado de seguridad en buen estado y normalizado"
-respuesta4.3_colombia_general: "4.3 Utiliza guantes de seguridad de acuerdo a la labor ejecutada según corresponda, en buen estado y normalizado"
+respuesta4.3_colombia_general: "4.3 Usa guantes de seguridad de acuerdo a la labor en buen estado y normalizado"
 respuesta4.4_colombia_general: "4.4 Utiliza Guantes dieléctricos, en BT o MT según corresponda, en buen estado y normalizado y con pruebas dieléctricas vigentes"
 respuesta4.5_colombia_general: "4.5 Utiliza protección facial, en buen estado y normalizado"
 respuesta4.6_colombia_general: "4.6 Utiliza sistema de protección contra caídas de altura en buen estado y normalizado"
@@ -615,14 +610,14 @@ respuesta4.10_colombia_general: "4.10 Utiliza chaleco reflectante, en buen estad
 respuesta4.11_colombia_general: "4.11 Utiliza mangas dieléctricas, en buen estado y normalizado"
 respuesta4.12_colombia_general: "4.12 Utiliza protección respiratoria, en buen estado y normalizado"
 respuesta4.13_colombia_general: "4.13 Utiliza protección para piernas - pans"
-respuesta4.14_colombia_general: "4.14 Utiliza epp para conducción de motos en buen estado y normalizados (casco, visor, guantes, botas, chaleco, rodilleras, canilleras, air bags, coderas)"
+respuesta4.14_colombia_general: "4.14 Utiliza EPP para conducción de motos en buen estado y normalizado (casco, guantes, botas, chaleco, rodilleras, canilleras , airbag)"
 respuesta4.15_colombia_general: "4.15 Utiliza protector solar y/o gorra"
 respuesta4.16_colombia_general: "4.16 Utiliza ropa ignifuga"
 respuesta4.17_colombia_general: "4.17 Utiliza botas caña alta totalmente dieléctricas, en buen estado y normalizadas y con pruebas dieléctricas vigentes."
 respuesta4.18_colombia_general: "4.18 Utiliza tapete o banqueta dieléctricas, en buen estado y normalizadas y con pruebas dieléctricas vigentes."
 respuesta5.1_colombia_general: "5.1 Utiliza los materiales indicados"
 respuesta5.2_colombia_general: "5.2 Utiliza los equipos indicados en buen estado y normalizado"
-respuesta5.3_colombia_general: "5.3 Utiliza las herramientas indicadas en buen estado y normalizadas"
+respuesta5.3_colombia_general: "5.3 Utiliza las herramientas indicados en buen estado y normalizado"
 respuesta5.4_colombia_general: "5.4 Los equipos de oxicorte y soldadura se encuentran en buen estado y normalizados de acuerdo a la norma"
 respuesta6.1_colombia_general: "6.1 Orden y/o limpieza en zona de trabajo"
 respuesta6.2_colombia_general: "6.2 Medios de comunicación existentes"
@@ -639,14 +634,14 @@ respuesta8.3_colombia_general: "8.3 La cuadrilla es consciente de los riesgos as
 respuesta8.4_colombia_general: "8.4 Actitud segura en la ejecución de la actividad/tarea"
 respuesta8.5_colombia_general: "8.5 Conoce y cumple funciones, responsabilidades y autoridad en materia de SSL y GA"
 respuesta9.1_colombia_general: "9.1 Porta credencial de identificación autorizada para trabajar"
-respuesta9.2_colombia_general: "9.2 Posee la competencia adecuada para la actividad técnica que ejecuta (trabajo en alturas - trabajos con tensión - izaje de cargas)"
+respuesta9.2_colombia_general: "9.2 Posee la competencia adecuada para la actividad técnica que ejecuta (Trabajo en alturs - trabajos con tensión - izaje de carga)"
 respuesta9.3_colombia_general: "9.3 Sabe o conoce como actuar en caso de emergencias o accidentes o incidentes de trabajo (procedimiento de rescate)"
 respuesta10.1_colombia_general: "10.1 El vehículo utilizado para la tarea y sus equipamientos y accesorios cumple con las especificaciones técnicas requeridas"
 respuesta10.2_colombia_general: "10.2 Posee la documentación del vehículo o del conductor exigidos por código de tránsito local"
 respuesta10.3_colombia_general: "10.3 Traslado de personal en vehículos en sitios autorizados y cumpliendo con las normas de tránsito local"
 respuesta10.4_colombia_general: "10.4 El vehículo utilizado para el izaje de cargas o levantamientos de personas se encuentra en buen estado"
 respuesta10.5_colombia_general: "10.5 El vehículo de izaje utilizado para la tarea cuenta con accesorios (estrobos, eslingas, ganchos, etc) en buen estado y normalizados"
-respuesta10.6_colombia_general: "10.6 El vehículo utilizado para izaje de carga o levantamiento de personas cuenta con el registro de certificación de prueba de capacidad de carga y/o pruebas dieléctricas vigentes"
+respuesta10.6_colombia_general: "10.6 El vehículo utilizado para izaje de cargas o levantamientos de personas cuenta con el el registro de certificación de prueba de capacidad de carga y/o pruebas dieléctricas vigentes"
 respuesta10.7_colombia_general: "10.7 Se realiza y documenta el plan de izaje según la carga a izar"
 respuesta10.8_colombia_general: "10.8 Se evita desplazamientos de cargas sobre personas o personas sobre la carga"
 respuesta10.9_colombia_general: "10.9 Las patas estabilizadoras de la maquinaria se utilizan correctamente y respetan los diagramas de carga"
@@ -656,36 +651,36 @@ respuesta11.2_colombia_general: "11.2 El lugar de trabajo cuenta con extintor de
 respuesta11.3_colombia_general: "11.3 Dispone del equipo de rescate para trabajo en alturas en buen estado y normalizado según estructura donde trabaja y conoce el procedimiento establecido para el mismo"
 respuesta12.1_colombia_general: "12.1 Cubre adecuadamente la(s) estructura(s) y/o conductor(es) de otra(s) fase(s)"
 respuesta12.2_colombia_general: "12.2 Utiliza jumper con colgadores, en buen estado, normalizados/certificados"
-respuesta12.3_colombia_general: "12.3 Los equipos y herramientas para trabajo en línea energizada están en buen estado, normalizados y cuentan con las pruebas dieléctricas vigentes"
+respuesta12.3_colombia_general: "12.3 Los equipos y herramientas para trabajo en línea energizada están en buen estado, normalizados y cuentan con las pruebas dieléctricas vigentes."
 respuesta12.4_colombia_general: "12.4 El vehículo está correctamente aterrizado."
-respuesta13.1_colombia_general: "13.1 Se realizó revisión o prospección del terreno a excavar para identificar redes eléctricas, gas, telecomunicaciones, mallas de puesta a tierra u otras"
-respuesta13.2_colombia_general: "13.2 Se cubren los cables electricos subterráneos y aéreos, y se respetan las distancias de seguridad según el nivel de tensión de la estructura o red en trabajos en proximidad"
+respuesta13.1_colombia_general: "13.1 Se realizó revisión o prospección del terreno a excavar para identificar redes de eléctricidad, gas, telecomunicaciones, mallas de puesta a tierra u otras"
+respuesta13.2_colombia_general: "13.2 Se cubren los cables eléctricos subterráneos y aéreos, y se respetan las distancias de seguridad según el nivel de tensión de las estructura o red en trabajos de proximidad."
 respuesta13.3_colombia_general: "13.3 Asegura las herramientas para que no caigan a las cámaras y/o excavación"
 respuesta13.4_colombia_general: "13.4 Existe contención o entibamiento en las excavaciones según estándares de obras (profundidad >= 1.20m)"
 respuesta13.5_colombia_general: "13.5 La distancia entre la excavación y el lugar de acopio del material cumple los estándares de obras"
 respuesta13.6_colombia_general: "13.6 Existe estudio previo de suelos del terreno a excavar"
-respuesta13.7_colombia_general: "13.7 En excavación manual se conserva distancia de seguridad entre los trabajadores mínimo 2 m"
-respuesta13.8_colombia_general: "13.8 La excavación mayor a 0,30 m cuenta con rampa o escalera de acceso, limpias en buen estado (aseguradas, con barandas y pendientes no pronunciadas)"
+respuesta13.7_colombia_general: "13.7 En excavación manual se conserva distancia de seguridad entre los trabajadores mínimo 2 mts."
+respuesta13.8_colombia_general: "13.8 La excavación mayor a 0,30 mts cuenta con rampa o escalera de acceso, limpias, en buen estado (aseguradas, con barandas y pendientes no pronunciadas"
 respuesta13.9_colombia_general: "13.9 El personal se encuentra fuera de la línea de peligro, en tareas de movimientos de tierra y excavación"
 respuesta13.10_colombia_general: "13.10	Existen registros de inspencción de la excavación especialmente posterior a lluvias"
-respuesta14.1_colombia_general: "14.1 Respeta las normas de transito vigentes (utiliza cinturon de seguridad puestos delanteros y traseros , límites de velocidad y otros)"
+respuesta14.1_colombia_general: "14.1 Respeta las normas de tránsito vigentes (utiliza cinturón de seguridad puestos delanteros y traseros, límites de velocidad y otras)"
 respuesta14.2_colombia_general: "14.2 Transita por sitios autorizados, vías adecuadas (Sigue rutas establecidas; los trayectos más seguros)"
 respuesta14.3_colombia_general: "14.3 Conduce sin elementos distractores (Celulares, alimentos, documentos, etc)"
 respuesta14.4_colombia_general: "14.4 Conduce conservando posturas adecuadas"
 respuesta14.5_colombia_general: "14.5 Realizó calistenia al inicio de la jornada"
 respuesta14.6_colombia_general: "14.6 Realizó la inspección pre-operacional del vehículo"
 respuesta14.7_colombia_general: "14.7 Mantenimiento preventivo de acuerdo con la programación"
-respuesta15.1_colombia_general: "15.1 Camina sin distraerse (no mira la tpl; planilla, equipos de comunicación etc.)"
+respuesta15.1_colombia_general: "15.1 Camina sin distraerse (No mira la TLP; planilla, etc)"
 respuesta15.2_colombia_general: "15.2 Es previsivo ante el riesgo canino"
-respuesta15.3_colombia_general: "15.3 Transita por caminos adecuados (sigue rutas establecidas; los trayectos más seguros)"
-respuesta15.4_colombia_general: "15.4 Evita comportamientos inseguros (subirse a nichos, celdas, barandas, cercas, rejas, correr, etc.)"
-respuesta15.5_colombia_general: "15.5 Realiza el levantamiento y transporte de cargas adecuadamente"
-respuesta16.1_colombia_general: "16.1 Cumple con el procedimiento de apertura de tapas, puertas etc, para el ingreso a camaras, subestaciones de sotano y demas espacios confinados."
+respuesta15.3_colombia_general: "15.3 Camina por caminos adecuados (Sigue rutas establecidas; los trayectos más seguros)"
+respuesta15.4_colombia_general: "15.4 Evita comportamientos inseguros (Subirse a nichos, celdas, barandas, cercas, rejas, correr)"
+respuesta15.5_colombia_general: "15.5 realiza el levantamiento y tranporte de cargas adecuadamente"
+respuesta16.1_colombia_general: "16.1 Cumple con el procedimiento de apertura de tapas,, puertas, etc para el ingreso a cámaras, subestaciones de sotano y demás espacios confinados."
 respuesta16.2_colombia_general: "16.2 Cumple con el protocolo para el ingreso a espacios confinados según su clasificación"
-respuesta16.3_colombia_general: "16.3 Realiza medición de la atmosfera con equipo calibrado y en buen estado al inicio y durante la labor ejecutada en el espacio confinado según procedimiento y las registra."
+respuesta16.3_colombia_general: "16.3 Realiza medición de la atmósfera con equipo calibrado y en buen estado al inicio y durante la labora ejecutada en el espacio confinado según procedimiento y las registra"
 respuesta16.4_colombia_general: "16.4 Realiza ventilación del espacio hasta lograr niveles permitidos (ventilación activa o pasiva)"
-respuesta16.5_colombia_general: "16.5 Utiliza sistemas de respiración autónomo o de suministro de aires en buen estado y normalizada cuando aplique"
-respuesta17.1_colombia_general: "17.1 El equipo de trabajo tiene cámara de video para grabar la actividad."
+respuesta16.5_colombia_general: "16.5 Utiliza sistemas de respiración autónomo o de suministro de aires en buene stado y normalizada"
+respuesta17.1_colombia_general: "17.1 El equipo de trabajao tienen cámara de video para grabar la actividad"
 respuesta17.2_colombia_general: "17.2 La cámara está enfocando la actividad"
 respuesta17.3_colombia_general: "17.3 La cámara está en modo de grabación"
 respuesta1.1_brazil_general: "1.1 Corte efetivo de todas as fontes de tensão"
@@ -777,7 +772,6 @@ respuesta7.2_brazil_interno: "7.2 Os resíduos orgânicos ou de qualquer outra n
 respuesta7.3_brazil_interno: "7.3 Existe sinalização de advertencia para fumantes?"
 respuesta7.4_brazil_interno: "7.4 Os sanitários estão em condições adequadas de uso e conservação?"
 respuesta8.1_brazil_interno: "8.1 O local possui estojo de primeiros socorros completo?"
-respuesta10.4_exceso_de_velocidad: "10.1 Exceso de velocidad (sobre 110 km/h en un lapso mayor a 2 minutos)"
 respuesta_0: "Sí"
 respuesta_1: "No"
 respuesta_2: "N/A"
@@ -825,7 +819,6 @@ electrica: Eléctrica
 logistica: Logística
 obras_civiles: Obras Civiles
 telecomunicaciones: Telecomunicaciones
-exceso_de_velocidad: Exceso de velocidad
 peru_electrica: Eléctrica
 peru_logistica: Logística
 peru_obras_civiles: Obras Civiles
@@ -848,7 +841,7 @@ empleados: Colaboradores
 'Empleado 8': Colaborador 8
 'Empleado 9': Colaborador 9
 'Empleado 10': Colaborador 10
-'Supervisor': "Líder de Cuadrilla"
+'Supervisor': Responsable en terreno
 'supervisor': Responsable en terreno
 'Supervisor de Trabajo': Responsable en terreno
 'charla_grabada_telecomunicaciones': ART Grabada
@@ -858,5 +851,10 @@ empleados: Colaboradores
 'charla_grabada_obras_civiles': Charla grabada
 'charla_grabada_colombia_general': Charla grabada
 'charla_grabada_peru_telecomunicaciones': Charla grabada
-
-3002_TELEMEDIDA_EPM: "3002 TELEMEDIDA EPM"
+'charla_correcta_telecomunicaciones': ART correcta
+'charla_correcta_electrica': Charla correcta
+'charla_correcta_logistica': Charla correcta
+'charla_correcta_llvv': Charla correcta
+'charla_correcta_obras_civiles': Charla correcta
+'charla_correcta_colombia_general': Charla correcta
+'charla_correcta_peru_telecomunicaciones': Charla correcta

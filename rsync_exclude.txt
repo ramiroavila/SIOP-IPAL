@@ -3,6 +3,7 @@ app/logs
 .DS_Store
 app/config/parameters.yml
 web/uploads
+web/uploads/.htaccess
 web/.htaccess
 web/app_dev.php
 app/spool

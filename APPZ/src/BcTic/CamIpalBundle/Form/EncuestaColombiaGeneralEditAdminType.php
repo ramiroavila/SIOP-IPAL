@@ -268,6 +268,7 @@ class EncuestaColombiaGeneralEditAdminType extends AbstractType
             ->add('autoInspeccion','choice', array('label' => 'Auto Inspección', 'choices' => array('NO_APLICA' => "N/A", 'A1' => 'A1','A2' => 'A2','A3' => 'A3','A4' => 'A4')))
             ->add('charlaOperativa','choice', array('label' => 'Charla operativa', 'choices' => array('NO_APLICA' => "N/A", 'B1' => 'B1','B2' => 'B2','B3' => 'B3','B4' => 'B4')))
             ->add('charlaGrabada','choice', array('label' => 'Charla grabada', 'choices' => array('SI' => 'Sí', 'NO' => 'No' )))
+            ->add('charlaCorrecta','hidden')
         ;
     }
 

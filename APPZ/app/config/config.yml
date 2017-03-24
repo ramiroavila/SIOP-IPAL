@@ -204,6 +204,11 @@ simple_things_entity_audit:
       - BcTic\CamIpalBundle\Entity\EncuestaObrasCiviles
       - BcTic\CamIpalBundle\Entity\EncuestaTelecomunicaciones
       - BcTic\CamIpalBundle\Entity\EncuestaLlvv
+      - BcTic\CamIpalBundle\Entity\EncuestaFAM
+      - BcTic\CamIpalBundle\Entity\EncuestaPeruElectrica
+      - BcTic\CamIpalBundle\Entity\EncuestaPeruLogistica
+      - BcTic\CamIpalBundle\Entity\EncuestaPeruObrasCiviles
+      - BcTic\CamIpalBundle\Entity\EncuestaPeruTelecomunicaciones
       - BcTic\CamIpalBundle\Entity\Observacion
       - BcTic\CamIpalBundle\Entity\ObservacionDeComportamiento
       - BcTic\CamIpalBundle\Entity\RegistroDeObservacion

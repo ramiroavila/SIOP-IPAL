@@ -840,10 +840,13 @@ class EncuestaController extends Controller
              $entity = new EncuestaFAM();
              $tipo = "FAM";
              break;
+<<<<<<< HEAD
          case 'exceso_de_velocidad':
              $entity = new EncuestaExcesoDeVelocidad();
              $tipo = "EXCESO_DE_VELOCIDAD";
              break;
+=======
+>>>>>>> hotfix/16.3.5
          case 'colombia_general':
            $entity = new EncuestaColombiaGeneral();
            $tipo = "COLOMBIA_GENERAL";
@@ -2334,6 +2337,8 @@ class EncuestaController extends Controller
               break;
           case 'exceso_de_velocidad':
               $formType = $role ? new EncuestaExcesoDeVelocidadEditAdminType() : new EncuestaExcesoDeVelocidadEditType();
+          case 'fam':
+              $formType = $role ? new EncuestaFAMEditAdminType() : new EncuestaFAMEditType();
               break;
           case 'colombia_general':
             $formType = $role ? new EncuestaColombiaGeneralEditAdminType() : new EncuestaColombiaGeneralEditType();

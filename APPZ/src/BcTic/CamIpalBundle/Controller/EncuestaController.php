@@ -830,6 +830,10 @@ class EncuestaController extends Controller
              $entity = new EncuestaLlvv();
              $tipo = "LLVV";
              break;
+         case 'fam':
+             $entity = new EncuestaFAM();
+             $tipo = "FAM";
+             break;
          case 'colombia_general':
            $entity = new EncuestaColombiaGeneral();
            $tipo = "COLOMBIA_GENERAL";
@@ -2068,9 +2072,12 @@ class EncuestaController extends Controller
           case 'telecomunicaciones':
             $entity = new EncuestaTelecomunicaciones();
             break;
-        case 'llvv':
-          $entity = new EncuestaLlvv();
-          break;
+          case 'llvv':
+            $entity = new EncuestaLlvv();
+            break;
+          case 'fam':
+            $entity = new EncuestaFAM();
+            break;
           case 'colombia_general':
             $entity = new EncuestaColombiaGeneral();
             break;
@@ -2144,6 +2151,9 @@ class EncuestaController extends Controller
             break;
           case 'llvv':
               $formType = $role ? new EncuestaLlvvEditAdminType() : new EncuestaLlvvEditType();
+              break;
+          case 'fam':
+              $formType = $role ? new EncuestaFAMEditAdminType() : new EncuestaFAMEditType();
               break;
           case 'colombia_general':
             $formType = $role ? new EncuestaColombiaGeneralEditAdminType : new EncuestaColombiaGeneralEditType();
@@ -2275,6 +2285,9 @@ class EncuestaController extends Controller
             break;
           case 'llvv':
               $formType = $role ? new EncuestaLlvvEditAdminType() : new EncuestaLlvvEditType();
+              break;
+          case 'fam':
+              $formType = $role ? new EncuestaFAMEditAdminType() : new EncuestaFAMEditType();
               break;
           case 'colombia_general':
             $formType = $role ? new EncuestaColombiaGeneralEditAdminType() : new EncuestaColombiaGeneralEditType();

@@ -32,6 +32,8 @@ use BcTic\CamIpalBundle\Form\EncuestaObrasCivilesType;
 use BcTic\CamIpalBundle\Form\EncuestaTelecomunicacionesType;
 use BcTic\CamIpalBundle\Form\EncuestaLlvvType;
 use BcTic\CamIpalBundle\Form\EncuestaFAMType;
+use BcTic\CamIpalBundle\Form\EncuestaFAMEditAdminType;
+use BcTic\CamIpalBundle\Form\EncuestaFAMEditType;
 use BcTic\CamIpalBundle\Form\EncuestaColombiaGeneralType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilGeneralType;
 use BcTic\CamIpalBundle\Form\EncuestaBrazilInternoType;
@@ -2042,7 +2044,6 @@ class EncuestaController extends Controller
      *
      * @Route("/{id}.html", name="encuestas_show")
      * @Method("GET")
-     * @Cache(expires="tomorrow", public="true")
      * @Template()
      */
     public function showAction(Request $request,$id)

@@ -30,6 +30,10 @@ class EncuestaBrazilInterno extends Encuesta
       return "brazil_interno";
     }
 
+    public function getValor($item) {
+      return -1;
+    }
+
         public function getHits($criticidad) {
 
         $data = array(
@@ -421,6 +425,6 @@ class EncuestaBrazilInterno extends Encuesta
 
     public function getIndiceIpalMedioAmbiente(){
       return 0;
-    }    
+    }
 
 }

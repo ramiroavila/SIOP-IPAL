@@ -49,6 +49,10 @@ class EncuestaBrazilGeneral extends Encuesta
       return "brazil_general";
     }
 
+    public function getValor($item) {
+      return -1;
+    }
+
         public function getHits($criticidad) {
 
         $data = array(

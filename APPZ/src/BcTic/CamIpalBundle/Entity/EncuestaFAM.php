@@ -54,6 +54,99 @@ class EncuestaFAM extends Encuesta
       return "fam";
     }
 
+    public function getValor($item) {
+
+      switch($item) {
+
+        case "1.1":
+        case "1.2":
+        case "1.3":
+        case "1.4":
+        case "1.5":
+
+        case "2.1":
+
+        case "3.4":
+        case "3.6":
+
+        case "11.4":
+        case "11.10":
+
+        case "12.1":
+        case "12.2":
+        case "12.3":
+
+        case "12.1":
+        case "12.2":
+
+        case "13.1":
+        case "13.2":
+
+        case "14.1":
+        case "14.2":
+        case "14.6":
+
+        case "15.1":
+        case "15.2":
+        case "15.3":
+
+          return 50;
+
+        case "3.1":
+        case "3.2":
+        case "3.3":
+        case "3.5":
+        case "3.7":
+        case "3.8":
+        case "3.9":
+        case "3.10":
+        case "3.11":
+        case "3.12":
+        case "3.13":
+        case "4.1":
+        case "4.2":
+        case "4.3":
+        case "4.4":
+        case "4.5":
+        case "5.1":
+        case "5.2":
+        case "5.3":
+        case "5.4":
+        case "6.1":
+        case "6.2":
+        case "7.1":
+        case "7.2":
+        case "7.3":
+        case "8.2":
+        case "8.3":
+        case "9.1":
+        case "9.2":
+        case "9.3":
+        case "14.3":
+        case "14.4":
+        case "14.5":
+          return 20;
+
+        case "2.2":
+        case "2.3":
+        case "2.4":
+        case "2.5":
+        case "8.1":
+        case "10.1":
+        case "11.1":
+        case "11.2":
+        case "11.3":
+        case "11.5":
+        case "11.6":
+        case "11.7":
+        case "11.8":
+        case "11.9":
+          return 10;
+
+      }
+      return -1;
+    }
+
     public function getHits($criticidad) {
 
         $data = array(

@@ -47,6 +47,60 @@ class EncuestaObrasCiviles extends Encuesta
       return "obras_civiles";
     }
 
+    public function getValor($item) {
+      switch($item) {
+        case "1.1":
+        case "1.2":
+        case "1.3":
+        case "1.4":
+        case "1.5":
+        case "2.1":
+        case "2.2":
+        case "2.3":
+        case "3.1":
+        case "4.3":
+        case "4.4":
+        case "4.11":
+          return 50;
+
+        case "3.3":
+        case "4.1":
+        case "4.2":
+        case "4.7":
+        case "4.8":
+        case "4.10":
+        case "4.12":
+        case "5.1":
+        case "5.2":
+        case "5.3":
+        case "6.2":
+        case "6.3":
+        case "6.4":
+        case "7.1":
+        case "7.2":
+        case "8.1":
+        case "8.2":
+        case "9.1":
+        case "9.2":
+        case "9.3":
+        case "10.1":
+        case "10.3":
+          return 20;
+
+        case "3.2":
+        case "3.4":
+        case "3.5":
+        case "4.9":
+        case "10.2":
+        case "11.1":
+          return 10;
+
+        case "6.1":
+          return 5;
+      }
+      return -1;
+    }
+
         public function getHits($criticidad) {
 
         $data = array(

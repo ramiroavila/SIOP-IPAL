@@ -85,6 +85,10 @@ class EncuestaColombiaGeneral extends Encuesta
       return "colombia_general";
     }
 
+    public function getValor($item) {
+      return -1;
+    }
+
         public function getHits($criticidad) {
 
         $data = array(

@@ -281,6 +281,7 @@ class EmpleadoController extends Controller
      */
     public function indexEmpleadosJsonAction(Request $request)
     {
+
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('BcTicCamIpalBundle:Empleado')
@@ -309,7 +310,6 @@ class EmpleadoController extends Controller
         }
 
         $response = new JsonResponse($data);
-        $response->setSharedMaxAge(600); //Cache 10 minutes
         return $response;
 
     }

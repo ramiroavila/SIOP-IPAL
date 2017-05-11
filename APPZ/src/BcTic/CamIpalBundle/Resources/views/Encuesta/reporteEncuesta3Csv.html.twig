@@ -1,0 +1,6 @@
+"Nº IPAL";"TIPO";"NUMERO ITEM";"ITEM";"VALOR ITEM"
+{% for item in data %}
+  {% for respuesta in item.respuestas %}
+    "{{-item.id-}}";"{{-item.tipo-}}";"{{-respuesta.numero-}}";"{{-respuesta.item|trans-}}";{{-respuesta.valor-}};
+  {% endfor %}
+{% endfor %}

@@ -1279,6 +1279,7 @@ abstract class Encuesta
     abstract function getHits($criticidad);
     abstract function getRespuestasAgrupadas();
     abstract function getRespuestasAgrupadasNumeral();
+    abstract function getValor($item);
 
     /**
      * Get id

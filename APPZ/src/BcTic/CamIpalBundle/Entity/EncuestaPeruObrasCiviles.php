@@ -47,6 +47,10 @@ class EncuestaPeruObrasCiviles extends Encuesta
       return "peru_obras_civiles";
     }
 
+    public function getValor($item) {
+      return $item;
+    }       
+
         public function getHits($criticidad) {
 
         $data = array(
@@ -424,5 +428,5 @@ class EncuestaPeruObrasCiviles extends Encuesta
     public function getIndiceIpalMedioAmbiente(){
       return 0;
     }
-        
+
 }

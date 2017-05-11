@@ -50,6 +50,11 @@ class EncuestaPeruTelecomunicaciones extends Encuesta
       return "peru_telecomunicaciones";
     }
 
+
+    public function getValor($item) {
+      return $item;
+    }
+    
     public function getHits($criticidad) {
 
         $data = array(
@@ -421,5 +426,5 @@ class EncuestaPeruTelecomunicaciones extends Encuesta
     public function getIndiceIpalMedioAmbiente(){
       return 0;
     }
-        
+
 }

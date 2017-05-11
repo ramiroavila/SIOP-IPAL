@@ -242,6 +242,10 @@ class EncuestaPeruLogistica extends Encuesta
       return $data;
     }
 
+    public function getValor($item) {
+      return $item;
+    }       
+
     public function getHits($criticidad) {
 
         $data = array(

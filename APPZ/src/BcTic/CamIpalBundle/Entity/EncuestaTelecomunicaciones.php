@@ -50,6 +50,60 @@ class EncuestaTelecomunicaciones extends Encuesta
       return "telecomunicaciones";
     }
 
+    public function getValor($item) {
+      switch($item) {
+        case "1.1":
+        case "1.2":
+        case "1.3":
+        case "1.4":
+        case "1.5":
+        case "2.1":
+        case "2.2":
+        case "2.3":
+        case "3.1":
+        case "4.1":
+        case "4.4":
+        case "4.5":
+        case "4.9":
+          return 50;
+
+        case "4.2":
+        case "4.3":
+        case "4.6":
+        case "4.7":
+        case "4.8":
+        case "4.10":
+        case "4.12":
+        case "5.1":
+        case "5.2":
+        case "5.3":
+        case "6.2":
+        case "6.3":
+        case "7.1":
+        case "7.2":
+        case "8.1":
+        case "8.2":
+        case "9.1":
+        case "9.2":
+        case "9.3":
+        case "10.1":
+        case "10.3":
+          return 20;
+
+        case "3.2":
+        case "3.4":
+        case "3.5":
+        case "4.9":
+        case "10.2":
+        case "11.1":
+          return 10;
+
+        case "6.1":
+          return 5;
+      }
+      return -1;
+    }
+
     public function getHits($criticidad) {
 
         $data = array(
@@ -314,20 +368,26 @@ class EncuestaTelecomunicaciones extends Encuesta
     }
 
      public function getIncumplimientos50() {
+
       $data = array();
+
       if ($this->getRespuesta11() == 1) $data[] = "respuesta1.1_telecomunicaciones";
       if ($this->getRespuesta12() == 1) $data[] = "respuesta1.2_telecomunicaciones";
       if ($this->getRespuesta13() == 1) $data[] = "respuesta1.3_telecomunicaciones";
       if ($this->getRespuesta14() == 1) $data[] = "respuesta1.4_telecomunicaciones";
       if ($this->getRespuesta15() == 1) $data[] = "respuesta1.5_telecomunicaciones";
+
       if ($this->getRespuesta21() == 1) $data[] = "respuesta2.1_telecomunicaciones";
       if ($this->getRespuesta22() == 1) $data[] = "respuesta2.2_telecomunicaciones";
       if ($this->getRespuesta23() == 1) $data[] = "respuesta2.3_telecomunicaciones";
+
       if ($this->getRespuesta31() == 1) $data[] = "respuesta3.1_telecomunicaciones";
+
       if ($this->getRespuesta41() == 1) $data[] = "respuesta4.1_telecomunicaciones";
       if ($this->getRespuesta44() == 1) $data[] = "respuesta4.4_telecomunicaciones";
       if ($this->getRespuesta45() == 1) $data[] = "respuesta4.5_telecomunicaciones";
       if ($this->getRespuesta49() == 1) $data[] = "respuesta4.9_telecomunicaciones";
+
       if ($this->getRespuesta121() == 0) $data[] = "respuesta12.1_telecomunicaciones";
       return $data;
     }
@@ -344,10 +404,12 @@ class EncuestaTelecomunicaciones extends Encuesta
                                 (($this->getRespuesta13() == 1) ? 1 : 0) +
                                 (($this->getRespuesta14() == 1) ? 1 : 0) +
                                 (($this->getRespuesta15() == 1) ? 1 : 0) +
+
                                 (($this->getRespuesta21() == 1) ? 1 : 0) +
                                 (($this->getRespuesta22() == 1) ? 1 : 0) +
                                 (($this->getRespuesta23() == 1) ? 1 : 0) +
-                                (($this->getRespuesta31() == 1) ? 1 : 0)+
+
+                                (($this->getRespuesta31() == 1) ? 1 : 0) +
                                 (($this->getRespuesta41() == 1) ? 1 : 0) +
                                 (($this->getRespuesta44() == 1) ? 1 : 0) +
                                 (($this->getRespuesta45() == 1) ? 1 : 0) +
@@ -421,5 +483,5 @@ class EncuestaTelecomunicaciones extends Encuesta
     public function getIndiceIpalMedioAmbiente(){
       return 0;
     }
-        
+
 }

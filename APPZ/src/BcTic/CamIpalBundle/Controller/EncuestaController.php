@@ -564,6 +564,105 @@ class EncuestaController extends Controller
       return new JsonResponse(array('file' => $file));
     }
 
+    /**
+     *
+     * @Route("/encuesta_reporte_3_csv/data.csv", name="encuesta_reporte_3_csv")
+     * @Method("POST")
+     * @Template()
+     */
+    public function reporteEncuesta3CsvAction(Request $request)
+    {
+
+      $ids = json_decode(file_get_contents($request->get('ids')),true);
+
+      $em = $this->getDoctrine()->getManager();
+
+      $sql = 'SELECT * FROM Encuesta e WHERE e.id IN ('.implode(",",$ids).') AND (respuesta_1_3 = 1 OR  respuesta_1_4 = 1 OR  respuesta_1_5 = 1 OR  respuesta_2_1 = 1 OR  respuesta_2_2 = 1 OR  respuesta_2_3 = 1 OR  respuesta_3_1 = 1 OR  respuesta_3_2 = 1 OR  respuesta_3_3 = 1 OR  respuesta_3_4 = 1 OR  respuesta_3_5 = 1 OR  respuesta_4_1 = 1 OR  respuesta_4_2 = 1 OR  respuesta_4_3 = 1 OR  respuesta_4_4 = 1 OR  respuesta_4_5 = 1 OR  respuesta_4_6 = 1 OR  respuesta_4_7 = 1 OR  respuesta_4_8 = 1 OR  respuesta_4_9 = 1 OR  respuesta_5_1 = 1 OR  respuesta_5_2 = 1 OR  respuesta_5_3 = 1 OR  respuesta_6_1 = 1 OR  respuesta_6_2 = 1 OR  respuesta_6_3 = 1 OR  respuesta_6_4 = 1 OR  respuesta_7_1 = 1 OR  respuesta_7_2 = 1 OR  respuesta_8_1 = 1 OR  respuesta_8_2 = 1 OR  respuesta_9_1 = 1 OR  respuesta_9_2 = 1 OR  respuesta_9_3 = 1 OR  respuesta_10_1 = 1 OR  respuesta_10_2 = 1 OR  respuesta_10_3 = 1 OR  respuesta_11_1 = 1 OR  respuesta_6_5 = 1 OR respuesta_2_4 = 1 OR  respuesta_2_5 = 1 OR  respuesta_11_2 = 1 OR  respuesta_12_1 = 1 OR  respuesta_1_6 = 1 OR  respuesta_2_6 = 1 OR  respuesta_3_6 = 1 OR  respuesta_3_7 = 1 OR  respuesta_3_8 = 1 OR  respuesta_3_9 = 1 OR  respuesta_3_10 = 1 OR  respuesta_3_11 = 1 OR  respuesta_3_12 = 1 OR  respuesta_3_13 = 1 OR  respuesta_3_14 = 1 OR  respuesta_5_4 = 1 OR  respuesta_7_3 = 1 OR  respuesta_7_4 = 1 OR  respuesta_8_3 = 1 OR  respuesta_9_4 = 1 OR  respuesta_9_5 = 1 OR  respuesta_9_6 = 1 OR  respuesta_9_7 = 1 OR  respuesta_9_8 = 1 OR  respuesta_9_9 = 1 OR  respuesta_9_10 = 1 OR  respuesta_9_11 = 1 OR  respuesta_10_4 = 1 OR  respuesta_12_2 = 1 OR  respuesta_12_3 = 1 OR  respuesta_12_4 = 1 OR  respuesta_12_5 = 1 OR  respuesta_12_6 = 1 OR  respuesta_13_1 = 1 OR  respuesta_13_2 = 1 OR  respuesta_13_3 = 1 OR  respuesta_13_4 = 1 OR  respuesta_13_5 = 1 OR  respuesta_13_6 = 1 OR  respuesta_13_7 = 1 OR  respuesta_13_8 = 1 OR  respuesta_13_9 = 1 OR  respuesta_13_10 = 1 OR  respuesta_11_3 = 1 OR  respuesta_4_10 = 1 OR  respuesta_4_11 = 1 OR  respuesta_4_12 = 1 OR  respuesta_4_13 = 1 OR  respuesta_4_14 = 1 OR  respuesta_4_15 = 1 OR  respuesta_4_16 = 1) ORDER BY e.fecha DESC';
+
+      $stmt = $em->getConnection()->prepare($sql);
+      $stmt->execute();
+
+      $data = array();
+      foreach($stmt->fetchAll() as $entity) {
+        $item = array('id' => $entity['id'],'tipo' => $entity['tipo']);
+
+        //Creo el objeto con el factory:
+        switch ($entity['tipo']) {
+          case 'CHILECTRA':
+            $obj = new EncuestaChilectra();
+            break;
+          case 'ELECTRICO':
+            $obj = new EncuestaElectrica();
+            break;
+          case 'LOGISTICA':
+            $obj = new EncuestaLogistica();
+            break;
+          case 'OBRAS_CIVILES':
+            $obj = new EncuestaObrasCiviles();
+            break;
+          case 'TELECOMUNICACIONES':
+            $obj = new EncuestaTelecomunicaciones();
+            break;
+          case 'PERU_ELECTRICO':
+            $obj = new EncuestaPeruElectrica();
+            break;
+          case 'PERU_LOGISTICA':
+            $obj = new EncuestaPeruLogistica();
+            break;
+          case 'PERU_OBRAS_CIVILES':
+            $obj = new EncuestaPeruObrasCiviles();
+            break;
+          case 'PERU_TELECOMUNICACIONES':
+            $obj = new EncuestaPeruTelecomunicaciones();
+            break;
+          case 'LLVV':
+            $obj = new EncuestaLlvv();
+            break;
+          case 'FAM':
+            $obj = new EncuestaFAM();
+            break;
+          case 'COLOMBIA_GENERAL':
+            $obj = new EncuestaColombiaGeneral();
+            break;
+          case 'BRAZIL_GENERAL':
+            $obj = new EncuestaBrazilGeneral();
+            break;
+          case 'BRAZIL_INTERNO':
+            $obj = new EncuestaBrazilInterno();
+            break;
+        }
+
+
+        $respuestas = array();
+        foreach ($entity as $key => $value) {
+          if (strpos($key,'respuesta_') === FALSE) {
+
+          } else {
+            if ($value == "1") {
+              $str = preg_replace('/(respuesta_)(\d{1,2})_/','respuesta$2.',$key.'_'.strtolower($entity['tipo']));
+              $str = str_replace(array('electrico'),array('electrica'), $str);
+              $numero = str_replace(array('respuesta_','_'),array('','.'),$key);
+              $respuestas[] = array('numero' => $numero , 'item' => $str, 'valor' => $obj->getValor($numero));
+            }
+          }
+        }
+        $item['respuestas'] = $respuestas;
+        $data[] = $item;
+      }
+
+      $content = $this->renderView(
+        'BcTicCamIpalBundle:Encuesta:reporteEncuesta3Csv.html.twig',
+        array('data' => $data)
+      );
+
+      //Guardo el contenido y devuelvo el ID para descargar el link
+      $fs = new Filesystem();
+      $file = 'REPORTE-3-'.date_format(date_create(),'Y-m-d-Hi');
+      $fs->dumpFile("uploads/".$file.".csv", utf8_decode($content));
+
+      return new JsonResponse(array('file' => $file));
+    }
+
 
     /**
      *

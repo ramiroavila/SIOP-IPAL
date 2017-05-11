@@ -45,9 +45,12 @@ class EncuestaPeruElectrica extends Encuesta
 
     }
 
-
     public function getKey() {
       return "peru_electrica";
+    }
+
+    public function getValor($item) {
+      return $item;
     }
 
     public function getHits($criticidad) {
@@ -421,5 +424,5 @@ class EncuestaPeruElectrica extends Encuesta
     public function getIndiceIpalMedioAmbiente(){
       return 0;
     }
-    
+
 }

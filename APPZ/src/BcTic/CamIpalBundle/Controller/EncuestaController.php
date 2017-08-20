@@ -1887,22 +1887,22 @@ class EncuestaController extends Controller
                   break;
 
                 case 5: //COASIN
-                  $destinatario = 'siop-coasin-cam-la@bctic.net';
+                  $destinatario = 'siop-coasin-cam-la@cryptoeconomia.cl';
                   break;
 
                 case 6: //CONTRATISTAS
-                  $destinatario = 'siop-contratistas@cam-la.com';
+                  $destinatario = 'siop-contratistas@cryptoeconomia.cl';
                   break;
 
                 default: //CHILE - DEFECTO
-                  $destinatario = 'siop-cam-la@bctic.net';
+                  $destinatario = 'siop-cam-la@cryptoeconomia.cl';
                   break;
 
               }
 
               $message = \Swift_Message::newInstance()
                 ->setSubject('IPAL #'.$entity->getId().' CON INCUMPLIMIENTOS 50')
-                ->setFrom(array('info@bctic.net' => 'SIOP CAM LA'))
+                ->setFrom(array('no-reply@cryptoeconomia.cl' => 'SIOP CAM LA'))
                 ->setTo($destinatario)
                 ->setCharset('UTF-8')
                 ->setContentType('text/html')

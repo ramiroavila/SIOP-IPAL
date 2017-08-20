@@ -89,7 +89,7 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
 
       $message = \Swift_Message::newInstance()
                 ->setSubject('IPAL #'.$entity->getId().' EN ESTADO ABIERTA')
-                ->setFrom(array('info@bctic.net' => 'SIOP CAM LA'))
+                ->setFrom(array('no-reply@cryptoeconomia.cl' => 'SIOP CAM LA'))
                 ->setTo($destinatario)
                 ->setCharset('UTF-8')
                 ->setContentType('text/html')

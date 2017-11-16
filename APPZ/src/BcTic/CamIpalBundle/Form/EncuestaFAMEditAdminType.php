@@ -92,6 +92,7 @@ class EncuestaFAMEditAdminType extends AbstractType
             ->add('respuesta91', new SurveyType(), array('label' => 'respuesta9.1_fam'))
             ->add('respuesta92', new SurveyType(), array('label' => 'respuesta9.2_fam'))
             ->add('respuesta93', new SurveyType(), array('label' => 'respuesta9.3_fam'))
+            ->add('respuesta94', new SurveyType(), array('label' => 'respuesta9.4_fam'))
 
             ->add('respuesta101', new SurveyType(), array('label' => 'respuesta10.1_fam'))
 

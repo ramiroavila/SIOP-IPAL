@@ -29,6 +29,7 @@ class EncuestaPeruObrasCiviles extends Encuesta
         $this->setRespuesta43(2);
         $this->setRespuesta44(2);
         $this->setRespuesta411(2);
+        $this->setRespuesta104(2);        
         $this->setRespuesta121(2);
         $this->setRespuesta131(2);
         $this->setRespuesta132(2);
@@ -49,7 +50,7 @@ class EncuestaPeruObrasCiviles extends Encuesta
 
     public function getValor($item) {
       return $item;
-    }       
+    }
 
         public function getHits($criticidad) {
 

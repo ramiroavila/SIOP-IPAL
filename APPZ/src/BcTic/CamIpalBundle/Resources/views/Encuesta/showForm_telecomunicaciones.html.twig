@@ -190,38 +190,44 @@
             <td class="alert alert-warning">{% set name = 'respuesta4.6_' ~ entity.key %} {{ name | trans }}</td>
             <td class="alert alert-warning"></td>
             <td></td>
-            <td colspan="2"></td>
+            <td>{% set name = 'respuesta10.4_' ~ entity.key %} {{ name | trans }}</td>
+            <td></td>
           </tr>
           <tr>
             <td>{% set name = 'respuesta4.7_' ~ entity.key %} {{ name | trans }}</td>
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td>{% set name = 'respuesta4.8_' ~ entity.key %} {{ name | trans }}</td>
             <td></td>
             <td></td>
             <td><b>I-11 Primeros Auxilios y Emergencias</b></td>
             <td><b>{{ 'Cumple' | trans }}</b></td>
           </tr>
           <tr>
-            <td>{% set name = 'respuesta4.8_' ~ entity.key %} {{ name | trans }}</td>
+            <td>{% set name = 'respuesta4.9_' ~ entity.key %} {{ name | trans }}</td>
             <td></td>
             <td></td>
             <td>{% set name = 'respuesta11.1_' ~ entity.key %} {{ name | trans }}</td>
             <td></td>
           </tr>
           <tr>
-            <td>{% set name = 'respuesta4.9_' ~ entity.key %} {{ name | trans }}</td>
+            <td>{% set name = 'respuesta4.10_' ~ entity.key %} {{ name | trans }}</td>
             <td></td>
             <td></td>
             <td>{% set name = 'respuesta11.2_' ~ entity.key %} {{ name | trans }}</td>
             <td></td>
           </tr>
           <tr>
-            <td>{% set name = 'respuesta4.10_' ~ entity.key %} {{ name | trans }}</td>
-            <td></td>
-            <td></td>
+            <td colspan="2"></td>
+            <td>&nbsp;</td>
             <td colspan="2"></td>
           </tr>
           <tr>
             <td colspan="2"></td>
-            <td>&nbsp;</td>
+            <td></td>
             <td><b>I-12 Amonestación</b></td>
             <td><b>{{ '¿Amonestación?' | trans }}</b></td>
           </tr>
@@ -230,11 +236,6 @@
             <td></td>
             <td>{% set name = 'respuesta12.1_' ~ entity.key %} {{ name | trans }}</td>
             <td></td>
-          </tr>
-          <tr>
-            <td colspan="2"></td>
-            <td></td>
-            <td colspan="2">&nbsp;</td>
           </tr>
         </tbody>
       </table>

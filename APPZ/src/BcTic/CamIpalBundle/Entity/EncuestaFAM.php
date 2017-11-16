@@ -29,6 +29,8 @@ class EncuestaFAM extends Encuesta
         $this->setRespuesta34(2);
         $this->setRespuesta36(2);
 
+        $this->setRespuesta94(2);
+
         $this->setRespuesta114(2);
         $this->setRespuesta1110(2);
 
@@ -68,6 +70,8 @@ class EncuestaFAM extends Encuesta
 
         case "3.4":
         case "3.6":
+
+        case "9.4":
 
         case "11.4":
         case "11.10":
@@ -151,7 +155,7 @@ class EncuestaFAM extends Encuesta
 
         $data = array(
                 50 => array (
-                    'items' => 21,
+                    'items' => 22,
                     'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) +
                                 (($this->getRespuesta12() == 1) ? 1 : 0)+
                                 (($this->getRespuesta13() == 1) ? 1 : 0) +
@@ -162,6 +166,8 @@ class EncuestaFAM extends Encuesta
 
                                 (($this->getRespuesta34() == 1) ? 1 : 0) +
                                 (($this->getRespuesta36() == 1) ? 1 : 0) +
+
+                                (($this->getRespuesta94() == 1) ? 1 : 0) +
 
                                 (($this->getRespuesta114() == 1) ? 1 : 0)+
                                 (($this->getRespuesta1110() == 1) ? 1 : 0)+
@@ -317,6 +323,7 @@ class EncuestaFAM extends Encuesta
       $enum = $this->getRespuesta91(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta92(); $data[$enum] = $data[$enum] + 1;
       $enum = $this->getRespuesta93(); $data[$enum] = $data[$enum] + 1;
+      $enum = $this->getRespuesta94(); $data[$enum] = $data[$enum] + 1;
 
       $enum = $this->getRespuesta101(); $data[$enum] = $data[$enum] + 1;
 
@@ -408,6 +415,7 @@ class EncuestaFAM extends Encuesta
           $data[] = "respuesta_9_1";
           $data[] = "respuesta_9_2";
           $data[] = "respuesta_9_3";
+          $data[] = "respuesta_9_4";
 
           $data[] = "respuesta_10_1";
 
@@ -486,6 +494,7 @@ class EncuestaFAM extends Encuesta
       if ($this->getRespuesta91() == 1) $data[] = "respuesta9.1_fam";
       if ($this->getRespuesta92() == 1) $data[] = "respuesta9.2_fam";
       if ($this->getRespuesta93() == 1) $data[] = "respuesta9.3_fam";
+      if ($this->getRespuesta94() == 1) $data[] = "respuesta9.4_fam";
       if ($this->getRespuesta101() == 1) $data[] = "respuesta10.1_fam";
       if ($this->getRespuesta102() == 1) $data[] = "respuesta10.2_fam";
       if ($this->getRespuesta103() == 1) $data[] = "respuesta10.3_fam";
@@ -522,6 +531,8 @@ class EncuestaFAM extends Encuesta
       if ($this->getRespuesta34() == 1) $data[] = "respuesta3.4_fam";
       if ($this->getRespuesta36() == 1) $data[] = "respuesta3.6_fam";
 
+      if ($this->getRespuesta94() == 1) $data[] = "respuesta9.4_fam";
+
       if ($this->getRespuesta114() == 1) $data[] = "respuesta11.4_fam";
 
       if ($this->getRespuesta1110() == 1) $data[] = "respuesta11.10_fam";
@@ -551,7 +562,7 @@ class EncuestaFAM extends Encuesta
         //Calcula el índice IPAL según Fórmula:
         $data = array(
               50 => array (
-                  'items' => 21,
+                  'items' => 22,
                   'indice' => (($this->getRespuesta11() == 1) ? 1 : 0) +
                               (($this->getRespuesta12() == 1) ? 1 : 0)+
                               (($this->getRespuesta13() == 1) ? 1 : 0) +
@@ -562,6 +573,8 @@ class EncuestaFAM extends Encuesta
 
                               (($this->getRespuesta34() == 1) ? 1 : 0) +
                               (($this->getRespuesta36() == 1) ? 1 : 0) +
+
+                              (($this->getRespuesta94() == 1) ? 1 : 0) +
 
                               (($this->getRespuesta114() == 1) ? 1 : 0)+
                               (($this->getRespuesta1110() == 1) ? 1 : 0)+

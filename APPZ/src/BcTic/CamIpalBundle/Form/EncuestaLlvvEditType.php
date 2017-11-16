@@ -81,6 +81,7 @@ class EncuestaLlvvEditType extends AbstractType
             ->add('respuesta101', new SurveyType(), array('label' => 'respuesta10.1_llvv','disabled' => true))
             ->add('respuesta102', new SurveyType(), array('label' => 'respuesta10.2_llvv','disabled' => true))
             ->add('respuesta103', new SurveyType(), array('label' => 'respuesta10.3_llvv','disabled' => true))
+            ->add('respuesta104', new SurveyType(), array('label' => 'respuesta10.4_llvv','disabled' => true))
             ->add('respuesta111', new SurveyType(), array('label' => 'respuesta11.1_llvv','disabled' => true))
             ->add('respuesta112', new SurveyType(), array('label' => 'respuesta11.2_llvv','disabled' => true))
             ->add('respuesta113', new SurveyType(), array('label' => 'respuesta11.3_llvv','disabled' => true))

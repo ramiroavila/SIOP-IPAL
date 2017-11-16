@@ -197,11 +197,17 @@
              <td>{% set name = 'respuesta4.10_' ~ entity.key %} {{ name | trans }}</td>
              <td></td>
              <td></td>
-             <td colspan="2"></td>
+             <td>{% set name = 'respuesta10.4_' ~ entity.key %} {{ name | trans }}</td>
+             <td></td>
            </tr>
           <tr>
             <td>{% set name = 'respuesta4.11_' ~ entity.key %} {{ name | trans }}</td>
             <td></td>
+            <td></td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
             <td></td>
             <td><b>I-11 {{ 'Primeros Auxilios y Emergencias' | trans }}</b></td>
             <td><b>{{ 'Cumple' | trans }}</b></td>
@@ -227,7 +233,8 @@
           <tr>
             <td colspan="2"></td>
             <td></td>
-            <td colspan="2">&nbsp;</td>
+            <td colspan="2"></td>
+            <td></td>
           </tr>
           <tr>
             <td colspan="2"></td>
@@ -294,7 +301,7 @@
             <td></td>
             <td>{% set name = 'respuesta13.10_' ~ entity.key %} {{ name | trans }}</td>
             <td></td>
-          </tr>           
+          </tr>
         </tbody>
       </table>
     </div>

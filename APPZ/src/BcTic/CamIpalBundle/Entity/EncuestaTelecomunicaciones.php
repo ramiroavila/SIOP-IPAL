@@ -394,7 +394,7 @@ class EncuestaTelecomunicaciones extends Encuesta
       if ($this->getRespuesta45() == 1) $data[] = "respuesta4.5_telecomunicaciones";
       if ($this->getRespuesta49() == 1) $data[] = "respuesta4.9_telecomunicaciones";
 
-      if ($this->getRespuesta104() == 0) $data[] = "respuesta10.4_telecomunicaciones";
+      if ($this->getRespuesta104() == 1) $data[] = "respuesta10.4_telecomunicaciones";
 
       if ($this->getRespuesta121() == 0) $data[] = "respuesta12.1_telecomunicaciones";
       return $data;

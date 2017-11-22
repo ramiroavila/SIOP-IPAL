@@ -179,6 +179,7 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
+    disable_delivery: "%mailer_disable%"
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
     port:      "%mailer_port%"

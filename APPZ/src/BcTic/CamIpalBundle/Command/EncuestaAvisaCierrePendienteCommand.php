@@ -83,7 +83,7 @@ class EncuestaAvisaCierrePendienteCommand extends ContainerAwareCommand
         return;
       }
 
-      $destinatario = (filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL) === false) ? 'ipal@cam-la.com' : $usuario->getEmail() ;
+      $destinatario = 'ipal@cam-la.com';
 
       $output->writeln("SE NOTIFICARÁ LA ENCUESTA #".$entity->getId().' AL EMAIL '.$destinatario);
 

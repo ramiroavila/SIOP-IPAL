@@ -1871,19 +1871,19 @@ class EncuestaController extends Controller
               );
 
               //EN CASO DE PAIS = COASIN SE ENVIA A corsin@crm.cam-la.com
-              $destinatario = "no-reply@bctic.net";
+              $destinatario = "no-reply@cryptoeconomia.cl";
               switch ($entity->getPais()->getId()) {
 
                 case 2: //COLOMBIA
-                  $destinatario = 'siop-colombia@cam-la.com';
+                  $destinatario = 'siop-colombia-cam-la@cryptoeconomia.cl';
                   break;
 
                 case 3: //PERU
-                  $destinatario = 'siop-peru@cam-la.com';
+                  $destinatario = 'siop-peru-cam-la@cryptoeconomia.cl';
                   break;
 
                 case 4: //BRAZIL
-                  $destinatario = 'siop-brazil@cam-la.com';
+                  $destinatario = 'siop-brazil-cam-la@cryptoeconomia.cl';
                   break;
 
                 case 5: //COASIN
